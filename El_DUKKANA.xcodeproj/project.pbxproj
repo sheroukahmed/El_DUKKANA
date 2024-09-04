@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
+		81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F370892C88F6F3007FBC45 /* URLManager.swift */; };
+		81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */; };
 		E7D8FD55D577A08DB0FAEA38 /* Pods_El_DUKKANATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */; };
 		E91C6B3EC5324CDD4CD2CFAD /* Pods_El_DUKKANA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86494022EDA9DF3F2C743BE /* Pods_El_DUKKANA.framework */; };
 		F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */; };
@@ -44,6 +46,8 @@
 		0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.debug.xcconfig"; sourceTree = "<group>"; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
+		81F370892C88F6F3007FBC45 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLManager.swift; path = Remote/URLManager.swift; sourceTree = SOURCE_ROOT; };
+		81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLManagerProtocol.swift; path = Remote/URLManagerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		8B0AC9A2DAD8B724DBE93EB9 /* Pods-El_DUKKANAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_El_DUKKANATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BDCD9420B95267E514D0A0 /* Pods-El_DUKKANATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANATests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANATests/Pods-El_DUKKANATests.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,7 +109,6 @@
 				8B0AC9A2DAD8B724DBE93EB9 /* Pods-El_DUKKANAUITests.debug.xcconfig */,
 				0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -217,6 +220,8 @@
 		F8D3C20E2C88E18000C9B255 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				81F370892C88F6F3007FBC45 /* URLManager.swift */,
+				81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -457,6 +462,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */,
+				81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */,
+				81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
 				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
 			);
