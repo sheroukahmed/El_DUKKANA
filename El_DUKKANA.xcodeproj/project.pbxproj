@@ -26,6 +26,9 @@
 		F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */; };
 		F8D3C2122C88E26900C9B255 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F8D3C2112C88E26900C9B255 /* FirebaseAnalytics */; };
 		F8D3C2142C88E26900C9B255 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F8D3C2132C88E26900C9B255 /* FirebaseAuth */; };
+		F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDB2C891DF3005AE496 /* Network.swift */; };
+		F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */; };
+		F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDF2C891E5A005AE496 /* Customer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		F8D3C1F72C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = El_DUKKANAUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F8D3C2072C88E10C00C9B255 /* StartOptionsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartOptionsStoryboard.storyboard; sourceTree = "<group>"; };
 		F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartOptionsVC.swift; sourceTree = "<group>"; };
+		F8F9BBDB2C891DF3005AE496 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		F8F9BBDF2C891E5A005AE496 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +236,7 @@
 		F8D3C20B2C88E15E00C9B255 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F8F9BBDF2C891E5A005AE496 /* Customer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +262,8 @@
 			children = (
 				81F370892C88F6F3007FBC45 /* URLManager.swift */,
 				81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */,
+				F8F9BBDB2C891DF3005AE496 /* Network.swift */,
+				F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -501,6 +510,9 @@
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
+				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
+				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
+				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
