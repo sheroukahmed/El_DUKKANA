@@ -1,0 +1,821 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
+		E7D8FD55D577A08DB0FAEA38 /* Pods_El_DUKKANATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */; };
+		E91C6B3EC5324CDD4CD2CFAD /* Pods_El_DUKKANA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86494022EDA9DF3F2C743BE /* Pods_El_DUKKANA.framework */; };
+		F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */; };
+		F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */; };
+		F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */; };
+		F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C1DF2C88E06B00C9B255 /* LaunchScreen.storyboard */; };
+		F8D3C1EC2C88E06B00C9B255 /* El_DUKKANATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1EB2C88E06B00C9B255 /* El_DUKKANATests.swift */; };
+		F8D3C1F62C88E06C00C9B255 /* El_DUKKANAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1F52C88E06C00C9B255 /* El_DUKKANAUITests.swift */; };
+		F8D3C1F82C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1F72C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift */; };
+		F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C2072C88E10C00C9B255 /* StartOptionsStoryboard.storyboard */; };
+		F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */; };
+		F8D3C2122C88E26900C9B255 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F8D3C2112C88E26900C9B255 /* FirebaseAnalytics */; };
+		F8D3C2142C88E26900C9B255 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F8D3C2132C88E26900C9B255 /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F8D3C1E82C88E06B00C9B255 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8D3C1C92C88E06900C9B255 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8D3C1D02C88E06900C9B255;
+			remoteInfo = El_DUKKANA;
+		};
+		F8D3C1F22C88E06B00C9B255 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8D3C1C92C88E06900C9B255 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8D3C1D02C88E06900C9B255;
+			remoteInfo = El_DUKKANA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.debug.xcconfig"; sourceTree = "<group>"; };
+		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
+		8B0AC9A2DAD8B724DBE93EB9 /* Pods-El_DUKKANAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_El_DUKKANATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BDCD9420B95267E514D0A0 /* Pods-El_DUKKANATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANATests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANATests/Pods-El_DUKKANATests.release.xcconfig"; sourceTree = "<group>"; };
+		CC98990FE4D9CDD625A429A0 /* Pods-El_DUKKANATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANATests.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANATests/Pods-El_DUKKANATests.debug.xcconfig"; sourceTree = "<group>"; };
+		E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_El_DUKKANAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86494022EDA9DF3F2C743BE /* Pods_El_DUKKANA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_El_DUKKANA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = El_DUKKANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8D3C1E02C88E06B00C9B255 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F8D3C1E22C88E06B00C9B255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8D3C1E72C88E06B00C9B255 /* El_DUKKANATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = El_DUKKANATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D3C1EB2C88E06B00C9B255 /* El_DUKKANATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = El_DUKKANATests.swift; sourceTree = "<group>"; };
+		F8D3C1F12C88E06B00C9B255 /* El_DUKKANAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = El_DUKKANAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D3C1F52C88E06C00C9B255 /* El_DUKKANAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = El_DUKKANAUITests.swift; sourceTree = "<group>"; };
+		F8D3C1F72C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = El_DUKKANAUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F8D3C2072C88E10C00C9B255 /* StartOptionsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartOptionsStoryboard.storyboard; sourceTree = "<group>"; };
+		F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartOptionsVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8D3C1CE2C88E06900C9B255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D3C2122C88E26900C9B255 /* FirebaseAnalytics in Frameworks */,
+				F8D3C2142C88E26900C9B255 /* FirebaseAuth in Frameworks */,
+				E91C6B3EC5324CDD4CD2CFAD /* Pods_El_DUKKANA.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D3C1E42C88E06B00C9B255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7D8FD55D577A08DB0FAEA38 /* Pods_El_DUKKANATests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D3C1EE2C88E06B00C9B255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5EE553653085591DB0798C76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */,
+				5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */,
+				CC98990FE4D9CDD625A429A0 /* Pods-El_DUKKANATests.debug.xcconfig */,
+				C3BDCD9420B95267E514D0A0 /* Pods-El_DUKKANATests.release.xcconfig */,
+				8B0AC9A2DAD8B724DBE93EB9 /* Pods-El_DUKKANAUITests.debug.xcconfig */,
+				0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B9035C6F2DE257D163AC92C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E86494022EDA9DF3F2C743BE /* Pods_El_DUKKANA.framework */,
+				9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */,
+				E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8D3C1C82C88E06900C9B255 = {
+			isa = PBXGroup;
+			children = (
+				F8D3C1D32C88E06900C9B255 /* El_DUKKANA */,
+				F8D3C1EA2C88E06B00C9B255 /* El_DUKKANATests */,
+				F8D3C1F42C88E06B00C9B255 /* El_DUKKANAUITests */,
+				F8D3C1D22C88E06900C9B255 /* Products */,
+				5EE553653085591DB0798C76 /* Pods */,
+				B9035C6F2DE257D163AC92C3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F8D3C1D22C88E06900C9B255 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */,
+				F8D3C1E72C88E06B00C9B255 /* El_DUKKANATests.xctest */,
+				F8D3C1F12C88E06B00C9B255 /* El_DUKKANAUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8D3C1D32C88E06900C9B255 /* El_DUKKANA */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C20D2C88E17800C9B255 /* View */,
+				F8D3C20C2C88E16600C9B255 /* Services */,
+				F8D3C20B2C88E15E00C9B255 /* Models */,
+				F8D3C2052C88E0A500C9B255 /* Modules */,
+				F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */,
+				F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */,
+				F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */,
+				F8D3C1E22C88E06B00C9B255 /* Info.plist */,
+			);
+			path = El_DUKKANA;
+			sourceTree = "<group>";
+		};
+		F8D3C1EA2C88E06B00C9B255 /* El_DUKKANATests */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C1EB2C88E06B00C9B255 /* El_DUKKANATests.swift */,
+			);
+			path = El_DUKKANATests;
+			sourceTree = "<group>";
+		};
+		F8D3C1F42C88E06B00C9B255 /* El_DUKKANAUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C1F52C88E06C00C9B255 /* El_DUKKANAUITests.swift */,
+				F8D3C1F72C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift */,
+			);
+			path = El_DUKKANAUITests;
+			sourceTree = "<group>";
+		};
+		F8D3C2052C88E0A500C9B255 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C1DF2C88E06B00C9B255 /* LaunchScreen.storyboard */,
+				F8D3C2072C88E10C00C9B255 /* StartOptionsStoryboard.storyboard */,
+				F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */,
+			);
+			path = "Main & Launch Screen";
+			sourceTree = "<group>";
+		};
+		F8D3C20B2C88E15E00C9B255 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F8D3C20C2C88E16600C9B255 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F8D3C20F2C88E18800C9B255 /* Local */,
+				F8D3C20E2C88E18000C9B255 /* Remote */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F8D3C20D2C88E17800C9B255 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F8D3C20E2C88E18000C9B255 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		F8D3C20F2C88E18800C9B255 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8D3C1D02C88E06900C9B255 /* El_DUKKANA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8D3C1FB2C88E06C00C9B255 /* Build configuration list for PBXNativeTarget "El_DUKKANA" */;
+			buildPhases = (
+				F54F07D6BD32FC6DBC62847E /* [CP] Check Pods Manifest.lock */,
+				F8D3C1CD2C88E06900C9B255 /* Sources */,
+				F8D3C1CE2C88E06900C9B255 /* Frameworks */,
+				F8D3C1CF2C88E06900C9B255 /* Resources */,
+				A1BB7642F48EFDC328BD0F01 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = El_DUKKANA;
+			packageProductDependencies = (
+				F8D3C2112C88E26900C9B255 /* FirebaseAnalytics */,
+				F8D3C2132C88E26900C9B255 /* FirebaseAuth */,
+			);
+			productName = El_DUKKANA;
+			productReference = F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8D3C1E62C88E06B00C9B255 /* El_DUKKANATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8D3C1FE2C88E06C00C9B255 /* Build configuration list for PBXNativeTarget "El_DUKKANATests" */;
+			buildPhases = (
+				9845DE9DB3A94B701EB5933D /* [CP] Check Pods Manifest.lock */,
+				F8D3C1E32C88E06B00C9B255 /* Sources */,
+				F8D3C1E42C88E06B00C9B255 /* Frameworks */,
+				F8D3C1E52C88E06B00C9B255 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8D3C1E92C88E06B00C9B255 /* PBXTargetDependency */,
+			);
+			name = El_DUKKANATests;
+			productName = El_DUKKANATests;
+			productReference = F8D3C1E72C88E06B00C9B255 /* El_DUKKANATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F8D3C1F02C88E06B00C9B255 /* El_DUKKANAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8D3C2012C88E06C00C9B255 /* Build configuration list for PBXNativeTarget "El_DUKKANAUITests" */;
+			buildPhases = (
+				F3E8239C3A39EDF623DE12C4 /* [CP] Check Pods Manifest.lock */,
+				F8D3C1ED2C88E06B00C9B255 /* Sources */,
+				F8D3C1EE2C88E06B00C9B255 /* Frameworks */,
+				F8D3C1EF2C88E06B00C9B255 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8D3C1F32C88E06B00C9B255 /* PBXTargetDependency */,
+			);
+			name = El_DUKKANAUITests;
+			productName = El_DUKKANAUITests;
+			productReference = F8D3C1F12C88E06B00C9B255 /* El_DUKKANAUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8D3C1C92C88E06900C9B255 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					F8D3C1D02C88E06900C9B255 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					F8D3C1E62C88E06B00C9B255 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = F8D3C1D02C88E06900C9B255;
+					};
+					F8D3C1F02C88E06B00C9B255 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = F8D3C1D02C88E06900C9B255;
+					};
+				};
+			};
+			buildConfigurationList = F8D3C1CC2C88E06900C9B255 /* Build configuration list for PBXProject "El_DUKKANA" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F8D3C1C82C88E06900C9B255;
+			packageReferences = (
+				F8D3C2102C88E26900C9B255 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = F8D3C1D22C88E06900C9B255 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8D3C1D02C88E06900C9B255 /* El_DUKKANA */,
+				F8D3C1E62C88E06B00C9B255 /* El_DUKKANATests */,
+				F8D3C1F02C88E06B00C9B255 /* El_DUKKANAUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8D3C1CF2C88E06900C9B255 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
+				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
+				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D3C1E52C88E06B00C9B255 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D3C1EF2C88E06B00C9B255 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9845DE9DB3A94B701EB5933D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-El_DUKKANATests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1BB7642F48EFDC328BD0F01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3E8239C3A39EDF623DE12C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-El_DUKKANAUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F54F07D6BD32FC6DBC62847E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-El_DUKKANA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8D3C1CD2C88E06900C9B255 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */,
+				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
+				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D3C1E32C88E06B00C9B255 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D3C1EC2C88E06B00C9B255 /* El_DUKKANATests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D3C1ED2C88E06B00C9B255 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D3C1F62C88E06C00C9B255 /* El_DUKKANAUITests.swift in Sources */,
+				F8D3C1F82C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F8D3C1E92C88E06B00C9B255 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8D3C1D02C88E06900C9B255 /* El_DUKKANA */;
+			targetProxy = F8D3C1E82C88E06B00C9B255 /* PBXContainerItemProxy */;
+		};
+		F8D3C1F32C88E06B00C9B255 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8D3C1D02C88E06900C9B255 /* El_DUKKANA */;
+			targetProxy = F8D3C1F22C88E06B00C9B255 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F8D3C1DF2C88E06B00C9B255 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8D3C1E02C88E06B00C9B255 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F8D3C1F92C88E06C00C9B255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F8D3C1FA2C88E06C00C9B255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8D3C1FC2C88E06C00C9B255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = El_DUKKANA/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iti-ocprogrammingcourse.El-DUKKANA";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8D3C1FD2C88E06C00C9B255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = El_DUKKANA/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iti-ocprogrammingcourse.El-DUKKANA";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F8D3C1FF2C88E06C00C9B255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC98990FE4D9CDD625A429A0 /* Pods-El_DUKKANATests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iti-ocprogrammingcourse.El-DUKKANATests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/El_DUKKANA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/El_DUKKANA";
+			};
+			name = Debug;
+		};
+		F8D3C2002C88E06C00C9B255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3BDCD9420B95267E514D0A0 /* Pods-El_DUKKANATests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iti-ocprogrammingcourse.El-DUKKANATests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/El_DUKKANA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/El_DUKKANA";
+			};
+			name = Release;
+		};
+		F8D3C2022C88E06C00C9B255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B0AC9A2DAD8B724DBE93EB9 /* Pods-El_DUKKANAUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iti-ocprogrammingcourse.El-DUKKANAUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = El_DUKKANA;
+			};
+			name = Debug;
+		};
+		F8D3C2032C88E06C00C9B255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iti-ocprogrammingcourse.El-DUKKANAUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = El_DUKKANA;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8D3C1CC2C88E06900C9B255 /* Build configuration list for PBXProject "El_DUKKANA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8D3C1F92C88E06C00C9B255 /* Debug */,
+				F8D3C1FA2C88E06C00C9B255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8D3C1FB2C88E06C00C9B255 /* Build configuration list for PBXNativeTarget "El_DUKKANA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8D3C1FC2C88E06C00C9B255 /* Debug */,
+				F8D3C1FD2C88E06C00C9B255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8D3C1FE2C88E06C00C9B255 /* Build configuration list for PBXNativeTarget "El_DUKKANATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8D3C1FF2C88E06C00C9B255 /* Debug */,
+				F8D3C2002C88E06C00C9B255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8D3C2012C88E06C00C9B255 /* Build configuration list for PBXNativeTarget "El_DUKKANAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8D3C2022C88E06C00C9B255 /* Debug */,
+				F8D3C2032C88E06C00C9B255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F8D3C2102C88E26900C9B255 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F8D3C2112C88E26900C9B255 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8D3C2102C88E26900C9B255 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F8D3C2132C88E26900C9B255 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8D3C2102C88E26900C9B255 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F8D3C1C92C88E06900C9B255 /* Project object */;
+}

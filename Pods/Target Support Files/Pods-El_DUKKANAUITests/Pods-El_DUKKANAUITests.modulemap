@@ -1,0 +1,6 @@
+framework module Pods_El_DUKKANAUITests {
+  umbrella header "Pods-El_DUKKANAUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

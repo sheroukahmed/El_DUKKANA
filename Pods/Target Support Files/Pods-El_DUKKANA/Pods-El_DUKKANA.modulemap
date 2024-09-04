@@ -1,0 +1,6 @@
+framework module Pods_El_DUKKANA {
+  umbrella header "Pods-El_DUKKANA-umbrella.h"
+
+  export *
+  module * { export * }
+}
