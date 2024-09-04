@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
+		81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */; };
+		81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D72A992C8912B60087371F /* SignUpVC.swift */; };
+		81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D72A9B2C8912C50087371F /* SignInVC.swift */; };
 		81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F370892C88F6F3007FBC45 /* URLManager.swift */; };
 		81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */; };
 		E7D8FD55D577A08DB0FAEA38 /* Pods_El_DUKKANATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */; };
@@ -46,6 +49,9 @@
 		0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.debug.xcconfig"; sourceTree = "<group>"; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
+		81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthenticationStoryboard.storyboard; sourceTree = "<group>"; };
+		81D72A992C8912B60087371F /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		81D72A9B2C8912C50087371F /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		81F370892C88F6F3007FBC45 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLManager.swift; path = Remote/URLManager.swift; sourceTree = SOURCE_ROOT; };
 		81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLManagerProtocol.swift; path = Remote/URLManagerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		8B0AC9A2DAD8B724DBE93EB9 /* Pods-El_DUKKANAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +116,32 @@
 				0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		81D72A942C8912320087371F /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				81D72A962C89125F0087371F /* ViewModel */,
+				81D72A952C8912470087371F /* View */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		81D72A952C8912470087371F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */,
+				81D72A9B2C8912C50087371F /* SignInVC.swift */,
+				81D72A992C8912B60087371F /* SignUpVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		81D72A962C89125F0087371F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B9035C6F2DE257D163AC92C3 /* Frameworks */ = {
@@ -179,6 +211,7 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				81D72A942C8912320087371F /* Authentication */,
 				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
 			);
 			path = Modules;
@@ -351,6 +384,7 @@
 				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
+				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +499,8 @@
 				81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */,
 				81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
+				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
+				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
