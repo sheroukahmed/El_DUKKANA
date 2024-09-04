@@ -15,7 +15,7 @@ class URLManager : URLManagerProtocol{
         
         case shopifyStore = "@nciost3.myshopify.com."
     }
-    //https://9d0444175dd62fe47c518ad17c3cd512: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@nciost3.myshopify.com/admin/api/2024-07/customers.json
+    
     
     func getPath(for endpoint: EndPoint) -> String {
             switch endpoint {
@@ -47,9 +47,7 @@ class URLManager : URLManagerProtocol{
             
             let path =  getPath(for: endpoint)
             let baseUrl = "https://\(URLComponents.apiKey.rawValue):\(URLComponents.shopifyStore.rawValue)/admin/api/2024-07"
-            //https://nciost3.myshopify.com./admin/api/2024-07/customers.json
             
-            //https://9d0444175dd62fe47c518ad17c3cd512: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@nciost3.myshopify.com./admin/api/2024-07/customers.json
             return "\(baseUrl)\(path).json"
         }
     
