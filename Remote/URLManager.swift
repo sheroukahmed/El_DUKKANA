@@ -5,40 +5,45 @@
 //  Created by ios on 04/09/2024.
 //
 
-import Foundation
 
 import Foundation
  
 class URLManager : URLManagerProtocol{
     enum URLComponents : String{
         case apiKey = "9d0444175dd62fe47c518ad17c3cd512"
-        
+        case accessToken = "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"
         case shopifyStore = "@nciost3.myshopify.com."
     }
     
     
     func getPath(for endpoint: EndPoint) -> String {
-            switch endpoint {
-                case .customers:
-                    return "/customers"
-                case .customer(let customerId):
-                    return "/customers/\(customerId)"
-                case .customerOrders(let customerId):
-                    return "/customers/\(customerId)/orders"
-                case .customerAddresses(let customerId):
-                    return "/customers/\(customerId)/addresses"
-                case .customerAddress(let customerId, let addressId):
-                    return "/customers/\(customerId)/addresses/\(addressId)"
-                case .order(let orderId):
-                    return "/orders/\(orderId)"
-                case .orders:
-                    return "/orders"
-                case .products:
-                    return "/products"
-                case .product(let productId):
-                    return "/products/\(productId)"
-            }
+        switch endpoint {
+        case .customers:
+            return "/customers"
+        case .customer(let customerId):
+            return "/customers/\(customerId)"
+        case .customerOrders(let customerId):
+            return "/customers/\(customerId)/orders"
+        case .customerAddresses(let customerId):
+            return "/customers/\(customerId)/addresses"
+        case .customerAddress(let customerId, let addressId):
+            return "/customers/\(customerId)/addresses/\(addressId)"
+        case .order(let orderId):
+            return "/orders/\(orderId)"
+        case .orders:
+            return "/orders"
+        case .products:
+            return "/products"
+        case .product(let productId):
+            return "/products/\(productId)"
+        case .brands:
+            return "smart_collections"
+        case .discountCodes:
+            return "price_rules"
+            
+            
         }
+    }
         
     //shopify Api
     
@@ -46,7 +51,7 @@ class URLManager : URLManagerProtocol{
         func getUrl(for endpoint: EndPoint) -> String{
             
             let path =  getPath(for: endpoint)
-            let baseUrl = "https://\(URLComponents.apiKey.rawValue):\(URLComponents.shopifyStore.rawValue)/admin/api/2024-07"
+            let baseUrl = "https://\(URLComponents.apiKey.rawValue):\(URLComponents.accessToken.rawValue)\(URLComponents.shopifyStore.rawValue)/admin/api/2024-07"
             
             return "\(baseUrl)\(path).json"
         }
@@ -74,6 +79,8 @@ enum EndPoint: Any {
     case orders
     case products
     case product(productsId: Int)
+    case brands
+    case discountCodes
     
     
 }
