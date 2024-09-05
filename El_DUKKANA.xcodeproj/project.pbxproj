@@ -29,6 +29,7 @@
 		F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDB2C891DF3005AE496 /* Network.swift */; };
 		F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */; };
 		F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDF2C891E5A005AE496 /* Customer.swift */; };
+		F8F9BBE22C892BD8005AE496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8F9BBE12C892BD8005AE496 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		F8F9BBDB2C891DF3005AE496 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		F8F9BBDF2C891E5A005AE496 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		F8F9BBE12C892BD8005AE496 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */,
 				F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */,
 				F8D3C1E22C88E06B00C9B255 /* Info.plist */,
+				F8F9BBE12C892BD8005AE496 /* Main.storyboard */,
 			);
 			path = El_DUKKANA;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
+				F8F9BBE22C892BD8005AE496 /* Main.storyboard in Resources */,
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
 				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
