@@ -18,14 +18,7 @@ class StartOptionsVC: UIViewController {
         
 
 
-        let custom = CustomerResult(customer: Customer(id: 7828746273006, email: "samir.sherrouk@gmail.com", first_name: "sara", last_name: "And sherouk", phone: "+201165015450", verified_email: true, addresses: [CustomerAddress(address1: "sherouk", address2: "Lastnameson", city: "Ottawa", province: "Ontario", country: "Canada", zip: "123 ABC")], password: "1233sam", password_confirmation: "1233sam"))
-        
-        let network = NetworkManager()
-        let url = URLManager()
-        
-        network.Post(url: url.getUrl(for: .customers), type: custom) { res, error in
-            print(res)
-        }
+       
         // Do any additional setup after loading the view.
 
     }
