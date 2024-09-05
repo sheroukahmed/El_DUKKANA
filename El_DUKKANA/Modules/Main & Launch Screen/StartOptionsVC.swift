@@ -23,7 +23,7 @@ class StartOptionsVC: UIViewController {
 
     }
     @IBAction func asGuestBtn(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let home = storyboard.instantiateViewController(identifier: "tabBar") as! UITabBarController
         home.modalPresentationStyle = .fullScreen
         home.modalTransitionStyle = .crossDissolve
