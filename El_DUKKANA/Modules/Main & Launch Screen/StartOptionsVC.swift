@@ -9,14 +9,22 @@ import UIKit
 
 class StartOptionsVC: UIViewController {
 
-    @IBOutlet weak var registerBt: UIButton!
     
+    @IBOutlet weak var logInBtn: UIButton!
     @IBOutlet weak var continueBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
+        let custom = CustomerResult(customer: Customer(id: 7828746273006, email: "samir.sherrouk@gmail.com", first_name: "sara", last_name: "And sherouk", phone: "+201165015450", verified_email: true, addresses: [CustomerAddress(address1: "sherouk", address2: "Lastnameson", city: "Ottawa", province: "Ontario", country: "Canada", zip: "123 ABC")], password: "1233sam", password_confirmation: "1233sam"))
+        
+        let network = NetworkManager()
+        let url = URLManager()
+        
+        network.Post(url: url.getUrl(for: .customers), type: custom) { res, error in
+            print(res)
+        }
         // Do any additional setup after loading the view.
     }
     @IBAction func asGuestBtn(_ sender: Any) {
@@ -43,14 +51,6 @@ class StartOptionsVC: UIViewController {
        present(signInVC, animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

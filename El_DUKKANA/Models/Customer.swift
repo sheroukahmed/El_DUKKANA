@@ -10,6 +10,9 @@ import Foundation
 struct CustomerResponse: Codable {
     let customers: [Customer]
 }
+struct CustomerResult: Codable {
+    var customer :Customer
+}
  
 struct Customer: Codable {
     let id: Int?
@@ -19,6 +22,10 @@ struct Customer: Codable {
     let phone: String?
     let verified_email: Bool?
     let addresses: [CustomerAddress]?
+    let password: String?
+    let password_confirmation: String?
+    
+    
     
 }
  
