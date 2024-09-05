@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,18 +14,78 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EL DUKKANA" translatesAutoresizingMaskIntoConstraints="NO" id="ShK-Kc-80J">
+                                <rect key="frame" x="16" y="59" width="361" height="418"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JD1-p9-sQB">
+                                <rect key="frame" x="64" y="568" width="265" height="35"/>
+                                <color key="backgroundColor" red="0.40999192000000001" green="0.1768465042" blue="0.1686159968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Register">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="toSignUpBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6rl-7B-oQg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycm-fk-Qj4">
+                                <rect key="frame" x="64" y="703" width="265" height="35"/>
+                                <color key="backgroundColor" red="0.40999192000000001" green="0.1768465042" blue="0.1686159968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue as a Guest">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="asGuestBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6Ln-dV-9gK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jtl-hJ-XO5">
+                                <rect key="frame" x="64" y="501" width="265" height="35"/>
+                                <color key="backgroundColor" red="0.40999192000000001" green="0.1768465042" blue="0.1686159968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Login">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="toLoginBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="EYl-W7-qUy"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97655671830000002" green="0.97231012579999998" blue="0.98431533579999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="JD1-p9-sQB" firstAttribute="top" secondItem="Jtl-hJ-XO5" secondAttribute="bottom" constant="32" id="161-ny-XTY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ShK-Kc-80J" secondAttribute="trailing" constant="16" id="6ef-1E-sZ9"/>
+                            <constraint firstItem="Ycm-fk-Qj4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="64" id="FGD-Up-3Oj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ycm-fk-Qj4" secondAttribute="trailing" constant="64" id="Gnf-3R-dbP"/>
+                            <constraint firstItem="ShK-Kc-80J" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="H2b-jB-pzq"/>
+                            <constraint firstItem="ShK-Kc-80J" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="LjQ-hx-uVP"/>
+                            <constraint firstItem="Ycm-fk-Qj4" firstAttribute="top" secondItem="JD1-p9-sQB" secondAttribute="bottom" constant="100" id="Q33-Fn-KVb"/>
+                            <constraint firstItem="ShK-Kc-80J" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.49061" id="VOi-9Y-D66"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JD1-p9-sQB" secondAttribute="trailing" constant="64" id="bqN-jB-H7h"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Jtl-hJ-XO5" secondAttribute="trailing" constant="64" id="kmv-Kd-VCV"/>
+                            <constraint firstItem="JD1-p9-sQB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="64" id="sSH-NA-0JN"/>
+                            <constraint firstItem="Jtl-hJ-XO5" firstAttribute="top" secondItem="ShK-Kc-80J" secondAttribute="bottom" constant="24" id="xJH-56-kgm"/>
+                            <constraint firstItem="Jtl-hJ-XO5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="64" id="y74-Ml-LOW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="continueBtn" destination="Ycm-fk-Qj4" id="ZX7-e9-g2M"/>
+                        <outlet property="loginBtn" destination="Jtl-hJ-XO5" id="6cC-C8-AbR"/>
+                        <outlet property="registerBtn" destination="JD1-p9-sQB" id="b0v-ck-LqJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="140" y="4"/>
+
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
+
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="EL DUKKANA" width="856" height="1072"/>
     </resources>
 </document>

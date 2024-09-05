@@ -5,7 +5,6 @@
 //  Created by ios on 04/09/2024.
 //
 
-import Foundation
 
 import Foundation
  
@@ -18,27 +17,33 @@ class URLManager : URLManagerProtocol{
     
     
     func getPath(for endpoint: EndPoint) -> String {
-            switch endpoint {
-                case .customers:
-                    return "/customers"
-                case .customer(let customerId):
-                    return "/customers/\(customerId)"
-                case .customerOrders(let customerId):
-                    return "/customers/\(customerId)/orders"
-                case .customerAddresses(let customerId):
-                    return "/customers/\(customerId)/addresses"
-                case .customerAddress(let customerId, let addressId):
-                    return "/customers/\(customerId)/addresses/\(addressId)"
-                case .order(let orderId):
-                    return "/orders/\(orderId)"
-                case .orders:
-                    return "/orders"
-                case .products:
-                    return "/products"
-                case .product(let productId):
-                    return "/products/\(productId)"
-            }
+        switch endpoint {
+        case .customers:
+            return "/customers"
+        case .customer(let customerId):
+            return "/customers/\(customerId)"
+        case .customerOrders(let customerId):
+            return "/customers/\(customerId)/orders"
+        case .customerAddresses(let customerId):
+            return "/customers/\(customerId)/addresses"
+        case .customerAddress(let customerId, let addressId):
+            return "/customers/\(customerId)/addresses/\(addressId)"
+        case .order(let orderId):
+            return "/orders/\(orderId)"
+        case .orders:
+            return "/orders"
+        case .products:
+            return "/products"
+        case .product(let productId):
+            return "/products/\(productId)"
+        case .brands:
+            return "smart_collections"
+        case .discountCodes:
+            return "price_rules"
+            
+            
         }
+    }
         
     //shopify Api
     
@@ -74,6 +79,8 @@ enum EndPoint: Any {
     case orders
     case products
     case product(productsId: Int)
+    case brands
+    case discountCodes
     
     
 }

@@ -11,7 +11,7 @@
         <!--Sign InVC-->
         <scene sceneID="IdE-vs-sdP">
             <objects>
-                <viewController storyboardIdentifier="SingInVC" id="qoY-kp-JOM" customClass="SignInVC" customModule="El_Dukkana" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SingInVC" id="qoY-kp-JOM" customClass="SignInVC" customModule="El_DUKKANA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sfD-qt-ZTR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,7 +84,7 @@
                                     <constraint firstItem="ZPZ-6s-oFN" firstAttribute="leading" secondItem="hSE-Mc-VWU" secondAttribute="leading" constant="31" id="tWN-t2-HNd"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EldukanaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Lzd-xq-qRF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EL DUKKANA" translatesAutoresizingMaskIntoConstraints="NO" id="Lzd-xq-qRF">
                                 <rect key="frame" x="45" y="92" width="302" height="241"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8w-IQ-RWh">
@@ -127,12 +127,12 @@
         <!--Sign UpVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="SignUpVC" id="Y6W-OH-hqX" customClass="SignUpVC" customModule="El_Dukkana" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpVC" id="Y6W-OH-hqX" customClass="SignUpVC" customModule="El_DUKKANA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EldukanaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pH2-3H-yIr">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EL DUKKANA" translatesAutoresizingMaskIntoConstraints="NO" id="pH2-3H-yIr">
                                 <rect key="frame" x="56" y="59" width="280" height="213"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNc-CX-HCz">
@@ -320,7 +320,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EldukanaLogo" width="746" height="893"/>
+        <image name="EL DUKKANA" width="856" height="1072"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="google-logo" width="400" height="400"/>
         <systemColor name="systemBackgroundColor">

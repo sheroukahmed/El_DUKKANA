@@ -263,6 +263,10 @@
 		F8D3C20E2C88E18000C9B255 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				81F370892C88F6F3007FBC45 /* URLManager.swift */,
+				81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */,
+				F8F9BBDB2C891DF3005AE496 /* Network.swift */,
+				F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */,
 				F8F9BBDB2C891DF3005AE496 /* Network.swift */,
 				F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */,
 				81F370892C88F6F3007FBC45 /* URLManager.swift */,
@@ -512,6 +516,11 @@
 				81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */,
 				81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
+				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
+				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
+				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
+				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
+				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
