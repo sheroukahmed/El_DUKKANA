@@ -5,14 +5,13 @@
 //  Created by ios on 04/09/2024.
 //
 
-import Foundation
 
 import Foundation
  
 class URLManager : URLManagerProtocol{
     enum URLComponents : String{
         case apiKey = "9d0444175dd62fe47c518ad17c3cd512"
-        
+        case accessToken = "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"
         case shopifyStore = "@nciost3.myshopify.com."
     }
     
@@ -46,7 +45,7 @@ class URLManager : URLManagerProtocol{
         func getUrl(for endpoint: EndPoint) -> String{
             
             let path =  getPath(for: endpoint)
-            let baseUrl = "https://\(URLComponents.apiKey.rawValue):\(URLComponents.shopifyStore.rawValue)/admin/api/2024-07"
+            let baseUrl = "https://\(URLComponents.apiKey.rawValue):\(URLComponents.accessToken.rawValue)\(URLComponents.shopifyStore.rawValue)/admin/api/2024-07"
             
             return "\(baseUrl)\(path).json"
         }
