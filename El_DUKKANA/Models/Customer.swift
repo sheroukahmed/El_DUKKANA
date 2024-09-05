@@ -11,7 +11,9 @@ struct CustomerResponse: Codable {
     let customers: [Customer]
 }
 struct CustomerResult: Codable {
-    var cust :Customer
+
+    var customer :Customer
+
 }
 
 struct Customer: Codable {

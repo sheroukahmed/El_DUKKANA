@@ -39,6 +39,50 @@ class NetworkManager {
     
 
     
+
+    func Post<T: Codable>(url: String, type: T, completionHandler: @escaping (T?, Error?) -> Void) {
+        
+        do {
+            guard let newURL = URL(string: url) else {
+                completionHandler(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
+                return
+            }
+            print("Posting data to URL: \(newURL)")
+            
+            // Encode CustomerResponse to JSON data
+            let inputData = try JSONEncoder().encode(type)
+            
+            print("Customer Data: \(String(data: inputData, encoding: .utf8) ?? "Encoding error")")
+            let inputDataInDictionary = try JSONSerialization.jsonObject(with: inputData, options: []) as? [String: Any]
+            let headers: HTTPHeaders = [
+                "X-Shopify-Access-Token": "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",
+                "Content-Type": "application/json"
+            ]
+            
+            // Alamofire POST request with JSON data
+            AF.request(newURL, method: .post, parameters: inputDataInDictionary, encoding: JSONEncoding.default,headers: headers ).validate(statusCode: 200..<299)
+                .responseJSON{ response in
+                    switch response.result {
+                    case .success(let result):
+                        print("Success: \(result)")
+                    case .failure(let error):
+                        print("Request failed: \(error.localizedDescription)")
+                        if let data = response.data {
+                            let responseString = String(data: data, encoding: .utf8)
+                            print("Response Data: \(responseString ?? "No data")")
+                        }
+                    }
+                }
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+    }
+    
+    
+    
+    
+
     func deleteFromApi(url:String){
         
         guard let newURL = URL(string: url) else {
@@ -62,6 +106,6 @@ class NetworkManager {
                 }
             }
     }
-    
+
 }
 
