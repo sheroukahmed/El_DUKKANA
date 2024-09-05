@@ -17,7 +17,7 @@ class StartOptionsVC: UIViewController {
         super.viewDidLoad()
         
 
-        // Do any additional setup after loading the view.
+
     }
     @IBAction func asGuestBtn(_ sender: Any) {
         let storyboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
