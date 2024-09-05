@@ -11,9 +11,11 @@ struct CustomerResponse: Codable {
     let customers: [Customer]
 }
 struct CustomerResult: Codable {
+
     var customer :Customer
+
 }
- 
+
 struct Customer: Codable {
     let id: Int?
     let email: String?
@@ -24,8 +26,6 @@ struct Customer: Codable {
     let addresses: [CustomerAddress]?
     let password: String?
     let password_confirmation: String?
-    
-    
     
 }
  

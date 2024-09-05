@@ -17,6 +17,7 @@ class StartOptionsVC: UIViewController {
         super.viewDidLoad()
         
 
+
         let custom = CustomerResult(customer: Customer(id: 7828746273006, email: "samir.sherrouk@gmail.com", first_name: "sara", last_name: "And sherouk", phone: "+201165015450", verified_email: true, addresses: [CustomerAddress(address1: "sherouk", address2: "Lastnameson", city: "Ottawa", province: "Ontario", country: "Canada", zip: "123 ABC")], password: "1233sam", password_confirmation: "1233sam"))
         
         let network = NetworkManager()
@@ -26,6 +27,7 @@ class StartOptionsVC: UIViewController {
             print(res)
         }
         // Do any additional setup after loading the view.
+
     }
     @IBAction func asGuestBtn(_ sender: Any) {
         let storyboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)

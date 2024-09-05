@@ -37,7 +37,9 @@ class NetworkManager {
         }
     }
     
+
     
+
     func Post<T: Codable>(url: String, type: T, completionHandler: @escaping (T?, Error?) -> Void) {
         
         do {
@@ -80,5 +82,30 @@ class NetworkManager {
     
     
     
+
+    func deleteFromApi(url:String){
+        
+        guard let newURL = URL(string: url) else {
+            return
+        }
+        print("deleting data to URL: \(newURL)")
+        
+        AF.request(newURL, method: .delete,headers:[.contentType(
+            "application/json"
+            ), .accept(
+            "application/json"
+            )] )
+            .response { response in
+                if let error = response.error {
+                    print("Error deleting item: \(error)")
+                } else {
+                    if let data = response.data {
+                        print("Success: \(String(data: data, encoding: .utf8) ?? "")")
+                    }
+                    print("Item deleted successfully")
+                }
+            }
+    }
+
 }
 
