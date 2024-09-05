@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26DB3D1C2C8A07E600E4E697 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D1B2C8A07E600E4E697 /* Brands.swift */; };
+		26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D1D2C8A080B00E4E697 /* Product.swift */; };
+		26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */; };
+		26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */; };
+		26DB3D282C8A241300E4E697 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D272C8A241300E4E697 /* HomeViewController.swift */; };
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
 		81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */; };
 		81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D72A992C8912B60087371F /* SignUpVC.swift */; };
@@ -52,6 +57,11 @@
 /* Begin PBXFileReference section */
 		0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.debug.xcconfig"; sourceTree = "<group>"; };
+		26DB3D1B2C8A07E600E4E697 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
+		26DB3D1D2C8A080B00E4E697 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
+		26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		26DB3D272C8A241300E4E697 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
 		81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthenticationStoryboard.storyboard; sourceTree = "<group>"; };
 		81D72A992C8912B60087371F /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -113,6 +123,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26DB3D1F2C8A16A000E4E697 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				26DB3D212C8A16D900E4E697 /* View Model */,
+				26DB3D202C8A16D100E4E697 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		26DB3D202C8A16D100E4E697 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */,
+				26DB3D272C8A241300E4E697 /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		26DB3D212C8A16D900E4E697 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		5EE553653085591DB0798C76 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +256,7 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				26DB3D1F2C8A16A000E4E697 /* Home */,
 				81D72A942C8912320087371F /* Authentication */,
 				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
 			);
@@ -240,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				F8F9BBDF2C891E5A005AE496 /* Customer.swift */,
+				26DB3D1B2C8A07E600E4E697 /* Brands.swift */,
+				26DB3D1D2C8A080B00E4E697 /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,10 +302,6 @@
 		F8D3C20E2C88E18000C9B255 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				81F370892C88F6F3007FBC45 /* URLManager.swift */,
-				81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */,
-				F8F9BBDB2C891DF3005AE496 /* Network.swift */,
-				F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */,
 				F8F9BBDB2C891DF3005AE496 /* Network.swift */,
 				F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */,
 				81F370892C88F6F3007FBC45 /* URLManager.swift */,
@@ -402,6 +437,7 @@
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
 				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
+				26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,9 +549,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */,
+				26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */,
+				26DB3D282C8A241300E4E697 /* HomeViewController.swift in Sources */,
+				26DB3D1C2C8A07E600E4E697 /* Brands.swift in Sources */,
 				81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */,
 				81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
+				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,

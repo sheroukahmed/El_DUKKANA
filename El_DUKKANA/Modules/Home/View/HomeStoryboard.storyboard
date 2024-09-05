@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="98A-Cd-45J">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Categories-->
+        <scene sceneID="uH4-6H-Jqo">
+            <objects>
+                <viewController id="dbu-vR-lJj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lX4-0M-YpZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="DHn-m5-z9J"/>
+                        <color key="backgroundColor" red="0.92156857250000002" green="0.92156857250000002" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Categories" id="oqm-lz-JGT">
+                        <imageReference key="selectedImage" image="list.bullet" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color red="0.40338975189999998" green="0.075197644529999996" blue="0.0666275546" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Sd-ZH-U1o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="621" y="202"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="8A5-KJ-TZt">
+            <objects>
+                <viewController id="9nW-gg-bou" customClass="HomeViewController" customModule="El_DUKKANA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ex8-xw-7iT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4mD-gK-7PZ"/>
+                        <color key="backgroundColor" red="0.92156857250000002" green="0.92156857250000002" blue="0.92156863209999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="mdz-Qa-41H">
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color red="0.40338975189999998" green="0.075197644529999996" blue="0.0666275546" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="mfE-VF-3Ig"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69f-yu-89u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="621" y="-517"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Osp-oZ-Uqh">
+            <objects>
+                <tabBarController id="98A-Cd-45J" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rqC-VU-xQJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="dbu-vR-lJj" kind="relationship" relationship="viewControllers" id="Pir-cS-ccE"/>
+                        <segue destination="9nW-gg-bou" kind="relationship" relationship="viewControllers" id="nGA-ZG-oSU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lfN-pQ-aeQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-288" y="-148"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
