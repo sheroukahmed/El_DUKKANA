@@ -50,14 +50,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
         
+
         homeViewModel = HomeViewModel()
+
         homeViewModel?.getBrands()
         homeViewModel?.bindToHomeViewController = { [weak self] in DispatchQueue.main.async {
             guard let self = self else { return }
             self.BrandsCollectionView.reloadData()
         }
-            
         }
+
     }
     
     
