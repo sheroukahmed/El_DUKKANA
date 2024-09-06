@@ -37,9 +37,9 @@ class URLManager : URLManagerProtocol{
         case .product(let productId):
             return "/products/\(productId)"
         case .brands:
-            return "smart_collections"
+            return "/smart_collections"
         case .discountCodes:
-            return "price_rules"
+            return "/price_rules"
             
             
         }
