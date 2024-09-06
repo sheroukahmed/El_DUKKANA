@@ -6,8 +6,11 @@
 //
 
 import UIKit
+
 import Kingfisher
 import Alamofire
+
+
 
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
@@ -15,9 +18,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
+
     var homeViewModel: HomeViewModelProtocol?
+
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
+
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +56,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         brandsLayout.minimumInteritemSpacing = 10
         
         BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
+
         
 
         homeViewModel = HomeViewModel()
@@ -88,9 +96,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             return cell
         } else if collectionView == BrandsCollectionView {
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
+
             brandCell.brandImage.kf.setImage(with: URL(string: homeViewModel?.brands?[indexPath.row].image?.src ?? dummyBrandImage))
             print(homeViewModel?.brands?[indexPath.row].image?.src ?? "No Image URL")
+
             brandCell.layer.cornerRadius = 30
+
+  
             return brandCell
         }
         return UICollectionViewCell()
