@@ -12,7 +12,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
+//                    switch sectionIndex {
+//                    case 0 :
+//                        return AdsCollectionStyle()
+//                    default:
+//                        return AdsCollectionStyle()
+//                    }
+//                }
+//                collectionView.setCollectionViewLayout(layout, animated: true)
+
     }
     
 
