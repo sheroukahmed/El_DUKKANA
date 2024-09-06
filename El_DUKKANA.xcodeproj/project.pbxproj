@@ -20,6 +20,11 @@
 		81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3708B2C88F6FE007FBC45 /* URLManagerProtocol.swift */; };
 		E7D8FD55D577A08DB0FAEA38 /* Pods_El_DUKKANATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B37A75675DCBD8C03A7D814 /* Pods_El_DUKKANATests.framework */; };
 		E91C6B3EC5324CDD4CD2CFAD /* Pods_El_DUKKANA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86494022EDA9DF3F2C743BE /* Pods_El_DUKKANA.framework */; };
+		F80490562C8B0AEC00CE43ED /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80490542C8B0AEC00CE43ED /* AdsCollectionViewCell.swift */; };
+		F80490572C8B0AEC00CE43ED /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F80490552C8B0AEC00CE43ED /* AdsCollectionViewCell.xib */; };
+		F804905C2C8B162300CE43ED /* CartStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */; };
+		F804905F2C8B1AE500CE43ED /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */; };
+		F80490602C8B1AE500CE43ED /* CartItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */; };
 		F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */; };
 		F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */; };
 		F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */; };
@@ -73,6 +78,11 @@
 		CC98990FE4D9CDD625A429A0 /* Pods-El_DUKKANATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANATests.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANATests/Pods-El_DUKKANATests.debug.xcconfig"; sourceTree = "<group>"; };
 		E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_El_DUKKANAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86494022EDA9DF3F2C743BE /* Pods_El_DUKKANA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_El_DUKKANA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80490542C8B0AEC00CE43ED /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
+		F80490552C8B0AEC00CE43ED /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
+		F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CartStoryboard.storyboard; sourceTree = "<group>"; };
+		F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemTableViewCell.swift; sourceTree = "<group>"; };
+		F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemTableViewCell.xib; sourceTree = "<group>"; };
 		F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = El_DUKKANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +145,8 @@
 			children = (
 				26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */,
 				26DB3D272C8A241300E4E697 /* HomeViewController.swift */,
+				F80490542C8B0AEC00CE43ED /* AdsCollectionViewCell.swift */,
+				F80490552C8B0AEC00CE43ED /* AdsCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +208,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F80490582C8B14AF00CE43ED /* Shopping Cart */ = {
+			isa = PBXGroup;
+			children = (
+				F804905A2C8B15DC00CE43ED /* View Model */,
+				F80490592C8B15D200CE43ED /* View */,
+			);
+			path = "Shopping Cart";
+			sourceTree = "<group>";
+		};
+		F80490592C8B15D200CE43ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */,
+				F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */,
+				F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F804905A2C8B15DC00CE43ED /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		F8D3C1C82C88E06900C9B255 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +291,7 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F80490582C8B14AF00CE43ED /* Shopping Cart */,
 				26DB3D1F2C8A16A000E4E697 /* Home */,
 				81D72A942C8912320087371F /* Authentication */,
 				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
@@ -430,10 +469,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
+				F80490572C8B0AEC00CE43ED /* AdsCollectionViewCell.xib in Resources */,
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
 				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
 				26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */,
+				F80490602C8B1AE500CE43ED /* CartItemTableViewCell.xib in Resources */,
+				F804905C2C8B162300CE43ED /* CartStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,9 +600,11 @@
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
+				F804905F2C8B1AE500CE43ED /* CartItemTableViewCell.swift in Sources */,
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
+				F80490562C8B0AEC00CE43ED /* AdsCollectionViewCell.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
 			);
