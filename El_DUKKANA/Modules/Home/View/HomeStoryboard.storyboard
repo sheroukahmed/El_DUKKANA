@@ -274,7 +274,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fm6-LV-Guk" customClass="AdsCollectionViewCell" customModule="El_DUKKANA" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CuponsCell" id="fm6-LV-Guk" customClass="AdsCollectionViewCell" customModule="El_DUKKANA" customModuleProvider="target">
                                         <rect key="frame" x="2" y="0.0" width="236" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NTG-Kt-ngv">
@@ -366,6 +366,9 @@
                         </imageReference>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="mfE-VF-3Ig"/>
+                    <connections>
+                        <outlet property="AdsCollectionView" destination="vZn-YS-1qs" id="bOV-YJ-zdD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69f-yu-89u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
