@@ -9,6 +9,7 @@ target 'El_DUKKANA' do
 pod 'Alamofire'
 pod 'RxSwift', '6.5.0'
 pod 'RxCocoa', '6.5.0'
+pod 'Kingfisher', '~> 7.0'
 
   target 'El_DUKKANATests' do
     inherit! :search_paths

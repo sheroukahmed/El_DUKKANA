@@ -15,6 +15,9 @@
 		26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */; };
 		26DB3D282C8A241300E4E697 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D272C8A241300E4E697 /* HomeViewController.swift */; };
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
+		813740642C8B775D001ECAF4 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813740632C8B775D001ECAF4 /* ProductDetailsViewModel.swift */; };
+		813740662C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813740652C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard */; };
+		813740682C8B7781001ECAF4 /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813740672C8B7781001ECAF4 /* ProductDetailsVC.swift */; };
 		81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */; };
 		81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D72A992C8912B60087371F /* SignUpVC.swift */; };
 		81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D72A9B2C8912C50087371F /* SignInVC.swift */; };
@@ -71,6 +74,9 @@
 		26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		26DB3D272C8A241300E4E697 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
+		813740632C8B775D001ECAF4 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		813740652C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailsStoryboard.storyboard; sourceTree = "<group>"; };
+		813740672C8B7781001ECAF4 /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		81D72A972C8912880087371F /* AuthenticationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthenticationStoryboard.storyboard; sourceTree = "<group>"; };
 		81D72A992C8912B60087371F /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		81D72A9B2C8912C50087371F /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -199,6 +205,32 @@
 				0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		813740602C8B7737001ECAF4 /* ProductDetails */ = {
+			isa = PBXGroup;
+			children = (
+				813740622C8B7745001ECAF4 /* ViewModel */,
+				813740612C8B7740001ECAF4 /* View */,
+			);
+			path = ProductDetails;
+			sourceTree = "<group>";
+		};
+		813740612C8B7740001ECAF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				813740652C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard */,
+				813740672C8B7781001ECAF4 /* ProductDetailsVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		813740622C8B7745001ECAF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				813740632C8B775D001ECAF4 /* ProductDetailsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		81D72A942C8912320087371F /* Authentication */ = {
@@ -342,6 +374,7 @@
 		F8D3C20B2C88E15E00C9B255 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				813740602C8B7737001ECAF4 /* ProductDetails */,
 				F8F9BBDF2C891E5A005AE496 /* Customer.swift */,
 				26DB3D1B2C8A07E600E4E697 /* Brands.swift */,
 				26DB3D1D2C8A080B00E4E697 /* Product.swift */,
@@ -503,6 +536,7 @@
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
 				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
+				813740662C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard in Resources */,
 				26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */,
 				F80490602C8B1AE500CE43ED /* CartItemTableViewCell.xib in Resources */,
 				F804905C2C8B162300CE43ED /* CartStoryboard.storyboard in Resources */,
@@ -629,6 +663,7 @@
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
+				813740642C8B775D001ECAF4 /* ProductDetailsViewModel.swift in Sources */,
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
@@ -639,6 +674,7 @@
 				F80490562C8B0AEC00CE43ED /* AdsCollectionViewCell.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
+				813740682C8B7781001ECAF4 /* ProductDetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
