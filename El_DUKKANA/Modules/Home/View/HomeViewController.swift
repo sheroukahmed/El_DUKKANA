@@ -15,7 +15,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
-    var homeViewModel: HomeViewModel?
+    var homeViewModel: HomeViewModelProtocol?
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
     override func viewDidLoad() {
@@ -90,7 +90,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
             brandCell.brandImage.kf.setImage(with: URL(string: homeViewModel?.brands?[indexPath.row].image?.src ?? dummyBrandImage))
             print(homeViewModel?.brands?[indexPath.row].image?.src ?? "No Image URL")
-            brandCell.layer.cornerRadius = 50
+            brandCell.layer.cornerRadius = 30
             return brandCell
         }
         return UICollectionViewCell()
@@ -135,16 +135,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
        }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     
     @IBAction func goToFavorites(_ sender: Any) {

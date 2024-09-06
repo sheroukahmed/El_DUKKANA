@@ -13,7 +13,8 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        brandImage.backgroundColor = .white
+
     }
 
 }

@@ -6,14 +6,17 @@
 //
 
 import Foundation
-/*
-protocol HomeViewModelProtocol: Any {
+
+protocol HomeViewModelProtocol {
+    var brands: [SmartCollectionsItem]? { get set }
+    var bindToHomeViewController: (() -> Void) { get set }
+    
     func getBrands()
     func checkIfDataIsFetched()
     
 }
-*/
-class HomeViewModel {
+
+class HomeViewModel: HomeViewModelProtocol {
     
     var network: NetworkProtocol?
     var bindToHomeViewController: (() -> Void) = {}
@@ -32,11 +35,9 @@ class HomeViewModel {
         print("url: \(brandURL)")
         network?.fetch(url: brandURL, type: BrandsResponse.self, completionHandler: { [weak self] result, error in
             guard let result = result else {
-                print("Failed to fetch")
                 return
             }
             self?.brands = result.smart_collections
-            print("Fetched")
         })
     }
     
