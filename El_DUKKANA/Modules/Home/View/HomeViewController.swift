@@ -47,6 +47,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         brandsLayout.minimumInteritemSpacing = 10
         
         BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
+        
+        homeViewModel?.getBrands()
+        homeViewModel?.bindToHomeViewController = { [weak self] in DispatchQueue.main.async {
+            guard let self = self else { return }
+            self.BrandsCollectionView.reloadData()
+        }
+            
+        }
+        
     }
     
     
@@ -58,7 +67,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         if collectionView == AdsCollectionView {
             return 5
         } else if collectionView == BrandsCollectionView {
-            return homeViewModel?.brands?.count
+            return homeViewModel?.brands?.count ?? 0
         }
         return 0
     }
