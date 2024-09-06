@@ -6,48 +6,80 @@
 //
 
 import UIKit
+//import Kingfisher
+import Alamofire
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
     
-    
-
     @IBOutlet weak var AdsCollectionView: UICollectionView!
+    @IBOutlet weak var BrandsCollectionView: UICollectionView!
+    
+    var homeViewModel: HomeViewModel?
+    var dummyBrandImage = UIImage(named: "EL DUKKANA")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // MARK: - Ads Collection View SetUp
+        AdsCollectionView.delegate = self
+        AdsCollectionView.dataSource = self
         AdsCollectionView.register(AdsCollectionViewCell.nib(), forCellWithReuseIdentifier: "CuponsCell")
-
-        let layout = UICollectionViewCompositionalLayout { [self]sectionIndex,enviroment in
-                    switch sectionIndex {
-                    case 0 :
-                        return self.AdsCollectionStyle()
-                    default:
-                        return AdsCollectionStyle()
-                    }
-                }
-        AdsCollectionView.setCollectionViewLayout(layout, animated: true)
         
-
+        let adsLayout = UICollectionViewCompositionalLayout { [self]sectionIndex,enviroment in
+            switch sectionIndex {
+            case 0 :
+                return self.AdsCollectionStyle()
+            default:
+                return AdsCollectionStyle()
+            }
+        }
+        AdsCollectionView.setCollectionViewLayout(adsLayout, animated: true)
+        
+        
+        // MARK: - Brands Collection View SetUp
+        BrandsCollectionView.delegate = self
+        BrandsCollectionView.dataSource = self
+        BrandsCollectionView.register(BrandsCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "BrandsCell")
+        
+        let brandsLayout = UICollectionViewFlowLayout()
+        brandsLayout.scrollDirection = .vertical
+        brandsLayout.minimumLineSpacing = 10
+        brandsLayout.minimumInteritemSpacing = 10
+        
+        BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
     }
     
     
     
     
-    // MARK: - Ads Collection View
+    // MARK: - Collection View Data Source Methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if collectionView == AdsCollectionView {
+            return 5
+        } else if collectionView == BrandsCollectionView {
+            return homeViewModel?.brands?.count
+        }
+        return 0
     }
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = AdsCollectionView.dequeueReusableCell(withReuseIdentifier: "CuponsCell", for: indexPath) as! AdsCollectionViewCell
-        return cell
+        if collectionView == AdsCollectionView {
+            let cell = AdsCollectionView.dequeueReusableCell(withReuseIdentifier: "CuponsCell", for: indexPath) as! AdsCollectionViewCell
+            return cell
+        } else if collectionView == BrandsCollectionView {
+            let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
+      //      brandCell.brandImage.kf.setImage(with: URL(String: homeViewModel?.brands[indexPath.row].image ?? dummyBrandImage))
+            brandCell.layer.cornerRadius = 50
+            return brandCell
+        }
+        return UICollectionViewCell()
 
     }
     
@@ -74,13 +106,22 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                     item.transform = CGAffineTransform(scaleX: scale, y: scale)
                 }
             }
-
-            
             return section
         }
 
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           let padding: CGFloat = 10
+           let collectionViewWidth = collectionView.frame.width
+           let availableWidth = collectionViewWidth - padding * 3
+           let widthPerItem = availableWidth / 2 
+           return CGSize(width: widthPerItem, height: widthPerItem)
+       }
 
-
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+       }
+    
     /*
     // MARK: - Navigation
 
@@ -91,4 +132,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     */
 
+    
+    @IBAction func goToFavorites(_ sender: Any) {
+        
+    }
+    
+    @IBAction func goToCart(_ sender: Any) {
+        
+    }
+    
+    @IBAction func goToSearch(_ sender: Any) {
+        
+    }
+    
 }
