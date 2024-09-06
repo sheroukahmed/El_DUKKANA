@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26B335DD2C8A643700968401 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B335DC2C8A643700968401 /* CategoriesViewModel.swift */; };
+		26B335DF2C8A645B00968401 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B335DE2C8A645B00968401 /* CategoriesViewController.swift */; };
 		26DB3D1C2C8A07E600E4E697 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D1B2C8A07E600E4E697 /* Brands.swift */; };
 		26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D1D2C8A080B00E4E697 /* Product.swift */; };
 		26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */; };
@@ -61,6 +63,8 @@
 /* Begin PBXFileReference section */
 		0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.debug.xcconfig"; sourceTree = "<group>"; };
+		26B335DC2C8A643700968401 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		26B335DE2C8A645B00968401 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		26DB3D1B2C8A07E600E4E697 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		26DB3D1D2C8A080B00E4E697 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -131,6 +135,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26B335D72C8A63D500968401 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				26B335D92C8A63FA00968401 /* View Model */,
+				26B335DB2C8A641200968401 /* View */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		26B335D92C8A63FA00968401 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				26B335DC2C8A643700968401 /* CategoriesViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		26B335DB2C8A641200968401 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26B335DE2C8A645B00968401 /* CategoriesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		26DB3D1F2C8A16A000E4E697 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
+				26B335D72C8A63D500968401 /* Categories */,
 				26DB3D1F2C8A16A000E4E697 /* Home */,
 				81D72A942C8912320087371F /* Authentication */,
 				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
@@ -588,8 +618,10 @@
 			files = (
 				F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */,
 				26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */,
+				26B335DD2C8A643700968401 /* CategoriesViewModel.swift in Sources */,
 				26DB3D282C8A241300E4E697 /* HomeViewController.swift in Sources */,
 				26DB3D1C2C8A07E600E4E697 /* Brands.swift in Sources */,
+				26B335DF2C8A645B00968401 /* CategoriesViewController.swift in Sources */,
 				81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */,
 				81F3708A2C88F6F3007FBC45 /* URLManager.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
