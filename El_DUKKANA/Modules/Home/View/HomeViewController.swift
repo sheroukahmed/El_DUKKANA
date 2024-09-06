@@ -6,8 +6,9 @@
 //
 
 import UIKit
-//import Kingfisher
+import Kingfisher
 import Alamofire
+
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
     
@@ -15,7 +16,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
     var homeViewModel: HomeViewModel?
-    var dummyBrandImage = UIImage(named: "EL DUKKANA")
+    var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         BrandsCollectionView.delegate = self
         BrandsCollectionView.dataSource = self
         BrandsCollectionView.register(BrandsCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "BrandsCell")
+
         
         let brandsLayout = UICollectionViewFlowLayout()
         brandsLayout.scrollDirection = .vertical
@@ -47,6 +49,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         brandsLayout.minimumInteritemSpacing = 10
         
         BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
+        
+        homeViewModel = HomeViewModel()
+        homeViewModel?.getBrands()
+        homeViewModel?.bindToHomeViewController = { [weak self] in DispatchQueue.main.async {
+            guard let self = self else { return }
+            self.BrandsCollectionView.reloadData()
+        }
+            
+        }
     }
     
     
@@ -58,7 +69,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         if collectionView == AdsCollectionView {
             return 5
         } else if collectionView == BrandsCollectionView {
-            return homeViewModel?.brands?.count
+            return homeViewModel?.brands?.count ?? 0
         }
         return 0
     }
@@ -75,7 +86,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             return cell
         } else if collectionView == BrandsCollectionView {
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
-      //      brandCell.brandImage.kf.setImage(with: URL(String: homeViewModel?.brands[indexPath.row].image ?? dummyBrandImage))
+            brandCell.brandImage.kf.setImage(with: URL(string: homeViewModel?.brands?[indexPath.row].image?.src ?? dummyBrandImage))
+            print(homeViewModel?.brands?[indexPath.row].image?.src ?? "No Image URL")
             brandCell.layer.cornerRadius = 50
             return brandCell
         }
