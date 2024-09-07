@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="ProductCell" id="iN0-l3-epB" customClass="ProductCell" customModule="El_DUKKANA" customModuleProvider="target">
+
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProductCell" customModule="El_DUKKANA" customModuleProvider="target">
+
+            <rect key="frame" x="0.0" y="0.0" width="209" height="202"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="avj-xc-iXv">
+                    <rect key="frame" x="47" y="16" width="115" height="131"/>
+                </imageView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="sk6-xX-tNe">
+                    <rect key="frame" x="47" y="121" width="115" height="26"/>
+                    <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="currentPageIndicatorTintColor" red="0.1292155385" green="0.023621717470000001" blue="0.023523807529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </pageControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wef-uE-qOp">
+                    <rect key="frame" x="16" y="184" width="177" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpR-eH-u2n">
+                    <rect key="frame" x="16" y="155" width="177" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPG-bM-ELG">
+                    <rect key="frame" x="158.33333333333334" y="10" width="50.666666666666657" height="35"/>
+                    <color key="tintColor" red="0.40338975189999998" green="0.075197644529999996" blue="0.0666275546" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="aPG-bM-ELG" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.173267" id="2Yo-AT-j0C"/>
+                <constraint firstItem="sk6-xX-tNe" firstAttribute="centerX" secondItem="avj-xc-iXv" secondAttribute="centerX" id="35n-Tj-0qX"/>
+                <constraint firstItem="SpR-eH-u2n" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.84689" id="8qQ-3O-lr4"/>
+                <constraint firstItem="avj-xc-iXv" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.550239" id="A3v-eP-95A"/>
+                <constraint firstItem="aPG-bM-ELG" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.242424" id="CEd-Mj-2wF"/>
+                <constraint firstItem="avj-xc-iXv" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.648515" id="KdP-ml-ppa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="avj-xc-iXv" secondAttribute="top" constant="43" id="LZU-El-z0W"/>
+                <constraint firstAttribute="bottom" secondItem="Wef-uE-qOp" secondAttribute="bottom" id="M6N-L3-t4L"/>
+                <constraint firstItem="aPG-bM-ELG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="OCu-hi-YMS"/>
+                <constraint firstItem="Wef-uE-qOp" firstAttribute="top" secondItem="SpR-eH-u2n" secondAttribute="bottom" id="WK3-UN-3l5"/>
+                <constraint firstItem="SpR-eH-u2n" firstAttribute="leading" secondItem="Wef-uE-qOp" secondAttribute="leading" id="cLT-Ak-Wac"/>
+                <constraint firstItem="Wef-uE-qOp" firstAttribute="centerX" secondItem="avj-xc-iXv" secondAttribute="centerX" id="dfv-Rg-NKj"/>
+                <constraint firstItem="SpR-eH-u2n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ek4-1X-0fs"/>
+                <constraint firstAttribute="trailing" secondItem="aPG-bM-ELG" secondAttribute="trailing" id="ekN-kV-oAf"/>
+                <constraint firstItem="Wef-uE-qOp" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.84689" id="fdD-15-wlv"/>
+                <constraint firstItem="sk6-xX-tNe" firstAttribute="height" secondItem="avj-xc-iXv" secondAttribute="height" multiplier="0.198473" id="nFY-pU-W7d"/>
+                <constraint firstItem="sk6-xX-tNe" firstAttribute="top" secondItem="avj-xc-iXv" secondAttribute="bottom" constant="-26" id="oHH-7g-h2X"/>
+                <constraint firstItem="SpR-eH-u2n" firstAttribute="trailing" secondItem="Wef-uE-qOp" secondAttribute="trailing" id="pcu-GJ-dF9"/>
+                <constraint firstItem="Wef-uE-qOp" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.0891089" id="pze-NR-Y2k"/>
+                <constraint firstItem="avj-xc-iXv" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="syi-8C-Umz"/>
+                <constraint firstItem="SpR-eH-u2n" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.143564" id="xXT-bk-tO7"/>
+                <constraint firstItem="sk6-xX-tNe" firstAttribute="width" secondItem="avj-xc-iXv" secondAttribute="width" id="zL8-dr-QAO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addToFavorites" destination="aPG-bM-ELG" id="PgZ-gX-xKP"/>
+                <outlet property="pageController" destination="sk6-xX-tNe" id="9UU-Ks-At3"/>
+                <outlet property="productImage" destination="avj-xc-iXv" id="Ygo-Qi-daf"/>
+                <outlet property="productPrice" destination="Wef-uE-qOp" id="gKh-OT-Axh"/>
+                <outlet property="productTitle" destination="SpR-eH-u2n" id="Vxz-cK-Ae7"/>
+            </connections>
+            <point key="canvasLocation" x="-124.42748091603053" y="-154.92957746478874"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
