@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ReviewEntity" representedClassName="ReviewEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="reviewBody" optional="YES" attributeType="String"/>
+        <attribute name="reviewingDate" optional="YES" attributeType="String"/>
+        <attribute name="reviewrImage" optional="YES" attributeType="Binary"/>
+        <attribute name="reviewrName" optional="YES" attributeType="String"/>
+        <attribute name="reviewStars" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reviewTitle" optional="YES" attributeType="String"/>
+    </entity>
+</model>

@@ -16,6 +16,7 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
     
@@ -23,6 +24,11 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(identifier: "ProductDetailsVC")
+        signUpVC.modalPresentationStyle = .fullScreen
+        signUpVC.modalTransitionStyle = .crossDissolve
+       present(signUpVC, animated: true)
     }
     @IBAction func forgotPasswordBtnAction(_ sender: Any) {
     }
