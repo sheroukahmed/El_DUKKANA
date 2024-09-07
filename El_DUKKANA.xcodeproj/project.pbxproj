@@ -412,10 +412,8 @@
 			children = (
 
 				813740602C8B7737001ECAF4 /* ProductDetails */,
-
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
 				26B335D72C8A63D500968401 /* Categories */,
-
 				26DB3D1F2C8A16A000E4E697 /* Home */,
 				81D72A942C8912320087371F /* Authentication */,
 				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
@@ -744,11 +742,9 @@
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				26881C902C8BB46400627E7F /* CategoriesCollectionViewCell.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
-
 				8137406C2C8B9733001ECAF4 /* ReviewsViewModel.swift in Sources */,
 
 				F80490562C8B0AEC00CE43ED /* AdsCollectionViewCell.swift in Sources */,
-
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				8137406E2C8B9ADE001ECAF4 /* Reviews.swift in Sources */,
 				813740762C8BDA20001ECAF4 /* AddReviewVC.swift in Sources */,

@@ -30,7 +30,7 @@ class HomeViewModel: HomeViewModelProtocol {
         network = NetworkManager()
     }
     
-
+    
     func getBrands() {
         let brandURL = URLManager.getUrl(for: .brands)
         print("url: \(brandURL)")
@@ -44,32 +44,31 @@ class HomeViewModel: HomeViewModelProtocol {
     
     
     func checkIfDataIsFetched() {
-
-    var network: NetworkProtocol?
-    var bindToHomeViewController: (() -> Void) = {}
-    var brands: [SmartCollectionsItem]? {
-        didSet {
-            checkIfDataIsFetched()
+        
+        var network: NetworkProtocol?
+        var bindToHomeViewController: (() -> Void) = {}
+        var brands: [SmartCollectionsItem]? {
+            didSet {
+                checkIfDataIsFetched()
+            }
         }
-    }
-    
-    init() {
-        network = NetworkManager()
-    }
-    
-    func getBrands() {
-        let brandURL = URLManager.getUrl(for: .brands)
-        network?.fetch(url: brandURL, type: BrandsResponse.self, completionHandler: { [weak self] brand, error in
-            guard let brand = brand else { return }
-            self?.brands = brand.smart_collections
-        })
-    }
-    
-    private func checkIfDataIsFetched() {
-
-        if brands != nil {
-            bindToHomeViewController()
+        
+       
+        
+        func getBrands() {
+            let brandURL = URLManager.getUrl(for: .brands)
+            network?.fetch(url: brandURL, type: BrandsResponse.self, completionHandler: { [weak self] brand, error in
+                guard let brand = brand else { return }
+                self?.brands = brand.smart_collections
+            })
         }
+        
+         func checkIfDataIsFetched() {
+            
+            if brands != nil {
+                bindToHomeViewController()
+            }
+        }
+        
     }
-
 }
