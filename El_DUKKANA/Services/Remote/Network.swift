@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NetworkManager {
+class NetworkManager :NetworkProtocol {
     
     func fetch<T: Codable>(url: String, type: T.Type, completionHandler: @escaping (T?, Error?) -> Void) {
        
@@ -123,7 +123,7 @@ class NetworkManager {
     
     
 
-    func deleteFromApi(url:String){
+    func Delete(url:String){
         
         guard let newURL = URL(string: url) else {
             return
