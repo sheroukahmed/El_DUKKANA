@@ -30,7 +30,7 @@ class HomeViewModel: HomeViewModelProtocol {
         network = NetworkManager()
     }
     
-
+    
     func getBrands() {
         let brandURL = URLManager.getUrl(for: .brands)
         print("url: \(brandURL)")
@@ -42,12 +42,15 @@ class HomeViewModel: HomeViewModelProtocol {
         })
     }
     
-    private func checkIfDataIsFetched() {
 
+    func checkIfDataIsFetched() {
+        
         if brands != nil {
             bindToHomeViewController()
+            
         }
     }
+
 
 }
 
