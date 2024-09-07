@@ -10,20 +10,31 @@ import UIKit
 import Kingfisher
 import Alamofire
 
-
-
-
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
-
+    @IBOutlet weak var Adsimagepanel: UIPageControl!
+    var adsTimer: Timer?
+    var currentAdIndex = 0
+    let Adsimages: [UIImage] = [
+        UIImage(named: "cup30")!,
+        UIImage(named: "cup40")!,
+        UIImage(named: "cup50")!,
+        UIImage(named: "Untitled design10")!,
+        UIImage(named: "Untitled design111")!
+    ]
+    
     var homeViewModel: HomeViewModelProtocol?
 
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
+
+    //var dummyBrandImage = UIImage(named: "EL DUKKANA")
+
     
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +53,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
         AdsCollectionView.setCollectionViewLayout(adsLayout, animated: true)
+        Adsimagepanel.numberOfPages = Adsimages.count
+    
+        adsTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScrollAds), userInfo: nil, repeats: true)
+
         
         
         // MARK: - Brands Collection View SetUp
@@ -93,6 +108,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == AdsCollectionView {
             let cell = AdsCollectionView.dequeueReusableCell(withReuseIdentifier: "CuponsCell", for: indexPath) as! AdsCollectionViewCell
+            cell.cuponImage.image = Adsimages[indexPath.row]
+            Adsimagepanel.currentPage = indexPath.row
             return cell
         } else if collectionView == BrandsCollectionView {
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
@@ -110,16 +127,41 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
+    // MARK: - Ads Collection View Layout Detailes
+    
+    @objc func autoScrollAds() {
+            if currentAdIndex < Adsimagepanel.numberOfPages - 1 {
+                currentAdIndex += 1
+            } else {
+                currentAdIndex = 0
+            }
+            
+            let indexPath = IndexPath(item: currentAdIndex, section: 0)
+            AdsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            Adsimagepanel.currentPage = currentAdIndex
+        }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == AdsCollectionView {
+            
+            let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+            currentAdIndex = pageIndex
+            
+            Adsimagepanel.currentPage = currentAdIndex
+        }
+    }
+
+    
     func AdsCollectionStyle()-> NSCollectionLayoutSection {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(200))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(292), heightDimension: .absolute(119))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
             section.orthogonalScrollingBehavior = .groupPagingCentered
             
 
@@ -134,18 +176,26 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
             return section
         }
+    
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 10
-           let collectionViewWidth = collectionView.frame.width
-           let availableWidth = collectionViewWidth - padding * 3
-           let widthPerItem = availableWidth / 2 
-           return CGSize(width: widthPerItem, height: widthPerItem)
+        if collectionView == BrandsCollectionView {
+            let padding: CGFloat = 10
+            let collectionViewWidth = collectionView.frame.width
+            let availableWidth = collectionViewWidth - padding * 3
+            let widthPerItem = availableWidth / 2
+            return CGSize(width: widthPerItem, height: widthPerItem)
+            
+        }
+          return CGSize()
        }
 
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+           if collectionView == BrandsCollectionView {
+               return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+           }
+           return UIEdgeInsets()
        }
 
     
