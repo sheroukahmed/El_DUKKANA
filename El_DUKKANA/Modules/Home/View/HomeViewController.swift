@@ -15,7 +15,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
-
+    @IBOutlet weak var Adsimagepanel: UIPageControl!
+    
     var homeViewModel: HomeViewModelProtocol?
 
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
@@ -94,6 +95,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == AdsCollectionView {
             let cell = AdsCollectionView.dequeueReusableCell(withReuseIdentifier: "CuponsCell", for: indexPath) as! AdsCollectionViewCell
+            cell.cuponImage.image = cell.Adsimages[indexPath.row]
             return cell
         } else if collectionView == BrandsCollectionView {
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
