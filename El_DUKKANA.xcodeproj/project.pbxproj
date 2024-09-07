@@ -86,12 +86,6 @@
 		26B335EA2C8B61D800968401 /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
 		26B335EE2C8B779900968401 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = El_DUKKANA/Modules/Home/View/ProductCell.xib; sourceTree = SOURCE_ROOT; };
 		26B335F02C8B77A600968401 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = El_DUKKANA/Modules/Home/View/ProductCell.swift; sourceTree = SOURCE_ROOT; };
-
-
-		26B335EE2C8B779900968401 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = El_DUKKANA/Modules/Home/View/ProductCell.xib; sourceTree = SOURCE_ROOT; };
-		26B335F02C8B77A600968401 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = El_DUKKANA/Modules/Home/View/ProductCell.swift; sourceTree = SOURCE_ROOT; };
-
-
 		26DB3D1B2C8A07E600E4E697 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		26DB3D1D2C8A080B00E4E697 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -420,12 +414,10 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-
+				F8EC6B762C8CA4E600A8D7AF /* P */,
 				813740602C8B7737001ECAF4 /* ProductDetails */,
-
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
 				26B335D72C8A63D500968401 /* Categories */,
-
 				26DB3D1F2C8A16A000E4E697 /* Home */,
 				81D72A942C8912320087371F /* Authentication */,
 				F8D3C2062C88E0B300C9B255 /* Main & Launch Screen */,
@@ -489,6 +481,13 @@
 				8137407A2C8BE805001ECAF4 /* CoreData */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		F8EC6B762C8CA4E600A8D7AF /* P */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = P;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -754,11 +753,8 @@
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				26881C902C8BB46400627E7F /* CategoriesCollectionViewCell.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
-
 				8137406C2C8B9733001ECAF4 /* ReviewsViewModel.swift in Sources */,
-
 				F80490562C8B0AEC00CE43ED /* AdsCollectionViewCell.swift in Sources */,
-
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				8137406E2C8B9ADE001ECAF4 /* Reviews.swift in Sources */,
 				813740762C8BDA20001ECAF4 /* AddReviewVC.swift in Sources */,

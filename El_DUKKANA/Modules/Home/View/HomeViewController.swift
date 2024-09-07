@@ -16,6 +16,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
     @IBOutlet weak var Adsimagepanel: UIPageControl!
+    var adsTimer: Timer?
+    var currentAdIndex = 0
     
     var homeViewModel: HomeViewModelProtocol?
 
@@ -44,6 +46,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
         AdsCollectionView.setCollectionViewLayout(adsLayout, animated: true)
+        Adsimagepanel.numberOfPages = 5
+        adsTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScrollAds), userInfo: nil, repeats: true)
+
         
         
         // MARK: - Brands Collection View SetUp
@@ -96,6 +101,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         if collectionView == AdsCollectionView {
             let cell = AdsCollectionView.dequeueReusableCell(withReuseIdentifier: "CuponsCell", for: indexPath) as! AdsCollectionViewCell
             cell.cuponImage.image = cell.Adsimages[indexPath.row]
+            Adsimagepanel.currentPage = indexPath.row
             return cell
         } else if collectionView == BrandsCollectionView {
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
@@ -112,6 +118,28 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     }
     
+    
+    // MARK: - Ads Collection View Layout Detailes
+    
+    @objc func autoScrollAds() {
+            if currentAdIndex < Adsimagepanel.numberOfPages - 1 {
+                currentAdIndex += 1
+            } else {
+                currentAdIndex = 0
+            }
+            
+            let indexPath = IndexPath(item: currentAdIndex, section: 0)
+            AdsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            Adsimagepanel.currentPage = currentAdIndex
+        }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            if scrollView == AdsCollectionView {
+                let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
+                currentAdIndex = Int(pageIndex)
+                Adsimagepanel.currentPage = currentAdIndex
+            }
+        }
     
     func AdsCollectionStyle()-> NSCollectionLayoutSection {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -137,18 +165,26 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
             return section
         }
+    
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 10
-           let collectionViewWidth = collectionView.frame.width
-           let availableWidth = collectionViewWidth - padding * 3
-           let widthPerItem = availableWidth / 2 
-           return CGSize(width: widthPerItem, height: widthPerItem)
+        if collectionView == BrandsCollectionView {
+            let padding: CGFloat = 10
+            let collectionViewWidth = collectionView.frame.width
+            let availableWidth = collectionViewWidth - padding * 3
+            let widthPerItem = availableWidth / 2
+            return CGSize(width: widthPerItem, height: widthPerItem)
+            
+        }
+          return CGSize()
        }
 
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+           if collectionView == BrandsCollectionView {
+               return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+           }
+           return UIEdgeInsets()
        }
 
     
