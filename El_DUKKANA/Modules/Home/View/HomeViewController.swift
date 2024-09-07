@@ -18,6 +18,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var Adsimagepanel: UIPageControl!
     var adsTimer: Timer?
     var currentAdIndex = 0
+    let Adsimages: [UIImage] = [
+        UIImage(named: "cup30")!,
+        UIImage(named: "cup40")!,
+        UIImage(named: "cup50")!,
+        UIImage(named: "Untitled design10")!,
+        UIImage(named: "Untitled design111")!
+    ]
     
     var homeViewModel: HomeViewModelProtocol?
 
@@ -46,7 +53,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
         AdsCollectionView.setCollectionViewLayout(adsLayout, animated: true)
-        Adsimagepanel.numberOfPages = 5
+        Adsimagepanel.numberOfPages = Adsimages.count
+    
         adsTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScrollAds), userInfo: nil, repeats: true)
 
         
@@ -100,7 +108,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == AdsCollectionView {
             let cell = AdsCollectionView.dequeueReusableCell(withReuseIdentifier: "CuponsCell", for: indexPath) as! AdsCollectionViewCell
-            cell.cuponImage.image = cell.Adsimages[indexPath.row]
+            cell.cuponImage.image = Adsimages[indexPath.row]
             Adsimagepanel.currentPage = indexPath.row
             return cell
         } else if collectionView == BrandsCollectionView {
@@ -134,23 +142,26 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            if scrollView == AdsCollectionView {
-                let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
-                currentAdIndex = Int(pageIndex)
-                Adsimagepanel.currentPage = currentAdIndex
-            }
+        if scrollView == AdsCollectionView {
+            
+            let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+            currentAdIndex = pageIndex
+            
+            Adsimagepanel.currentPage = currentAdIndex
         }
+    }
+
     
     func AdsCollectionStyle()-> NSCollectionLayoutSection {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(200))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(292), heightDimension: .absolute(119))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
             section.orthogonalScrollingBehavior = .groupPagingCentered
             
 
