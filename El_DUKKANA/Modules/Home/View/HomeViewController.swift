@@ -15,11 +15,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
-    var homeViewModel: HomeViewModel?
+
+    var homeViewModel: HomeViewModelProtocol?
 
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
+
     //var dummyBrandImage = UIImage(named: "EL DUKKANA")
+
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +58,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
 
+        
+
         homeViewModel = HomeViewModel()
 
         homeViewModel?.getBrands()
@@ -60,7 +67,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             guard let self = self else { return }
             self.BrandsCollectionView.reloadData()
         }
-            
         }
 
     }
@@ -95,9 +101,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             brandCell.brandImage.kf.setImage(with: URL(string: homeViewModel?.brands?[indexPath.row].image?.src ?? dummyBrandImage))
             print(homeViewModel?.brands?[indexPath.row].image?.src ?? "No Image URL")
 
-      //      brandCell.brandImage.kf.setImage(with: URL(String: homeViewModel?.brands[indexPath.row].image ?? dummyBrandImage))
+            brandCell.layer.cornerRadius = 30
 
-            brandCell.layer.cornerRadius = 50
+  
             return brandCell
         }
         return UICollectionViewCell()
@@ -142,16 +148,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
        }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     
     @IBAction func goToFavorites(_ sender: Any) {

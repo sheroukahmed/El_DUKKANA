@@ -15,7 +15,16 @@ class ProductDetailsVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func showReviewsBtn(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(identifier: "ReviewsViewController") as? ReviewsViewController
+        if let viewController = vc {
+            viewController.modalTransitionStyle = .crossDissolve
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true)
+            
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
