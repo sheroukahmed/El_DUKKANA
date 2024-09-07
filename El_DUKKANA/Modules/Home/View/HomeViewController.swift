@@ -10,9 +10,6 @@ import UIKit
 import Kingfisher
 import Alamofire
 
-
-
-
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet weak var AdsCollectionView: UICollectionView!
@@ -22,7 +19,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
-    var dummyBrandImage = UIImage(named: "EL DUKKANA")
+    //var dummyBrandImage = UIImage(named: "EL DUKKANA")
 
     override func viewDidLoad() {
         super.viewDidLoad()

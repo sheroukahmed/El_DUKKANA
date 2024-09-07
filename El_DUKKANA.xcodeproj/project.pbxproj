@@ -33,6 +33,7 @@
 		F804905C2C8B162300CE43ED /* CartStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */; };
 		F804905F2C8B1AE500CE43ED /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */; };
 		F80490602C8B1AE500CE43ED /* CartItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */; };
+		F80490642C8BB59300CE43ED /* URLMangerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80490632C8BB59300CE43ED /* URLMangerTest.swift */; };
 		F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */; };
 		F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */; };
 		F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */; };
@@ -72,10 +73,8 @@
 		26B335DC2C8A643700968401 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		26B335DE2C8A645B00968401 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		26B335EA2C8B61D800968401 /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
-
 		26B335EE2C8B779900968401 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = El_DUKKANA/Modules/Home/View/ProductCell.xib; sourceTree = SOURCE_ROOT; };
 		26B335F02C8B77A600968401 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = El_DUKKANA/Modules/Home/View/ProductCell.swift; sourceTree = SOURCE_ROOT; };
-
 		26DB3D1B2C8A07E600E4E697 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		26DB3D1D2C8A080B00E4E697 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CartStoryboard.storyboard; sourceTree = "<group>"; };
 		F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemTableViewCell.swift; sourceTree = "<group>"; };
 		F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemTableViewCell.xib; sourceTree = "<group>"; };
+		F80490632C8BB59300CE43ED /* URLMangerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLMangerTest.swift; sourceTree = "<group>"; };
 		F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = El_DUKKANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +304,14 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		F80490612C8BB4FF00CE43ED /* URLMangerTesting */ = {
+			isa = PBXGroup;
+			children = (
+				F80490632C8BB59300CE43ED /* URLMangerTest.swift */,
+			);
+			path = URLMangerTesting;
+			sourceTree = "<group>";
+		};
 		F8D3C1C82C88E06900C9B255 = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +352,7 @@
 		F8D3C1EA2C88E06B00C9B255 /* El_DUKKANATests */ = {
 			isa = PBXGroup;
 			children = (
+				F80490612C8BB4FF00CE43ED /* URLMangerTesting */,
 				F8D3C1EB2C88E06B00C9B255 /* El_DUKKANATests.swift */,
 			);
 			path = El_DUKKANATests;
@@ -697,6 +706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C1EC2C88E06B00C9B255 /* El_DUKKANATests.swift in Sources */,
+				F80490642C8BB59300CE43ED /* URLMangerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
