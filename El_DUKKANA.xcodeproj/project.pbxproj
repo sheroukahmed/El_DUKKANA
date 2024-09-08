@@ -19,6 +19,7 @@
 		26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */; };
 		26DB3D282C8A241300E4E697 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D272C8A241300E4E697 /* HomeViewController.swift */; };
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
+		8107C9832C8D573E00D1C938 /* ViewsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107C9822C8D573E00D1C938 /* ViewsSet.swift */; };
 		813740642C8B775D001ECAF4 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813740632C8B775D001ECAF4 /* ProductDetailsViewModel.swift */; };
 		813740662C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813740652C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard */; };
 		813740682C8B7781001ECAF4 /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813740672C8B7781001ECAF4 /* ProductDetailsVC.swift */; };
@@ -99,6 +100,7 @@
 		26DB3D242C8A171B00E4E697 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		26DB3D272C8A241300E4E697 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
+		8107C9822C8D573E00D1C938 /* ViewsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsSet.swift; sourceTree = "<group>"; };
 		813740632C8B775D001ECAF4 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		813740652C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailsStoryboard.storyboard; sourceTree = "<group>"; };
 		813740672C8B7781001ECAF4 /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				81B0349E2C8D219F00D4A4C5 /* PageController.swift */,
+				8107C9822C8D573E00D1C938 /* ViewsSet.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -793,6 +796,7 @@
 				26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */,
 				26B335DD2C8A643700968401 /* CategoriesViewModel.swift in Sources */,
 				26DB3D282C8A241300E4E697 /* HomeViewController.swift in Sources */,
+				8107C9832C8D573E00D1C938 /* ViewsSet.swift in Sources */,
 				26DB3D1C2C8A07E600E4E697 /* Brands.swift in Sources */,
 				26B335DF2C8A645B00968401 /* CategoriesViewController.swift in Sources */,
 				81F3708C2C88F6FE007FBC45 /* URLManagerProtocol.swift in Sources */,

@@ -10,9 +10,17 @@ import UIKit
 class StartOptionsVC: UIViewController {
 
     
-    @IBOutlet weak var logInBtn: UIButton!
-    @IBOutlet weak var continueBtn: UIButton!
-    @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!
+    {didSet{
+        ViewsSet.btnSet(btn: loginBtn)
+    }}
+    
+    @IBOutlet weak var continueBtn: UIButton!{didSet{
+        ViewsSet.btnSet(btn: continueBtn)
+    }}
+    @IBOutlet weak var registerBtn: UIButton!{didSet{
+        ViewsSet.btnSet(btn: registerBtn)
+    }}
     override func viewDidLoad() {
         super.viewDidLoad()
         

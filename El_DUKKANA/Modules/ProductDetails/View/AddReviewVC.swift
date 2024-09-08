@@ -20,7 +20,11 @@ class AddReviewVC: UIViewController {
     @IBOutlet weak var star3Btn: UIButton!
     @IBOutlet weak var star2Btn: UIButton!
     @IBOutlet weak var star1Btn: UIButton!
-    @IBOutlet weak var addReviewBtn: UIButton!
+    @IBOutlet weak var addReviewBtn: UIButton!{
+        didSet{
+            ViewsSet.btnSet(btn: addReviewBtn)
+        }
+    }
     @IBOutlet weak var reviewBodyTF: UITextView!
     @IBOutlet weak var reviewTitleTF: UITextField!
     @IBOutlet weak var reviewerNameTF: UITextField!

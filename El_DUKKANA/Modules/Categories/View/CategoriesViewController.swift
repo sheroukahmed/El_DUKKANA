@@ -78,12 +78,21 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
        }
     
- /*
+ 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
-            let productDetails = self.storyboard?.instantiateViewController(withIdentifier: "ProductDetailsStoryboard") as! ProductDetailsVC
+            let storyBoard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
+            if let productDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetailsVC") as? ProductDetailsVC {
+
+                
+                productDetails.viewModel.productId = self.categoriesViewModel?.products?[indexPath.row].id ?? 1
+                
+                productDetails.modalPresentationStyle = .fullScreen
+                productDetails.modalTransitionStyle = .crossDissolve
+                self.present(productDetails, animated: true)
+            }
         
-            self.navigationController?.pushViewController(productDetails, animated: true)
+            
         } else {
             let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .cancel)
@@ -91,7 +100,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
             present(alert, animated: true)
         }
     }
-  */
+  
     
 
     @IBAction func goToFavorites(_ sender: Any) {

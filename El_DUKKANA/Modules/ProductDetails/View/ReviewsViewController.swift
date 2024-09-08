@@ -10,34 +10,45 @@ import Kingfisher
 
 class ReviewsViewController: UIViewController, AddNewReviewProtocol {
 
+    @IBOutlet weak var addReviewBtn: UIButton!{
+        didSet{
+            ViewsSet.btnSet(btn: addReviewBtn)
+        }
+    }
     @IBOutlet weak var pageController: UIPageControl!
-    @IBOutlet weak var imagesCollection: UICollectionView!
+    
     var viewModel = ReviewsViewModel()
-    var productDetailsViewModel = ProductDetailsViewModel()
     var timer : Timer?
     var currentCellIndex = 0
     var pageCont = PageController()
     @IBOutlet weak var reviewCollectionView: UICollectionView!
     @IBOutlet weak var productCollectionView: UICollectionView!
-    @IBOutlet weak var productNameLbl: UILabel!
+    @IBOutlet weak var productNameLbl: UILabel!{
+        didSet{
+            productNameLbl.adjustsFontSizeToFitWidth = true
+            productNameLbl.lineBreakMode = .byTruncatingTail
+            productNameLbl.contentMode = .scaleToFill
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
         reviewCollectionView.dataSource = self
         reviewCollectionView.delegate = self
+        productCollectionView.dataSource = self
+        productCollectionView.delegate = self
 
-        imagesCollection.dataSource = self
-        imagesCollection.delegate = self
+        
+        productNameLbl.text = viewModel.title
+        
         
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
         
-        productDetailsViewModel.getData()
-        productDetailsViewModel.bindResultToViewController = {
-            self.pageController.numberOfPages = self.productDetailsViewModel.product?.product.images?.count ?? 1
+        
+            self.pageController.numberOfPages = viewModel.images.count
             self.pageController.currentPage = 0
-            self.imagesCollection.reloadData()
-        }
+        
         
         let productLayout = UICollectionViewCompositionalLayout() {
             indexPath,environment in
@@ -50,9 +61,9 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
         reviewCollectionView.setCollectionViewLayout(reViewLayout, animated: true)
         productCollectionView.setCollectionViewLayout(productLayout, animated: true)
     }
-    
+
     @objc func moveToNextIndex(){
-        pageCont.moveNextIndex(specificCount: productDetailsViewModel.product?.product.images?.count ?? 1, specificCollectionView: productCollectionView, pageController: pageController)
+        pageCont.moveNextIndex(specificCount: viewModel.images.count, specificCollectionView: productCollectionView, pageController: pageController)
     }
     
     func didAddReview(_ review: Reviews) {
@@ -79,7 +90,7 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
 extension ReviewsViewController : UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == productCollectionView{
-            return productDetailsViewModel.product?.product.images?.count ?? 2
+            return viewModel.images.count
         }
         return viewModel.reviews.count 
     }
@@ -87,8 +98,8 @@ extension ReviewsViewController : UICollectionViewDelegate,UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == productCollectionView{
             let pCell = productCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImagesCell
-            let images = productDetailsViewModel.product?.product.images?[indexPath.row]
-            pCell.imagesOfProducts.kf.setImage(with: URL(string: images?.src ?? ""))
+            let images = viewModel.images[indexPath.row]
+            pCell.imagesOfProducts.kf.setImage(with: URL(string: images.src ?? ""))
             return pCell
         }
         let cell = reviewCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ReviewCell
