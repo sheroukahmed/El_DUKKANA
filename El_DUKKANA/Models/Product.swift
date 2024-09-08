@@ -10,6 +10,9 @@ import Foundation
 struct ProductResponse: Codable {
     let products: [Product]
 }
+struct SingleProductResponse: Codable {
+    var product : Product
+}
 
 struct Product: Codable {
     let id: Int?
@@ -30,13 +33,19 @@ struct Variant: Codable {
     let product_id: Int?
     let title: String?
     let price: String?
+    //presentment_prices: [PresentmentPrices]
     let option1: String?
     let option2: String?
+    let option3: String?
     let inventory_item_id: Int?
     let inventory_quantity: Int?
     let old_inventory_quantity: Int?
     
 }
+/*
+ struct PresentmentPrices {
+    let : []
+ */
 
 struct Option: Codable {
     let id: Int?

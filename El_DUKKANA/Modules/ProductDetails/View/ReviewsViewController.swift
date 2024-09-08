@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ReviewsViewController: UIViewController, AddNewReviewProtocol {
 
+    @IBOutlet weak var pageController: UIPageControl!
+    @IBOutlet weak var imagesCollection: UICollectionView!
     var viewModel = ReviewsViewModel()
+    var productDetailsViewModel = ProductDetailsViewModel()
+    var timer : Timer?
+    var currentCellIndex = 0
+    var pageCont = PageController()
     @IBOutlet weak var reviewCollectionView: UICollectionView!
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var productNameLbl: UILabel!
@@ -19,9 +26,33 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
         
         reviewCollectionView.dataSource = self
         reviewCollectionView.delegate = self
+
+        imagesCollection.dataSource = self
+        imagesCollection.delegate = self
         
-            
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
         
+        productDetailsViewModel.getData()
+        productDetailsViewModel.bindResultToViewController = {
+            self.pageController.numberOfPages = self.productDetailsViewModel.product?.product.images?.count ?? 1
+            self.pageController.currentPage = 0
+            self.imagesCollection.reloadData()
+        }
+        
+        let productLayout = UICollectionViewCompositionalLayout() {
+            indexPath,environment in
+            return DrawCollectioView.drawSection()
+        }
+        let reViewLayout = UICollectionViewCompositionalLayout() {
+            indexPath,environment in
+            return DrawCollectioView.drawSection()
+        }
+        reviewCollectionView.setCollectionViewLayout(reViewLayout, animated: true)
+        productCollectionView.setCollectionViewLayout(productLayout, animated: true)
+    }
+    
+    @objc func moveToNextIndex(){
+        pageCont.moveNextIndex(specificCount: productDetailsViewModel.product?.product.images?.count ?? 1, specificCollectionView: productCollectionView, pageController: pageController)
     }
     
     func didAddReview(_ review: Reviews) {
@@ -47,10 +78,19 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
 }
 extension ReviewsViewController : UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == productCollectionView{
+            return productDetailsViewModel.product?.product.images?.count ?? 2
+        }
         return viewModel.reviews.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == productCollectionView{
+            let pCell = productCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImagesCell
+            let images = productDetailsViewModel.product?.product.images?[indexPath.row]
+            pCell.imagesOfProducts.kf.setImage(with: URL(string: images?.src ?? ""))
+            return pCell
+        }
         let cell = reviewCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ReviewCell
         let arrOfData = viewModel.reviews[indexPath.row]
         cell.reviewTitle.text = arrOfData.reviewTitle
