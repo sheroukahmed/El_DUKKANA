@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ProductCell" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ProductCell" id="gTV-IL-0wX" customClass="ProductCell" customModule="El_DUKKANA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="217" height="235"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="217" height="235"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="agd-Yq-lfc">
+                        <rect key="frame" x="0.0" y="0.0" width="217" height="235"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vIH-lb-Mch">
+                                <rect key="frame" x="38.666666666666657" y="8" width="140" height="164"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mk0-6j-Lht">
+                                <rect key="frame" x="174" y="8" width="35" height="35"/>
+                                <color key="tintColor" red="0.40338975189999998" green="0.075197644529999996" blue="0.0666275546" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="addToFavorites:" destination="gTV-IL-0wX" eventType="touchUpInside" id="35w-kB-poo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMH-Hu-tZE">
+                                <rect key="frame" x="8" y="207" width="90" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="1Eh-3q-Qt9"/>
+                                    <constraint firstAttribute="width" constant="90" id="yvc-aw-EKz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-KQ-dtY">
+                                <rect key="frame" x="119" y="207" width="90" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="eDk-kK-Xde"/>
+                                    <constraint firstAttribute="height" constant="18" id="uAh-TD-klE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1O1-Gz-dF4">
+                                <rect key="frame" x="8" y="172" width="201" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mk0-6j-Lht" firstAttribute="height" secondItem="agd-Yq-lfc" secondAttribute="height" multiplier="0.148936" id="4Uf-C6-rUB"/>
+                            <constraint firstItem="Mk0-6j-Lht" firstAttribute="width" secondItem="agd-Yq-lfc" secondAttribute="width" multiplier="0.16129" id="BYd-JC-rXv"/>
+                            <constraint firstItem="1O1-Gz-dF4" firstAttribute="width" secondItem="agd-Yq-lfc" secondAttribute="width" multiplier="0.926267" id="FBP-2T-idG"/>
+                            <constraint firstItem="Mk0-6j-Lht" firstAttribute="top" secondItem="agd-Yq-lfc" secondAttribute="top" constant="8" id="HNg-n7-ncB"/>
+                            <constraint firstItem="vIH-lb-Mch" firstAttribute="width" secondItem="agd-Yq-lfc" secondAttribute="width" multiplier="0.645161" id="NJc-MF-em6"/>
+                            <constraint firstItem="1O1-Gz-dF4" firstAttribute="centerX" secondItem="agd-Yq-lfc" secondAttribute="centerX" id="REf-td-SAq"/>
+                            <constraint firstItem="vIH-lb-Mch" firstAttribute="centerX" secondItem="agd-Yq-lfc" secondAttribute="centerX" id="UgS-q8-e3O"/>
+                            <constraint firstAttribute="trailing" secondItem="Mk0-6j-Lht" secondAttribute="trailing" constant="8" id="Uxx-mM-UqW"/>
+                            <constraint firstItem="KMH-Hu-tZE" firstAttribute="leading" secondItem="agd-Yq-lfc" secondAttribute="leading" constant="8" id="Wac-QN-wNU"/>
+                            <constraint firstItem="vIH-lb-Mch" firstAttribute="top" secondItem="agd-Yq-lfc" secondAttribute="top" constant="8" id="XUk-Nx-wvY"/>
+                            <constraint firstAttribute="trailing" secondItem="IOY-KQ-dtY" secondAttribute="trailing" constant="8" id="aCb-LG-9BV"/>
+                            <constraint firstItem="1O1-Gz-dF4" firstAttribute="height" secondItem="agd-Yq-lfc" secondAttribute="height" multiplier="0.140426" id="d0p-nM-T5N"/>
+                            <constraint firstAttribute="bottom" secondItem="KMH-Hu-tZE" secondAttribute="bottom" constant="10" id="oXq-fj-nEN"/>
+                            <constraint firstAttribute="bottom" secondItem="IOY-KQ-dtY" secondAttribute="bottom" constant="10" id="qox-JX-7Uq"/>
+                            <constraint firstItem="vIH-lb-Mch" firstAttribute="height" secondItem="agd-Yq-lfc" secondAttribute="height" multiplier="0.697872" id="tpY-wn-Qe8"/>
+                            <constraint firstItem="1O1-Gz-dF4" firstAttribute="top" secondItem="vIH-lb-Mch" secondAttribute="bottom" id="yN5-d7-q7W"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="E9F-Cb-EGO"/>
+            <constraints>
+                <constraint firstItem="agd-Yq-lfc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="BcX-95-6Xc"/>
+                <constraint firstItem="agd-Yq-lfc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZTm-p9-4dF"/>
+                <constraint firstAttribute="bottom" secondItem="agd-Yq-lfc" secondAttribute="bottom" id="cs0-hB-66H"/>
+                <constraint firstItem="agd-Yq-lfc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fKM-af-Vh9"/>
+                <constraint firstAttribute="trailing" secondItem="agd-Yq-lfc" secondAttribute="trailing" id="tNA-BM-atD"/>
+                <constraint firstItem="agd-Yq-lfc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="xh1-Bg-Z9u"/>
+            </constraints>
+            <connections>
+                <outlet property="favButton" destination="Mk0-6j-Lht" id="WoE-ot-qdS"/>
+                <outlet property="productCurrency" destination="IOY-KQ-dtY" id="L08-Yx-2mY"/>
+                <outlet property="productImage" destination="vIH-lb-Mch" id="lOf-Q5-wod"/>
+                <outlet property="productPrice" destination="KMH-Hu-tZE" id="HSW-tA-KgC"/>
+                <outlet property="productTitle" destination="1O1-Gz-dF4" id="Lt1-Eq-lBM"/>
+            </connections>
+            <point key="canvasLocation" x="-45.038167938931295" y="19.366197183098592"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
