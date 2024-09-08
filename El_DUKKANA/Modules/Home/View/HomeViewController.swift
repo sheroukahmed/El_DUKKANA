@@ -31,11 +31,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
 
-    //var dummyBrandImage = UIImage(named: "EL DUKKANA")
-
-    
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,7 +77,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.BrandsCollectionView.reloadData()
         }
         }
-
+        
     }
     
     
@@ -124,6 +119,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         return UICollectionViewCell()
 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == BrandsCollectionView {
+            if NetworkReachabilityManager()?.isReachable ?? false {
+                let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+                brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
+                brandProducts.title = homeViewModel?.brands?[indexPath.row].title
+                
+                self.navigationController?.pushViewController(brandProducts, animated: true)
+            } else {
+                let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(ok)
+                present(alert, animated: true)
+            }
+        }
     }
     
     
