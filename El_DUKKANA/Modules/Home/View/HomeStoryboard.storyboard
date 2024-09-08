@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="98A-Cd-45J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="98A-Cd-45J">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -280,32 +279,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jax-o5-5Ug">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="Jax-o5-5Ug">
                                 <rect key="frame" x="138.66666666666666" y="322" width="116" height="26"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" red="0.40338975189999998" green="0.075197644529999996" blue="0.0666275546" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vZn-YS-1qs">
-                                <rect key="frame" x="76.666666666666686" y="186" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3sn-TN-ja6">
-                                    <size key="itemSize" width="236" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CuponsCell" id="fm6-LV-Guk" customClass="AdsCollectionViewCell" customModule="El_DUKKANA" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="0.0" width="236" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NTG-Kt-ngv">
-                                            <rect key="frame" x="0.0" y="0.0" width="236" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="236" height="128"/>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El Dukkana 1" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-VU-FFo">
                                 <rect key="frame" x="96.666666666666686" y="59" width="200" height="50"/>
                             </imageView>
@@ -349,16 +327,40 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vZn-YS-1qs">
+                                <rect key="frame" x="50.666666666666657" y="182" width="292" height="119"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="119" id="7MT-7b-4FK"/>
+                                    <constraint firstAttribute="width" constant="292" id="9zN-LI-NqL"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3sn-TN-ja6">
+                                    <size key="itemSize" width="292" height="119"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="CuponsCell" id="fm6-LV-Guk" customClass="AdsCollectionViewCell" customModule="El_DUKKANA" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="119"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="NTG-Kt-ngv">
+                                            <rect key="frame" x="0.0" y="0.0" width="292" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="292" height="119"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4mD-gK-7PZ"/>
                         <color key="backgroundColor" red="0.96864992380000003" green="0.96850210430000006" blue="0.97647172209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="vZn-YS-1qs" firstAttribute="centerX" secondItem="4mD-gK-7PZ" secondAttribute="centerX" id="1Gl-O7-NBu"/>
+                            <constraint firstItem="vZn-YS-1qs" firstAttribute="top" secondItem="Mh3-nN-5NJ" secondAttribute="bottom" constant="18" id="1RD-2I-s0U"/>
                             <constraint firstItem="4mD-gK-7PZ" firstAttribute="trailing" secondItem="bf5-it-gfV" secondAttribute="trailing" constant="16" id="1iJ-6q-AaT"/>
                             <constraint firstItem="IDK-g9-aDe" firstAttribute="height" secondItem="4mD-gK-7PZ" secondAttribute="height" multiplier="0.0309859" id="2Lx-nf-EZz"/>
                             <constraint firstItem="oA9-8X-Y5p" firstAttribute="leading" secondItem="4mD-gK-7PZ" secondAttribute="leading" constant="24" id="3ey-Jz-rlx"/>
                             <constraint firstItem="75b-9u-yg9" firstAttribute="top" secondItem="oA9-8X-Y5p" secondAttribute="bottom" constant="22" id="49t-53-Kqw"/>
-                            <constraint firstItem="vZn-YS-1qs" firstAttribute="width" secondItem="ex8-xw-7iT" secondAttribute="width" multiplier="0.610687" id="5Wa-AN-y5e"/>
                             <constraint firstItem="75b-9u-yg9" firstAttribute="width" secondItem="ex8-xw-7iT" secondAttribute="width" multiplier="0.918575" id="CH1-L2-yGN"/>
                             <constraint firstItem="cIe-1Q-4xN" firstAttribute="centerY" secondItem="hPi-VU-FFo" secondAttribute="centerY" id="CR3-Ig-0SA"/>
                             <constraint firstItem="Jax-o5-5Ug" firstAttribute="height" secondItem="ex8-xw-7iT" secondAttribute="height" multiplier="0.0305164" id="Daz-Wb-4ye"/>
@@ -368,19 +370,17 @@
                             <constraint firstItem="bf5-it-gfV" firstAttribute="centerY" secondItem="hPi-VU-FFo" secondAttribute="centerY" id="LY3-3T-RpI"/>
                             <constraint firstItem="hPi-VU-FFo" firstAttribute="centerX" secondItem="4mD-gK-7PZ" secondAttribute="centerX" id="UZF-52-Txc"/>
                             <constraint firstItem="hPi-VU-FFo" firstAttribute="top" secondItem="4mD-gK-7PZ" secondAttribute="top" id="ZWy-UL-MCz"/>
-                            <constraint firstItem="vZn-YS-1qs" firstAttribute="top" secondItem="Mh3-nN-5NJ" secondAttribute="bottom" constant="22" id="ZvS-TW-0Kt"/>
                             <constraint firstItem="hPi-VU-FFo" firstAttribute="width" secondItem="ex8-xw-7iT" secondAttribute="width" multiplier="0.508906" id="aBA-Xk-Qfn"/>
                             <constraint firstItem="Mh3-nN-5NJ" firstAttribute="top" secondItem="IDK-g9-aDe" secondAttribute="bottom" constant="8" symbolic="YES" id="aRM-kQ-8dT"/>
                             <constraint firstItem="Jax-o5-5Ug" firstAttribute="centerX" secondItem="4mD-gK-7PZ" secondAttribute="centerX" id="bTJ-06-F3i"/>
                             <constraint firstItem="Mh3-nN-5NJ" firstAttribute="leading" secondItem="4mD-gK-7PZ" secondAttribute="leading" constant="24" id="cHi-Sg-yoF"/>
+                            <constraint firstItem="vZn-YS-1qs" firstAttribute="centerX" secondItem="4mD-gK-7PZ" secondAttribute="centerX" id="cXb-AA-7u3"/>
                             <constraint firstItem="IDK-g9-aDe" firstAttribute="width" secondItem="4mD-gK-7PZ" secondAttribute="width" multiplier="0.918575" id="ceD-Mo-vCB"/>
+                            <constraint firstItem="Jax-o5-5Ug" firstAttribute="top" secondItem="vZn-YS-1qs" secondAttribute="bottom" constant="21" id="chp-29-HbJ"/>
                             <constraint firstItem="4mD-gK-7PZ" firstAttribute="bottom" secondItem="75b-9u-yg9" secondAttribute="bottom" id="dZg-0O-lB7"/>
                             <constraint firstItem="75b-9u-yg9" firstAttribute="height" secondItem="ex8-xw-7iT" secondAttribute="height" multiplier="0.408451" id="diV-Q7-keh"/>
-                            <constraint firstItem="vZn-YS-1qs" firstAttribute="height" secondItem="ex8-xw-7iT" secondAttribute="height" multiplier="0.150235" id="hHt-7a-7hK"/>
-                            <constraint firstItem="Jax-o5-5Ug" firstAttribute="top" secondItem="vZn-YS-1qs" secondAttribute="bottom" constant="8" symbolic="YES" id="k9x-uA-qBn"/>
                             <constraint firstItem="NNs-oj-vsR" firstAttribute="centerY" secondItem="hPi-VU-FFo" secondAttribute="centerY" id="nSk-Ak-ZkV"/>
                             <constraint firstItem="IDK-g9-aDe" firstAttribute="centerX" secondItem="4mD-gK-7PZ" secondAttribute="centerX" id="qdR-3T-Gqo"/>
-                            <constraint firstItem="oA9-8X-Y5p" firstAttribute="top" secondItem="vZn-YS-1qs" secondAttribute="bottom" constant="61" id="qsZ-xA-pEj"/>
                             <constraint firstItem="IDK-g9-aDe" firstAttribute="top" secondItem="hPi-VU-FFo" secondAttribute="bottom" constant="1" id="uHE-og-r2w"/>
                             <constraint firstItem="75b-9u-yg9" firstAttribute="centerX" secondItem="4mD-gK-7PZ" secondAttribute="centerX" id="xYD-xj-tfA"/>
                             <constraint firstItem="hPi-VU-FFo" firstAttribute="height" secondItem="ex8-xw-7iT" secondAttribute="height" multiplier="0.0586854" id="yft-7F-IGE"/>
@@ -398,6 +398,7 @@
                     <navigationItem key="navigationItem" id="mfE-VF-3Ig"/>
                     <connections>
                         <outlet property="AdsCollectionView" destination="vZn-YS-1qs" id="bOV-YJ-zdD"/>
+                        <outlet property="Adsimagepanel" destination="Jax-o5-5Ug" id="Ac8-9C-bBW"/>
                         <outlet property="BrandsCollectionView" destination="75b-9u-yg9" id="QFT-Jk-HUN"/>
                     </connections>
                 </viewController>

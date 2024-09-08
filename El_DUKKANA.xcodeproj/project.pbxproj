@@ -46,6 +46,7 @@
 		F804905C2C8B162300CE43ED /* CartStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */; };
 		F804905F2C8B1AE500CE43ED /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */; };
 		F80490602C8B1AE500CE43ED /* CartItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */; };
+		F80490642C8BB59300CE43ED /* URLMangerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80490632C8BB59300CE43ED /* URLMangerTest.swift */; };
 		F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */; };
 		F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */; };
 		F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 		F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CartStoryboard.storyboard; sourceTree = "<group>"; };
 		F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemTableViewCell.swift; sourceTree = "<group>"; };
 		F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemTableViewCell.xib; sourceTree = "<group>"; };
+		F80490632C8BB59300CE43ED /* URLMangerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLMangerTest.swift; sourceTree = "<group>"; };
 		F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = El_DUKKANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -361,6 +363,14 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		F80490612C8BB4FF00CE43ED /* URLMangerTesting */ = {
+			isa = PBXGroup;
+			children = (
+				F80490632C8BB59300CE43ED /* URLMangerTest.swift */,
+			);
+			path = URLMangerTesting;
+			sourceTree = "<group>";
+		};
 		F8D3C1C82C88E06900C9B255 = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +413,7 @@
 		F8D3C1EA2C88E06B00C9B255 /* El_DUKKANATests */ = {
 			isa = PBXGroup;
 			children = (
+				F80490612C8BB4FF00CE43ED /* URLMangerTesting */,
 				F8D3C1EB2C88E06B00C9B255 /* El_DUKKANATests.swift */,
 			);
 			path = El_DUKKANATests;
@@ -420,6 +431,7 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F8EC6B772C8CA92D00A8D7AF /* Profile & Settings */,
 				813740602C8B7737001ECAF4 /* ProductDetails */,
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
 				26B335D72C8A63D500968401 /* Categories */,
@@ -486,6 +498,29 @@
 				8137407A2C8BE805001ECAF4 /* CoreData */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		F8EC6B772C8CA92D00A8D7AF /* Profile & Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F8EC6B792C8CAB0C00A8D7AF /* View Model */,
+				F8EC6B782C8CAAFA00A8D7AF /* View */,
+			);
+			path = "Profile & Settings";
+			sourceTree = "<group>";
+		};
+		F8EC6B782C8CAAFA00A8D7AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F8EC6B792C8CAB0C00A8D7AF /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -771,6 +806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C1EC2C88E06B00C9B255 /* El_DUKKANATests.swift in Sources */,
+				F80490642C8BB59300CE43ED /* URLMangerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
