@@ -55,6 +55,10 @@
 		F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */; };
 		F8D3C2122C88E26900C9B255 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F8D3C2112C88E26900C9B255 /* FirebaseAnalytics */; };
 		F8D3C2142C88E26900C9B255 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F8D3C2132C88E26900C9B255 /* FirebaseAuth */; };
+		F8EC6B7B2C8CC31D00A8D7AF /* Profile&SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EC6B7A2C8CC31D00A8D7AF /* Profile&SettingsVM.swift */; };
+		F8EC6B7D2C8CC46E00A8D7AF /* Profile&Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EC6B7C2C8CC46E00A8D7AF /* Profile&Settings.storyboard */; };
+		F8EC6B7F2C8CE84A00A8D7AF /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */; };
+		F8EC6B842C8CEE2D00A8D7AF /* AboutUS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */; };
 		F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDB2C891DF3005AE496 /* Network.swift */; };
 		F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */; };
 		F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDF2C891E5A005AE496 /* Customer.swift */; };
@@ -134,6 +138,10 @@
 		F8D3C1F72C88E06C00C9B255 /* El_DUKKANAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = El_DUKKANAUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F8D3C2072C88E10C00C9B255 /* StartOptionsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartOptionsStoryboard.storyboard; sourceTree = "<group>"; };
 		F8D3C2092C88E14A00C9B255 /* StartOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartOptionsVC.swift; sourceTree = "<group>"; };
+		F8EC6B7A2C8CC31D00A8D7AF /* Profile&SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile&SettingsVM.swift"; sourceTree = "<group>"; };
+		F8EC6B7C2C8CC46E00A8D7AF /* Profile&Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Profile&Settings.storyboard"; sourceTree = "<group>"; };
+		F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUS.storyboard; sourceTree = "<group>"; };
 		F8F9BBDB2C891DF3005AE496 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F8F9BBDD2C891E21005AE496 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		F8F9BBDF2C891E5A005AE496 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -414,6 +422,7 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F8EC6B812C8CEE0000A8D7AF /* About Us */,
 				F8EC6B772C8CA92D00A8D7AF /* Profile & Settings */,
 				813740602C8B7737001ECAF4 /* ProductDetails */,
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
@@ -442,6 +451,7 @@
 				26DB3D1B2C8A07E600E4E697 /* Brands.swift */,
 				26DB3D1D2C8A080B00E4E697 /* Product.swift */,
 				8137406D2C8B9ADE001ECAF4 /* Reviews.swift */,
+				F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -495,6 +505,7 @@
 		F8EC6B782C8CAAFA00A8D7AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8EC6B7C2C8CC46E00A8D7AF /* Profile&Settings.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -502,8 +513,25 @@
 		F8EC6B792C8CAB0C00A8D7AF /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				F8EC6B7A2C8CC31D00A8D7AF /* Profile&SettingsVM.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		F8EC6B812C8CEE0000A8D7AF /* About Us */ = {
+			isa = PBXGroup;
+			children = (
+				F8EC6B822C8CEE1100A8D7AF /* View */,
+			);
+			path = "About Us";
+			sourceTree = "<group>";
+		};
+		F8EC6B822C8CEE1100A8D7AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -625,7 +653,9 @@
 				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
 				F80490572C8B0AEC00CE43ED /* AdsCollectionViewCell.xib in Resources */,
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
+				F8EC6B842C8CEE2D00A8D7AF /* AboutUS.storyboard in Resources */,
 				F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */,
+				F8EC6B7D2C8CC46E00A8D7AF /* Profile&Settings.storyboard in Resources */,
 				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
 				813740662C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard in Resources */,
 				26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */,
@@ -761,6 +791,8 @@
 				813740702C8BAA18001ECAF4 /* ReviewsViewController.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
 				813740642C8B775D001ECAF4 /* ProductDetailsViewModel.swift in Sources */,
+				F8EC6B7B2C8CC31D00A8D7AF /* Profile&SettingsVM.swift in Sources */,
+				F8EC6B7F2C8CE84A00A8D7AF /* Currency.swift in Sources */,
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
