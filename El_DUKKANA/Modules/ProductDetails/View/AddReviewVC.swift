@@ -15,7 +15,6 @@ class AddReviewVC: UIViewController {
     var delegate : AddNewReviewProtocol?
     private let disposeBag = DisposeBag()
     private let starRating = BehaviorRelay<Int>(value: 0)
-    
     @IBOutlet weak var star5Btn: UIButton!
     @IBOutlet weak var star4Btn: UIButton!
     @IBOutlet weak var star3Btn: UIButton!
