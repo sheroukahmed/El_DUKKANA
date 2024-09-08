@@ -71,18 +71,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="continueBtn" destination="Ycm-fk-Qj4" id="ZX7-e9-g2M"/>
-                        <outlet property="logInBtn" destination="Jtl-hJ-XO5" id="d6g-Og-n8A"/>
-                        <outlet property="registerBtn" destination="JD1-p9-sQB" id="b0v-ck-LqJ"/>
+                        <outlet property="continueBtn" destination="Ycm-fk-Qj4" id="Lti-C0-snP"/>
+                        <outlet property="loginBtn" destination="Jtl-hJ-XO5" id="1LR-eW-4Fg"/>
+                        <outlet property="registerBtn" destination="JD1-p9-sQB" id="A3H-t0-7nU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-
             <point key="canvasLocation" x="140" y="4"/>
-
-            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
-
         </scene>
     </scenes>
     <resources>

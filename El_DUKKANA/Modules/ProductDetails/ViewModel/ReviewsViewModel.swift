@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 class ReviewsViewModel{
-    
+    var images : [ProductImage] = []
+    var title : String?
     var reviews = [Reviews]()
         
         init() {

@@ -10,7 +10,11 @@ import Kingfisher
 
 class ProductDetailsVC: UIViewController {
 
-    @IBOutlet weak var addCartBtn: UIButton!
+    @IBOutlet weak var addCartBtn: UIButton!{
+        didSet{
+            ViewsSet.btnSet(btn: addCartBtn)
+        }
+    }
     @IBOutlet weak var descriptionLbl: UITextView!
     @IBOutlet weak var color3Lbl: UILabel!
     @IBOutlet weak var color2Lbl: UILabel!
@@ -63,9 +67,14 @@ class ProductDetailsVC: UIViewController {
         pageCont.moveNextIndex(specificCount: viewModel.product?.product.images?.count ?? 1, specificCollectionView: productCollectionView, pageController: pageController)
     }
     
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     @IBAction func showReviewsBtn(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(identifier: "ReviewsViewController") as? ReviewsViewController
         if let viewController = vc {
+            vc?.viewModel.images = viewModel.product?.product.images ?? []
+            vc?.viewModel.title = viewModel.product?.product.title ?? ""
             viewController.modalTransitionStyle = .crossDissolve
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)
