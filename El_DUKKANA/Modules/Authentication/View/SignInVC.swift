@@ -10,7 +10,9 @@ import UIKit
 class SignInVC: UIViewController {
 
     @IBOutlet weak var forgotPasswordBtn: UIButton!
-    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!{didSet{
+        ViewsSet.btnSet(btn: loginBtn)
+    }}
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     override func viewDidLoad() {

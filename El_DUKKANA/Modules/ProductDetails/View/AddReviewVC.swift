@@ -15,13 +15,16 @@ class AddReviewVC: UIViewController {
     var delegate : AddNewReviewProtocol?
     private let disposeBag = DisposeBag()
     private let starRating = BehaviorRelay<Int>(value: 0)
-    
     @IBOutlet weak var star5Btn: UIButton!
     @IBOutlet weak var star4Btn: UIButton!
     @IBOutlet weak var star3Btn: UIButton!
     @IBOutlet weak var star2Btn: UIButton!
     @IBOutlet weak var star1Btn: UIButton!
-    @IBOutlet weak var addReviewBtn: UIButton!
+    @IBOutlet weak var addReviewBtn: UIButton!{
+        didSet{
+            ViewsSet.btnSet(btn: addReviewBtn)
+        }
+    }
     @IBOutlet weak var reviewBodyTF: UITextView!
     @IBOutlet weak var reviewTitleTF: UITextField!
     @IBOutlet weak var reviewerNameTF: UITextField!

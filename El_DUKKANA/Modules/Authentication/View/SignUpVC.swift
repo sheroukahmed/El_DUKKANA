@@ -10,7 +10,11 @@ import UIKit
 class SignUpVC: UIViewController {
 
     @IBOutlet weak var signUpWithGoogoleView: UIView!
-    @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var registerBtn: UIButton!{
+        didSet{
+            ViewsSet.btnSet(btn: registerBtn)
+        }
+    }
     @IBOutlet weak var confirmPassTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
