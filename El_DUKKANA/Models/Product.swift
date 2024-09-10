@@ -22,7 +22,7 @@ struct Product: Codable {
     let product_type: String?
     let tags: String?
     let variants: [Variant]?
-    let options: [Option]?
+    let options: [Option]?// here
     let images: [ProductImage]?
     let image: ProductImage?
     

@@ -112,6 +112,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     }
     
     @IBAction func goToSearch(_ sender: Any) {
-        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SearchForProductVC") as? SearchForProductVC{
+            vc.viewModel.allProducts = self.categoriesViewModel?.products ?? []
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
     }
 }
