@@ -468,11 +468,8 @@
 		F8D3C2052C88E0A500C9B255 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-
 				264E3ADD2C8CC330001FC585 /* Brand */,
-
 				F8EC6B812C8CEE0000A8D7AF /* About Us */,
-
 				F8EC6B772C8CA92D00A8D7AF /* Profile & Settings */,
 				813740602C8B7737001ECAF4 /* ProductDetails */,
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
@@ -837,7 +834,6 @@
 				813740792C8BDEF9001ECAF4 /* Delegation.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
 				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
-				26B335EC2C8B61D800968401 /* BrandsCollectionViewCell.swift in Sources */,
 				81B0349C2C8D209100D4A4C5 /* DrowCollectioView.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,

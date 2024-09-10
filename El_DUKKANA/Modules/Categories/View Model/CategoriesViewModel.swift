@@ -9,11 +9,11 @@ import Foundation
 
 protocol CategoriesViewModelProtocol {
     var products: [Product]? { get set }
+    var isLoading: Bool { get set }
     var bindToCategoriesViewController: (() -> Void) { get set }
     
-    func getProducts()
+    func getProducts(collectionId: CollectionID, productType: ProductType)
     func checkIfDataIsFetched()
-    
 }
 
 class CategoriesViewModel: CategoriesViewModelProtocol {
@@ -25,20 +25,34 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
             checkIfDataIsFetched()
         }
     }
+   
+    
+    var isLoading: Bool = false {
+           didSet {
+               bindToCategoriesViewController()
+           }
+       }
     
     init() {
         network = NetworkManager()
     }
+
     
-    func getProducts() {
-        let productURL = URLManager.getUrl(for: .products)
-        print("url: \(productURL)")
-        network?.fetch(url: productURL, type: ProductResponse.self, completionHandler: { [weak self] result, error in
+    func getProducts(collectionId: CollectionID, productType: ProductType) {
+        self.isLoading = true
+        let url = URLManager.getUrl(for: .products)
+        let additionalParameters = "?collection_id=\(getCollectionID(for: collectionId) ?? 0)&product_type=\(getProductType(for: productType))"
+        let fullURL = url+additionalParameters
+        print("url: \(fullURL)")
+        network?.fetch(url: fullURL, type: ProductResponse.self, completionHandler: { [weak self] result, error in
+            self?.isLoading = false
             guard let result = result else {
                 return
             }
             self?.products = result.products
         })
+
+        
     }
     
     
@@ -47,5 +61,47 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
             bindToCategoriesViewController()
         }
     }
+    
+    private func getCollectionID(for collectionId: CollectionID) -> Int? {
+        switch collectionId {
+        case .all:
+            return nil
+        case .men:
+            return 438260170990
+        case .women:
+            return 438260203758
+        case .kids:
+            return 438260236526
+        case .sale:
+            return 438260269294
+        }
+    }
+    
+    private func getProductType(for productType: ProductType) -> String {
+        switch productType {
+        case .all:
+            return ""
+        case .shoes:
+            return "SHOES"
+        case .t_shirt:
+            return "T-SHIRT"
+        case .accessories:
+            return "ACCESSORIES"
+        }
+    }
+}
 
+enum CollectionID: Any {
+    case all
+    case men
+    case women
+    case kids
+    case sale
+}
+
+enum ProductType: Any {
+    case all
+    case shoes
+    case t_shirt
+    case accessories
 }

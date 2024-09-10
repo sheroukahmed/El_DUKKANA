@@ -40,6 +40,8 @@ class URLManager : URLManagerProtocol{
             return "/smart_collections"
         case .discountCodes:
             return "/price_rules"
+        case .collection(let collectionId):
+            return "/collections/\(collectionId)/products"
             
             
         }
@@ -81,6 +83,7 @@ enum EndPoint: Any {
     case product(productsId: Int)
     case brands
     case discountCodes
+    case collection(collectionId: Int)
     
     
 }
