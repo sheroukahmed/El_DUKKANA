@@ -19,6 +19,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var pagecontrol = PageController()
     var adsTimer: Timer?
     var currentAdIndex = 0
+    //sherouk's code
     let Adsimages: [UIImage] = [
         UIImage(named: "cup30")!,
         UIImage(named: "cup40")!,
