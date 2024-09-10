@@ -32,6 +32,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                                 <connections>
+                                    <action selector="bb:" destination="R3T-kw-teH" eventType="touchUpInside" id="79m-nj-kcn"/>
                                     <action selector="goToFavorites:" destination="dbu-vR-lJj" eventType="touchUpInside" id="me8-q9-rhm"/>
                                 </connections>
                             </button>
@@ -145,7 +146,7 @@
                             <constraint firstItem="1CL-28-GZ4" firstAttribute="height" secondItem="lX4-0M-YpZ" secondAttribute="height" multiplier="0.688967" id="zLu-wK-jKz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="93M-6a-2Bc"/>
+                    <navigationItem key="navigationItem" id="eWK-Xs-64b"/>
                     <connections>
                         <outlet property="FirstSegmentedControl" destination="FyJ-Bw-1ff" id="YtM-cN-Woj"/>
                         <outlet property="NoProductsAvailableImage" destination="n4Q-fX-tqd" id="083-Es-B76"/>
@@ -154,6 +155,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sd-ZH-U1o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="R3T-kw-teH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1547.3282442748091" y="201.40845070422537"/>
         </scene>

@@ -212,14 +212,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     
     @IBAction func goToFavorites(_ sender: Any) {
-        
+        print("goToFavorites")
+
     }
     
     @IBAction func goToCart(_ sender: Any) {
-        
+        print("goToCart")
+
     }
     
     @IBAction func goToSearch(_ sender: Any) {
+        print("goToSearch")
         
     }
     
