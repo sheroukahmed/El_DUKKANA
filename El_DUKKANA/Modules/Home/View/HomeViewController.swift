@@ -18,6 +18,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var Adsimagepanel: UIPageControl!
     var adsTimer: Timer?
     var currentAdIndex = 0
+    //sherouk's code
     let Adsimages: [UIImage] = [
         UIImage(named: "cup30")!,
         UIImage(named: "cup40")!,
