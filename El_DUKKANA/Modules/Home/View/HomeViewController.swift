@@ -16,6 +16,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
     @IBOutlet weak var Adsimagepanel: UIPageControl!
+    var pagecontrol = PageController()
     var adsTimer: Timer?
     var currentAdIndex = 0
     let Adsimages: [UIImage] = [
@@ -25,14 +26,19 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         UIImage(named: "Untitled design10")!,
         UIImage(named: "Untitled design111")!
     ]
+    let priceRulesForImages: [PriceRules] = [.percent30, .percent40, .percent50, .percent10, .percent25]
+        
     
-    var homeViewModel: HomeViewModelProtocol?
+    var homeViewModel: HomeViewModel?
 
     var dummyBrandImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         // MARK: - Ads Collection View SetUp
         AdsCollectionView.delegate = self
@@ -70,6 +76,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
 
         homeViewModel = HomeViewModel()
+       
 
         homeViewModel?.getBrands()
         homeViewModel?.bindToHomeViewController = { [weak self] in DispatchQueue.main.async {
@@ -122,19 +129,48 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == BrandsCollectionView {
-            if NetworkReachabilityManager()?.isReachable ?? false {
-                let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
-                brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
-                brandProducts.title = homeViewModel?.brands?[indexPath.row].title
-                
-                self.navigationController?.pushViewController(brandProducts, animated: true)
-            } else {
-                let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .cancel)
-                alert.addAction(ok)
-                present(alert, animated: true)
+        if collectionView == AdsCollectionView {
+            let selectedPriceRule = priceRulesForImages[indexPath.row]
+            homeViewModel?.selectedpricerule = selectedPriceRule.rawValue
+
+            homeViewModel?.getDiscount()
+            homeViewModel?.discountCodeUpdated = { [weak self] in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    UIPasteboard.general.string = self.homeViewModel?.discountCode
+                    let alert = UIAlertController(title: "Copied!", message: "Discount code has been copied to clipboard.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+
             }
+            print(homeViewModel?.discountCode ?? "ooooooooooo")
+            UIPasteboard.general.string = homeViewModel?.discountCode
+            
+            
+            let alert = UIAlertController(title: "Copied!", message: "Text has been copied to clipboard.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+    
+    
+        }else{
+            if collectionView == BrandsCollectionView {
+                if NetworkReachabilityManager()?.isReachable ?? false {
+                    let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+                    brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
+                    brandProducts.title = homeViewModel?.brands?[indexPath.row].title
+                    
+                    self.navigationController?.pushViewController(brandProducts, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(ok)
+                    present(alert, animated: true)
+                }
+            }
+            
         }
     }
     
@@ -142,15 +178,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     // MARK: - Ads Collection View Layout Detailes
     
     @objc func autoScrollAds() {
-            if currentAdIndex < Adsimagepanel.numberOfPages - 1 {
-                currentAdIndex += 1
-            } else {
-                currentAdIndex = 0
-            }
-            
-            let indexPath = IndexPath(item: currentAdIndex, section: 0)
-            AdsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            Adsimagepanel.currentPage = currentAdIndex
+        pagecontrol.moveNextIndex(specificCount:Adsimages.count ,specificCollectionView:AdsCollectionView, pageController: Adsimagepanel)
         }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

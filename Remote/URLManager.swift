@@ -38,8 +38,8 @@ class URLManager : URLManagerProtocol{
             return "/products/\(productId)"
         case .brands:
             return "/smart_collections"
-        case .discountCodes:
-            return "/price_rules"
+        case .discountCodes(let priceruleId):
+            return "/price_rules/\(priceruleId)/discount_codes"
             
             
         }
@@ -80,7 +80,7 @@ enum EndPoint: Any {
     case products
     case product(productsId: Int)
     case brands
-    case discountCodes
+    case discountCodes(priceruleId :Int)
     
     
 }
