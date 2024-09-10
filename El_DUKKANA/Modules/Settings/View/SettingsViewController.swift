@@ -11,26 +11,22 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var CurrencyList: UIButton!
 
-    let Currencies = ["EGP","USD","EUR"]
+    var SettingVM = SettingsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "Color")
 
-       
-        let actionClosure = { (action: UIAction) in
+        // MARK: - Currency list
+        let CurrencyItemAction = { (action: UIAction) in
              print(action.title)
         }
-        
-        let button = UIButton(primaryAction: nil)
-
-
         var menuChildren: [UIMenuElement] = []
-        for currency in Currencies {
-            menuChildren.append(UIAction(title: currency, handler: actionClosure))
+        for currency in SettingVM.Currencies {
+            menuChildren.append(UIAction(title: currency, handler: CurrencyItemAction))
         }
-        
         CurrencyList.menu = UIMenu(options: .displayInline, children: menuChildren)
-        
         CurrencyList.showsMenuAsPrimaryAction = true
         CurrencyList.changesSelectionAsPrimaryAction = true
     
@@ -49,20 +45,19 @@ class SettingsViewController: UIViewController {
     @IBAction func DarkSwitch(_ sender: UISwitch) {
         
         if #available(iOS 16.4, *){
-            let appDelegate = UIApplication.shared.windows.first
-            
-            if sender.isOn {
-                appDelegate?.overrideUserInterfaceStyle = .dark
-                return
-            }
-            appDelegate?.overrideUserInterfaceStyle = .light
-            return
-            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        for window in windowScene.windows {
+                            window.overrideUserInterfaceStyle = sender.isOn ? .dark : .light
+                        }
+                    }
         }else{
             
         }
     }
     
+    
+  
     @IBAction func AboutUsbtn(_ sender: Any) {
     }
 }
+

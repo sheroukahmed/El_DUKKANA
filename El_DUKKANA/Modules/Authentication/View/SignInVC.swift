@@ -10,7 +10,9 @@ import UIKit
 class SignInVC: UIViewController {
 
     @IBOutlet weak var forgotPasswordBtn: UIButton!
-    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!{didSet{
+        ViewsSet.btnSet(btn: loginBtn)
+    }}
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     override func viewDidLoad() {
@@ -24,8 +26,8 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
-        let signUpVC = storyboard.instantiateViewController(identifier: "ProductDetailsVC")
+        let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(identifier: "SettingsStoryboard")
         signUpVC.modalPresentationStyle = .fullScreen
         signUpVC.modalTransitionStyle = .crossDissolve
        present(signUpVC, animated: true)
