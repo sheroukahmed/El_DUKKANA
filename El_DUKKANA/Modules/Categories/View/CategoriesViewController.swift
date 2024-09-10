@@ -65,11 +65,6 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     }
 
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        indicator?.startAnimating()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoriesViewModel?.products?.count ?? 0
     }
@@ -144,6 +139,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         guard let viewModel = categoriesViewModel else { return }
         let noProducts = categoriesViewModel?.products?.isEmpty ?? true
         if viewModel.isLoading {
+            indicator?.startAnimating()
             ProductsCategoriesCollectionView.isHidden = false
             NoProductsAvailableImage.isHidden = true
         } else {
