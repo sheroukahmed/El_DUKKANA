@@ -86,7 +86,10 @@ enum EndPoint: Any {
 
     case discountCodes(priceruleId :Int)
 
+
+
     case discountCodes
+
     case collection(collectionId: Int)
 
     

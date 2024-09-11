@@ -41,11 +41,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         super.viewDidLoad()
         
 
+        
+        
+        
+
+
         setupUI()
 
         
         
         
+
 
         // MARK: - Ads Collection View SetUp
         AdsCollectionView.delegate = self
@@ -151,6 +157,33 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                     self.present(alert, animated: true, completion: nil)
                 }
 
+
+            }
+            print(homeViewModel?.discountCode ?? "ooooooooooo")
+            UIPasteboard.general.string = homeViewModel?.discountCode
+            
+            
+            let alert = UIAlertController(title: "Copied!", message: "Text has been copied to clipboard.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+    
+    
+        }else{
+            if collectionView == BrandsCollectionView {
+                if NetworkReachabilityManager()?.isReachable ?? false {
+                    let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+                    brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
+                    brandProducts.title = homeViewModel?.brands?[indexPath.row].title
+                    
+                    self.navigationController?.pushViewController(brandProducts, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(ok)
+                    present(alert, animated: true)
+                }
+            }
             }
             print(homeViewModel?.discountCode ?? "ooooooooooo")
             UIPasteboard.general.string = homeViewModel?.discountCode

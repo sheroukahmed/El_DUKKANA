@@ -34,7 +34,7 @@
             <connections>
                 <outlet property="cuponImage" destination="OIr-Ae-GEC" id="Edy-aq-6tb"/>
             </connections>
-            <point key="canvasLocation" x="373.28244274809157" y="58.450704225352112"/>
+            <point key="canvasLocation" x="372.51908396946561" y="58.098591549295776"/>
         </collectionViewCell>
     </objects>
     <resources>
