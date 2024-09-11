@@ -11,13 +11,15 @@ class CartItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var itemimg: UIImageView!
     
-    
     @IBOutlet weak var itemname: UILabel!
     
-    
+    @IBOutlet weak var itemColor: UILabel!
     @IBOutlet weak var itemprice: UILabel!
     
+    @IBOutlet weak var itemSize: UILabel!
     @IBOutlet weak var itemQuantity: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,4 +31,8 @@ class CartItemTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func minusQuantity(_ sender: Any) {
+    }
+    @IBAction func plusQuantity(_ sender: Any) {
+    }
 }
