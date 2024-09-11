@@ -34,6 +34,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
         // MARK: - Ads Collection View SetUp
         AdsCollectionView.delegate = self
         AdsCollectionView.dataSource = self
@@ -210,20 +211,53 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
            return UIEdgeInsets()
        }
 
-    
-    @IBAction func goToFavorites(_ sender: Any) {
-        print("goToFavorites")
-
-    }
-    
-    @IBAction func goToCart(_ sender: Any) {
-        print("goToCart")
-
-    }
-    
-    @IBAction func goToSearch(_ sender: Any) {
-        print("goToSearch")
+    private func setupUI() {
+        let customColor = UIColor(red: 0.403, green: 0.075, blue: 0.067, alpha: 1.0)
         
+        self.navigationController?.navigationBar.tintColor = customColor
+
+        // Create search button (left side)
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(searchButtonTapped))
+        searchButton.tintColor = customColor
+        
+        // Create cart button (right side)
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(cartButtonTapped))
+        cartButton.tintColor = customColor
+
+        // Create favorite button (right side)
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(favoriteButtonTapped))
+        favoriteButton.tintColor = customColor
+
+        // Set left bar button (Search)
+        navigationItem.leftBarButtonItem = searchButton
+        
+        // Set right bar buttons (Cart and Favorite)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+         spacer.width = 1
+         navigationItem.rightBarButtonItems = [favoriteButton, spacer, cartButton]
+        
+    }
+    
+    
+    @objc func searchButtonTapped() {
+        print("Search button tapped")
+    }
+
+    @objc func cartButtonTapped() {
+        print("Cart button tapped")
+    }
+
+    @objc func favoriteButtonTapped() {
+        print("Favorite button tapped")
     }
     
 }
