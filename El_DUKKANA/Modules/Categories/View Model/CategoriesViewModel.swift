@@ -12,6 +12,7 @@ protocol CategoriesViewModelProtocol {
     var isLoading: Bool { get set }
     var bindToCategoriesViewController: (() -> Void) { get set }
     
+    func getAllProducts()
     func getProducts(collectionId: CollectionID, productType: ProductType)
     func checkIfDataIsFetched()
 }
@@ -38,6 +39,19 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
     }
 
     
+    func getAllProducts() {
+        self.isLoading = true
+        let url = URLManager.getUrl(for: .products)
+        print("url: \(url)")
+        network?.fetch(url: url, type: ProductResponse.self, completionHandler: { [weak self] result, error in
+            self?.isLoading = false
+            guard let result = result else {
+                return
+            }
+            self?.products = result.products
+        })
+    }
+    
     func getProducts(collectionId: CollectionID, productType: ProductType) {
         self.isLoading = true
         let url = URLManager.getUrl(for: .products)
@@ -51,8 +65,6 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
             }
             self?.products = result.products
         })
-
-        
     }
     
    
@@ -80,8 +92,6 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
     
     private func getProductType(for productType: ProductType) -> String {
         switch productType {
-        case .all:
-            return ""
         case .shoes:
             return "SHOES"
         case .t_shirt:
@@ -101,7 +111,6 @@ enum CollectionID: Any {
 }
 
 enum ProductType: Any {
-    case all
     case shoes
     case t_shirt
     case accessories

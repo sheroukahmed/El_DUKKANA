@@ -7,17 +7,16 @@
 
 import Foundation
 
-protocol HomeViewModelProtocol {
-    var brands: [SmartCollectionsItem]? { get set }
-    var bindToHomeViewController: (() -> Void) { get set }
-    
-    func getBrands()
-    func checkIfDataIsFetched()
-    
-}
 
-class HomeViewModel: HomeViewModelProtocol {
-    
+
+class HomeViewModel{
+    var selectedpricerule : Int = 0
+    var discountCode: String = "" {
+            didSet {
+                discountCodeUpdated?()
+            }
+        }
+    var discountCodeUpdated: (() -> Void)?
     var network: NetworkProtocol?
     var bindToHomeViewController: (() -> Void) = {}
     var brands: [SmartCollectionsItem]? {
@@ -25,6 +24,7 @@ class HomeViewModel: HomeViewModelProtocol {
             checkIfDataIsFetched()
         }
     }
+    
     
     init() {
         network = NetworkManager()
@@ -40,6 +40,14 @@ class HomeViewModel: HomeViewModelProtocol {
             }
             self?.brands = result.smart_collections
         })
+    }
+    
+    func getDiscount(){
+        network?.fetch(url: URLManager.getUrl(for: .discountCodes(priceruleId: selectedpricerule)), type: DiscountCodeResponse.self, completionHandler: { result, error in
+            //print(result?.discount_codes.first?.code ?? "no code")
+            self.discountCode = result?.discount_codes.first?.code ?? "no code"
+        })
+        
     }
     
 

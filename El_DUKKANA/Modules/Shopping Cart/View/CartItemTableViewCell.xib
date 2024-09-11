@@ -31,6 +31,18 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTK-Fh-CoO">
+                        <rect key="frame" x="174" y="70" width="35" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8q-Gn-VGX">
+                        <rect key="frame" x="310" y="41" width="26" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbS-Cg-We6">
                         <rect key="frame" x="156" y="100" width="31" height="15.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -73,11 +85,18 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8x-oJ-Wly">
+                        <rect key="frame" x="337" y="70" width="28" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="to0-of-BJ6" firstAttribute="leading" secondItem="xpF-mj-9B9" secondAttribute="trailing" constant="12" id="7fY-NW-yRy"/>
                     <constraint firstAttribute="trailing" secondItem="jBk-PP-lxG" secondAttribute="trailing" constant="70" id="BUF-Fq-ZWM"/>
                     <constraint firstItem="jBk-PP-lxG" firstAttribute="leading" secondItem="ymg-iD-Eek" secondAttribute="trailing" constant="15" id="BcK-KK-B85"/>
+                    <constraint firstItem="n8x-oJ-Wly" firstAttribute="leading" secondItem="bTK-Fh-CoO" secondAttribute="trailing" constant="128" id="DRK-4R-6Tv"/>
                     <constraint firstAttribute="bottom" secondItem="hkU-Zm-ZNb" secondAttribute="bottom" constant="20" symbolic="YES" id="ELi-GV-U3Y"/>
                     <constraint firstAttribute="bottom" secondItem="to0-of-BJ6" secondAttribute="bottom" constant="21" id="EQJ-Sl-4V2"/>
                     <constraint firstItem="jBk-PP-lxG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="FJU-n9-SDS"/>
@@ -86,7 +105,11 @@
                     <constraint firstItem="mbS-Cg-We6" firstAttribute="leading" secondItem="ymg-iD-Eek" secondAttribute="trailing" constant="19" id="Gn4-l6-PP1"/>
                     <constraint firstItem="xpF-mj-9B9" firstAttribute="top" secondItem="jBk-PP-lxG" secondAttribute="bottom" constant="100" id="OFq-Nr-bj4"/>
                     <constraint firstItem="mbS-Cg-We6" firstAttribute="top" secondItem="Z52-Lx-ulV" secondAttribute="bottom" constant="42" id="Qtm-e3-S8q"/>
+                    <constraint firstItem="bTK-Fh-CoO" firstAttribute="leading" secondItem="ymg-iD-Eek" secondAttribute="trailing" constant="37" id="SOn-fS-551"/>
+                    <constraint firstItem="Z8q-Gn-VGX" firstAttribute="leading" secondItem="Z52-Lx-ulV" secondAttribute="trailing" constant="123" id="Tix-6f-Wz5"/>
                     <constraint firstItem="xpF-mj-9B9" firstAttribute="leading" secondItem="hkU-Zm-ZNb" secondAttribute="trailing" constant="166.66666666666666" id="YAm-ZA-aUm"/>
+                    <constraint firstItem="Z8q-Gn-VGX" firstAttribute="top" secondItem="jBk-PP-lxG" secondAttribute="bottom" constant="7" id="ZhG-mY-70o"/>
+                    <constraint firstItem="bTK-Fh-CoO" firstAttribute="top" secondItem="Z52-Lx-ulV" secondAttribute="bottom" constant="12" id="Zn8-Fu-jsr"/>
                     <constraint firstAttribute="trailing" secondItem="ymg-iD-Eek" secondAttribute="trailing" constant="332" id="dGq-fZ-BW4"/>
                     <constraint firstAttribute="bottom" secondItem="xpF-mj-9B9" secondAttribute="bottom" constant="20" symbolic="YES" id="f2f-Pt-Ico"/>
                     <constraint firstItem="ymg-iD-Eek" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="gBk-ZZ-ORL"/>
@@ -97,6 +120,7 @@
                     <constraint firstItem="hkU-Zm-ZNb" firstAttribute="top" secondItem="mbS-Cg-We6" secondAttribute="bottom" constant="18.333333333333329" id="qFl-tv-2zy"/>
                     <constraint firstAttribute="trailing" secondItem="dYY-Ah-NHB" secondAttribute="trailing" constant="20" symbolic="YES" id="qff-ue-eiz"/>
                     <constraint firstAttribute="bottom" secondItem="dYY-Ah-NHB" secondAttribute="bottom" constant="20" symbolic="YES" id="rNy-5O-dax"/>
+                    <constraint firstItem="n8x-oJ-Wly" firstAttribute="top" secondItem="Z8q-Gn-VGX" secondAttribute="bottom" constant="13" id="vXS-sF-Llz"/>
                     <constraint firstItem="jBk-PP-lxG" firstAttribute="leading" secondItem="Z52-Lx-ulV" secondAttribute="trailing" constant="-35" id="vaZ-1D-u2k"/>
                     <constraint firstItem="hkU-Zm-ZNb" firstAttribute="leading" secondItem="ymg-iD-Eek" secondAttribute="trailing" constant="37" id="wHx-33-Rd7"/>
                     <constraint firstAttribute="bottom" secondItem="ymg-iD-Eek" secondAttribute="bottom" constant="8" id="ySm-U5-Veo"/>
@@ -111,6 +135,22 @@
             </connections>
             <point key="canvasLocation" x="176.33587786259542" y="2.4647887323943665"/>
         </tableViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="inI-sd-oy3">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="1028" y="-19"/>
+        </label>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vuj-0f-0bY">
+            <rect key="frame" x="0.0" y="0.0" width="31" height="27"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="301.52671755725191" y="-115.14084507042254"/>
+        </label>
     </objects>
     <resources>
         <image name="minus.circle" catalog="system" width="128" height="123"/>

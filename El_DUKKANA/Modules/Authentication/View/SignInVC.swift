@@ -26,7 +26,6 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
-        
     }
     @IBAction func forgotPasswordBtnAction(_ sender: Any) {
     }

@@ -48,10 +48,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         Observable.combineLatest(
             FirstSegmentedControl.rx.selectedSegmentIndex.map { index -> CollectionID in
                 switch index {
-                case 1: return .women
-                case 2: return .kids
-                case 3: return .sale
-                default: return .men
+                case 1: return .men
+                case 2: return .women
+                case 3: return .kids
+                case 4: return .sale
+                default: return .all
                 }
             },
             SecondSegmentedControl.rx.selectedSegmentIndex.map { index -> ProductType in
@@ -63,7 +64,13 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
             }
         )
         .subscribe(onNext: { [weak self] collectionId, productType in
-            self?.categoriesViewModel?.getProducts(collectionId: collectionId, productType: productType)
+            if collectionId == .all {
+                self?.categoriesViewModel?.getAllProducts()
+                self?.SecondSegmentedControl.isHidden = true
+            } else {
+                self?.SecondSegmentedControl.isHidden = false
+                self?.categoriesViewModel?.getProducts(collectionId: collectionId, productType: productType)
+            }
         })
         .disposed(by: disposeBag)
         
@@ -133,21 +140,56 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     }
     
     private func setupUI() {
-           indicator = UIActivityIndicatorView(style: .large)
-           indicator?.center = self.view.center
-           indicator?.startAnimating()
-           self.view.addSubview(indicator!)
+        
+        let customColor = UIColor(red: 0.403, green: 0.075, blue: 0.067, alpha: 1.0)
+        
+        self.navigationController?.navigationBar.tintColor = customColor
 
-           ProductsCategoriesCollectionView.delegate = self
-           ProductsCategoriesCollectionView.dataSource = self
-           ProductsCategoriesCollectionView.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
+        // Create search button (left side)
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(searchButtonTapped))
+        searchButton.tintColor = customColor
+        
+        // Create cart button (right side)
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(cartButtonTapped))
+        cartButton.tintColor = customColor
 
-           let layout = UICollectionViewFlowLayout()
-           layout.scrollDirection = .vertical
-           layout.minimumLineSpacing = 5
-           layout.minimumInteritemSpacing = 5
-           ProductsCategoriesCollectionView.setCollectionViewLayout(layout, animated: true)
-       }
+        // Create favorite button (right side)
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(favoriteButtonTapped))
+        favoriteButton.tintColor = customColor
+
+        // Set left bar button (Search)
+        navigationItem.leftBarButtonItem = searchButton
+        
+        // Set right bar buttons (Cart and Favorite)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+         spacer.width = 1
+         navigationItem.rightBarButtonItems = [favoriteButton, spacer, cartButton]
+        
+        
+        indicator = UIActivityIndicatorView(style: .large)
+        indicator?.center = self.view.center
+        indicator?.startAnimating()
+        self.view.addSubview(indicator!)
+        
+        ProductsCategoriesCollectionView.delegate = self
+        ProductsCategoriesCollectionView.dataSource = self
+        ProductsCategoriesCollectionView.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        ProductsCategoriesCollectionView.setCollectionViewLayout(layout, animated: true)
+    }
     
     private func toggleNoDataView() {
         guard let viewModel = categoriesViewModel else { return }
@@ -162,15 +204,20 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         }
     }
   
+    
+    @objc func searchButtonTapped() {
+        print("Search button tapped")
+    }
 
-    @IBAction func goToFavorites(_ sender: Any) {
-        
+    @objc func cartButtonTapped() {
+        print("Cart button tapped")
+    }
+
+    @objc func favoriteButtonTapped() {
+        print("Favorite button tapped")
     }
     
-    @IBAction func goToCart(_ sender: Any) {
-        
-    }
-    
+
     @IBAction func searchBackBtn(_ sender: Any) {
         self.searchBar.isHidden = true
         self.searchBarBackBtn.isHidden = true
