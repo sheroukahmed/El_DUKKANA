@@ -26,8 +26,8 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
-        let signUpVC = storyboard.instantiateViewController(identifier: "ProductDetailsVC")
+        let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(identifier: "SettingsStoryboard")
         signUpVC.modalPresentationStyle = .fullScreen
         signUpVC.modalTransitionStyle = .crossDissolve
        present(signUpVC, animated: true)

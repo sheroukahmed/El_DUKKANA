@@ -67,6 +67,8 @@ class CategoriesViewModel: CategoriesViewModelProtocol {
         })
     }
     
+   
+    
     func checkIfDataIsFetched() {
         if products != nil {
             bindToCategoriesViewController()
