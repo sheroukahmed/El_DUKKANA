@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2647BE492C91C35D0075D008 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647BE482C91C35D0075D008 /* OnBoardingViewController.swift */; };
 		264E3AE12C8CC384001FC585 /* BrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E3AE02C8CC384001FC585 /* BrandViewModel.swift */; };
 		264E3AE52C8D3815001FC585 /* BrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E3AE42C8D3815001FC585 /* BrandViewController.swift */; };
 		26616F412C8DD224008BCD9D /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26616F402C8DD224008BCD9D /* BrandsCollectionViewCell.swift */; };
@@ -90,6 +91,7 @@
 /* Begin PBXFileReference section */
 		0F698E9BF5FE8BF6209C59DE /* Pods-El_DUKKANAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANAUITests.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANAUITests/Pods-El_DUKKANAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1CE434CB525C6BFD9C71344E /* Pods-El_DUKKANA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.debug.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.debug.xcconfig"; sourceTree = "<group>"; };
+		2647BE482C91C35D0075D008 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		264E3AE02C8CC384001FC585 /* BrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewModel.swift; sourceTree = "<group>"; };
 		264E3AE42C8D3815001FC585 /* BrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewController.swift; sourceTree = "<group>"; };
 		26616F402C8DD224008BCD9D /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				26616F492C90F699008BCD9D /* OnBoardingStoryboard.storyboard */,
+				2647BE482C91C35D0075D008 /* OnBoardingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -862,6 +865,7 @@
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
 				813740642C8B775D001ECAF4 /* ProductDetailsViewModel.swift in Sources */,
 				F8EC6B7B2C8CC31D00A8D7AF /* Profile&SettingsVM.swift in Sources */,
+				2647BE492C91C35D0075D008 /* OnBoardingViewController.swift in Sources */,
 				F8EC6B7F2C8CE84A00A8D7AF /* Currency.swift in Sources */,
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
