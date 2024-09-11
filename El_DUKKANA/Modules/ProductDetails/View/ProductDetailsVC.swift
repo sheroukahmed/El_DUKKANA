@@ -10,15 +10,17 @@ import Kingfisher
 
 class ProductDetailsVC: UIViewController {
 
+    @IBOutlet weak var colorsSegmented: UISegmentedControl!
     @IBOutlet weak var addCartBtn: UIButton!{
         didSet{
             ViewsSet.btnSet(btn: addCartBtn)
         }
     }
     @IBOutlet weak var descriptionLbl: UITextView!
-    @IBOutlet weak var color3Lbl: UILabel!
-    @IBOutlet weak var color2Lbl: UILabel!
-    @IBOutlet weak var color1Lbl: UILabel!
+    
+    
+    @IBOutlet weak var sizeSegmentedController: UISegmentedControl!
+    
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var brandLbl: UILabel!
     @IBOutlet weak var productTitleLbl: UILabel!
@@ -41,13 +43,20 @@ class ProductDetailsVC: UIViewController {
             self.pageController.numberOfPages = self.viewModel.product?.product.images?.count ?? 1
             self.pageController.currentPage = 0
             if let product = self.viewModel.product?.product{
-                self.descriptionLbl.text = product.body_html ?? ""
-                self.productTitleLbl.text = product.title ?? ""
-                self.color1Lbl.text = product.variants?[0].option1 ?? ""
-                self.color2Lbl.text = product.variants?[0].option2 ?? ""
-                self.color3Lbl.text = product.variants?[0].option3 ?? ""
-                self.brandLbl.text = product.vendor ?? ""
-                self.priceLbl.text = "\(product.variants?[0].price ?? "5") USD"
+            self.descriptionLbl.text = product.body_html ?? ""
+            self.productTitleLbl.text = product.title ?? ""
+        
+            for option in product.options ?? [] {
+                    if option.name == "Color" {
+                        // Set up color segments
+                        self.configureSegmentedControl(self.colorsSegmented, with: option.values)
+                    } else if option.name == "Size" {
+                        // Set up size segments
+                        self.configureSegmentedControl(self.sizeSegmentedController, with: option.values)
+                    }
+                        }
+            self.brandLbl.text = product.vendor ?? ""
+            self.priceLbl.text = "\(product.variants?[0].price ?? "5") USD"
             }
             self.productCollectionView.reloadData()
         }
@@ -81,6 +90,19 @@ class ProductDetailsVC: UIViewController {
             
         }
     }
+    //segmented Function
+    func configureSegmentedControl(_ segmentedControl: UISegmentedControl, with values: [String]?) {
+            guard let values = values else { return }
+            
+            for index in 0..<segmentedControl.numberOfSegments {
+                if index < values.count {
+                    segmentedControl.setTitle(values[index], forSegmentAt: index)
+                    segmentedControl.setEnabled(true, forSegmentAt: index) // Enable the segment if a value is present
+                } else {
+                    segmentedControl.setEnabled(false, forSegmentAt: index) // Disable the segment if no value
+                }
+            }
+        }
     
 }
 
