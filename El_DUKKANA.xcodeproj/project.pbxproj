@@ -54,6 +54,8 @@
 		F8528DA22C9081970068858C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8528DA12C9081970068858C /* SettingsViewController.swift */; };
 		F8528DA42C90A5510068858C /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8528DA32C90A5510068858C /* CartViewController.swift */; };
 		F8528DA62C90B2C10068858C /* PriceRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8528DA52C90B2C10068858C /* PriceRules.swift */; };
+		F8528DA82C910BF00068858C /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8528DA72C910BF00068858C /* CartViewModel.swift */; };
+		F8528DAA2C9119660068858C /* DraftOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8528DA92C9119660068858C /* DraftOrder.swift */; };
 		F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */; };
 		F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */; };
 		F8D3C1DE2C88E06B00C9B255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8D3C1DD2C88E06B00C9B255 /* Assets.xcassets */; };
@@ -143,6 +145,8 @@
 		F8528DA12C9081970068858C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F8528DA32C90A5510068858C /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		F8528DA52C90B2C10068858C /* PriceRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRules.swift; sourceTree = "<group>"; };
+		F8528DA72C910BF00068858C /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		F8528DA92C9119660068858C /* DraftOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrder.swift; sourceTree = "<group>"; };
 		F8D3C1D12C88E06900C9B255 /* El_DUKKANA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = El_DUKKANA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D3C1D42C88E06900C9B255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8D3C1D62C88E06900C9B255 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 		F804905A2C8B15DC00CE43ED /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				F8528DA72C910BF00068858C /* CartViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -504,9 +509,6 @@
 				F8528D9A2C90802E0068858C /* Settings */,
 				264E3ADD2C8CC330001FC585 /* Brand */,
 				F8EC6B812C8CEE0000A8D7AF /* About Us */,
-				264E3ADD2C8CC330001FC585 /* Brand */,
-				F8EC6B812C8CEE0000A8D7AF /* About Us */,
-				F8EC6B772C8CA92D00A8D7AF /* Profile & Settings */,
 				813740602C8B7737001ECAF4 /* ProductDetails */,
 				F80490582C8B14AF00CE43ED /* Shopping Cart */,
 				26B335D72C8A63D500968401 /* Categories */,
@@ -536,6 +538,7 @@
 				8137406D2C8B9ADE001ECAF4 /* Reviews.swift */,
 				F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */,
 				F8528DA52C90B2C10068858C /* PriceRules.swift */,
+				F8528DA92C9119660068858C /* DraftOrder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -866,12 +869,14 @@
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
+				F8528DA82C910BF00068858C /* CartViewModel.swift in Sources */,
 				8137406C2C8B9733001ECAF4 /* ReviewsViewModel.swift in Sources */,
 				F80490562C8B0AEC00CE43ED /* AdsCollectionViewCell.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				8137406E2C8B9ADE001ECAF4 /* Reviews.swift in Sources */,
 				813740762C8BDA20001ECAF4 /* AddReviewVC.swift in Sources */,
 				F8D3C20A2C88E14A00C9B255 /* StartOptionsVC.swift in Sources */,
+				F8528DAA2C9119660068858C /* DraftOrder.swift in Sources */,
 				813740682C8B7781001ECAF4 /* ProductDetailsVC.swift in Sources */,
 				81B0349A2C8D1DDB00D4A4C5 /* ImagesCell.swift in Sources */,
 				8137407F2C8BEA17001ECAF4 /* El_DUKKANA.xcdatamodeld in Sources */,

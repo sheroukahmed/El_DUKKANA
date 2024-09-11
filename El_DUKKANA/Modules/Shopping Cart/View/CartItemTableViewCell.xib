@@ -66,6 +66,9 @@
                         <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system">
                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="plusQuantity:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6Mk-hL-Qjb"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-mj-9B9">
                         <rect key="frame" x="382" y="134" width="17" height="21"/>
@@ -78,6 +81,9 @@
                         <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system">
                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="minusQuantity:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Hvc-be-uWN"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="to0-of-BJ6">
                         <rect key="frame" x="411" y="133" width="8" height="21"/>
@@ -128,12 +134,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="itemColor" destination="bTK-Fh-CoO" id="90s-kT-cNQ"/>
                 <outlet property="itemQuantity" destination="to0-of-BJ6" id="MK1-oM-lcR"/>
+                <outlet property="itemSize" destination="n8x-oJ-Wly" id="L0a-3P-BQE"/>
                 <outlet property="itemimg" destination="ymg-iD-Eek" id="Hay-xw-qdJ"/>
                 <outlet property="itemname" destination="jBk-PP-lxG" id="ASA-kv-8Kc"/>
                 <outlet property="itemprice" destination="hkU-Zm-ZNb" id="Drr-Fq-IYx"/>
             </connections>
-            <point key="canvasLocation" x="176.33587786259542" y="2.4647887323943665"/>
+            <point key="canvasLocation" x="514" y="0.0"/>
         </tableViewCell>
         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="inI-sd-oy3">
             <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
