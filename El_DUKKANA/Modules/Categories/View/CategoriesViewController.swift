@@ -13,12 +13,16 @@ import RxCocoa
 
 
 class CategoriesViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
+    @IBOutlet weak var searchBarBackBtn: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var FirstSegmentedControl: UISegmentedControl!
     @IBOutlet weak var SecondSegmentedControl: UISegmentedControl!
     @IBOutlet weak var ProductsCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var NoProductsAvailableImage: UIImageView!
-    
+    var startFilter = false
+    var isfilterd = false
+    var searchViewModel = SearchViewModel()
     var categoriesViewModel: CategoriesViewModelProtocol?
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     let disposeBag = DisposeBag()
@@ -26,7 +30,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         setupUI()
         
         categoriesViewModel = CategoriesViewModel()
@@ -36,6 +40,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
             guard let self = self else { return }
             self.ProductsCategoriesCollectionView.reloadData()
             self.toggleNoDataView()
+            self.searchViewModel.allProducts = self.categoriesViewModel?.products ?? []
         }
         }
         
@@ -66,7 +71,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoriesViewModel?.products?.count ?? 0
+        if isfilterd {
+                    return searchViewModel.filterdProducts.count
+                } else {
+                    return categoriesViewModel?.products?.count ?? 0
+                }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -77,7 +86,12 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
         
-            let product = categoriesViewModel?.products?[indexPath.row]
+        var product: Product?
+            if isfilterd {
+                    product = searchViewModel.filterdProducts[indexPath.row]
+                } else {
+                    product = categoriesViewModel?.products?[indexPath.row]
+                }
             cell.configureCell(image: product?.image?.src ?? dummyImage, title: product?.title ?? "", price: product?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
   
         cell.layer.cornerRadius = 20
@@ -157,12 +171,40 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         
     }
     
-    @IBAction func goToSearch(_ sender: Any) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "SearchForProductVC") as? SearchForProductVC{
-            vc.viewModel.allProducts = self.categoriesViewModel?.products ?? []
-            vc.modalTransitionStyle = .crossDissolve
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+    @IBAction func searchBackBtn(_ sender: Any) {
+        self.searchBar.isHidden = true
+        self.searchBarBackBtn.isHidden = true
+    }
+
+    @IBAction func startSearching(_ sender: Any) {
+        print("no")
+        startFilter = startFilter ? false : true
+        
+        if startFilter{
+            self.searchBar.isHidden = false
+            self.searchBarBackBtn.isHidden = false
+            
+        }else{
+            self.searchBar.isHidden = true
+            self.searchBarBackBtn.isHidden = true
         }
     }
+    @IBAction func goToSearch(_ sender: Any) {
+        
+      
+    }
+}
+extension CategoriesViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            if searchText.isEmpty {
+                isfilterd = false
+                searchViewModel.filterdProducts = []
+            } else {
+                isfilterd = true
+                searchViewModel.filterdProducts = searchViewModel.allProducts.filter { product in
+                    product.title?.range(of: searchText, options: .caseInsensitive) != nil
+                }
+            }
+        ProductsCategoriesCollectionView.reloadData()
+        }
 }

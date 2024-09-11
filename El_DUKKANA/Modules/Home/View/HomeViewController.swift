@@ -12,12 +12,14 @@ import Alamofire
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
     
+    @IBOutlet weak var searchBar: UINavigationItem!
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
     @IBOutlet weak var Adsimagepanel: UIPageControl!
     var pagecontrol = PageController()
     var adsTimer: Timer?
+    var searchViewModel = SearchViewModel()
     var currentAdIndex = 0
     //sherouk's code
     let Adsimages: [UIImage] = [
@@ -249,7 +251,12 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     @IBAction func goToSearch(_ sender: Any) {
-        
+        print("hi")
     }
-    
+
+    @IBAction func startSearching(_ sender: Any) {
+//        let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+//        
+//        self.navigationController?.pushViewController(products, animated: true)
+    }
 }
