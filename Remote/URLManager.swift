@@ -42,9 +42,11 @@ class URLManager : URLManagerProtocol{
             return "/price_rules/\(priceruleId)/discount_codes"
         case .collection(let collectionId):
             return "/collections/\(collectionId)/products"
-
-            
-            
+        case .draftOrder:
+            return "/draft_orders"
+        case .specifcDraftorder(let draftOrderId):
+            return "draft_orders/\(draftOrderId)"
+     
         }
     }
         
@@ -83,14 +85,10 @@ enum EndPoint: Any {
     case products
     case product(productsId: Int)
     case brands
-
     case discountCodes(priceruleId :Int)
-
-
-
-    case discountCodes
-
     case collection(collectionId: Int)
+    case draftOrder
+    case specifcDraftorder(specificDraftOrder: Int)
 
     
     

@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+class CartViewModel{
+    let network : NetworkProtocol?
+    var customerDraft: DraftOrderRequest?
+    init() {
+        self.network = NetworkManager()
+    }
+    
+    func createCartDraftOrder(){
+        network?.Post(url: URLManager.getUrl(for: .draftOrder), type: customerDraft, completionHandler: { result, error in
+            print("\(result)")
+        })
+    }
+}
