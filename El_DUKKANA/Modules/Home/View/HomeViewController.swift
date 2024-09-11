@@ -12,12 +12,14 @@ import Alamofire
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
     
+    @IBOutlet weak var searchBar: UINavigationItem!
     @IBOutlet weak var AdsCollectionView: UICollectionView!
     @IBOutlet weak var BrandsCollectionView: UICollectionView!
     
     @IBOutlet weak var Adsimagepanel: UIPageControl!
     var pagecontrol = PageController()
     var adsTimer: Timer?
+    var searchViewModel = SearchViewModel()
     var currentAdIndex = 0
     //sherouk's code
     let Adsimages: [UIImage] = [
@@ -38,9 +40,19 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         
         
         
+
+
+        setupUI()
+
+        
+        
+        
+
+
         // MARK: - Ads Collection View SetUp
         AdsCollectionView.delegate = self
         AdsCollectionView.dataSource = self
@@ -145,6 +157,33 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                     self.present(alert, animated: true, completion: nil)
                 }
 
+
+            }
+            print(homeViewModel?.discountCode ?? "ooooooooooo")
+            UIPasteboard.general.string = homeViewModel?.discountCode
+            
+            
+            let alert = UIAlertController(title: "Copied!", message: "Text has been copied to clipboard.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+    
+    
+        }else{
+            if collectionView == BrandsCollectionView {
+                if NetworkReachabilityManager()?.isReachable ?? false {
+                    let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+                    brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
+                    brandProducts.title = homeViewModel?.brands?[indexPath.row].title
+                    
+                    self.navigationController?.pushViewController(brandProducts, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(ok)
+                    present(alert, animated: true)
+                }
+            }
             }
             print(homeViewModel?.discountCode ?? "ooooooooooo")
             UIPasteboard.general.string = homeViewModel?.discountCode
@@ -239,17 +278,63 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
            return UIEdgeInsets()
        }
 
-    
-    @IBAction func goToFavorites(_ sender: Any) {
+    private func setupUI() {
+        let customColor = UIColor(red: 0.403, green: 0.075, blue: 0.067, alpha: 1.0)
+        
+        self.navigationController?.navigationBar.tintColor = customColor
+
+        // Create search button (left side)
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(searchButtonTapped))
+        searchButton.tintColor = customColor
+        
+        // Create cart button (right side)
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(cartButtonTapped))
+        cartButton.tintColor = customColor
+
+        // Create favorite button (right side)
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(favoriteButtonTapped))
+        favoriteButton.tintColor = customColor
+
+        // Set left bar button (Search)
+        navigationItem.leftBarButtonItem = searchButton
+        
+        // Set right bar buttons (Cart and Favorite)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+         spacer.width = 1
+         navigationItem.rightBarButtonItems = [favoriteButton, spacer, cartButton]
         
     }
     
-    @IBAction func goToCart(_ sender: Any) {
-        
-    }
+
     
+    @objc func searchButtonTapped() {
+        print("Search button tapped")
+    }
+
+    @objc func cartButtonTapped() {
+        print("Cart button tapped")
+    }
+
+    @objc func favoriteButtonTapped() {
+        print("Favorite button tapped")
+
     @IBAction func goToSearch(_ sender: Any) {
-        
+        print("hi")
     }
-    
+
+    @IBAction func startSearching(_ sender: Any) {
+//        let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+//        
+//        self.navigationController?.pushViewController(products, animated: true)
+
+    }
 }
