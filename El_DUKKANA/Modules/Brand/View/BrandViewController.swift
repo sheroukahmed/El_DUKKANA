@@ -16,6 +16,8 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var BrandProductCollectionView: UICollectionView!
+    @IBOutlet weak var NoProductsAvailableImage: UIImageView!
+    
     var isSearching = false
     //var isfilterdd = false
     var searchViewModel = SearchViewModel()
@@ -28,27 +30,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        BrandProductCollectionView.delegate = self
-        BrandProductCollectionView.dataSource = self
-        
-        if hidden {
-            eldukkanaImg.isHidden = true
-            searchBar.isHidden = true
-            filterButton.isHidden = false
-        } else {
-            eldukkanaImg.isHidden = false
-            searchBar.isHidden = false
-            filterButton.isHidden = true
-        }
-        
-        self.BrandProductCollectionView!.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
-        
-        BrandProductCollectionView.setCollectionViewLayout(layout, animated: true)
+        setupUI()
         
         brandViewModel = BrandViewModel(brand: brandViewModel?.brand ?? "")
         
@@ -56,10 +38,10 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         brandViewModel?.bindToBrandViewController = { [weak self] in DispatchQueue.main.async {
             guard let self = self else { return }
             self.BrandProductCollectionView.reloadData()
+            self.toggleNoDataView()
         }
         }
         
-        filterButton.layer.cornerRadius = 17.5
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -122,7 +104,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
             present(alert, animated: true)
         }
     }
-
+    
     
     func isFilter() {
         if isFiltered {
@@ -132,6 +114,36 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         }
     }
     
+    private func setupUI() {
+        BrandProductCollectionView.delegate = self
+        BrandProductCollectionView.dataSource = self
+        
+        updateView(isHidden: hidden)
+        
+        self.BrandProductCollectionView!.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        
+        BrandProductCollectionView.setCollectionViewLayout(layout, animated: true)
+        
+        filterButton.layer.cornerRadius = 17.5
+    }
+    
+    private func toggleNoDataView() {
+        let noProducts = (brandViewModel?.products?.isEmpty ?? true && searchViewModel.filterdProducts.isEmpty)
+        BrandProductCollectionView.isHidden = noProducts
+        NoProductsAvailableImage.isHidden = !noProducts
+    }
+    
+    private func updateView(isHidden: Bool) {
+        eldukkanaImg.isHidden = isHidden
+        searchBar.isHidden = isHidden
+        filterButton.isHidden = !isHidden
+    }
+
    
     
     @IBAction func filter(_ sender: Any) {
