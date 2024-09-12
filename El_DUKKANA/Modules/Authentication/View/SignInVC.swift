@@ -26,23 +26,20 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
+
         let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
         let signUpVC = storyboard.instantiateViewController(identifier: "CartStoryboard")
+
+//        let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+//        let signUpVC = storyboard.instantiateViewController(identifier: "SettingsStoryboard")
+
         signUpVC.modalPresentationStyle = .fullScreen
         signUpVC.modalTransitionStyle = .crossDissolve
-       present(signUpVC, animated: true)
+        present(signUpVC, animated: true)
     }
     @IBAction func forgotPasswordBtnAction(_ sender: Any) {
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

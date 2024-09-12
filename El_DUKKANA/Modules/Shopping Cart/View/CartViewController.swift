@@ -7,26 +7,29 @@
 
 import UIKit
 
+
 class CartViewController: UIViewController , UITableViewDelegate,UITableViewDataSource{
     
     @IBOutlet weak var productstableview: UITableView!
-    
+    let viewMode : CartViewModel = CartViewModel()
     @IBOutlet weak var totalprice: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         productstableview.dataSource = self
         productstableview.delegate = self
         
         productstableview.register(UINib(nibName: "CartItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CartItemCell")
-
-       
+        
+        viewMode.createCartDraftOrder()
     }
     
     func calculateTotalPrice() {
-//            let total = cartItems.reduce(0) { $0 + ($1.price * Double($1.quantity)) }
-//            totalprice.text = "Total: \(total)$"
-        }
+        //            let total = cartItems.reduce(0) { $0 + ($1.price * Double($1.quantity)) }
+        //            totalprice.text = "Total: \(total)$"
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -41,7 +44,7 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
-
+    
     
     @IBAction func gotocheckout(_ sender: Any) {
     }

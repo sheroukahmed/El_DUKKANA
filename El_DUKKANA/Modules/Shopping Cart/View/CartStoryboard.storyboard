@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Log-4b-lZm">
-                                <rect key="frame" x="8" y="753" width="377" height="65"/>
+                                <rect key="frame" x="8" y="783.66666666666663" width="377" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="CHECKOUT">
                                     <color key="baseBackgroundColor" red="0.41048282380000001" green="0.1808509827" blue="0.1686171591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -26,7 +26,7 @@
                                     <action selector="gotocheckout:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GZf-F5-hPs"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-OE-RWI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-OE-RWkkpI">
                                 <rect key="frame" x="8" y="98" width="377" height="576"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -34,10 +34,10 @@
                                     <constraint firstAttribute="width" constant="377" id="lcV-fw-U5V"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="Ani-kK-8Sh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="Ani-kK-8Shwe">
                                         <rect key="frame" x="0.0" y="50" width="377" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ani-kK-8Sh" id="UKX-fJ-dqu">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="UKX-fJ-dqulbs">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -45,7 +45,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8S-GQ-uyH">
-                                <rect key="frame" x="8" y="682" width="377" height="63"/>
+                                <rect key="frame" x="8" y="712.66666666666663" width="377" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBa-0W-QRU">
                                         <rect key="frame" x="8" y="8" width="155" height="47"/>
@@ -77,6 +77,21 @@
                                     <constraint firstItem="jBa-0W-QRU" firstAttribute="leading" secondItem="L8S-GQ-uyH" secondAttribute="leading" constant="8" id="fPW-g1-Bmg"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-OE-RWiuiuytI">
+                                <rect key="frame" x="16" y="98" width="361" height="576"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="Ani-kK-8Soih" customClass="CartItemTableViewCell" customModule="El_DUKKANA" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="104"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="UKX-fJ-djuqu">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="104"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -85,16 +100,12 @@
                             <constraint firstItem="Log-4b-lZm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="F10-UN-hLU"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="top" secondItem="L8S-GQ-uyH" secondAttribute="bottom" constant="8" symbolic="YES" id="FC5-HG-0yS"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Log-4b-lZm" secondAttribute="trailing" constant="8" id="XR0-Ti-DJC"/>
-                            <constraint firstItem="zrF-OE-RWI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="39" id="a50-bx-W8O"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zrF-OE-RWI" secondAttribute="trailing" constant="8" id="dDj-C0-K4J"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="hB4-Px-pfW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="L8S-GQ-uyH" secondAttribute="trailing" constant="8" id="ldV-xm-gto"/>
-                            <constraint firstItem="zrF-OE-RWI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="uSO-2R-hgE"/>
-                            <constraint firstItem="L8S-GQ-uyH" firstAttribute="top" secondItem="zrF-OE-RWI" secondAttribute="bottom" constant="8" symbolic="YES" id="vWL-4J-bO4"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="productstableview" destination="zrF-OE-RWI" id="7PO-wD-Sj7"/>
+                        <outlet property="productstableview" destination="zrF-OE-RWiuiuytI" id="Mnd-gi-7Ow"/>
                         <outlet property="totalprice" destination="Wo9-Uq-A8T" id="7et-2K-OTe"/>
                     </connections>
                 </viewController>
