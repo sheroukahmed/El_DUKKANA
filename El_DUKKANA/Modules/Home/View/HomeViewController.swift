@@ -20,7 +20,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var pagecontrol = PageController()
     var adsTimer: Timer?
     var searchViewModel = SearchViewModel()
-    var categoriesViewModel = CategoriesViewModel()
     var currentAdIndex = 0
     //sherouk's code
     let Adsimages: [UIImage] = [
@@ -285,6 +284,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
 
         products.hidden = false
+        navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(products, animated: true)
 
     }

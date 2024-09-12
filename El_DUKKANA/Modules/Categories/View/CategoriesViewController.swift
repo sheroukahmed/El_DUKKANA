@@ -20,10 +20,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     @IBOutlet weak var SecondSegmentedControl: UISegmentedControl!
     @IBOutlet weak var ProductsCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var NoProductsAvailableImage: UIImageView!
-    var startFilter = false
-    var isfilterd = false
+    
+    var startSearch = false
+    var isSearching = false
     var searchViewModel = SearchViewModel()
-    var categoriesViewModel: CategoriesViewModelProtocol?
+    var categoriesViewModel: CategoriesViewModel?
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     let disposeBag = DisposeBag()
     var indicator: UIActivityIndicatorView?
@@ -80,7 +81,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isfilterd {
+        if isSearching {
                     return searchViewModel.filterdProducts.count
                 } else {
                     return categoriesViewModel?.products?.count ?? 0
@@ -96,7 +97,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
         
         var product: Product?
-            if isfilterd {
+            if isSearching {
                     product = searchViewModel.filterdProducts[indexPath.row]
                 } else {
                     product = categoriesViewModel?.products?[indexPath.row]
@@ -209,18 +210,16 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     @objc func searchButtonTapped() {
         print("Search button tapped")
-        print("no")
-        
-        
-        if startFilter{
+       
+        if startSearch {
             self.searchBar.isHidden = false
             self.searchBarBackBtn.isHidden = false
-            startFilter = startFilter ? false : true
+            startSearch = startSearch ? false : true
             
         }else{
             self.searchBar.isHidden = true
             self.searchBarBackBtn.isHidden = true
-            startFilter = startFilter ? false : true
+            startSearch = startSearch ? false : true
         }
     }
 
@@ -243,10 +242,10 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 extension CategoriesViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             if searchText.isEmpty {
-                isfilterd = false
+                isSearching = false
                 searchViewModel.filterdProducts = []
             } else {
-                isfilterd = true
+                isSearching = true
                 searchViewModel.filterdProducts = searchViewModel.allProducts.filter { product in
                     product.title?.range(of: searchText, options: .caseInsensitive) != nil
                 }
