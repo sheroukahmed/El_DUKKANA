@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -324,9 +325,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RD-aQ-vOY">
+                                <rect key="frame" x="317" y="60" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="66q-AU-10t"/>
+                                    <constraint firstAttribute="width" constant="60" id="XcX-ZX-WaE"/>
+                                </constraints>
+                                <color key="tintColor" red="0.41048282380000001" green="0.1808509827" blue="0.1686171591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="plus.app" catalog="system" symbolScale="large" variableValue="1"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="noR-cz-uMk"/>
                         <color key="backgroundColor" red="0.96868973970000005" green="0.96845871210000001" blue="0.97647160290000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="noR-cz-uMk" firstAttribute="trailing" secondItem="2RD-aQ-vOY" secondAttribute="trailing" constant="16" id="b8r-Ze-KX3"/>
+                            <constraint firstItem="2RD-aQ-vOY" firstAttribute="top" secondItem="noR-cz-uMk" secondAttribute="top" constant="1" id="u5S-ss-hL2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Oz-32-rbc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -335,6 +353,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus.app" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

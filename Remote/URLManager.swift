@@ -46,6 +46,8 @@ class URLManager : URLManagerProtocol{
             return "/draft_orders"
         case .specifcDraftorder(let draftOrderId):
             return "draft_orders/\(draftOrderId)"
+        case .drafttorder(let draftorderId):
+            return "draft_orders/\(draftorderId)/complete"
      
         }
     }
@@ -89,7 +91,5 @@ enum EndPoint: Any {
     case collection(collectionId: Int)
     case draftOrder
     case specifcDraftorder(specificDraftOrder: Int)
-
-    
-    
+    case drafttorder(draftorderId : Int)
 }
