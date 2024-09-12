@@ -11,8 +11,14 @@ import Alamofire
 
 class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
+    var hidden : Bool = false
+    @IBOutlet weak var eldukkanaImg: UIImageView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var BrandProductCollectionView: UICollectionView!
+    var isSearching = false
+    var isfilterdd = false
+    var searchViewModel = SearchViewModel()
     
     var brandViewModel: BrandViewModel?
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
@@ -24,6 +30,11 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         
         BrandProductCollectionView.delegate = self
         BrandProductCollectionView.dataSource = self
+        
+        if hidden {
+            eldukkanaImg.isHidden = true
+            searchBar.isHidden = true
+        }
         
         self.BrandProductCollectionView!.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
         
@@ -51,14 +62,18 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     }
     
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return brandViewModel?.products?.count ?? 0
+         return isSearching ? searchViewModel.filterdProducts.count : (brandViewModel?.products?.count ?? 0)
+
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
          //brandImages = brandViewModel?.products?[indexPath.row].images?[indexPath.row].src
+         if isfilterdd{
+             let product = searchViewModel.filterdProducts[indexPath.row]
+             cell.configureCell(image: product.image?.src ?? dummyImage, title: product.title ?? "", price: product.variants?.first?.price ?? "", currency: "USD", isFavorited: false)         }
          
-         if isFiltered {
+         else if isFiltered {
              let brandProduct = brandViewModel?.filteredProducts?[indexPath.row]
              cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
          } else {
@@ -107,6 +122,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         }
     }
     
+   
     
     @IBAction func filter(_ sender: Any) {
         isFiltered = !isFiltered
@@ -114,4 +130,18 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         brandViewModel?.filterProducts()
     }
     
+}
+extension BrandViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            if searchText.isEmpty {
+                isfilterdd = false
+                searchViewModel.filterdProducts = []
+            } else {
+                isfilterdd = true
+                searchViewModel.filterdProducts = searchViewModel.allProducts.filter { product in
+                    product.title?.range(of: searchText, options: .caseInsensitive) != nil
+                }
+            }
+        BrandProductCollectionView.reloadData()
+        }
 }
