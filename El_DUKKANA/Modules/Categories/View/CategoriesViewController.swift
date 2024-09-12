@@ -31,6 +31,8 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        searchBarBackBtn.isHidden = true
+        searchBar.isHidden = true
         setupUI()
         
         categoriesViewModel = CategoriesViewModel()
@@ -207,6 +209,19 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     @objc func searchButtonTapped() {
         print("Search button tapped")
+        print("no")
+        
+        
+        if startFilter{
+            self.searchBar.isHidden = false
+            self.searchBarBackBtn.isHidden = false
+            startFilter = startFilter ? false : true
+            
+        }else{
+            self.searchBar.isHidden = true
+            self.searchBarBackBtn.isHidden = true
+            startFilter = startFilter ? false : true
+        }
     }
 
     @objc func cartButtonTapped() {
@@ -223,32 +238,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         self.searchBarBackBtn.isHidden = true
     }
 
-    @IBAction func startSearching(_ sender: Any) {
-        print("no")
-        startFilter = startFilter ? false : true
-        
-        if startFilter{
-            self.searchBar.isHidden = false
-            self.searchBarBackBtn.isHidden = false
-            
-        }else{
-            self.searchBar.isHidden = true
-            self.searchBarBackBtn.isHidden = true
-        }
-    }
-    @IBAction func goToSearch(_ sender: Any) {
 
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "SearchForProductVC") as? SearchForProductVC{
-//            vc.viewModel.allProducts = self.categoriesViewModel?.products ?? []
-//            vc.modalTransitionStyle = .crossDissolve
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true)
-//        }
-
-        
-      
-
-    }
 }
 extension CategoriesViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

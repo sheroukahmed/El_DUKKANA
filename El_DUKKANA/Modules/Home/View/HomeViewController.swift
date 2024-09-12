@@ -20,6 +20,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var pagecontrol = PageController()
     var adsTimer: Timer?
     var searchViewModel = SearchViewModel()
+    var categoriesViewModel = CategoriesViewModel()
     var currentAdIndex = 0
     //sherouk's code
     let Adsimages: [UIImage] = [
@@ -47,6 +48,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         AdsCollectionView.delegate = self
         AdsCollectionView.dataSource = self
         AdsCollectionView.register(AdsCollectionViewCell.nib(), forCellWithReuseIdentifier: "CuponsCell")
+        
         
         let adsLayout = UICollectionViewCompositionalLayout { [self]sectionIndex,enviroment in
             switch sectionIndex {
@@ -161,12 +163,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }else{
                 if collectionView == BrandsCollectionView {
                     if NetworkReachabilityManager()?.isReachable ?? false {
-                        let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
-                        brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
-                        brandProducts.title = homeViewModel?.brands?[indexPath.row].title
-                        
-                        self.navigationController?.pushViewController(brandProducts, animated: true)
-                    } else {
+                        if let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as? BrandViewController {
+                            brandProducts.hidden = true
+                            brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
+                            brandProducts.title = homeViewModel?.brands?[indexPath.row].title
+                            
+                            self.navigationController?.pushViewController(brandProducts, animated: true)
+                        }} else {
                         let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .cancel)
                         alert.addAction(ok)
@@ -279,7 +282,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     
     @objc func searchButtonTapped() {
-        print("Search button tapped")
+        let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
+
+        products.hidden = false
+        self.navigationController?.pushViewController(products, animated: true)
+
     }
 
     @objc func cartButtonTapped() {
@@ -289,14 +296,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @objc func favoriteButtonTapped() {
         print("Favorite button tapped")
     }
-    @IBAction func goToSearch(_ sender: Any) {
-        print("hi")
-    }
+   
 
-    @IBAction func startSearching(_ sender: Any) {
-        let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
-
-        self.navigationController?.pushViewController(products, animated: true)
-
-    }
+    
 }
