@@ -7,17 +7,8 @@
 
 import Foundation
 
-protocol CategoriesViewModelProtocol {
-    var products: [Product]? { get set }
-    var isLoading: Bool { get set }
-    var bindToCategoriesViewController: (() -> Void) { get set }
-    
-    func getAllProducts()
-    func getProducts(collectionId: CollectionID, productType: ProductType)
-    func checkIfDataIsFetched()
-}
 
-class CategoriesViewModel: CategoriesViewModelProtocol {
+class CategoriesViewModel {
     
     var network: NetworkProtocol?
     var bindToCategoriesViewController: (() -> Void) = {}

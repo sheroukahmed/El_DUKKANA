@@ -17,7 +17,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var BrandProductCollectionView: UICollectionView!
     var isSearching = false
-    var isfilterdd = false
+    //var isfilterdd = false
     var searchViewModel = SearchViewModel()
     
     var brandViewModel: BrandViewModel?
@@ -34,6 +34,11 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         if hidden {
             eldukkanaImg.isHidden = true
             searchBar.isHidden = true
+            filterButton.isHidden = false
+        } else {
+            eldukkanaImg.isHidden = false
+            searchBar.isHidden = false
+            filterButton.isHidden = true
         }
         
         self.BrandProductCollectionView!.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
@@ -69,7 +74,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
          //brandImages = brandViewModel?.products?[indexPath.row].images?[indexPath.row].src
-         if isfilterdd{
+         if isSearching {
              let product = searchViewModel.filterdProducts[indexPath.row]
              cell.configureCell(image: product.image?.src ?? dummyImage, title: product.title ?? "", price: product.variants?.first?.price ?? "", currency: "USD", isFavorited: false)         }
          
@@ -134,10 +139,10 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
 extension BrandViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             if searchText.isEmpty {
-                isfilterdd = false
+                isSearching = false
                 searchViewModel.filterdProducts = []
             } else {
-                isfilterdd = true
+                isSearching = true
                 searchViewModel.filterdProducts = searchViewModel.allProducts.filter { product in
                     product.title?.range(of: searchText, options: .caseInsensitive) != nil
                 }
