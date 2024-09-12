@@ -16,7 +16,7 @@ class URLManager : URLManagerProtocol{
     }
     
     
-    func getPath(for endpoint: EndPoint) -> String {
+    class func getPath(for endpoint: EndPoint) -> String {
         switch endpoint {
         case .customers:
             return "/customers"
@@ -37,18 +37,23 @@ class URLManager : URLManagerProtocol{
         case .product(let productId):
             return "/products/\(productId)"
         case .brands:
-            return "smart_collections"
-        case .discountCodes:
-            return "price_rules"
-            
-            
+            return "/smart_collections"
+        case .discountCodes(let priceruleId):
+            return "/price_rules/\(priceruleId)/discount_codes"
+        case .collection(let collectionId):
+            return "/collections/\(collectionId)/products"
+        case .draftOrder:
+            return "/draft_orders"
+        case .specifcDraftorder(let draftOrderId):
+            return "draft_orders/\(draftOrderId)"
+     
         }
     }
         
     //shopify Api
     
         
-        func getUrl(for endpoint: EndPoint) -> String{
+       class func getUrl(for endpoint: EndPoint) -> String{
             
             let path =  getPath(for: endpoint)
             let baseUrl = "https://\(URLComponents.apiKey.rawValue):\(URLComponents.accessToken.rawValue)\(URLComponents.shopifyStore.rawValue)/admin/api/2024-07"
@@ -61,7 +66,7 @@ class URLManager : URLManagerProtocol{
  
  
     // Currency Api
-    func getCurrencyURL(currentCurrency: String, wantedCurrency: String)->String{
+    class func getCurrencyURL(currentCurrency: String, wantedCurrency: String)->String{
         let appId = "db875dafb94e48bc82fd4dd574f85d33"
         let baseUrl = "https://openexchangerates.org/api/latest.json?app_id=\(appId)&base="
         return "\(baseUrl)\(currentCurrency)&symbols=\(wantedCurrency)"
@@ -80,7 +85,11 @@ enum EndPoint: Any {
     case products
     case product(productsId: Int)
     case brands
-    case discountCodes
+    case discountCodes(priceruleId :Int)
+    case collection(collectionId: Int)
+    case draftOrder
+    case specifcDraftorder(specificDraftOrder: Int)
+
     
     
 }

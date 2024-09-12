@@ -8,25 +8,32 @@
 import Foundation
 
 struct CustomerResponse: Codable {
-    let customers: [Customer]
+    var customers: [Customer]
 }
- 
+struct CustomerResult: Codable {
+
+    var customer :Customer
+
+}
+
 struct Customer: Codable {
-    let id: Int?
-    let email: String?
-    let first_name: String?
-    let last_name: String?
-    let phone: String?
-    let verified_email: Bool?
-    let addresses: [CustomerAddress]?
+    var id: Int?
+    var email: String?
+    var first_name: String?
+    var last_name: String?
+    var phone: String?
+    var verified_email: Bool?
+    var addresses: [CustomerAddress]?
+    var password: String?
+    var password_confirmation: String?
     
 }
  
 struct CustomerAddress: Codable {
-    let address1: String?
-    let address2: String?
-    let city: String?
-    let province: String?
-    let country: String?
-    let zip: String?
+    var address1: String?
+    var address2: String?
+    var city: String?
+    var province: String?
+    var country: String?
+    var zip: String?
 }

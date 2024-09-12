@@ -10,12 +10,15 @@ import UIKit
 class SignInVC: UIViewController {
 
     @IBOutlet weak var forgotPasswordBtn: UIButton!
-    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!{didSet{
+        ViewsSet.btnSet(btn: loginBtn)
+    }}
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
     
@@ -23,18 +26,20 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
+
+        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(identifier: "CartStoryboard")
+
+//        let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+//        let signUpVC = storyboard.instantiateViewController(identifier: "SettingsStoryboard")
+
+        signUpVC.modalPresentationStyle = .fullScreen
+        signUpVC.modalTransitionStyle = .crossDissolve
+        present(signUpVC, animated: true)
     }
     @IBAction func forgotPasswordBtnAction(_ sender: Any) {
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

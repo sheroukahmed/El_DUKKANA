@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EL DUKKANA" translatesAutoresizingMaskIntoConstraints="NO" id="XQb-FG-Bk4">
+                                <rect key="frame" x="36" y="101" width="321" height="368"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="368" id="7NR-Xv-cfL"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ogX-1K-aUO">
+                                <rect key="frame" x="36" y="477" width="321" height="314"/>
+                                <color key="backgroundColor" red="0.9765327573" green="0.97229737039999997" blue="0.98431521649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <string key="text">Welcome to EL DUKKANA...
+This app is designed to provide customers with a seamless and intuitive shopping experience on iOS devices.
+ 
+We are a m-Commerce Application that presents products from different vendors and enables the authenticated users to add/remove products to/from their shopping carts and complete the whole shopping cycle online through the app.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.9765327573" green="0.97229737039999997" blue="0.98431521649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="XQb-FG-Bk4" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="42" id="095-Yz-SU9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ogX-1K-aUO" secondAttribute="trailing" constant="36" id="0ux-gG-FPq"/>
+                            <constraint firstItem="XQb-FG-Bk4" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="FsM-Ae-78c"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XQb-FG-Bk4" secondAttribute="trailing" constant="36" id="TVd-hJ-Pi4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ogX-1K-aUO" secondAttribute="bottom" constant="27" id="kvc-NT-8os"/>
+                            <constraint firstItem="ogX-1K-aUO" firstAttribute="top" secondItem="XQb-FG-Bk4" secondAttribute="bottom" constant="8" symbolic="YES" id="lgQ-m5-vqs"/>
+                            <constraint firstItem="XQb-FG-Bk4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="36" id="pfL-FC-Ss9"/>
+                            <constraint firstItem="ogX-1K-aUO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="36" id="y8q-Jh-cW4"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EL DUKKANA" width="856" height="1072"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
