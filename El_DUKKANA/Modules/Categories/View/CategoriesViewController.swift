@@ -81,11 +81,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isSearching {
-                    return searchViewModel.filterdProducts.count
-                } else {
-                    return categoriesViewModel?.products?.count ?? 0
-                }
+        return isSearching ? searchViewModel.filterdProducts.count : (categoriesViewModel?.products?.count ?? 0)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
