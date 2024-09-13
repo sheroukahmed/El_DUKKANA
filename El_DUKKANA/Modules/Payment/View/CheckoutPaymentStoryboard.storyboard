@@ -122,7 +122,10 @@
                                 </constraints>
                                 <color key="tintColor" red="0.41048282380000001" green="0.1808509827" blue="0.1686171591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Selected Address"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Select Address"/>
+                                <connections>
+                                    <action selector="SelectAddressbtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="UmQ-cH-t2J"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ckY-QS-clZ">
                                 <rect key="frame" x="26" y="434" width="202" height="36"/>
@@ -142,6 +145,9 @@
                                 <color key="tintColor" red="0.41048282380000001" green="0.1808509827" blue="0.1686171591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Apply"/>
+                                <connections>
+                                    <action selector="ApplyCodebtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bzo-cC-UdQ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7t-zs-p3k">
                                 <rect key="frame" x="36" y="496" width="142" height="35"/>
@@ -175,6 +181,9 @@
                                 <color key="tintColor" red="0.41048282380000001" green="0.1808509827" blue="0.1686171591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go to Payment"/>
+                                <connections>
+                                    <action selector="Paymentbtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LWe-yj-oed"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -209,6 +218,16 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4Ta-ge-XIe" secondAttribute="trailing" constant="162" id="ryr-07-k8L"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="Address1" destination="QHc-O2-Hnd" id="0Si-Wd-yeC"/>
+                        <outlet property="Address2" destination="Opo-k7-jq9" id="gXG-cz-hq5"/>
+                        <outlet property="TotalPrice" destination="ISr-V4-Fx3" id="XFT-qn-d6V"/>
+                        <outlet property="ZipCode" destination="06s-of-Btd" id="o8R-ex-sWr"/>
+                        <outlet property="city" destination="ZQ5-1B-Y3y" id="ijf-AO-Qia"/>
+                        <outlet property="codetextF" destination="ckY-QS-clZ" id="Haj-qZ-nSj"/>
+                        <outlet property="country" destination="Lvh-9y-JqR" id="kOa-YL-HU2"/>
+                        <outlet property="priceDiscount" destination="4Ta-ge-XIe" id="RU3-1A-32t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

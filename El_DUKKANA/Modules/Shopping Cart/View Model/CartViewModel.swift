@@ -33,12 +33,7 @@ class CartViewModel{
         })
     }
     
-    func draftOrderCompleted(){
-        network?.Put(url: URLManager.getUrl(for: .drafttorder(draftorderId:draftorderid )), type: customerDraft, completionHandler: { result, error in
-            print("\(result)")
-        })
-        
-    }
+    
     
     
 }

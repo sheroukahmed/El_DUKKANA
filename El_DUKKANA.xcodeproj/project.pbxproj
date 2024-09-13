@@ -188,6 +188,7 @@
 		F8E4516C2C92745D003093B6 /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 		F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
+		F8E451722C93C435003093B6 /* El_DUKKANA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = El_DUKKANA.entitlements; sourceTree = "<group>"; };
 		F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUS.storyboard; sourceTree = "<group>"; };
 		F8F9BBDB2C891DF3005AE496 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -554,6 +555,7 @@
 		F8D3C1D32C88E06900C9B255 /* El_DUKKANA */ = {
 			isa = PBXGroup;
 			children = (
+				F8E451722C93C435003093B6 /* El_DUKKANA.entitlements */,
 				81B0349D2C8D218300D4A4C5 /* Utilities */,
 				F8D3C20D2C88E17800C9B255 /* View */,
 				F8D3C20C2C88E16600C9B255 /* Services */,
@@ -1203,6 +1205,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = El_DUKKANA/El_DUKKANA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1231,6 +1234,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = El_DUKKANA/El_DUKKANA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
