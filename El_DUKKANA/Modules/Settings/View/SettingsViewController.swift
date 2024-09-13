@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(CurrentCustomer.currentCustomer)
         view.backgroundColor = UIColor(named: "Color")
 
         // MARK: - Currency list

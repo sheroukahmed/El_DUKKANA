@@ -32,6 +32,8 @@ class AddReviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(CurrentCustomer.currentCustomer)
+        
         viewModel = ReviewsViewModel()
         
         bindStarButtons()
