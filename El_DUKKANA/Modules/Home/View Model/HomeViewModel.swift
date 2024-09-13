@@ -8,8 +8,7 @@
 import Foundation
 
 
-
-class HomeViewModel{
+class HomeViewModel {
     var selectedpricerule : Int = 0
     var discountCode: String = "" {
             didSet {

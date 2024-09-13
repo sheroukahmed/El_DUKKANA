@@ -284,6 +284,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @objc func searchButtonTapped() {
         let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
 
+        products.isSearching = true
         products.hidden = false
         navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(products, animated: true)
@@ -292,6 +293,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @objc func cartButtonTapped() {
         print("Cart button tapped")
+        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+            cart.title = "My Cart"
+            self.navigationController?.pushViewController(cart, animated: true)
+        }
     }
 
     @objc func favoriteButtonTapped() {

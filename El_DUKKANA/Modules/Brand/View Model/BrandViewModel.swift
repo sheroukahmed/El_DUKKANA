@@ -24,6 +24,11 @@ class BrandViewModel {
     var network: NetworkProtocol?
     var bindToBrandViewController: (() -> Void) = {}
     var brand: String?
+    var allProducts: [Product]? = [] {
+        didSet {
+            bindToBrandViewController()
+        }
+    }
     var products: [Product]? = [] {
         didSet {
             checkIfDataIsFetched()
@@ -47,6 +52,7 @@ class BrandViewModel {
             guard let result = result else {
                 return
             }
+            self?.allProducts = result.products
             for item in result.products {
                 if item.vendor == self?.brand?.uppercased() {
                     self?.products?.append(item)
