@@ -16,6 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uc8-Pn-p8B">
+                                <rect key="frame" x="16" y="55" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="IOB-zX-PiR"/>
+                                </constraints>
+                                <color key="tintColor" red="0.41048282380000001" green="0.1808509827" blue="0.1686171591" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8F8-8v-FEd">
+                                <rect key="frame" x="8" y="84" width="377" height="734"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="You’re Not Logged in (1)" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-oJ-bNK">
+                                        <rect key="frame" x="0.0" y="-9" width="377" height="743"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="377" id="1Bc-Rd-23y"/>
+                                    <constraint firstAttribute="height" constant="734" id="Y49-hr-mKf"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Log-4b-lZm">
                                 <rect key="frame" x="8" y="753" width="377" height="65"/>
                                 <constraints>
@@ -45,10 +68,10 @@
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-OE-RWiuiuytI">
-                                <rect key="frame" x="16" y="98" width="361" height="576"/>
+                                <rect key="frame" x="16" y="98" width="361" height="585"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="576" id="VSh-oL-3Xg"/>
+                                    <constraint firstAttribute="height" constant="585" id="VSh-oL-3Xg"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="Ani-kK-8Soih" customClass="CartItemTableViewCell" customModule="El_DUKKANA" customModuleProvider="target">
@@ -101,16 +124,25 @@
                             <constraint firstItem="zrF-OE-RWiuiuytI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="39" id="0aJ-Bv-1Ie"/>
                             <constraint firstItem="zrF-OE-RWiuiuytI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="0eH-Ci-zb2"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="84W-mB-n7h"/>
+                            <constraint firstItem="8F8-8v-FEd" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="BAL-1O-25a"/>
+                            <constraint firstItem="8F8-8v-FEd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="S6m-oJ-Rjl"/>
                             <constraint firstItem="zrF-OE-RWiuiuytI" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="XN8-rH-qdD"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Log-4b-lZm" secondAttribute="trailing" constant="8" id="YLv-7X-v8i"/>
+                            <constraint firstItem="Uc8-Pn-p8B" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="YPU-yF-I84"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8F8-8v-FEd" secondAttribute="trailing" constant="8" id="j9d-nh-653"/>
+                            <constraint firstItem="8F8-8v-FEd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="jft-is-Exv"/>
+                            <constraint firstItem="Uc8-Pn-p8B" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="55" id="kgy-Gc-zar"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="top" secondItem="L8S-GQ-uyH" secondAttribute="bottom" constant="8" symbolic="YES" id="m0u-3A-m06"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="oHP-rQ-KlF"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="L8S-GQ-uyH" secondAttribute="trailing" constant="8" id="sol-Tw-8Gs"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Uc8-Pn-p8B" secondAttribute="trailing" constant="337" id="tm0-S1-yhU"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zrF-OE-RWiuiuytI" secondAttribute="trailing" constant="16" id="u4p-wF-Egr"/>
                             <constraint firstItem="L8S-GQ-uyH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="yJX-u6-cQb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="Checkoutbtn" destination="Log-4b-lZm" id="4Re-eq-5lm"/>
+                        <outlet property="emptyimage" destination="8F8-8v-FEd" id="1ys-ZP-lt6"/>
                         <outlet property="productstableview" destination="zrF-OE-RWiuiuytI" id="Mnd-gi-7Ow"/>
                         <outlet property="totalprice" destination="Wo9-Uq-A8T" id="7et-2K-OTe"/>
                     </connections>
@@ -121,6 +153,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="You’re Not Logged in (1)" width="1587" height="2245"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

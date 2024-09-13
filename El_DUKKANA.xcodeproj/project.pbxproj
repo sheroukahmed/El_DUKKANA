@@ -452,9 +452,9 @@
 			isa = PBXGroup;
 			children = (
 				F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */,
-				F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */,
-				F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */,
 				F8528DA32C90A5510068858C /* CartViewController.swift */,
+				F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */,
+				F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
