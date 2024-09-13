@@ -6,3 +6,27 @@
 //
 
 import Foundation
+
+class FavoritesViewModel {
+    
+    var network: NetworkProtocol?
+    var bindToFavorites: (() -> Void) = {}
+    var favorites: [Product]? {
+        didSet {
+            bindToFavorites()
+        }
+    }
+    
+    init() {
+        network = NetworkManager()
+    }
+    
+    
+    func getFavorites() {
+        
+        
+    }
+    
+    
+    
+}
