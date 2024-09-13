@@ -28,7 +28,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(CurrentCustomer.currentCustomer)
         setupUI()
         
         brandViewModel = BrandViewModel(brand: brandViewModel?.brand ?? "")

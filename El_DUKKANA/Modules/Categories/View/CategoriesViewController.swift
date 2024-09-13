@@ -32,6 +32,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        print(CurrentCustomer.currentCustomer)
         searchBarBackBtn.isHidden = true
         searchBar.isHidden = true
         setupUI()

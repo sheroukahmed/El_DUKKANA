@@ -42,6 +42,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         setupUI()
 
+        print(CurrentCustomer.currentCustomer)
 
         // MARK: - Ads Collection View SetUp
         AdsCollectionView.delegate = self
