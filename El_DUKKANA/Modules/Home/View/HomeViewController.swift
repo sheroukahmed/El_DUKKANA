@@ -284,6 +284,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @objc func searchButtonTapped() {
         let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
 
+        products.isSearching = true
         products.hidden = false
         navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(products, animated: true)
