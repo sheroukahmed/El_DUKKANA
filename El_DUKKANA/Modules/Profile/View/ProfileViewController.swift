@@ -10,12 +10,21 @@ import Alamofire
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
  
+    
+    @IBOutlet weak var NotLoginView: UIView!
+    @IBOutlet weak var NotLoginImage: UIImageView!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var haveAnAccountLabel: UILabel!
+    @IBOutlet weak var registerButton: UIButton!
+    
+    
     @IBOutlet weak var OrdersTableView: UITableView!
     @IBOutlet weak var WishlistCollectionView: UICollectionView!
     
     @IBOutlet weak var userFirstName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
-   
+    @IBOutlet weak var addressesButton: UIButton!
+    
     @IBOutlet weak var moreOrdersButton: UIButton!
     @IBOutlet weak var moreWishlistButton: UIButton!
     @IBOutlet weak var userView: UIView!
@@ -27,6 +36,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getView(isLogin: true)
         
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person.crop.circle.fill"), selectedImage: UIImage(named: "person.crop.circle"))
 
@@ -151,6 +162,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private func setupUI(){
         
+        loginButton.layer.cornerRadius = 15
+        registerButton.layer.cornerRadius = 15
+        addressesButton.layer.cornerRadius = 15
         moreOrdersButton.layer.cornerRadius = 15
         moreWishlistButton.layer.cornerRadius = 15
         userView.layer.cornerRadius = 20
@@ -181,6 +195,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    func getView(isLogin: Bool) {
+        NotLoginView.isHidden = isLogin
+        NotLoginImage.isHidden = isLogin
+        loginButton.isHidden = isLogin
+        registerButton.isHidden = isLogin
+        haveAnAccountLabel.isHidden = isLogin
+    }
+    
     @objc func cartButtonTapped() {
         print("Cart button tapped")
         let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
@@ -208,10 +230,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func seeMoreWishlist(_ sender: Any) {
         let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
-        if let favorites = self.storyboard?.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
+        if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
             favorites.title = "My Wishlist"
             self.navigationController?.pushViewController(favorites, animated: true)
         }
-        
+    }
+    
+    
+    @IBAction func goToAddresses(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
+        if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
+            addresses.title = "My Addresses"
+            self.navigationController?.pushViewController(addresses, animated: true)
+        }
+    }
+    
+    @IBAction func toLogin(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        let signInVC = storyboard.instantiateViewController(identifier: "SignInVC")
+        signInVC.modalPresentationStyle = .fullScreen
+        signInVC.modalTransitionStyle = .crossDissolve
+       present(signInVC, animated: true)
+    }
+    
+    @IBAction func toRegister(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(identifier: "SignUpVC")
+        signUpVC.modalPresentationStyle = .fullScreen
+        signUpVC.modalTransitionStyle = .crossDissolve
+       present(signUpVC, animated: true)
     }
 }
