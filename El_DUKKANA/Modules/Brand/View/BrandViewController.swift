@@ -19,7 +19,6 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     @IBOutlet weak var NoProductsAvailableImage: UIImageView!
     
     var isSearching = false
-    //var isfilterdd = false
     var searchViewModel = SearchViewModel()
     
     var brandViewModel: BrandViewModel?
@@ -29,7 +28,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(CurrentCustomer.currentCustomer)
         setupUI()
         
         brandViewModel = BrandViewModel(brand: brandViewModel?.brand ?? "")
@@ -39,6 +38,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
             guard let self = self else { return }
             self.BrandProductCollectionView.reloadData()
             self.toggleNoDataView()
+            self.searchViewModel.allProducts = self.brandViewModel?.allProducts ?? []
         }
         }
         
@@ -55,7 +55,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
-        //brandImages = brandViewModel?.products?[indexPath.row].images?[indexPath.row].src
+        
         if isSearching {
             let product = searchViewModel.filterdProducts[indexPath.row]
             cell.configureCell(image: product.image?.src ?? dummyImage, title: product.title ?? "", price: product.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
@@ -133,9 +133,11 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     }
     
     private func toggleNoDataView() {
-        let noProducts = (brandViewModel?.products?.isEmpty ?? true && searchViewModel.filterdProducts.isEmpty)
-        BrandProductCollectionView.isHidden = noProducts
-        NoProductsAvailableImage.isHidden = !noProducts
+        if !isSearching {
+            let noProducts = brandViewModel?.products?.isEmpty ?? true
+            BrandProductCollectionView.isHidden = noProducts
+            NoProductsAvailableImage.isHidden = !noProducts
+        }
     }
     
     private func updateView(isHidden: Bool) {

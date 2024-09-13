@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(CurrentCustomer.currentCustomer)
         view.backgroundColor = UIColor(named: "Color")
 
         // MARK: - Currency list
@@ -58,6 +59,11 @@ class SettingsViewController: UIViewController {
     
   
     @IBAction func AboutUsbtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AboutUS", bundle: nil)
+        if let about = storyboard.instantiateViewController(withIdentifier: "aboutUs") as? AboutUsViewController {
+            about.title = "About Us"
+            self.navigationController?.pushViewController(about, animated: true)
+        }
     }
 }
 

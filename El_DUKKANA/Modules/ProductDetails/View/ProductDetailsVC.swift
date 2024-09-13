@@ -33,7 +33,7 @@ class ProductDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Finally We Did IT : \(CurrentCustomer.currentCustomer)")
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
         productCollectionView.dataSource = self
         productCollectionView.delegate = self

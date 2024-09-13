@@ -32,6 +32,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        print(CurrentCustomer.currentCustomer)
         searchBarBackBtn.isHidden = true
         searchBar.isHidden = true
         setupUI()
@@ -81,11 +82,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isSearching {
-                    return searchViewModel.filterdProducts.count
-                } else {
-                    return categoriesViewModel?.products?.count ?? 0
-                }
+        return isSearching ? searchViewModel.filterdProducts.count : (categoriesViewModel?.products?.count ?? 0)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -225,6 +222,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     @objc func cartButtonTapped() {
         print("Cart button tapped")
+        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+            cart.title = "My Cart"
+            self.navigationController?.pushViewController(cart, animated: true)
+        }
     }
 
     @objc func favoriteButtonTapped() {

@@ -33,6 +33,7 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(CurrentCustomer.currentCustomer)
         
         reviewCollectionView.dataSource = self
         reviewCollectionView.delegate = self
