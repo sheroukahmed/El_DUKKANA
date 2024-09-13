@@ -222,6 +222,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     @objc func cartButtonTapped() {
         print("Cart button tapped")
+        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+            cart.title = "My Cart"
+            self.navigationController?.pushViewController(cart, animated: true)
+        }
     }
 
     @objc func favoriteButtonTapped() {
