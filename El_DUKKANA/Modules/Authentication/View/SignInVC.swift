@@ -39,7 +39,7 @@ class SignInVC: UIViewController {
             }  else {
                 Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                     if let error = error {
-                        self.showErrorAlert(message: error.localizedDescription)
+                        self.showErrorAlert(message: "False Email/Password")
                     } else {
                         self.showAccountSignedInAlert()
                         self.customerViewModel.customeremail = email
@@ -81,6 +81,11 @@ class SignInVC: UIViewController {
     func showAccountSignedInAlert() {
         let alert = UIAlertController(title: "Account Signed in!", message: "The account has been Signed in successfully", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { action in
+            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
+            let home = storyboard.instantiateViewController(identifier: "tabBar") as! UITabBarController
+            home.modalPresentationStyle = .fullScreen
+            home.modalTransitionStyle = .crossDissolve
+            self.present(home, animated: true)
             
         }
         alert.addAction(ok)

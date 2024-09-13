@@ -61,10 +61,12 @@ class NetworkManager :NetworkProtocol {
             
             // Alamofire POST request with JSON data
             AF.request(newURL, method: .post, parameters: inputDataInDictionary, encoding: JSONEncoding.default,headers: headers ).validate(statusCode: 200..<299)
-                .responseJSON{ response in
+                .response{ response in
                     switch response.result {
                     case .success(let result):
                         print("Success: \(result)")
+                        let decoder = try? JSONDecoder().decode(T.self, from: result!)
+                        completionHandler(decoder, nil)
                     case .failure(let error):
                         print("Request failed: \(error.localizedDescription)")
                         if let data = response.data {

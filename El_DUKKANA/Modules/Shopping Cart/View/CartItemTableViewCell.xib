@@ -138,7 +138,7 @@
                 <outlet property="itemname" destination="jBk-PP-lxG" id="ASA-kv-8Kc"/>
                 <outlet property="itemprice" destination="hkU-Zm-ZNb" id="Drr-Fq-IYx"/>
             </connections>
-            <point key="canvasLocation" x="514" y="0.0"/>
+            <point key="canvasLocation" x="538" y="-4"/>
         </tableViewCell>
     </objects>
     <resources>

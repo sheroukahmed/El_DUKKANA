@@ -10,6 +10,8 @@ import Kingfisher
 
 class ProductDetailsVC: UIViewController {
 
+   
+    
     @IBOutlet weak var colorsSegmented: UISegmentedControl!
     @IBOutlet weak var addCartBtn: UIButton!{
         didSet{
@@ -18,7 +20,7 @@ class ProductDetailsVC: UIViewController {
     }
     @IBOutlet weak var descriptionLbl: UITextView!
     
-    
+   
     @IBOutlet weak var sizeSegmentedController: UISegmentedControl!
     
     @IBOutlet weak var priceLbl: UILabel!
@@ -70,12 +72,33 @@ class ProductDetailsVC: UIViewController {
 
     }
     @IBAction func addToCartBtn(_ sender: Any) {
+        if CurrentCustomer.currentCustomer.email != nil {
+            
+        }else {
+            let alert = UIAlertController(title: "SignIn First", message: "You can't add to cart you have to sign in first", preferredStyle: .alert)
+            let signIn = UIAlertAction(title: "SignIn", style: .default) { action in
+                let storyBoard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+                if let vc = storyBoard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
+            alert.addAction(signIn)
+            alert.addAction(cancle)
+            
+            self.present(alert, animated: true)
+            
+        }
     }
     
     @objc func moveToNextIndex(){
         pageCont.moveNextIndex(specificCount: viewModel.product?.product.images?.count ?? 1, specificCollectionView: productCollectionView, pageController: pageController)
     }
     
+    @IBAction func addToFavBtnAction(_ sender: Any) {
+    }
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }

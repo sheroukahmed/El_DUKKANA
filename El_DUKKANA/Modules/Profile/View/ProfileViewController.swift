@@ -25,6 +25,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userFirstName.text = CurrentCustomer.currentCustomer.first_name
+        userEmail.text = CurrentCustomer.currentCustomer.email
+        
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person.crop.circle.fill"), selectedImage: UIImage(named: "person.crop.circle"))
 
         setupUI()

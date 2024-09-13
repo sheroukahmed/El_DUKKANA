@@ -54,8 +54,9 @@ class SignUpVC: UIViewController {
                     self.present(alert, animated: true)
                 } else {
                     // Firebase registration succeeded
-                    self.showAccountCreatedAlert()
                     self.viewModel.addCustomer()
+                    self.showAccountCreatedAlert()
+                    // adding customer to api
                     
                    // self.viewModel.addDraftOrders()
                 }
@@ -98,7 +99,12 @@ class SignUpVC: UIViewController {
     func showAccountCreatedAlert() {
         let alert = UIAlertController(title: "Account Created", message: "The account has been created successfully", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { action in
-            
+            let storyBoard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+            if let vc = storyBoard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
                 
         }
         alert.addAction(ok)

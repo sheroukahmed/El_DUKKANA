@@ -45,25 +45,23 @@ class CustomerViewModel {
                 print("Error adding customer: \(String(describing: error))")
                 return
             }
-            
+            print("samir")
             guard let result = result else {
                 print("No result returned when adding customer")
                 return
             }
-            
+            print(result)
+
             // Customer added successfully, update CurrentCustomer with the result
             CurrentCustomer.signedUpCustomer = result
-            
+            print("Signed Up Customer : \(CurrentCustomer.signedUpCustomer)")
             // Ensure customer ID is valid before proceeding
             guard let customerID = result.customer.id, customerID != 0 else {
                 print("Error: Customer ID is invalid.")
                 return
             }
-            
-            // Now that the customer exists, proceed with creating the draft orders
+
             self.prepareDraftOrders()
-            
-            // Create draft orders after customer is added
             self.addDraftOrders()
             
         })
