@@ -41,7 +41,7 @@ struct LineItem: Codable  {
     let title: String?
     let variant_title: String?
     let vendor: String?
-    let quantity: Int?
+    var quantity: Int?
     let name: String?
     let custom: Bool?
     let price: String?

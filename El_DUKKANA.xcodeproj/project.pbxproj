@@ -86,6 +86,8 @@
 		F8E451692C9256AB003093B6 /* CheckoutPaymentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E451682C9256AB003093B6 /* CheckoutPaymentStoryboard.storyboard */; };
 		F8E4516B2C92741E003093B6 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4516A2C92741E003093B6 /* CheckoutViewController.swift */; };
 		F8E4516D2C92745D003093B6 /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4516C2C92745D003093B6 /* AddressesViewController.swift */; };
+		F8E4516F2C934AC2003093B6 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */; };
+		F8E451712C934AE4003093B6 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */; };
 		F8EC6B7F2C8CE84A00A8D7AF /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */; };
 		F8EC6B842C8CEE2D00A8D7AF /* AboutUS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */; };
 		F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDB2C891DF3005AE496 /* Network.swift */; };
@@ -198,6 +200,9 @@
 		F8E451682C9256AB003093B6 /* CheckoutPaymentStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckoutPaymentStoryboard.storyboard; sourceTree = "<group>"; };
 		F8E4516A2C92741E003093B6 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		F8E4516C2C92745D003093B6 /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
+		F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
+		F8E451722C93C435003093B6 /* El_DUKKANA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = El_DUKKANA.entitlements; sourceTree = "<group>"; };
 		F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUS.storyboard; sourceTree = "<group>"; };
 		F8F9BBDB2C891DF3005AE496 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -462,9 +467,9 @@
 			isa = PBXGroup;
 			children = (
 				F804905B2C8B162300CE43ED /* CartStoryboard.storyboard */,
-				F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */,
-				F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */,
 				F8528DA32C90A5510068858C /* CartViewController.swift */,
+				F804905E2C8B1AE500CE43ED /* CartItemTableViewCell.xib */,
+				F804905D2C8B1AE500CE43ED /* CartItemTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 		F8D3C1D32C88E06900C9B255 /* El_DUKKANA */ = {
 			isa = PBXGroup;
 			children = (
+				F8E451722C93C435003093B6 /* El_DUKKANA.entitlements */,
 				8160D3992C93448D0026CE11 /* GoogleService-Info.plist */,
 				81B0349D2C8D218300D4A4C5 /* Utilities */,
 				F8D3C20D2C88E17800C9B255 /* View */,
@@ -729,6 +735,8 @@
 		F8E451672C923B29003093B6 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */,
+				F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -992,6 +1000,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8E451712C934AE4003093B6 /* CheckoutViewModel.swift in Sources */,
 				F8D3C1D52C88E06900C9B255 /* AppDelegate.swift in Sources */,
 				813740722C8BAAED001ECAF4 /* ReviewCell.swift in Sources */,
 				26DB3D252C8A171C00E4E697 /* HomeViewModel.swift in Sources */,
@@ -1017,6 +1026,7 @@
 				8135A4712C9255C100D25B4C /* SignUp2VC.swift in Sources */,
 
 				F8528D9E2C90809C0068858C /* SettingsVM.swift in Sources */,
+				F8E4516F2C934AC2003093B6 /* PaymentViewModel.swift in Sources */,
 				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
 				81B0349C2C8D209100D4A4C5 /* DrowCollectioView.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
@@ -1226,6 +1236,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = El_DUKKANA/El_DUKKANA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1254,6 +1265,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = El_DUKKANA/El_DUKKANA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
