@@ -26,6 +26,7 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
         productstableview.delegate = self
         
         productstableview.register(UINib(nibName: "CartItemTableViewCell", bundle: nil), forCellReuseIdentifier: "CartItemCell")
+        
         cartVM = CartViewModel()
         
        
@@ -33,21 +34,36 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         
-    
-        if cartVM?.cart?.count == 0{
-            productstableview.isHidden = true
-            emptyimage.isHidden = false
+        cartVM?.getCartdraftfomApi()
+        
+        cartVM?.bindResultToViewController = {
+            if (self.cartVM?.cart?.count) ?? 0 > 0 {
+                self.Checkoutbtn.isEnabled = true
+            }
+            
+            if self.cartVM?.cart?.count == 0{
+                self.productstableview.isHidden = true
+                self.emptyimage.isHidden = false
+            }
+            else {
+                self.productstableview.isHidden = false
+                self.emptyimage.isHidden = true
+                self.updateTotalPrice()
+            }
+            
+            
+            self.productstableview.reloadData()
+            self.updateTotalPrice()
         }
-        else {
-            productstableview.isHidden = false
-            emptyimage.isHidden = true
-        }
-    }
+        
     
-    func calculateTotalPrice() {
-        //            let total = cartItems.reduce(0) { $0 + ($1.price * Double($1.quantity)) }
-        //            totalprice.text = "Total: \(total)$"
+        
     }
+    func updateTotalPrice() {
+            let total = cartVM?.calculateTotalPrice() ?? 0.0
+            totalprice.text = "Total: \(total)$"
+        }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cartVM?.cart?.count ?? 0
@@ -81,7 +97,7 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
                 if (self.cartVM?.cart?.count)! == 0 {
                     self.Checkoutbtn.isEnabled = false
                 }
-                //self.calculateSubtotal()
+                self.updateTotalPrice()
             }
             let no = UIAlertAction(title: "No", style: .cancel)
             alert.addAction(yes)
@@ -95,14 +111,14 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
         guard let indexPath = productstableview.indexPathForRow(at: point) else {return}
         cartVM?.cart?[indexPath.row].quantity! += 1
         
-        //calculateSubtotal()
+        updateTotalPrice()
     }
     @objc func decreaseAction(_ sender: UIButton){
         let point = sender.convert(CGPoint.zero, to: productstableview)
         guard let indexPath = productstableview.indexPathForRow(at: point) else {return}
         cartVM?.cart?[indexPath.row].quantity! -= 1
         
-        //calculateSubtotal()
+        updateTotalPrice()
     }
     
     

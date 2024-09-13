@@ -45,9 +45,9 @@ class URLManager : URLManagerProtocol{
         case .draftOrder:
             return "/draft_orders"
         case .specifcDraftorder(let draftOrderId):
-            return "draft_orders/\(draftOrderId)"
+            return "/draft_orders/\(draftOrderId)"
         case .drafttorder(let draftorderId):
-            return "draft_orders/\(draftorderId)/complete"
+            return "/draft_orders/\(draftorderId)/complete"
      
         }
     }

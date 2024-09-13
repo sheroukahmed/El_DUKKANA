@@ -9,7 +9,7 @@ import Foundation
 
 class CartViewModel{
     let network : NetworkProtocol?
-    var draftorderid = 0
+    var draftorderid = 1220224712942
     var customerDraft: DraftOrderRequest?
     var bindResultToViewController: (()->()) = {}
     var cart: [LineItem]? {
@@ -21,7 +21,7 @@ class CartViewModel{
         self.network = NetworkManager()
     }
     
-    func updateCartDraftOrder(){
+    func updateCartDraftOrder(cartItems: [LineItem]?){
         network?.Put(url: URLManager.getUrl(for: .draftOrder), type: customerDraft, completionHandler: { result, error in
             print("\(result)")
         })
@@ -33,7 +33,22 @@ class CartViewModel{
         })
     }
     
-    
+    func calculateTotalPrice() -> Double {
+        guard let cartItems = cart else { return 0.0 }
+        
+        var totalPrice: Double = 0.0
+        
+        for item in cartItems {
+            if let priceString = item.price, let price = Double(priceString) {
+                let quantity = Double(item.quantity ?? 1)
+                totalPrice += price * quantity
+            }
+        }
+        
+        return totalPrice
+    }
+
+
     
     
 }
