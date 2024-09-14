@@ -13,11 +13,11 @@ struct DraftOrderResponse: Codable {
 }
 
 struct DraftOrderRequest: Codable {
-    let draft_order: DraftOrder
+    var draft_order: DraftOrder
 }
 
 struct DraftOrder: Codable {
-    let id: Int?
+    var id: Int?
     let email: String?
     let currency: String?
     let created_at: String?
@@ -25,7 +25,7 @@ struct DraftOrder: Codable {
     let completed_at: String?
     let name: String?
     let status: String?
-    let line_items: [LineItem]?
+    var line_items: [LineItem]
     let order_id: String?
     let shipping_line: String?
     let tags: String?
@@ -35,7 +35,7 @@ struct DraftOrder: Codable {
 }
 
 struct LineItem: Codable  {
-    let id: Int?
+    var id: Int?
     let variant_id: Int?
     let product_id: Int?
     let title: String?
@@ -45,4 +45,10 @@ struct LineItem: Codable  {
     let name: String?
     let custom: Bool?
     let price: String?
+    let properties : [ProductProperties]?
+}
+
+struct ProductProperties: Codable {
+    let image : String
+    
 }

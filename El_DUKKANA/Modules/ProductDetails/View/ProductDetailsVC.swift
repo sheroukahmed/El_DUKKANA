@@ -73,6 +73,24 @@ class ProductDetailsVC: UIViewController {
     }
     @IBAction func addToCartBtn(_ sender: Any) {
         if CurrentCustomer.currentCustomer.email != nil {
+            if let product = viewModel.product?.product{
+                let productToCart = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.image?.src ?? ""))])
+                print("\n\nold cart : \(CurrentCustomer.currentCartDraftOrder.draft_order.line_items)\n\n")
+                CurrentCustomer.currentCartDraftOrder.draft_order.line_items.append(productToCart)
+                CurrentCustomer.currentCartDraftOrder.draft_order.line_items.removeAll { $0.price == "70.00" }
+
+                
+                let alert = UIAlertController(title: "Product Added to cart", message: "the product has been added to cart succesfully", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { action in
+                    print("\n\n current cart : \(CurrentCustomer.currentCartDraftOrder.draft_order.line_items)\n")
+                    
+                    self.viewModel.updateCartDraftOrder()
+                    print("\n\n\n\nUpdate Draft Order After Put : \(CurrentCustomer.currentCartDraftOrder)\n\n\n\n")
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+            }
+            
             
         }else {
             let alert = UIAlertController(title: "SignIn First", message: "You can't add to cart you have to sign in first", preferredStyle: .alert)

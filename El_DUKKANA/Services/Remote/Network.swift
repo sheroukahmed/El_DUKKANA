@@ -25,10 +25,10 @@ class NetworkManager :NetworkProtocol {
             }
             
             print("fetching in background")
-            print(data)
+           // print(data)
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
-                print(data)
+                print(result)
                 completionHandler(result, nil)
             } catch let error {
                 print(error.localizedDescription)
@@ -36,9 +36,7 @@ class NetworkManager :NetworkProtocol {
             }
         }
     }
-    
 
-    
 
     func Post<T: Codable>(url: String, type: T, completionHandler: @escaping (T?, Error?) -> Void) {
         
@@ -102,10 +100,12 @@ class NetworkManager :NetworkProtocol {
             
             // Alamofire PuT request with JSON data
             AF.request(newURL, method: .put, parameters: inputDataInDictionary, encoding: JSONEncoding.default,headers: headers ).validate(statusCode: 200..<299)
-                .responseJSON{ response in
+                .response{ response in
                     switch response.result {
                     case .success(let result):
                         print("Success: \(result)")
+                        let decoder = try? JSONDecoder().decode(T.self, from: result!)
+                        completionHandler(decoder, nil)
                     case .failure(let error):
                         print("Request failed: \(error.localizedDescription)")
                         if let data = response.data {
@@ -117,9 +117,7 @@ class NetworkManager :NetworkProtocol {
         } catch {
             print("Error: \(error.localizedDescription)")
         }
-        
-        
-        
+                
     }
     
     

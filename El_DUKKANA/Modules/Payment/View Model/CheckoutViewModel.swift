@@ -19,8 +19,9 @@ class CheckoutViewModel {
     }
     
     func draftOrderCompleted(){
-        network?.Put(url: URLManager.getUrl(for: .drafttorder(draftorderId:draftorderid )), type: customerDraft, completionHandler: { result, error in
-            print("\(result)")
+        var cartDraftOrderId = CurrentCustomer.currentCartDraftOrder.draft_order.id
+        network?.Put(url: URLManager.getUrl(for: .drafttorderForOrder(draftorderId: draftorderid)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
+            print(result)
         })
         
     }

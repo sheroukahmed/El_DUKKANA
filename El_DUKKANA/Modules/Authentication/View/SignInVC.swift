@@ -44,9 +44,9 @@ class SignInVC: UIViewController {
                         self.showAccountSignedInAlert()
                         self.customerViewModel.customeremail = email
                         self.customerViewModel.getAllCustomer()
-                        print("Customer ID : \(self.customerViewModel.customerID)")
-                        self.customerViewModel.getAcustomer(customerId: self.customerViewModel.customerID)
-                        print("Current Customer : \(CurrentCustomer.currentCustomer)")
+//                        print("Customer ID : \(self.customerViewModel.customerID)")
+//                        self.customerViewModel.getAcustomer(customerId: self.customerViewModel.customerID)
+//                        print("Current Customer : \(CurrentCustomer.currentCustomer)")
                         
                     }
                 }

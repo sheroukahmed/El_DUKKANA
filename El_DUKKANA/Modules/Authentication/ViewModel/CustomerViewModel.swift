@@ -8,6 +8,8 @@ class CustomerViewModel {
     var customerID = 0
     var customerDraftFav: DraftOrderRequest?
     var customerDraftCart: DraftOrderRequest?
+    var cartViewModel = CartViewModel()
+
     
     init() {
         self.network = NetworkManager()
@@ -21,7 +23,7 @@ class CustomerViewModel {
             }
             
             for item in result.customers {
-                print("Checking customer email: \(item.email) against \(self.customeremail)")
+                print("Checking customer email: \(item.email ?? "") against \(self.customeremail)")
                 if item.email?.lowercased() == self.customeremail.lowercased() {
                     self.customerID = item.id ?? 0
                     print("Customer found with ID: \(self.customerID)")
@@ -87,6 +89,9 @@ class CustomerViewModel {
             // Update current customer with the fetched data
             CurrentCustomer.currentCustomer = result.customer
             print("Current Customer: \(CurrentCustomer.currentCustomer)")
+            self.cartViewModel.getAllDrafts()
+//            print("Current Draft Order : \(CurrentCustomer.currentDraftOrder)")
+            
         })
     }
     
@@ -109,7 +114,10 @@ class CustomerViewModel {
                 print("Error adding draft order for favorites: \(String(describing: error))")
                 return
             }
+            guard let result = result else{return}
             print("Draft order for favorites created: \(result)")
+            CurrentCustomer.favDraftOrderId = result?.draft_order.id ?? 0
+
         })
         
         // Add draft order for cart
@@ -118,13 +126,16 @@ class CustomerViewModel {
                 print("Error adding draft cart: \(String(describing: error))")
                 return
             }
+            guard let result = result else{return}
             print("Draft order for cart created: \(result)")
+            CurrentCustomer.cartDraftOrderId = result?.draft_order.id ?? 0
+            
         })
     }
                              	      
     func createLineItems() -> [LineItem] {
         // Sample line items
-        return [LineItem(id: 1066630381, variant_id: 45726370201838, product_id: 8649736323310, title: "ADIDAS | CLASSIC BACKPACK", variant_title: "OS / black", vendor: "ADIDAS", quantity: 1, name: "ADIDAS | CLASSIC BACKPACK", custom: true, price: "70.00")]
+        return [LineItem(id: 1066630381, variant_id: 45726370201838, product_id: 8649736323310, title: "ADIDAS | CLASSIC BACKPACK", variant_title: "OS / black", vendor: "ADIDAS", quantity: 1, name: "ADIDAS | CLASSIC BACKPACK", custom: true, price: "70.00",properties: [])]
     }
     
 }

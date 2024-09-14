@@ -9,33 +9,56 @@ import Foundation
 
 class CartViewModel{
     let network : NetworkProtocol?
-    var draftorderid = 1220224712942
-    var customerDraft: DraftOrderRequest?
+    var draftorderid = 0
     var bindResultToViewController: (()->()) = {}
-    var cart: [LineItem]? {
-        didSet{
-            bindResultToViewController()
-        }
-    }
+//    var cart: [LineItem]? {
+//        didSet{
+//            bindResultToViewController()
+//           // CurrentCustomer.currentDraftOrder.draft_order.line_items = cart ?? []
+//        }
+//    }
+    
     init() {
         self.network = NetworkManager()
     }
+    /*
+     getAllDrafts()
+     getCartDraftFomApi()
+     */
     
-    func updateCartDraftOrder(cartItems: [LineItem]?){
-        network?.Put(url: URLManager.getUrl(for: .draftOrder), type: customerDraft, completionHandler: { result, error in
-            print("\(result)")
+    
+    func getAllDrafts(){
+        network?.fetch(url: URLManager.getUrl(for: .draftOrder), type: DraftOrderResponse.self, completionHandler: { result, error in
+            guard let result = result else{
+                return
+            }
+            print("result of the all draft orders \(result)")
+            for item in result.draft_orders {
+                print("Checking Draft order email: \(item.email ?? "") against \(CurrentCustomer.currentCustomer.email ?? "")")
+                if item.email ?? "".lowercased() == CurrentCustomer.currentCustomer.email{
+                    CurrentCustomer.cartDraftOrderId = item.id ?? 0
+                    break
+                }
+            }
+            print("DraftOrder Id : \(CurrentCustomer.cartDraftOrderId)")
+            self.getCartDraftFomApi()
         })
     }
     
-    func getCartdraftfomApi(){
-        network?.fetch(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: draftorderid)), type: DraftOrderRequest.self, completionHandler: { result, error in
-            self.cart = result?.draft_order.line_items
+    func getCartDraftFomApi(){
+        network?.fetch(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.cartDraftOrderId)), type: DraftOrderRequest.self, completionHandler: { result, error in
+            
+            guard let result = result else{
+                return
+            }
+            CurrentCustomer.currentCartDraftOrder.draft_order.line_items = result.draft_order.line_items
+            CurrentCustomer.currentCartDraftOrder.draft_order = result.draft_order
+            
         })
     }
     
     func calculateTotalPrice() -> Double {
-        guard let cartItems = cart else { return 0.0 }
-        
+        let cartItems = CurrentCustomer.currentCartDraftOrder.draft_order.line_items
         var totalPrice: Double = 0.0
         
         for item in cartItems {
@@ -48,7 +71,4 @@ class CartViewModel{
         return totalPrice
     }
 
-
-    
-    
 }
