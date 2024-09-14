@@ -38,7 +38,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         WishlistCollectionView.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         WishlistCollectionView.setCollectionViewLayout(layout, animated: true)
