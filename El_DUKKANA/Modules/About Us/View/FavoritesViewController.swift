@@ -8,27 +8,32 @@
 import UIKit
 import Alamofire
 
-class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var WishlistCollectionView: UICollectionView!
     
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
-    var favoritesViewModel: FavoritesViewModel?
+    var customerViewModel = CustomerViewModel()
+
+    var favoritesViewModel = FavoritesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpWishlistCollectionView()
         
-        favoritesViewModel = FavoritesViewModel()
-        favoritesViewModel?.getFavorites()
-        favoritesViewModel?.bindToFavorites = { [weak self] in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.WishlistCollectionView.reloadData()
-            }
-        }
+        //favoritesViewModel?.getFavorites()
+//        favoritesViewModel?.bindToFavorites = { [weak self] in
+//            DispatchQueue.main.async {
+//                guard let self = self else { return }
+//                self.WishlistCollectionView.reloadData()
+//            }
+//        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        customerViewModel.getAllDrafts()
+        self.WishlistCollectionView.reloadData()
     }
     
     func setUpWishlistCollectionView() {
@@ -45,7 +50,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favoritesViewModel?.favorites?.count ?? 0
+        return CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -56,10 +61,10 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
         
-        var favItem: Product?
-        favItem = favoritesViewModel?.favorites?[indexPath.row]
+        let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
             
-            cell.configureCell(image: favItem?.image?.src ?? dummyImage, title: favItem?.title ?? "", price: favItem?.variants?.first?.price ?? "", currency: "USD", isFavorited: true)
+        cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+        
   
         cell.layer.cornerRadius = 20
         return cell
@@ -83,7 +88,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
             let storyBoard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
             if let productDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetailsVC") as? ProductDetailsVC {
                 
-                productDetails.viewModel.productId = self.favoritesViewModel?.favorites?[indexPath.row].id ?? 1
+                productDetails.viewModel.productId = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row].product_id ?? 0
                 
                 productDetails.modalPresentationStyle = .fullScreen
                 productDetails.modalTransitionStyle = .crossDissolve

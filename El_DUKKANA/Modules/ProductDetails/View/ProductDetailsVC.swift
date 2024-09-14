@@ -12,6 +12,7 @@ class ProductDetailsVC: UIViewController {
 
    
     
+    @IBOutlet weak var addToFavBtn: UIButton!
     @IBOutlet weak var colorsSegmented: UISegmentedControl!
     @IBOutlet weak var addCartBtn: UIButton!{
         didSet{
@@ -28,6 +29,7 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var productTitleLbl: UILabel!
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var productCollectionView: UICollectionView!
+    var forFavBtn = FavBtnAnimation()
     var pageCont = PageController()
     var viewModel = ProductDetailsViewModel()
     var timer : Timer?
@@ -39,7 +41,7 @@ class ProductDetailsVC: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
-        
+        forFavBtn.setFavouriteButton(btn: addToFavBtn)
         viewModel.getData()
         viewModel.bindResultToViewController = {
             self.pageController.numberOfPages = self.viewModel.product?.product.images?.count ?? 1
@@ -116,7 +118,45 @@ class ProductDetailsVC: UIViewController {
     }
     
     @IBAction func addToFavBtnAction(_ sender: Any) {
+        if CurrentCustomer.currentCustomer.email != nil {
+            if let product = viewModel.product?.product{
+                let productToFav = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.image?.src ?? ""))])
+                print("\n\nold cart : \(CurrentCustomer.currentFavDraftOrder.draft_order.line_items)\n\n")
+                CurrentCustomer.currentFavDraftOrder.draft_order.line_items.append(productToFav)
+                CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "70.00" }
+
+                
+                let alert = UIAlertController(title: "Product Added to Fav", message: "the product has been added to Fav succesfully", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { action in
+                    print("\n\n current cart : \(CurrentCustomer.currentFavDraftOrder.draft_order.line_items)\n")
+                    
+                    self.viewModel.updateFavDraftOrder()
+                    print("\n\n\n\nUpdate Draft Order After Put : \(CurrentCustomer.currentFavDraftOrder)\n\n\n\n")
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true)
+            }
+            
+            
+        }else {
+            let alert = UIAlertController(title: "SignIn First", message: "You can't add to Fav you have to sign in first", preferredStyle: .alert)
+            let signIn = UIAlertAction(title: "SignIn", style: .default) { action in
+                let storyBoard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+                if let vc = storyBoard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
+            alert.addAction(signIn)
+            alert.addAction(cancle)
+            
+            self.present(alert, animated: true)
+            
+        }
     }
+    
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -159,6 +199,7 @@ extension ProductDetailsVC: UICollectionViewDelegate,UICollectionViewDataSource 
             
         return cell
     }
+    
     
     
 }

@@ -18,6 +18,7 @@ struct DraftOrderRequest: Codable {
 
 struct DraftOrder: Codable {
     var id: Int?
+    var note: String?
     let email: String?
     let currency: String?
     let created_at: String?

@@ -11,6 +11,7 @@ class CartViewModel{
     let network : NetworkProtocol?
     var draftorderid = 0
     var bindResultToViewController: (()->()) = {}
+    var favViewModel = FavoritesViewModel()
 //    var cart: [LineItem]? {
 //        didSet{
 //            bindResultToViewController()
@@ -21,29 +22,10 @@ class CartViewModel{
     init() {
         self.network = NetworkManager()
     }
-    /*
-     getAllDrafts()
-     getCartDraftFomApi()
-     */
+   
     
     
-    func getAllDrafts(){
-        network?.fetch(url: URLManager.getUrl(for: .draftOrder), type: DraftOrderResponse.self, completionHandler: { result, error in
-            guard let result = result else{
-                return
-            }
-            print("result of the all draft orders \(result)")
-            for item in result.draft_orders {
-                print("Checking Draft order email: \(item.email ?? "") against \(CurrentCustomer.currentCustomer.email ?? "")")
-                if item.email ?? "".lowercased() == CurrentCustomer.currentCustomer.email{
-                    CurrentCustomer.cartDraftOrderId = item.id ?? 0
-                    break
-                }
-            }
-            print("DraftOrder Id : \(CurrentCustomer.cartDraftOrderId)")
-            self.getCartDraftFomApi()
-        })
-    }
+
     
     func getCartDraftFomApi(){
         network?.fetch(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.cartDraftOrderId)), type: DraftOrderRequest.self, completionHandler: { result, error in

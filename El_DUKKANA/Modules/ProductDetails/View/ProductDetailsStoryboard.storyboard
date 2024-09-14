@@ -38,28 +38,16 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8c6-kD-SUB">
                                                     <rect key="frame" x="8" y="8" width="339" height="177"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMd-t2-CSE">
-                                                    <rect key="frame" x="296.33333333333331" y="8" width="50.666666666666686" height="34"/>
-                                                    <color key="tintColor" red="0.40999192000000001" green="0.1768465042" blue="0.1686159968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
-                                                    <connections>
-                                                        <action selector="addToFavBtnAction:" destination="3We-uJ-5JF" eventType="touchUpInside" id="l5X-ju-fQC"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="pMd-t2-CSE" firstAttribute="top" secondItem="rSV-5R-YqH" secondAttribute="top" constant="8" id="0OH-Ve-MeE"/>
                                                 <constraint firstItem="8c6-kD-SUB" firstAttribute="top" secondItem="rSV-5R-YqH" secondAttribute="top" constant="8" id="BTs-g3-T9l"/>
                                                 <constraint firstItem="8c6-kD-SUB" firstAttribute="leading" secondItem="rSV-5R-YqH" secondAttribute="leading" constant="8" id="CKF-06-Plw"/>
                                                 <constraint firstAttribute="bottom" secondItem="8c6-kD-SUB" secondAttribute="bottom" constant="8" id="L6E-qF-pcd"/>
                                                 <constraint firstAttribute="trailing" secondItem="8c6-kD-SUB" secondAttribute="trailing" constant="8" id="le6-uI-s1G"/>
-                                                <constraint firstAttribute="trailing" secondItem="pMd-t2-CSE" secondAttribute="trailing" constant="8" id="qkd-sj-Rl4"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="355" height="193"/>
                                         <connections>
-                                            <outlet property="addToFavBtn" destination="pMd-t2-CSE" id="e5Y-Ec-gcb"/>
                                             <outlet property="productImage" destination="8c6-kD-SUB" id="rbP-QV-1mp"/>
                                         </connections>
                                     </collectionViewCell>
@@ -188,6 +176,15 @@
                                     <segment title="yellow"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMd-t2-CSE">
+                                <rect key="frame" x="319" y="53" width="50.666666666666686" height="34"/>
+                                <color key="tintColor" red="0.40999192000000001" green="0.1768465042" blue="0.1686159968" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="addToFavBtnAction:" destination="Ba8-8J-X0G" eventType="touchUpInside" id="M5z-90-hOF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fME-a3-ffl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -207,6 +204,7 @@
                             <constraint firstItem="fME-a3-ffl" firstAttribute="bottom" secondItem="pbe-uh-I1U" secondAttribute="bottom" constant="9" id="PIS-7U-mdY"/>
                             <constraint firstItem="fME-a3-ffl" firstAttribute="trailing" secondItem="kMd-oQ-GQr" secondAttribute="trailing" constant="44" id="QOp-Uk-ybf"/>
                             <constraint firstItem="pbe-uh-I1U" firstAttribute="leading" secondItem="fME-a3-ffl" secondAttribute="leading" constant="32" id="T26-CE-oW1"/>
+                            <constraint firstItem="fME-a3-ffl" firstAttribute="trailing" secondItem="pMd-t2-CSE" secondAttribute="trailing" constant="23.329999999999998" id="X6a-wE-Bmd"/>
                             <constraint firstItem="fME-a3-ffl" firstAttribute="trailing" secondItem="05z-hC-PgD" secondAttribute="trailing" constant="23" id="Xhz-Ij-2q4"/>
                             <constraint firstItem="05z-hC-PgD" firstAttribute="leading" secondItem="fME-a3-ffl" secondAttribute="leading" constant="32" id="YJ8-kS-7gN"/>
                             <constraint firstItem="pbe-uh-I1U" firstAttribute="height" secondItem="lvv-VP-kXp" secondAttribute="height" multiplier="0.0610329" id="YVR-Hh-Wig"/>
@@ -217,6 +215,7 @@
                             <constraint firstItem="pbe-uh-I1U" firstAttribute="top" secondItem="7GX-wD-YV1" secondAttribute="bottom" constant="24.670000000000002" id="d5j-AO-T3Q"/>
                             <constraint firstItem="fME-a3-ffl" firstAttribute="trailing" secondItem="W6a-hy-aKi" secondAttribute="trailing" constant="23" id="e1T-ux-sI5"/>
                             <constraint firstItem="XJ7-u6-ib1" firstAttribute="top" secondItem="05z-hC-PgD" secondAttribute="bottom" constant="20.670000000000002" id="eGT-6g-mn8"/>
+                            <constraint firstItem="pMd-t2-CSE" firstAttribute="top" secondItem="lvv-VP-kXp" secondAttribute="top" constant="53" id="gRl-qx-r4d"/>
                             <constraint firstItem="cWH-vk-hW0" firstAttribute="leading" secondItem="fME-a3-ffl" secondAttribute="leading" constant="31" id="i08-2G-nMn"/>
                             <constraint firstItem="JYI-zi-7o5" firstAttribute="leading" secondItem="fME-a3-ffl" secondAttribute="leading" constant="16" id="j9q-d1-4nv"/>
                             <constraint firstItem="GjD-YE-CPs" firstAttribute="leading" secondItem="JYI-zi-7o5" secondAttribute="trailing" constant="38" id="jR9-GP-f8T"/>
@@ -240,6 +239,7 @@
                     </view>
                     <connections>
                         <outlet property="addCartBtn" destination="pbe-uh-I1U" id="NfZ-MT-2tR"/>
+                        <outlet property="addToFavBtn" destination="pMd-t2-CSE" id="Uuh-pv-BJ5"/>
                         <outlet property="brandLbl" destination="jNQ-Uj-gMO" id="wqx-UK-4nQ"/>
                         <outlet property="colorsSegmented" destination="17O-Cb-uRU" id="4UE-z6-eLg"/>
                         <outlet property="descriptionLbl" destination="iNg-Zh-hPg" id="b5D-hH-eHx"/>

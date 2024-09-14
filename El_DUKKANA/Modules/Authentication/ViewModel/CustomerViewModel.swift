@@ -9,6 +9,7 @@ class CustomerViewModel {
     var customerDraftFav: DraftOrderRequest?
     var customerDraftCart: DraftOrderRequest?
     var cartViewModel = CartViewModel()
+    var favViewModel = FavoritesViewModel()
 
     
     init() {
@@ -89,7 +90,7 @@ class CustomerViewModel {
             // Update current customer with the fetched data
             CurrentCustomer.currentCustomer = result.customer
             print("Current Customer: \(CurrentCustomer.currentCustomer)")
-            self.cartViewModel.getAllDrafts()
+            self.getAllDrafts()
 //            print("Current Draft Order : \(CurrentCustomer.currentDraftOrder)")
             
         })
@@ -98,8 +99,9 @@ class CustomerViewModel {
     func prepareDraftOrders() {
         // Setup draft orders for the customer
         
-        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442, email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "#D3", status: "open", line_items: createLineItems(), order_id: "13243585", shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
-        customerDraftCart = customerDraftFav // Example: same draft for cart
+        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: "13243585", shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+        
+            customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: "13243585", shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
     }
     
     func addDraftOrders() {
@@ -136,6 +138,32 @@ class CustomerViewModel {
     func createLineItems() -> [LineItem] {
         // Sample line items
         return [LineItem(id: 1066630381, variant_id: 45726370201838, product_id: 8649736323310, title: "ADIDAS | CLASSIC BACKPACK", variant_title: "OS / black", vendor: "ADIDAS", quantity: 1, name: "ADIDAS | CLASSIC BACKPACK", custom: true, price: "70.00",properties: [])]
+    }
+    
+    func getAllDrafts(){
+        network?.fetch(url: URLManager.getUrl(for: .draftOrder), type: DraftOrderResponse.self, completionHandler: { result, error in
+            guard let result = result else{
+                return
+            }
+            print("result of the all draft orders \(result)")
+            for item in result.draft_orders {
+                print("Checking Draft order email: \(item.email ?? "") against \(CurrentCustomer.currentCustomer.email ?? "")")
+                if item.email ?? "".lowercased() == CurrentCustomer.currentCustomer.email && item.note == "Cart"{
+                    CurrentCustomer.cartDraftOrderId = item.id ?? 0
+                
+                }
+                if item.email ?? "".lowercased() == CurrentCustomer.currentCustomer.email && item.note == "Favorite"{
+                    CurrentCustomer.favDraftOrderId = item.id ?? 0
+                
+                }
+                
+                
+            }
+            print("Cart DraftOrder Id : \(CurrentCustomer.cartDraftOrderId)")
+            print("Fav DraftOrder Id : \(CurrentCustomer.favDraftOrderId)")
+            self.cartViewModel.getCartDraftFomApi()
+            self.favViewModel.getFavDraftFomApi()
+        })
     }
     
 }
