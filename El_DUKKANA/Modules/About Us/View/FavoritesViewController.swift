@@ -23,13 +23,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         
         setUpWishlistCollectionView()
         
-        //favoritesViewModel?.getFavorites()
-//        favoritesViewModel?.bindToFavorites = { [weak self] in
-//            DispatchQueue.main.async {
-//                guard let self = self else { return }
-//                self.WishlistCollectionView.reloadData()
-//            }
-//        }
+
     }
     override func viewWillAppear(_ animated: Bool) {
         customerViewModel.getAllDrafts()
