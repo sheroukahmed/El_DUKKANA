@@ -33,15 +33,15 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        cartVM?.getCartdraftfomApi()
+        cartVM?.getAllDrafts()
+        cartVM?.getCartDraftFomApi()
         
         cartVM?.bindResultToViewController = {
-            if (self.cartVM?.cart?.count) ?? 0 > 0 {
+            if (CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count) > 0 {
                 self.Checkoutbtn.isEnabled = true
             }
             
-            if self.cartVM?.cart?.count == 0{
+            if CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count == 0{
                 self.productstableview.isHidden = true
                 self.emptyimage.isHidden = false
             }
@@ -66,13 +66,13 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cartVM?.cart?.count ?? 0
+        return CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartItemTableViewCell
 //        cell.itemimg.kf.setImage(with: URL(string: (cartVM?.cart?[indexPath.row].[0].value)!))
-        cell.itemname.text = String((cartVM?.cart?[indexPath.row].name?.split(separator: "| ",maxSplits: 1)[1])!)
+        cell.itemname.text = String((CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row].name?.split(separator: "| ",maxSplits: 1)[1])!)
         
         cell.increaseButton.addTarget(self, action: #selector(increaseAction), for: .touchUpInside)
         cell.decreaseButton.addTarget(self, action: #selector(decreaseAction), for: .touchUpInside)
@@ -89,12 +89,12 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete this product from cart?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
-                self.cartVM?.cart?.remove(at: indexPath.row)
+                CurrentCustomer.currentCartDraftOrder.draft_order.line_items.remove(at: indexPath.row)
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .left)
                 tableView.endUpdates()
             
-                if (self.cartVM?.cart?.count)! == 0 {
+                if (CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count) == 0 {
                     self.Checkoutbtn.isEnabled = false
                 }
                 self.updateTotalPrice()
@@ -109,14 +109,14 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     @objc func increaseAction(_ sender: UIButton){
         let point = sender.convert(CGPoint.zero, to: productstableview)
         guard let indexPath = productstableview.indexPathForRow(at: point) else {return}
-        cartVM?.cart?[indexPath.row].quantity! += 1
+        CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row].quantity! += 1
         
         updateTotalPrice()
     }
     @objc func decreaseAction(_ sender: UIButton){
         let point = sender.convert(CGPoint.zero, to: productstableview)
         guard let indexPath = productstableview.indexPathForRow(at: point) else {return}
-        cartVM?.cart?[indexPath.row].quantity! -= 1
+        CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row].quantity! -= 1
         
         updateTotalPrice()
     }

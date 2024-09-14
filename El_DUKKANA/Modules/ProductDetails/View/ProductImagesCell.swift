@@ -9,5 +9,8 @@ import UIKit
 
 class ProductImagesCell: UICollectionViewCell {
     
+     @IBAction func addToFavBtnAction(_ sender: Any) {
+    }
+    @IBOutlet weak var addToFavBtn: UIButton!
     @IBOutlet weak var productImage: UIImageView!
 }
