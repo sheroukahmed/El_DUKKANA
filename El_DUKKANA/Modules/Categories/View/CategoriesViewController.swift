@@ -231,6 +231,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     @objc func favoriteButtonTapped() {
         print("Favorite button tapped")
+        let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
+        if let favorites = self.storyboard?.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
+            favorites.title = "My Wishlist"
+            self.navigationController?.pushViewController(favorites, animated: true)
+        }
     }
     
 

@@ -20,6 +20,8 @@
 		26BBA7D22C93757200554DEA /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA7D12C93757200554DEA /* OrdersViewModel.swift */; };
 		26BBA7D52C937A8000554DEA /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA7D42C937A8000554DEA /* OrdersViewController.swift */; };
 		26BBA7D72C93C1C000554DEA /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA7D62C93C1C000554DEA /* AboutUsViewController.swift */; };
+		26BBA7D92C94D90500554DEA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA7D82C94D90500554DEA /* FavoritesViewController.swift */; };
+		26BBA7DB2C94D91400554DEA /* FavoritesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26BBA7DA2C94D91400554DEA /* FavoritesStoryboard.storyboard */; };
 		26DB3D1C2C8A07E600E4E697 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D1B2C8A07E600E4E697 /* Brands.swift */; };
 		26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3D1D2C8A080B00E4E697 /* Product.swift */; };
 		26DB3D232C8A16F900E4E697 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */; };
@@ -128,6 +130,8 @@
 		26BBA7D12C93757200554DEA /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
 		26BBA7D42C937A8000554DEA /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		26BBA7D62C93C1C000554DEA /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		26BBA7D82C94D90500554DEA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewController.swift; path = "El_DUKKANA/Modules/About Us/View/FavoritesViewController.swift"; sourceTree = SOURCE_ROOT; };
+		26BBA7DA2C94D91400554DEA /* FavoritesStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = FavoritesStoryboard.storyboard; path = "El_DUKKANA/Modules/About Us/View/FavoritesStoryboard.storyboard"; sourceTree = SOURCE_ROOT; };
 		26DB3D1B2C8A07E600E4E697 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		26DB3D1D2C8A080B00E4E697 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		26DB3D222C8A16F900E4E697 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -701,6 +705,8 @@
 		F8E451612C91D506003093B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26BBA7DA2C94D91400554DEA /* FavoritesStoryboard.storyboard */,
+				26BBA7D82C94D90500554DEA /* FavoritesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,6 +888,7 @@
 				268C65452C936E4400EF2F88 /* OrderTableViewCell.xib in Resources */,
 				81D72A982C8912880087371F /* AuthenticationStoryboard.storyboard in Resources */,
 				F8528DB02C913ABF0068858C /* ProfileStoryboard.storyboard in Resources */,
+				26BBA7DB2C94D91400554DEA /* FavoritesStoryboard.storyboard in Resources */,
 				F8E451692C9256AB003093B6 /* CheckoutPaymentStoryboard.storyboard in Resources */,
 				813740662C8B776D001ECAF4 /* ProductDetailsStoryboard.storyboard in Resources */,
 				268C653B2C92265000EF2F88 /* OnBoardingStoryboard.storyboard in Resources */,
@@ -1021,16 +1028,14 @@
 				813740792C8BDEF9001ECAF4 /* Delegation.swift in Sources */,
 				F8528DA42C90A5510068858C /* CartViewController.swift in Sources */,
 				F8D3C1D72C88E06900C9B255 /* SceneDelegate.swift in Sources */,
-
 				268C65412C93630100EF2F88 /* Order.swift in Sources */,
-				8135A4712C9255C100D25B4C /* SignUp2VC.swift in Sources */,
-
 				F8528D9E2C90809C0068858C /* SettingsVM.swift in Sources */,
 				F8E4516F2C934AC2003093B6 /* PaymentViewModel.swift in Sources */,
 				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
 				81B0349C2C8D209100D4A4C5 /* DrowCollectioView.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
+				26BBA7D92C94D90500554DEA /* FavoritesViewController.swift in Sources */,
 				F8528DB22C913AD80068858C /* ProfileViewController.swift in Sources */,
 				813740742C8BAB03001ECAF4 /* ProductImagesCell.swift in Sources */,
 				813740702C8BAA18001ECAF4 /* ReviewsViewController.swift in Sources */,
