@@ -14,6 +14,7 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     @IBOutlet weak var productstableview: UITableView!
     
     var cartVM : CartViewModel?
+    var customerViewModel = CustomerViewModel()
     
     @IBOutlet weak var Checkoutbtn: UIButton!
     @IBOutlet weak var totalprice: UILabel!
@@ -33,9 +34,7 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        cartVM?.getAllDrafts()
-        cartVM?.getCartDraftFomApi()
-        
+        customerViewModel.getAllDrafts()        
         cartVM?.bindResultToViewController = {
             if (CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count) > 0 {
                 self.Checkoutbtn.isEnabled = true
@@ -72,7 +71,7 @@ class CartViewController: UIViewController , UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartItemTableViewCell
 //        cell.itemimg.kf.setImage(with: URL(string: (cartVM?.cart?[indexPath.row].[0].value)!))
-        cell.itemname.text = String((CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row].name?.split(separator: "| ",maxSplits: 1)[1])!)
+        cell.itemname.text = CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row].name
         
         cell.increaseButton.addTarget(self, action: #selector(increaseAction), for: .touchUpInside)
         cell.decreaseButton.addTarget(self, action: #selector(decreaseAction), for: .touchUpInside)

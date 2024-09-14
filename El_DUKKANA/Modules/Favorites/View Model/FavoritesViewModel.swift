@@ -26,6 +26,18 @@ class FavoritesViewModel {
         
         
     }
+
+    func getFavDraftFomApi(){
+        network?.fetch(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.favDraftOrderId)), type: DraftOrderRequest.self, completionHandler: { result, error in
+            
+            guard let result = result else{
+                return
+            }
+            CurrentCustomer.currentFavDraftOrder.draft_order.line_items = result.draft_order.line_items
+            CurrentCustomer.currentFavDraftOrder.draft_order = result.draft_order
+            
+        })
+    }
     
     
     
