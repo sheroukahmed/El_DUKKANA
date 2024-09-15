@@ -15,6 +15,12 @@ struct CustomerResult: Codable {
     var customer :Customer
 
 }
+struct AddressRequest: Codable{
+    var customer_address : CustomerAddress
+}
+struct AddressesResponse : Codable{
+    var addresses : [CustomerAddress]
+}
 
 struct Customer: Codable {
     var id: Int?
@@ -36,4 +42,5 @@ struct CustomerAddress: Codable {
     var province: String?
     var country: String?
     var zip: String?
+    var id : Int?
 }

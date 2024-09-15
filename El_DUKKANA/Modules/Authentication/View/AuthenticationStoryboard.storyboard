@@ -114,6 +114,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="i8w-IQ-RWh" id="uIr-jz-B4H"/>
                         <outlet property="emailTF" destination="Go2-Ej-6wK" id="AAg-uM-byM"/>
                         <outlet property="forgotPasswordBtn" destination="ZPZ-6s-oFN" id="JfF-5S-hJf"/>
                         <outlet property="loginBtn" destination="TIv-KP-bx0" id="WvK-31-Asv"/>
