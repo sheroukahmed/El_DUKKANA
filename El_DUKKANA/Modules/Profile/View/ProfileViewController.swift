@@ -76,6 +76,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             ProfileViewController.isUser = false
         }
         getView(isLogin: ProfileViewController.isUser )
+        OrdersTableView.reloadData()
+        WishlistCollectionView.reloadData()
     }
     
     func setUpOrderTableView() {
@@ -137,8 +139,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ProfileViewController.isUser ? 4 : 0
+        if ProfileViewController.isUser {
+            if CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count > 4 {
+                return 4
+            } else {
+                return CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
+            }
+        }
+        return 0
     }
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -148,9 +158,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
         if ProfileViewController.isUser  {
-            let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
-            
-            cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+            let lineItems = CurrentCustomer.currentFavDraftOrder.draft_order.line_items
+            if indexPath.row < lineItems.count {
+                let favItem = lineItems[indexPath.row]
+                
+                cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+            }
         }
         cell.layer.cornerRadius = 20
         return cell

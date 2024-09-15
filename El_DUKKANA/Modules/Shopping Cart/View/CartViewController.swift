@@ -38,12 +38,15 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cartVM?.bindResultToViewController = {
             self.updateTotalPrice()
             self.productstableview.reloadData()
+            self.checkIfCartIsEmpty()
         }
+        checkIfCartIsEmpty()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cartVM?.getCartDraftFromApi()
+        checkIfCartIsEmpty()
     }
     
     
@@ -106,6 +109,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.updateTotalPrice()
                 self.productVm?.updateCartDraftOrder()
                 
+                self.checkIfCartIsEmpty()
+                
                 DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(5)) {
                     self.cartVM?.getCartDraftFromApi()}}
             
@@ -127,6 +132,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
        productstableview.reloadRows(at: [indexPath], with: .automatic)
        productstableview.reloadData()
+        
+        checkIfCartIsEmpty()
    }
 
    @objc func decreaseAction(_ sender: UIButton) {
@@ -141,6 +148,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         
            productstableview.reloadRows(at: [indexPath], with: .automatic)
            productstableview.reloadData()
+           
+           checkIfCartIsEmpty()
        }
    }
     
@@ -152,6 +161,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.navigationController?.pushViewController(Checkout, animated: true)
         }
         UIAlertController.showNoConnectionAlert(self: self)
+    }
+    
+    func checkIfCartIsEmpty() {
+        let isEmpty = CurrentCustomer.currentCartDraftOrder.draft_order.line_items.isEmpty
+        
+        productstableview.isHidden = isEmpty
+        Checkoutbtn.isHidden = isEmpty
+        emptyimage.isHidden = !isEmpty
     }
     
 }

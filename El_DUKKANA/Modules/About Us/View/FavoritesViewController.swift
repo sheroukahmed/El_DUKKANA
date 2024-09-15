@@ -11,6 +11,7 @@ import Alamofire
 class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var WishlistCollectionView: UICollectionView!
+    @IBOutlet weak var noFavoritesImage: UIImageView!
     
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
@@ -20,10 +21,12 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpWishlistCollectionView()
+        checkIfFavoritesIsEmpty()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         customerViewModel.getAllDrafts()
+        checkIfFavoritesIsEmpty()
         self.WishlistCollectionView.reloadData()
     }
     
@@ -41,7 +44,9 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
+        let count = CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
+        checkIfFavoritesIsEmpty()
+        return count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -89,5 +94,11 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
             UIAlertController.showNoConnectionAlert(self: self)
         }
     }
-
+    
+    func checkIfFavoritesIsEmpty() {
+        let isEmpty = CurrentCustomer.currentFavDraftOrder.draft_order.line_items.isEmpty
+        
+        WishlistCollectionView.isHidden = isEmpty
+        noFavoritesImage.isHidden = !isEmpty
+    }
 }
