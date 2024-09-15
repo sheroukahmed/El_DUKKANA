@@ -19,6 +19,7 @@ class paymentViewModel {
     
     var paymentStatusUpdate: ((PKPaymentAuthorizationResult) -> Void)?
     
+    
     init(merchantID: String, supportedNetworks: [PKPaymentNetwork], supportedCountries: Set<String>, countryCode: String, currencyCode: String, paymentStatusUpdate: ( (PKPaymentAuthorizationResult) -> Void)? = nil) {
         self.merchantID = merchantID
         self.supportedNetworks = supportedNetworks
