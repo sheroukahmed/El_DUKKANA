@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
             self.signOutBtn.isHidden = true
         }
         print(CurrentCustomer.currentCustomer)
-        view.backgroundColor = UIColor(named: "Color")
+        view.backgroundColor = UIColor(named: "Color 1")
 
         // MARK: - Currency list
         let CurrencyItemAction = { (action: UIAction) in

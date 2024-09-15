@@ -10,7 +10,6 @@ import PassKit
 
 class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewControllerDelegate {
     
-
     @IBOutlet weak var Address1: UILabel!
     
     @IBOutlet weak var Address2: UILabel!
@@ -30,17 +29,29 @@ class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewContr
     
     var paymentVM: paymentViewModel?
     
+    var checkoutVM : CheckoutViewModel?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "Color 1")
+        checkoutVM = CheckoutViewModel()
+        checkoutVM?.getDraftOrder()
+        checkoutVM?.bindResultToViewController = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.TotalPrice.text = self.checkoutVM?.checkoutDraft?.total_price
+                self.priceDiscount.text = self.checkoutVM?.checkoutDraft?.total_price
+            }
+        }
         
         paymentVM = paymentViewModel(
             merchantID: "merchant.com.example",
             supportedNetworks: [.visa, .masterCard, .amex],
             supportedCountries: ["EG", "US"],
             countryCode: "EG",
-            currencyCode: "USD",
-            totalPrice: NSDecimalNumber(string: TotalPrice.text ?? "0.00"),
-            discountPrice: NSDecimalNumber(string: priceDiscount.text ?? "0.00")
+            currencyCode: "USD"
         )
 
         paymentVM?.paymentStatusUpdate = { [weak self] result in
@@ -55,13 +66,26 @@ class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewContr
     }
     
     @IBAction func SelectAddressbtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
+        if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
+            addresses.title = "My Addresses"
+            self.navigationController?.pushViewController(addresses, animated: true)
+        }
+        
     }
     
     @IBAction func ApplyCodebtn(_ sender: Any) {
+        
+       var priceafterdisc = checkoutVM?.calculatePriceWithDiscount(enteredcode: codetextF.text ?? "", totalPriceString: checkoutVM?.checkoutDraft?.total_price ?? "")
+        priceDiscount.text = "\(priceafterdisc!)"
+        
     }
     
     
+    
+    
     @IBAction func Paymentbtn(_ sender: Any) {
+        paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
         initiatePayment()
     }
     
@@ -96,7 +120,9 @@ class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewContr
         switch result.status {
         case .success:
             let alert = UIAlertController(title: "Payment Successful", message: "Your payment was processed successfully.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default)
+            let okAction = UIAlertAction(title: "OK", style: .default){ [weak self] _ in
+                self?.checkoutVM?.draftOrderCompleted()
+            }
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
         case .failure:

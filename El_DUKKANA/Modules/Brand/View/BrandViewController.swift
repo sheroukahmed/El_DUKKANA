@@ -28,6 +28,9 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "Color 1")
+        BrandProductCollectionView.backgroundColor = UIColor(named: "Color 1")
         print(CurrentCustomer.currentCustomer)
         setupUI()
         
