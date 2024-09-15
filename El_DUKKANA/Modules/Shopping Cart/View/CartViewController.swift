@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Alamofire
 
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -92,14 +93,11 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 print(CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count)
                 CurrentCustomer.currentCartDraftOrder.draft_order.line_items.remove(at: indexPath.row)
-                
-                print("YALAAAAAHWAAAAYYY")
-                
+                                
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .left)
 
                 tableView.endUpdates()
-                print("YALAAAAAHWAAAAYYY2222")
                 print(CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count)
                 
                 if (CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count) == 0 {
@@ -110,8 +108,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(5)) {
                     self.cartVM?.getCartDraftFromApi()}}
-                                    
-            
             
             let no = UIAlertAction(title: "No", style: .cancel)
             alert.addAction(yes)
@@ -147,12 +143,16 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
            productstableview.reloadData()
        }
    }
+    
     @IBAction func GotoCheckoutbtn(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "CheckoutPaymentStoryboard", bundle: nil)
-        let Checkout = storyboard.instantiateViewController(identifier: "Checkout") as CheckoutViewController
-        Checkout.title = "CheckOut"
-        self.navigationController?.pushViewController(Checkout, animated: true)
-        
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            let storyboard = UIStoryboard(name: "CheckoutPaymentStoryboard", bundle: nil)
+            let Checkout = storyboard.instantiateViewController(identifier: "Checkout") as CheckoutViewController
+            Checkout.title = "CheckOut"
+            self.navigationController?.pushViewController(Checkout, animated: true)
+        }
+        UIAlertController.showNoConnectionAlert(self: self)
     }
+    
 }
 

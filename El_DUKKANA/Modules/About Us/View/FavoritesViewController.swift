@@ -15,16 +15,13 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
 
     var customerViewModel = CustomerViewModel()
-
     var favoritesViewModel = FavoritesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpWishlistCollectionView()
-        
-
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         customerViewModel.getAllDrafts()
         self.WishlistCollectionView.reloadData()
@@ -88,13 +85,8 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
                 productDetails.modalTransitionStyle = .crossDissolve
                 self.present(productDetails, animated: true)
             }
-        
-            
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
+            UIAlertController.showNoConnectionAlert(self: self)
         }
     }
 

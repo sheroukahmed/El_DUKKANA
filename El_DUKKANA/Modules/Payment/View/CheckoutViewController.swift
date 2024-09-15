@@ -7,31 +7,21 @@
 
 import UIKit
 import PassKit
+import Alamofire
 
 class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewControllerDelegate {
     
     @IBOutlet weak var Address1: UILabel!
-    
     @IBOutlet weak var Address2: UILabel!
-    
     @IBOutlet weak var city: UILabel!
-    
     @IBOutlet weak var ZipCode: UILabel!
-    
     @IBOutlet weak var country: UILabel!
-    
-    
     @IBOutlet weak var codetextF: UITextField!
-    
     @IBOutlet weak var TotalPrice: UILabel!
-    
     @IBOutlet weak var priceDiscount: UILabel!
     
     var paymentVM: paymentViewModel?
-    
     var checkoutVM : CheckoutViewModel?
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,40 +43,39 @@ class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewContr
             countryCode: "EG",
             currencyCode: "USD"
         )
-
         paymentVM?.paymentStatusUpdate = { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.handlePaymentResult(result: result)
             }
         }
-        
-        
-        
     }
     
     @IBAction func SelectAddressbtn(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
-        if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
-            addresses.title = "My Addresses"
-            self.navigationController?.pushViewController(addresses, animated: true)
-        }
-        
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
+            if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
+                addresses.title = "My Addresses"
+                self.navigationController?.pushViewController(addresses, animated: true)
+            } }
+        UIAlertController.showNoConnectionAlert(self: self)
     }
     
     @IBAction func ApplyCodebtn(_ sender: Any) {
-        
-       var priceafterdisc = checkoutVM?.calculatePriceWithDiscount(enteredcode: codetextF.text ?? "", totalPriceString: checkoutVM?.checkoutDraft?.total_price ?? "")
-        priceDiscount.text = "\(priceafterdisc!)"
-        
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            var priceafterdisc = checkoutVM?.calculatePriceWithDiscount(enteredcode: codetextF.text ?? "", totalPriceString: checkoutVM?.checkoutDraft?.total_price ?? "")
+            priceDiscount.text = "\(priceafterdisc!)"
+        }
+        UIAlertController.showNoConnectionAlert(self: self)
     }
     
     
-    
-    
     @IBAction func Paymentbtn(_ sender: Any) {
-        paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
-        initiatePayment()
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
+            initiatePayment()
+        }
+        UIAlertController.showNoConnectionAlert(self: self)
     }
     
     func initiatePayment() {

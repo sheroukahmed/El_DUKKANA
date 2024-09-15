@@ -169,14 +169,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 productDetails.modalTransitionStyle = .crossDissolve
                 self.present(productDetails, animated: true)
             }
-        
-            
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
-        }
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
 
     
@@ -224,45 +218,60 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func cartButtonTapped() {
-        print("Cart button tapped")
-        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
-        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
-            cart.title = "My Cart"
-            self.navigationController?.pushViewController(cart, animated: true)
-        }
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+                if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+                    cart.title = "My Cart"
+                    self.navigationController?.pushViewController(cart, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)        }
     }
-
+    
     @objc func settingsButtonTapped() {
-        print("Settings button tapped")
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
         if let settings = storyboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as? SettingsViewController {
             settings.title = "Settings"
+            if CurrentCustomer.currentCustomer.email != nil {
+                settings.signOutBtn.isHidden = true
+            }
             self.navigationController?.pushViewController(settings, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)    }
     }
     
     @IBAction func seeMoreOrders(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         if let orders = self.storyboard?.instantiateViewController(withIdentifier: "myOrders") as? OrdersViewController {
             orders.title = "My Orders"
             self.navigationController?.pushViewController(orders, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     @IBAction func seeMoreWishlist(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
         if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
             favorites.title = "My Wishlist"
             self.navigationController?.pushViewController(favorites, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     
     @IBAction func goToAddresses(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
         if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
             addresses.title = "My Addresses"
             self.navigationController?.pushViewController(addresses, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     @IBAction func toLogin(_ sender: Any) {
@@ -280,4 +289,5 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         signUpVC.modalTransitionStyle = .crossDissolve
        present(signUpVC, animated: true)
     }
+    
 }

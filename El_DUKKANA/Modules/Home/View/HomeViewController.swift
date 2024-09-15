@@ -6,11 +6,10 @@
 //
 
 import UIKit
-
 import Kingfisher
 import Alamofire
 
-class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
+class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var searchBar: UINavigationItem!
     @IBOutlet weak var AdsCollectionView: UICollectionView!
@@ -65,7 +64,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         adsTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(autoScrollAds), userInfo: nil, repeats: true)
 
         
-        
         // MARK: - Brands Collection View SetUp
         BrandsCollectionView.delegate = self
         BrandsCollectionView.dataSource = self
@@ -79,10 +77,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         BrandsCollectionView.setCollectionViewLayout(brandsLayout, animated: true)
 
-        
-
         homeViewModel = HomeViewModel()
-       
 
         homeViewModel?.getBrands()
         homeViewModel?.bindToHomeViewController = { [weak self] in DispatchQueue.main.async {
@@ -92,9 +87,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         
     }
-    
-    
-    
     
     // MARK: - Collection View Data Source Methods
     
@@ -119,6 +111,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             cell.cuponImage.image = Adsimages[indexPath.row]
             Adsimagepanel.currentPage = indexPath.row
             return cell
+            
         } else if collectionView == BrandsCollectionView {
             let brandCell = BrandsCollectionView.dequeueReusableCell(withReuseIdentifier: "BrandsCell", for: indexPath) as! BrandsCollectionViewCell
 
@@ -126,64 +119,48 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             print(homeViewModel?.brands?[indexPath.row].image?.src ?? "No Image URL")
 
             brandCell.layer.cornerRadius = 30
-
-  
             return brandCell
         }
         return UICollectionViewCell()
-
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
             if collectionView == AdsCollectionView {
-                let selectedPriceRule = priceRulesForImages[indexPath.row]
-                homeViewModel?.selectedpricerule = selectedPriceRule.rawValue
-     
-                homeViewModel?.getDiscount()
-                homeViewModel?.discountCodeUpdated = { [weak self] in
-                    DispatchQueue.main.async {
-                        guard let self = self else { return }
-                        UIPasteboard.general.string = self.homeViewModel?.discountCode
-                        let alert = UIAlertController(title: "Copied!", message: "Discount code has been copied to clipboard.", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(okAction)
-                        self.present(alert, animated: true, completion: nil)
+                if CurrentCustomer.currentCustomer.email != nil {
+                    let selectedPriceRule = priceRulesForImages[indexPath.row]
+                    homeViewModel?.selectedpricerule = selectedPriceRule.rawValue
+                    
+                    homeViewModel?.getDiscount()
+                    homeViewModel?.discountCodeUpdated = { [weak self] in
+                        DispatchQueue.main.async {
+                            guard let self = self else { return }
+                            UIPasteboard.general.string = self.homeViewModel?.discountCode
+                            UIAlertController.showDiscountAlert(self: self)
+                        }
                     }
-     
+                    UIPasteboard.general.string = homeViewModel?.discountCode
+                } else {
+                    UIAlertController.showGuestAlert(self: self)
                 }
-                print(homeViewModel?.discountCode ?? "ooooooooooo")
-                UIPasteboard.general.string = homeViewModel?.discountCode
-                
-                
-                let alert = UIAlertController(title: "Copied!", message: "Text has been copied to clipboard.", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(okAction)
-                present(alert, animated: true, completion: nil)
-        
-        
-            }else{
+            } else {
                 if collectionView == BrandsCollectionView {
-                    if NetworkReachabilityManager()?.isReachable ?? false {
-                        if let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as? BrandViewController {
-                            brandProducts.hidden = true
-                            brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
-                            brandProducts.title = homeViewModel?.brands?[indexPath.row].title
-                            
-                            self.navigationController?.pushViewController(brandProducts, animated: true)
-                        }} else {
-                        let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .cancel)
-                        alert.addAction(ok)
-                        present(alert, animated: true)
-                    }
-                }
-                
-            }
+                    if let brandProducts = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as? BrandViewController {
+                        brandProducts.hidden = true
+                        brandProducts.brandViewModel = BrandViewModel(brand: homeViewModel?.brands?[indexPath.row].title ?? "")
+                        brandProducts.title = homeViewModel?.brands?[indexPath.row].title
+                        
+                        self.navigationController?.pushViewController(brandProducts, animated: true)
+                    }}}
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)
         }
+    }
     
     // MARK: - Ads Collection View Layout Detailes
     
-    @objc func autoScrollAds() {
+    @objc func autoScrollAds() { 
         pagecontrol.moveNextIndex(specificCount:Adsimages.count ,specificCollectionView:AdsCollectionView, pageController: Adsimagepanel)
         }
     
@@ -283,33 +260,47 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     
     @objc func searchButtonTapped() {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let products = self.storyboard?.instantiateViewController(withIdentifier: "brandProducts") as! BrandViewController
 
         products.isSearching = true
         products.hidden = false
         navigationItem.backButtonTitle = ""
         self.navigationController?.pushViewController(products, animated: true)
-
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)
+    }
     }
 
     @objc func cartButtonTapped() {
-        print("Cart button tapped")
-        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
-        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
-            cart.title = "My Cart"
-            self.navigationController?.pushViewController(cart, animated: true)
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+                if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+                    cart.title = "My Cart"
+                    self.navigationController?.pushViewController(cart, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)
         }
     }
 
     @objc func favoriteButtonTapped() {
-        print("Favorite button tapped")
-        let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
-        if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
-            favorites.title = "My Wishlist"
-            self.navigationController?.pushViewController(favorites, animated: true)
+        if NetworkReachabilityManager()?.isReachable ?? false {
+        if CurrentCustomer.currentCustomer.email != nil {
+            print("Favorite button tapped")
+            let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
+            if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
+                favorites.title = "My Wishlist"
+                self.navigationController?.pushViewController(favorites, animated: true)
+            }
+        } else {
+            UIAlertController.showGuestAlert(self: self)
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)
         }
     }
-   
 
-    
 }

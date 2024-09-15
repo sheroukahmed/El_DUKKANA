@@ -121,21 +121,7 @@ class ProductDetailsVC: UIViewController {
                 
             
         }else {
-            let alert = UIAlertController(title: "SignIn First", message: "You can't add to cart you have to sign in first", preferredStyle: .alert)
-            let signIn = UIAlertAction(title: "SignIn", style: .default) { action in
-                let storyBoard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
-                if let vc = storyBoard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
-                    vc.modalTransitionStyle = .crossDissolve
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
-            }
-                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
-            alert.addAction(signIn)
-            alert.addAction(cancle)
-            
-            self.present(alert, animated: true)
-            
+            UIAlertController.showGuestAlert(self: self)
         }
     }
     
@@ -187,21 +173,7 @@ class ProductDetailsVC: UIViewController {
             
             
         }else {
-            let alert = UIAlertController(title: "SignIn First", message: "You can't add to Fav you have to sign in first", preferredStyle: .alert)
-            let signIn = UIAlertAction(title: "SignIn", style: .default) { action in
-                let storyBoard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
-                if let vc = storyBoard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
-                    vc.modalTransitionStyle = .crossDissolve
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
-            }
-                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
-            alert.addAction(signIn)
-            alert.addAction(cancle)
-            
-            self.present(alert, animated: true)
-            
+            UIAlertController.showGuestAlert(self: self)
         }
     }
     

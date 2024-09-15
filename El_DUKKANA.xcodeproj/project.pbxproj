@@ -35,6 +35,7 @@
 		26E4205F2C976AEC006968D7 /* MockNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4205E2C976AEC006968D7 /* MockNetwork.swift */; };
 		26E420672C976FD6006968D7 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420662C976FD6006968D7 /* MockNetworkManager.swift */; };
 		26E420692C977034006968D7 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420682C977034006968D7 /* NetworkManagerTests.swift */; };
+		26E4206C2C97926A006968D7 /* UIAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4206B2C97926A006968D7 /* UIAlertExtension.swift */; };
 		26FBE3232C8CBE5000263DE3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FBE3212C8CBE5000263DE3 /* ProductCell.swift */; };
 		26FBE3242C8CBE5000263DE3 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26FBE3222C8CBE5000263DE3 /* ProductCell.xib */; };
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
@@ -154,6 +155,7 @@
 		26E4205E2C976AEC006968D7 /* MockNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetwork.swift; sourceTree = "<group>"; };
 		26E420662C976FD6006968D7 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		26E420682C977034006968D7 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		26E4206B2C97926A006968D7 /* UIAlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertExtension.swift; sourceTree = "<group>"; };
 		26FBE3212C8CBE5000263DE3 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = El_DUKKANATests/ProductCell.swift; sourceTree = SOURCE_ROOT; };
 		26FBE3222C8CBE5000263DE3 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = El_DUKKANATests/ProductCell.xib; sourceTree = SOURCE_ROOT; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
@@ -412,6 +414,14 @@
 			path = "Network Tests";
 			sourceTree = "<group>";
 		};
+		26E4206A2C979241006968D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26E4206B2C97926A006968D7 /* UIAlertExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5EE553653085591DB0798C76 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +660,7 @@
 		F8D3C1D32C88E06900C9B255 /* El_DUKKANA */ = {
 			isa = PBXGroup;
 			children = (
+				26E4206A2C979241006968D7 /* Extensions */,
 				F8E451722C93C435003093B6 /* El_DUKKANA.entitlements */,
 				8160D3992C93448D0026CE11 /* GoogleService-Info.plist */,
 				81B0349D2C8D218300D4A4C5 /* Utilities */,
@@ -1135,6 +1146,7 @@
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
+				26E4206C2C97926A006968D7 /* UIAlertExtension.swift in Sources */,
 				26E420582C94FDED006968D7 /* AddressesTableViewCell.swift in Sources */,
 				26BBA7D72C93C1C000554DEA /* AboutUsViewController.swift in Sources */,
 				F8E451642C91D539003093B6 /* FavoritesViewModel.swift in Sources */,

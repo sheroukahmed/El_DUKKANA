@@ -133,14 +133,8 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
                 productDetails.modalTransitionStyle = .crossDissolve
                 self.present(productDetails, animated: true)
             }
-        
-            
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
-        }
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     private func setupUI() {
@@ -210,43 +204,61 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
   
     
     @objc func searchButtonTapped() {
-        print("Search button tapped")
-       
-        if startSearch {
-            self.searchBar.isHidden = false
-            self.searchBarBackBtn.isHidden = false
-            startSearch = startSearch ? false : true
-            
-        }else{
-            self.searchBar.isHidden = true
-            self.searchBarBackBtn.isHidden = true
-            startSearch = startSearch ? false : true
-        }
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if startSearch {
+                self.searchBar.isHidden = false
+                self.searchBarBackBtn.isHidden = false
+                startSearch = startSearch ? false : true
+            } else{
+                self.searchBar.isHidden = true
+                self.searchBarBackBtn.isHidden = true
+                startSearch = startSearch ? false : true
+            }
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
 
     @objc func cartButtonTapped() {
-        print("Cart button tapped")
-        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
-        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
-            cart.title = "My Cart"
-            self.navigationController?.pushViewController(cart, animated: true)
-        }
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+                if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+                    cart.title = "My Cart"
+                    self.navigationController?.pushViewController(cart, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)
+            }
     }
 
+
     @objc func favoriteButtonTapped() {
-        print("Favorite button tapped")
-        let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
-        if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
-            favorites.title = "My Wishlist"
-            self.navigationController?.pushViewController(favorites, animated: true)
-        }
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
+                if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
+                    favorites.title = "My Wishlist"
+                    self.navigationController?.pushViewController(favorites, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)            }
     }
+    
     
 
     @IBAction func searchBackBtn(_ sender: Any) {
-        self.searchBar.isHidden = true
-        self.searchBarBackBtn.isHidden = true
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            self.searchBar.isHidden = true
+            self.searchBarBackBtn.isHidden = true
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)
+        }
     }
+    
     
     func presentAlert(_ alert: UIAlertController) {
                 self.present(alert, animated: true)

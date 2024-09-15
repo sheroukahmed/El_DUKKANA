@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AddAddressViewController: UIViewController {
 
@@ -27,12 +28,15 @@ class AddAddressViewController: UIViewController {
     
 
     @IBAction func saveAddress(_ sender: Any) {
-        CurrentCustomer.customerAddress.customer_address = CustomerAddress(address1: address1Txt.text ?? "", address2: address2Txt.text ?? "", city: cityTxt.text ?? "", country: countryTxt.text ?? "", zip: zipTxt.text ?? "")
-        
-        viewModel.addNewAddress()
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(3)) {
-            self.delegate?.didAddAddress()
-                        }
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            CurrentCustomer.customerAddress.customer_address = CustomerAddress(address1: address1Txt.text ?? "", address2: address2Txt.text ?? "", city: cityTxt.text ?? "", country: countryTxt.text ?? "", zip: zipTxt.text ?? "")
+            
+            viewModel.addNewAddress()
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(3)) {
+                self.delegate?.didAddAddress()
+            }
+        }
+        UIAlertController.showNoConnectionAlert(self: self)
         
         
     }
