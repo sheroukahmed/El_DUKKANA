@@ -12,6 +12,7 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
     
     
     @IBOutlet weak var AddressesTableView: UITableView!
+    @IBOutlet weak var noAddressImage: UIImageView!
     
     var addressesViewModel = AddressesViewModel()
     
@@ -19,6 +20,7 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         setUpAddressesTableView()
+        toggleNoDataView()
         
          
         addressesViewModel.getAllAddresses()
@@ -26,6 +28,7 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.AddressesTableView.reloadData()
+                self.toggleNoDataView()
             }
         }
        
@@ -55,6 +58,11 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
         return 256
     }
     
+    private func toggleNoDataView() {
+            let noAddresses = addressesViewModel?.addresses?.isEmpty ?? true
+            AddressesTableView.isHidden = noAddresses
+            noAddressImage.isHidden = !noAddresses
+    }
     
     @IBAction func addNewAddress(_ sender: Any) {
         if let address = self.storyboard?.instantiateViewController(withIdentifier: "addNewAddress") as? AddAddressViewController {
