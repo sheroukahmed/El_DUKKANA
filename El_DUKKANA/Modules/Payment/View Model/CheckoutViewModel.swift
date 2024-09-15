@@ -8,8 +8,8 @@
 import Foundation
 
 class CheckoutViewModel {
-    var draftorderid = 0
-    var customerDraft: DraftOrderRequest?
+
+    var checkoutDraft: DraftOrder?
     let network : NetworkProtocol?
     var bindResultToViewController: (()->()) = {}
     
@@ -18,11 +18,52 @@ class CheckoutViewModel {
         self.network = NetworkManager()
     }
     
+    func calculatePriceWithDiscount(enteredcode :String , totalPriceString :String) -> Double {
+        guard let totalPrice = Double(totalPriceString) else {
+            
+            return Double(totalPriceString ) ?? 0.0
+        }
+        
+        switch enteredcode {
+        case "SUMMERSALE25OFF":
+            return totalPrice * (1 - (discountValue.sale25.rawValue / 100))
+        case "SUMMERSALE10OFF":
+            return totalPrice * (1 - (discountValue.sale10.rawValue / 100))
+        case "SUMMERSALE30OFF":
+            return totalPrice * (1 - (discountValue.sale30.rawValue / 100))
+        case "SUMMERSALE40OFF":
+            return totalPrice * (1 - (discountValue.sale40.rawValue / 100))
+        case "SUMMERSALE50OFF":
+            return totalPrice * (1 - (discountValue.sale50.rawValue / 100))
+        default:
+
+            return totalPrice
+        }
+    }
+    
+    
+    func getDraftOrder (){
+        network?.fetch(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.cartDraftOrderId)), type: DraftOrderRequest.self, completionHandler: { result, error in
+            guard let result = result else { return }
+            self.checkoutDraft = result.draft_order
+            self.bindResultToViewController()
+        })
+    }
+    
     func draftOrderCompleted(){
-        var cartDraftOrderId = CurrentCustomer.currentCartDraftOrder.draft_order.id
-        network?.Put(url: URLManager.getUrl(for: .drafttorderForOrder(draftorderId: draftorderid)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
+        var cartDraftOrderId = CurrentCustomer.currentCartDraftOrder.draft_order.id ?? 0
+        network?.Put(url: URLManager.getUrl(for: .drafttorderForOrder(draftorderId: cartDraftOrderId)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
             print(result)
         })
         
     }
 }
+
+enum discountValue :Double {
+    case sale10 = 10.0
+    case sale25 = 25.0
+    case sale30 = 30.0
+    case sale50 = 50.0
+    case sale40 = 40.0
+}
+

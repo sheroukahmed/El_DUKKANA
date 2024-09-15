@@ -39,7 +39,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor(named: "Color 1")
+        BrandsCollectionView.backgroundColor = UIColor(named: "Color 1")
         setupUI()
 
         print(CurrentCustomer.currentCustomer)

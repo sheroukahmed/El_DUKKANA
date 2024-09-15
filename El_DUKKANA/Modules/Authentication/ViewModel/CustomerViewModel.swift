@@ -161,7 +161,7 @@ class CustomerViewModel {
             }
             print("Cart DraftOrder Id : \(CurrentCustomer.cartDraftOrderId)")
             print("Fav DraftOrder Id : \(CurrentCustomer.favDraftOrderId)")
-            self.cartViewModel.getCartDraftFomApi()
+            self.cartViewModel.getCartDraftFromApi()
             self.favViewModel.getFavDraftFomApi()
         })
     }

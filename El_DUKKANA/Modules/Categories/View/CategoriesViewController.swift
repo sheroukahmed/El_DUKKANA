@@ -31,6 +31,8 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "Color 1")
+        ProductsCategoriesCollectionView.backgroundColor = UIColor(named: "Color 1")
     
         print(CurrentCustomer.currentCustomer)
         searchBarBackBtn.isHidden = true

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="98A-Cd-45J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="98A-Cd-45J">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El Dukkana 1" translatesAutoresizingMaskIntoConstraints="NO" id="Rlc-fd-dig">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El_Dukkana-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="Rlc-fd-dig">
                                 <rect key="frame" x="80" y="55" width="200" height="50"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-4s-jep">
@@ -176,7 +175,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="IDK-g9-aDe">
                                 <rect key="frame" x="16" y="110" width="361" height="22"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El Dukkana 1" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-VU-FFo">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El_Dukkana-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-VU-FFo">
                                 <rect key="frame" x="80" y="55" width="200" height="50"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="75b-9u-yg9">
@@ -331,7 +330,7 @@
                                     <outlet property="delegate" destination="PwD-Gt-7nd" id="fS8-uo-Tkk"/>
                                 </connections>
                             </searchBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El Dukkana 1" translatesAutoresizingMaskIntoConstraints="NO" id="bxs-c7-j7J">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El_Dukkana-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="bxs-c7-j7J">
                                 <rect key="frame" x="80" y="52" width="200" height="50"/>
                             </imageView>
                         </subviews>
@@ -465,7 +464,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="El Dukkana 1" width="1070" height="214"/>
+        <image name="El_Dukkana-removebg-preview" width="1070" height="214"/>
         <image name="Line" width="824" height="40"/>
         <image name="No Products Available" width="1587" height="2245"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>

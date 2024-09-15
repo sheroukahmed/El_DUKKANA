@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         print(CurrentCustomer.currentCustomer)
-        view.backgroundColor = UIColor(named: "Color")
+        view.backgroundColor = UIColor(named: "Color 1")
 
         // MARK: - Currency list
         let CurrencyItemAction = { (action: UIAction) in
