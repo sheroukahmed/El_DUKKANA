@@ -89,7 +89,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ProfileViewController.isUser ? 2 : 0
+        if ProfileViewController.isUser {
+            if ordersViewModel?.orders?.count ?? 0 > 2 {
+                return 2
+            } else {
+                return ordersViewModel?.orders?.count ?? 0
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
