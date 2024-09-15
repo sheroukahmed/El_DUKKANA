@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var moreWishlistButton: UIButton!
     @IBOutlet weak var userView: UIView!
     
+    static var isUser = true
+    
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
     var ordersViewModel: OrdersViewModel?
@@ -36,15 +38,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         userFirstName.text = CurrentCustomer.currentCustomer.first_name
         userEmail.text = CurrentCustomer.currentCustomer.email
         
-        getView(isLogin: true)
         
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person.crop.circle.fill"), selectedImage: UIImage(named: "person.crop.circle"))
 
         setupUI()
+       
         setUpOrderTableView()
         setUpWishlistCollectionView()
         
@@ -66,6 +68,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if CurrentCustomer.currentCustomer.email != nil {
+            ProfileViewController.isUser = true
+        }
+        else {
+            ProfileViewController.isUser = false
+        }
+        getView(isLogin: ProfileViewController.isUser )
+    }
     
     func setUpOrderTableView() {
         OrdersTableView.delegate = self
@@ -76,7 +87,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return ProfileViewController.isUser ? 2 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,7 +102,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 114
+        return 105
     }
     
     func setUpWishlistCollectionView() {
@@ -126,7 +137,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return ProfileViewController.isUser ? 4 : 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -136,12 +147,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
-        
-        var favItem: Product?
-        favItem = favoritesViewModel?.favorites?[indexPath.row]
+        if ProfileViewController.isUser  {
+            let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
             
-            cell.configureCell(image: favItem?.image?.src ?? dummyImage, title: favItem?.title ?? "", price: favItem?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
-  
+            cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+        }
         cell.layer.cornerRadius = 20
         return cell
     }
@@ -174,9 +184,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         loginButton.layer.cornerRadius = 15
         registerButton.layer.cornerRadius = 15
-        addressesButton.layer.cornerRadius = 15
-        moreOrdersButton.layer.cornerRadius = 15
-        moreWishlistButton.layer.cornerRadius = 15
+        addressesButton.layer.cornerRadius = 8
+        moreOrdersButton.layer.cornerRadius = 10
+        moreWishlistButton.layer.cornerRadius = 10
         userView.layer.cornerRadius = 20
         OrdersTableView.layer.cornerRadius = 20
         

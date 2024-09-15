@@ -10,6 +10,7 @@ import Firebase
 
 class SignInVC: UIViewController {
 
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var forgotPasswordBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!{didSet{
         ViewsSet.btnSet(btn: loginBtn)
@@ -17,10 +18,13 @@ class SignInVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     var customerViewModel = CustomerViewModel()
+    var isFromSignOut = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        if isFromSignOut {
+            backBtn.isHidden = true
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -44,9 +48,7 @@ class SignInVC: UIViewController {
                         self.showAccountSignedInAlert()
                         self.customerViewModel.customeremail = email
                         self.customerViewModel.getAllCustomer()
-//                        print("Customer ID : \(self.customerViewModel.customerID)")
-//                        self.customerViewModel.getAcustomer(customerId: self.customerViewModel.customerID)
-//                        print("Current Customer : \(CurrentCustomer.currentCustomer)")
+
                         
                     }
                 }

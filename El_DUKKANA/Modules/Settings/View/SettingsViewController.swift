@@ -9,6 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var CurrencyList: UIButton!
 
     var SettingVM = SettingsViewModel()
@@ -16,6 +17,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if CurrentCustomer.currentCustomer.email == nil{
+            self.signOutBtn.isHidden = true
+        }
         print(CurrentCustomer.currentCustomer)
         view.backgroundColor = UIColor(named: "Color 1")
 
@@ -34,15 +38,7 @@ class SettingsViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
     @IBAction func DarkSwitch(_ sender: UISwitch) {
         
         if #available(iOS 16.4, *){
@@ -56,6 +52,10 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func signOutBtnAction(_ sender: Any) {
+        
+        exit(0)
+    }
     
   
     @IBAction func AboutUsbtn(_ sender: Any) {
