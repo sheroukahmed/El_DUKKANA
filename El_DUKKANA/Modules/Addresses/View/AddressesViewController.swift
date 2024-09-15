@@ -59,7 +59,7 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
     }
     
     private func toggleNoDataView() {
-            let noAddresses = addressesViewModel?.addresses?.isEmpty ?? true
+        let noAddresses = CurrentCustomer.customerAdresses.addresses.isEmpty
             AddressesTableView.isHidden = noAddresses
             noAddressImage.isHidden = !noAddresses
     }
@@ -94,10 +94,7 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
                 
                 
                 
-                //                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(5)) {
-                //                        self.addressesViewModel.getAllAddresses()
-                //                        tableView.reloadData()
-                //                    }}
+                
             }
                 
                 
