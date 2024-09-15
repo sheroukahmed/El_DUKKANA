@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person.crop.circle.fill"), selectedImage: UIImage(named: "person.crop.circle"))
 
         setupUI()
+       
         setUpOrderTableView()
         setUpWishlistCollectionView()
         
