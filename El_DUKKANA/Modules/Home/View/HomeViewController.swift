@@ -20,6 +20,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var pagecontrol = PageController()
     var adsTimer: Timer?
     var searchViewModel = SearchViewModel()
+    var viewModel = ProductDetailsViewModel()
     var currentAdIndex = 0
     //sherouk's code
     let Adsimages: [UIImage] = [
@@ -39,10 +40,22 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor(named: "Color 1")
+        BrandsCollectionView.backgroundColor = UIColor(named: "Color 1")
         setupUI()
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(5)) {
+            CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "249.00" }
+            CurrentCustomer.currentCartDraftOrder.draft_order.line_items.removeAll { $0.price == "249.00" }
+            
+            self.viewModel.updateFavDraftOrder()
+            self.viewModel.updateCartDraftOrder()
+                           
+       }
+       
 
         print(CurrentCustomer.currentCustomer)
+        
 
         // MARK: - Ads Collection View SetUp
         AdsCollectionView.delegate = self

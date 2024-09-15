@@ -8,9 +8,8 @@
 import UIKit
 import PassKit
 
-class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewControllerDelegate {
+class CheckoutViewController: UIViewController, AddressSelectionDelegate {
     
-
     @IBOutlet weak var Address1: UILabel!
     
     @IBOutlet weak var Address2: UILabel!
@@ -28,86 +27,93 @@ class CheckoutViewController: UIViewController , PKPaymentAuthorizationViewContr
     
     @IBOutlet weak var priceDiscount: UILabel!
     
-    var paymentVM: paymentViewModel?
+    var paymentVM : paymentViewModel?
+    
+    var checkoutVM : CheckoutViewModel?
+    
+    var paymenyprice :NSDecimalNumber?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "Color 1")
         
         paymentVM = paymentViewModel(
             merchantID: "merchant.com.example",
             supportedNetworks: [.visa, .masterCard, .amex],
             supportedCountries: ["EG", "US"],
             countryCode: "EG",
-            currencyCode: "USD",
-            totalPrice: NSDecimalNumber(string: TotalPrice.text ?? "0.00"),
-            discountPrice: NSDecimalNumber(string: priceDiscount.text ?? "0.00")
+            currencyCode: "EGP"
         )
-
-        paymentVM?.paymentStatusUpdate = { [weak self] result in
+        
+        checkoutVM = CheckoutViewModel()
+        checkoutVM?.getDraftOrder()
+        checkoutVM?.getAllAddresses()
+        checkoutVM?.bindToAddresses = {[weak self] in
+            self?.Address1.text = CurrentCustomer.customerAdresses.addresses[0].address1
+            self?.Address2.text = CurrentCustomer.customerAdresses.addresses[0].address2
+            self?.city.text = CurrentCustomer.customerAdresses.addresses[0].city
+            self?.ZipCode.text = CurrentCustomer.customerAdresses.addresses[0].zip
+            self?.country.text = CurrentCustomer.customerAdresses.addresses[0].country
+            
+        }
+        checkoutVM?.bindResultToViewController = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.handlePaymentResult(result: result)
+                self.TotalPrice.text = self.checkoutVM?.checkoutDraft?.total_price
+                self.priceDiscount.text = self.checkoutVM?.checkoutDraft?.total_price
             }
         }
+        
+        
+        
         
         
         
     }
     
     @IBAction func SelectAddressbtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
+        if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
+            addresses.title = "My Addresses"
+            addresses.delegate = self 
+            self.navigationController?.pushViewController(addresses, animated: true)
+        }
+        
     }
     
+    func didSelectAddress(address: CustomerAddress) {
+            // Update the UI with the selected address
+            Address1.text = address.address1
+            Address2.text = address.address2
+            city.text = address.city
+            ZipCode.text = address.zip
+            country.text = address.country
+        }
+    
     @IBAction func ApplyCodebtn(_ sender: Any) {
+        
+        let priceafterdisc = checkoutVM?.calculatePriceWithDiscount(enteredcode: codetextF.text ?? "", totalPriceString: checkoutVM?.checkoutDraft?.total_price ?? "")
+        priceDiscount.text = "\(priceafterdisc!)"
+        
     }
+    
+    
     
     
     @IBAction func Paymentbtn(_ sender: Any) {
-        initiatePayment()
-    }
-    
-    func initiatePayment() {
-        let paymentRequest = paymentVM!.createPaymentRequest()
         
-        if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentVM!.supportedNetworks) {
-            if let paymentVC = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest) {
-                paymentVC.delegate = self
-                present(paymentVC, animated: true, completion: nil)
-            } else {
-                print("Unable to present Apple Pay authorization view controller.")
-            }
-        } else {
-            print("Apple Pay is not available on this device.")
-        }
-    }
-    
-    // MARK: - PKPaymentAuthorizationViewControllerDelegate
-    
-    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-        paymentVM!.handlePaymentAuthorization(controller: controller, payment: payment, completion: completion)
-    }
-    
-    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-
-        controller.dismiss(animated: true, completion: nil)
+        paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
+        
+        let payscreen = self.storyboard?.instantiateViewController(withIdentifier: "pay") as! PaymentViewController
+        payscreen.paymentVM = paymentVM
+        present(payscreen, animated: true)
+        
     }
     
     
-    func handlePaymentResult(result: PKPaymentAuthorizationResult) {
-        switch result.status {
-        case .success:
-            let alert = UIAlertController(title: "Payment Successful", message: "Your payment was processed successfully.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        case .failure:
-            let alert = UIAlertController(title: "Payment Failed", message: "There was a problem processing your payment.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        default:
-            break
-        }
-    }
+    
     
     
     

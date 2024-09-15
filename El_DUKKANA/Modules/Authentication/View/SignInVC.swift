@@ -18,6 +18,8 @@ class SignInVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     var customerViewModel = CustomerViewModel()
+    
+    
     var isFromSignOut = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,10 @@ class SignInVC: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func loginBtnAction(_ sender: Any) {
-
+        if CurrentCustomer.currentCustomer.email != nil {
+            CurrentCustomer.currentCustomer.email = nil
+        }
+            
         guard let password = passwordTF.text, let email = emailTF.text else {
                 showErrorAlert(message: "Please fill in both fields.")
                 return
@@ -40,20 +45,24 @@ class SignInVC: UIViewController {
             
             if email.isEmpty || password.isEmpty {
                 showErrorAlert(message: "Email and password cannot be empty.")
+                
             }  else {
                 Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                    if let error = error {
-                        self.showErrorAlert(message: "False Email/Password")
-                    } else {
-                        self.showAccountSignedInAlert()
-                        self.customerViewModel.customeremail = email
-                        self.customerViewModel.getAllCustomer()
-
-                        
-                    }
+                    
+                if let error = error {
+                    self.showErrorAlert(message: "Invalid Email/Password")
+                } else if let user = Auth.auth().currentUser, !user.isEmailVerified {
+                    self.showErrorAlert(message: "Please verify your email before logging in.")
+                    try? Auth.auth().signOut() // Sign out unverified users
+                } else {
+                    self.showAccountSignedInAlert()
+                    self.customerViewModel.customeremail = email
+                    self.customerViewModel.getAllCustomer()
+                    
+                    
                 }
             }
-        
+        }
     }
     @IBAction func forgotPasswordBtnAction(_ sender: Any) {
         guard let email = emailTF.text else {
