@@ -58,7 +58,7 @@ class SettingsViewController: UIViewController {
         let signInVC = storyboard.instantiateViewController(identifier: "SignInVC") as! SignInVC
         signInVC.modalPresentationStyle = .fullScreen
         signInVC.modalTransitionStyle = .crossDissolve
-        signInVC.backBtn.isHidden = true
+        signInVC.isFromSignOut = true
         present(signInVC, animated: true)
         
         
