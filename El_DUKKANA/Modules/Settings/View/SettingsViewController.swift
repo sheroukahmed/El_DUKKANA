@@ -53,8 +53,16 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func signOutBtnAction(_ sender: Any) {
+        CurrentCustomer.currentCustomer.email = ""
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        let signInVC = storyboard.instantiateViewController(identifier: "SignInVC") as! SignInVC
+        signInVC.modalPresentationStyle = .fullScreen
+        signInVC.modalTransitionStyle = .crossDissolve
+        signInVC.backBtn.isHidden = true
+        present(signInVC, animated: true)
         
-        exit(0)
+        
+        
     }
     
   

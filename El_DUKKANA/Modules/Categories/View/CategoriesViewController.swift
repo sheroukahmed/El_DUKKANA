@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 
-class CategoriesViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
+class CategoriesViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, ProductCellDelegate   {
     @IBOutlet weak var searchBarBackBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -103,6 +103,8 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
                 }
             cell.configureCell(image: product?.image?.src ?? dummyImage, title: product?.title ?? "", price: product?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
   
+        cell.delegate = self
+        cell.product = product!
         cell.layer.cornerRadius = 20
         return cell
     }
@@ -245,6 +247,23 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         self.searchBar.isHidden = true
         self.searchBarBackBtn.isHidden = true
     }
+    
+    func presentAlert(_ alert: UIAlertController) {
+                self.present(alert, animated: true)
+            }
+            
+            func presentSignInVC() {
+                let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+                if let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                    signInVC.modalTransitionStyle = .crossDissolve
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.present(signInVC, animated: true)
+                }
+            }
+        
+        func refreshCollectionView() {
+            self.ProductsCategoriesCollectionView.reloadData()
+        }
 
 
 }
