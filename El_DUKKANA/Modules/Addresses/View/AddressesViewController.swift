@@ -9,7 +9,7 @@ import UIKit
 
 class AddressesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, AddressDelegateProtocol {
     
-    
+    weak var delegate: AddressSelectionDelegate?
     
     @IBOutlet weak var AddressesTableView: UITableView!
     @IBOutlet weak var noAddressImage: UIImageView!
@@ -56,6 +56,13 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 256
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedAddress = CurrentCustomer.customerAdresses.addresses[indexPath.row]
+        delegate?.didSelectAddress(address: selectedAddress)
+        navigationController?.popViewController(animated: true)
     }
     
     private func toggleNoDataView() {

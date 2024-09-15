@@ -8,7 +8,7 @@
 import UIKit
 import PassKit
 
-class CheckoutViewController: UIViewController  {
+class CheckoutViewController: UIViewController, AddressSelectionDelegate {
     
     @IBOutlet weak var Address1: UILabel!
     
@@ -27,7 +27,7 @@ class CheckoutViewController: UIViewController  {
     
     @IBOutlet weak var priceDiscount: UILabel!
     
-    var paymentVM :paymentViewModel?
+    var paymentVM : paymentViewModel?
     
     var checkoutVM : CheckoutViewModel?
     
@@ -49,6 +49,15 @@ class CheckoutViewController: UIViewController  {
         
         checkoutVM = CheckoutViewModel()
         checkoutVM?.getDraftOrder()
+        checkoutVM?.getAllAddresses()
+        checkoutVM?.bindToAddresses = {[weak self] in
+            self?.Address1.text = CurrentCustomer.customerAdresses.addresses[0].address1
+            self?.Address2.text = CurrentCustomer.customerAdresses.addresses[0].address2
+            self?.city.text = CurrentCustomer.customerAdresses.addresses[0].city
+            self?.ZipCode.text = CurrentCustomer.customerAdresses.addresses[0].zip
+            self?.country.text = CurrentCustomer.customerAdresses.addresses[0].country
+            
+        }
         checkoutVM?.bindResultToViewController = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -68,10 +77,20 @@ class CheckoutViewController: UIViewController  {
         let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
         if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
             addresses.title = "My Addresses"
+            addresses.delegate = self 
             self.navigationController?.pushViewController(addresses, animated: true)
         }
         
     }
+    
+    func didSelectAddress(address: CustomerAddress) {
+            // Update the UI with the selected address
+            Address1.text = address.address1
+            Address2.text = address.address2
+            city.text = address.city
+            ZipCode.text = address.zip
+            country.text = address.country
+        }
     
     @IBAction func ApplyCodebtn(_ sender: Any) {
         

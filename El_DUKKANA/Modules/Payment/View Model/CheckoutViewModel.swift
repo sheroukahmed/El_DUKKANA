@@ -12,6 +12,7 @@ class CheckoutViewModel {
     var checkoutDraft: DraftOrder?
     let network : NetworkProtocol?
     var bindResultToViewController: (()->()) = {}
+    var bindToAddresses: (() -> Void) = {}
     
     
     init() {
@@ -39,6 +40,20 @@ class CheckoutViewModel {
 
             return totalPrice
         }
+    }
+    
+    func getAllAddresses() {
+        network?.fetch(url: URLManager.getUrl(for: .customerAddresses(customerId: CurrentCustomer.currentCustomer.id ?? 0 )), type: AddressesResponse.self, completionHandler: { result, error in
+            guard let result = result else{
+               
+                return
+            }
+           
+            CurrentCustomer.customerAdresses.addresses = result.addresses
+        
+            self.bindToAddresses()
+        })
+        
     }
     
     
