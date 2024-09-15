@@ -149,7 +149,7 @@ class ProductDetailsVC: UIViewController {
             if !isFavorated { // adding
                 
                 if let product = viewModel.product?.product{
-                    let productToFav = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.image?.src ?? "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"))])
+                    let productToFav = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.images?[0].src ?? "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"))])
                     print("\n\nold cart : \(CurrentCustomer.currentFavDraftOrder.draft_order.line_items)\n\n")
                     CurrentCustomer.currentFavDraftOrder.draft_order.line_items.append(productToFav)
                     CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "70.00" }

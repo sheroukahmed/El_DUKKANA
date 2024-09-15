@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import Alamofire
 
-class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, ProductCellDelegate {
     
     var hidden : Bool = false
     @IBOutlet weak var eldukkanaImg: UIImageView!
@@ -62,12 +62,22 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         if isSearching {
             let product = searchViewModel.filterdProducts[indexPath.row]
             cell.configureCell(image: product.image?.src ?? dummyImage, title: product.title ?? "", price: product.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
+            
+            cell.delegate = self
+            cell.product = product
+            
         } else if isFiltered {
             let brandProduct = brandViewModel?.filteredProducts?[indexPath.row]
             cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
+            
+            cell.delegate = self
+            cell.product = brandProduct!
         } else {
             let brandProduct = brandViewModel?.products?[indexPath.row]
             cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
+            
+            cell.delegate = self
+            cell.product = brandProduct!
         }
         
         cell.layer.cornerRadius = 20
@@ -156,6 +166,25 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         isFilter()
         brandViewModel?.filterProducts()
     }
+    
+    func presentAlert(_ alert: UIAlertController) {
+                self.present(alert, animated: true)
+            }
+            
+            func presentSignInVC() {
+                let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+                if let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                    signInVC.modalTransitionStyle = .crossDissolve
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.present(signInVC, animated: true)
+                }
+            }
+        
+        func refreshCollectionView() {
+            self.BrandProductCollectionView.reloadData()
+        }
+
+
     
 }
 
