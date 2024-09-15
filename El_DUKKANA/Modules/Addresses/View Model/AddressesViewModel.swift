@@ -11,11 +11,7 @@ class AddressesViewModel {
     
     var network: NetworkProtocol?
     var bindToAddresses: (() -> Void) = {}
-//    var addresses: [CustomerAddress]? {
-//        didSet {
-//            bindToAddresses()
-//        }
-//    }
+
     
     init() {
         network = NetworkManager()
@@ -24,12 +20,12 @@ class AddressesViewModel {
     func getAllAddresses() {
         network?.fetch(url: URLManager.getUrl(for: .customerAddresses(customerId: CurrentCustomer.currentCustomer.id ?? 0 )), type: AddressesResponse.self, completionHandler: { result, error in
             guard let result = result else{
-                print("Error is : \(error)")
+               
                 return
             }
-            print("\n\n\n\(result.addresses.first?.id)\n\n")
+           
             CurrentCustomer.customerAdresses.addresses = result.addresses
-            print("\n\n\n\(CurrentCustomer.customerAdresses.addresses.first?.id)\n\n")
+        
             self.bindToAddresses()
         })
         
