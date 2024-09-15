@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 114
+        return 105
     }
     
     func setUpWishlistCollectionView() {
@@ -183,9 +183,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         loginButton.layer.cornerRadius = 15
         registerButton.layer.cornerRadius = 15
-        addressesButton.layer.cornerRadius = 15
-        moreOrdersButton.layer.cornerRadius = 15
-        moreWishlistButton.layer.cornerRadius = 15
+        addressesButton.layer.cornerRadius = 8
+        moreOrdersButton.layer.cornerRadius = 10
+        moreWishlistButton.layer.cornerRadius = 10
         userView.layer.cornerRadius = 20
         OrdersTableView.layer.cornerRadius = 20
         
