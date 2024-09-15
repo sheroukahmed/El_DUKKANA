@@ -54,11 +54,13 @@ class SignUpVC: UIViewController {
                     self.present(alert, animated: true)
                 } else {
                     // Firebase registration succeeded
-                    self.viewModel.addCustomer()
-                    self.showAccountCreatedAlert()
-                    // adding customer to api
+//                    self.viewModel.addCustomer()
+//                    self.showAccountCreatedAlert()
                     
-                   // self.viewModel.addDraftOrders()
+                    
+                    // Firebase registration succeeded, send email verification
+                        self.sendVerificationEmail()
+                   
                 }
             }
         } else {
@@ -84,6 +86,13 @@ class SignUpVC: UIViewController {
             return false
         }
         
+        
+        // Validate if the email is a Gmail address
+                if !isValidGmail(email: email) {
+                    showErrorAlertWithMessage(message: "Please use a valid Gmail address")
+                    return false
+                }
+        
         // Update ViewModel with input data
         CurrentCustomer.signedUpCustomer.customer.first_name = firstName
         CurrentCustomer.signedUpCustomer.customer.last_name = lastName
@@ -95,6 +104,27 @@ class SignUpVC: UIViewController {
         
         return true
     }
+    
+    func sendVerificationEmail() {
+            guard let user = Auth.auth().currentUser else { return }
+            user.sendEmailVerification { [weak self] error in
+                if let error = error {
+                    self?.showErrorAlertWithMessage(message: "\(error)")
+                } else {
+                    self?.showVerificationAlert()
+                    // Call the backend `addCustomer` function here
+                    self?.viewModel.addCustomer()
+                }
+            }
+        }
+    
+    // Function to validate if the email is a Gmail address
+    
+        func isValidGmail(email: String) -> Bool {
+            let emailRegex = "[A-Z0-9a-z._%+-]+@gmail.com"
+            let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+            return emailPredicate.evaluate(with: email)
+        }
     
     func showAccountCreatedAlert() {
         let alert = UIAlertController(title: "Account Created", message: "The account has been created successfully", preferredStyle: .alert)
@@ -111,10 +141,27 @@ class SignUpVC: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func showVerificationAlert() {
+            let alert = UIAlertController(title: "Email Verification Sent", message: "Please check your Gmail inbox and verify your email address before logging in.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { [weak self] action in
+                self?.dismiss(animated: true)
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true)
+        }
+        
+    
     func showErrorAlert() {
         let alert = UIAlertController(title: "Error", message: "Please fill all fields correctly", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default)
         alert.addAction(ok)
         self.present(alert, animated: true)
     }
+    // Show an error alert with custom message
+        func showErrorAlertWithMessage(message: String) {
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(ok)
+            self.present(alert, animated: true)
+        }
 }
