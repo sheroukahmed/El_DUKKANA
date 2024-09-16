@@ -8,8 +8,8 @@
 import UIKit
 import Alamofire
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
- 
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, FavCellDelegate {
+    
     
     @IBOutlet weak var NotLoginView: UIView!
     @IBOutlet weak var NotLoginImage: UIImageView!
@@ -38,15 +38,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         userFirstName.text = CurrentCustomer.currentCustomer.first_name
         userEmail.text = CurrentCustomer.currentCustomer.email
         
         
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person.crop.circle.fill"), selectedImage: UIImage(named: "person.crop.circle"))
-
+        
         setupUI()
-       
+        
         setUpOrderTableView()
         setUpWishlistCollectionView()
         
@@ -115,35 +115,35 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func setUpWishlistCollectionView() {
-            WishlistCollectionView.delegate = self
-            WishlistCollectionView.dataSource = self
+        WishlistCollectionView.delegate = self
+        WishlistCollectionView.dataSource = self
+        
+        WishlistCollectionView.register(UINib(nibName: String(describing: FavCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: FavCell.self))
+        
+        let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
             
-            WishlistCollectionView.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(217), heightDimension: .fractionalHeight(1))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .groupPaging
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
             
-            let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
-                
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(217), heightDimension: .fractionalHeight(1))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let section = NSCollectionLayoutSection(group: group)
-                section.orthogonalScrollingBehavior = .groupPaging
-                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-                
-                section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-                    items.forEach { item in
-                        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                        let minScale: CGFloat = 0.8
-                        let maxScale: CGFloat = 1.0
-                        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                        item.transform = CGAffineTransform(scaleX: scale, y: scale)
-                    }
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                items.forEach { item in
+                    let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                    let minScale: CGFloat = 0.8
+                    let maxScale: CGFloat = 1.0
+                    let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                    item.transform = CGAffineTransform(scaleX: scale, y: scale)
                 }
-                return section
             }
-            WishlistCollectionView.setCollectionViewLayout(layout, animated: true)
+            return section
         }
+        WishlistCollectionView.setCollectionViewLayout(layout, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if ProfileViewController.isUser {
@@ -163,21 +163,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: FavCell.self), for: indexPath) as! FavCell
         if ProfileViewController.isUser  {
             let lineItems = CurrentCustomer.currentFavDraftOrder.draft_order.line_items
             if indexPath.row < lineItems.count {
                 let favItem = lineItems[indexPath.row]
                 
-                cell.configureCell(image:  favoritesViewModel?.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+                cell.configureCell(image: favoritesViewModel?.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", favItem: favItem)
             }
         }
+        cell.delegate = self
         cell.layer.cornerRadius = 20
         return cell
     }
     
     
- 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
             let storyBoard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
@@ -192,7 +193,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             UIAlertController.showNoConnectionAlert(self: self)        }
     }
-
+    
     
     private func setupUI(){
         
@@ -214,7 +215,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                          target: self,
                                          action: #selector(cartButtonTapped))
         cartButton.tintColor = customColor
-
+        
         // Create settings button (right side)
         let settingsButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"),
                                              style: .plain,
@@ -224,8 +225,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Set right bar buttons (Cart and Settings)
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-         spacer.width = 1
-         navigationItem.rightBarButtonItems = [settingsButton, spacer, cartButton]
+        spacer.width = 1
+        navigationItem.rightBarButtonItems = [settingsButton, spacer, cartButton]
         
     }
     
@@ -253,43 +254,43 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc func settingsButtonTapped() {
         if NetworkReachabilityManager()?.isReachable ?? false {
-        let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
-        if let settings = storyboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as? SettingsViewController {
-            settings.title = "Settings"
-            
-            self.navigationController?.pushViewController(settings, animated: true)
-        }} else {
-            UIAlertController.showNoConnectionAlert(self: self)    }
+            let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+            if let settings = storyboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as? SettingsViewController {
+                settings.title = "Settings"
+                
+                self.navigationController?.pushViewController(settings, animated: true)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)    }
     }
     
     @IBAction func seeMoreOrders(_ sender: Any) {
         if NetworkReachabilityManager()?.isReachable ?? false {
-        if let orders = self.storyboard?.instantiateViewController(withIdentifier: "myOrders") as? OrdersViewController {
-            orders.title = "My Orders"
-            self.navigationController?.pushViewController(orders, animated: true)
-        }} else {
-            UIAlertController.showNoConnectionAlert(self: self)        }
+            if let orders = self.storyboard?.instantiateViewController(withIdentifier: "myOrders") as? OrdersViewController {
+                orders.title = "My Orders"
+                self.navigationController?.pushViewController(orders, animated: true)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     @IBAction func seeMoreWishlist(_ sender: Any) {
         if NetworkReachabilityManager()?.isReachable ?? false {
-        let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
-        if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
-            favorites.title = "My Wishlist"
-            self.navigationController?.pushViewController(favorites, animated: true)
-        }} else {
-            UIAlertController.showNoConnectionAlert(self: self)        }
+            let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
+            if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
+                favorites.title = "My Wishlist"
+                self.navigationController?.pushViewController(favorites, animated: true)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     
     @IBAction func goToAddresses(_ sender: Any) {
         if NetworkReachabilityManager()?.isReachable ?? false {
-        let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
-        if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
-            addresses.title = "My Addresses"
-            self.navigationController?.pushViewController(addresses, animated: true)
-        }} else {
-            UIAlertController.showNoConnectionAlert(self: self)        }
+            let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
+            if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
+                addresses.title = "My Addresses"
+                self.navigationController?.pushViewController(addresses, animated: true)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     @IBAction func toLogin(_ sender: Any) {
@@ -297,7 +298,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let signInVC = storyboard.instantiateViewController(identifier: "SignInVC")
         signInVC.modalPresentationStyle = .fullScreen
         signInVC.modalTransitionStyle = .crossDissolve
-       present(signInVC, animated: true)
+        present(signInVC, animated: true)
     }
     
     @IBAction func toRegister(_ sender: Any) {
@@ -305,7 +306,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let signUpVC = storyboard.instantiateViewController(identifier: "SignUpVC")
         signUpVC.modalPresentationStyle = .fullScreen
         signUpVC.modalTransitionStyle = .crossDissolve
-       present(signUpVC, animated: true)
+        present(signUpVC, animated: true)
     }
+    
+    func presentAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
+    }
+    
+    func presentSignInVC() {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        if let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+            signInVC.modalTransitionStyle = .crossDissolve
+            signInVC.modalPresentationStyle = .fullScreen
+            self.present(signInVC, animated: true)
+        }
+    }
+    
+    func refreshCollectionView() {
+        self.WishlistCollectionView.reloadData()
+    }
+    
     
 }

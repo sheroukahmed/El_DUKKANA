@@ -8,16 +8,16 @@
 import UIKit
 import Alamofire
 
-class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FavCellDelegate {
+    
     @IBOutlet weak var WishlistCollectionView: UICollectionView!
     @IBOutlet weak var noFavoritesImage: UIImageView!
     
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
-
+    
     var customerViewModel = CustomerViewModel()
     var favoritesViewModel = FavoritesViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpWishlistCollectionView()
@@ -34,7 +34,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         WishlistCollectionView.delegate = self
         WishlistCollectionView.dataSource = self
         
-        WishlistCollectionView.register(UINib(nibName: String(describing: ProductCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: ProductCell.self))
+        WishlistCollectionView.register(UINib(nibName: String(describing: FavCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: FavCell.self))
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -55,30 +55,30 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: FavCell.self), for: indexPath) as! FavCell
         
         let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
-            
-        cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
         
-  
+        cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", favItem: favItem)
+        
+        cell.delegate = self
         cell.layer.cornerRadius = 20
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 5
-           let collectionViewWidth = collectionView.frame.width
-           let availableWidth = collectionViewWidth - padding * 3
-           let widthPerItem = availableWidth / 2
+        let padding: CGFloat = 5
+        let collectionViewWidth = collectionView.frame.width
+        let availableWidth = collectionViewWidth - padding * 3
+        let widthPerItem = availableWidth / 2
         return CGSize(width: widthPerItem, height: widthPerItem * 1.5)
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-       }
+    }
     
- 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
             let storyBoard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
@@ -101,4 +101,23 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         WishlistCollectionView.isHidden = isEmpty
         noFavoritesImage.isHidden = !isEmpty
     }
+    
+    func presentAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
+    }
+    
+    func presentSignInVC() {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        if let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+            signInVC.modalTransitionStyle = .crossDissolve
+            signInVC.modalPresentationStyle = .fullScreen
+            self.present(signInVC, animated: true)
+        }
+    }
+    
+    func refreshCollectionView() {
+        self.WishlistCollectionView.reloadData()
+    }
+    
+    
 }

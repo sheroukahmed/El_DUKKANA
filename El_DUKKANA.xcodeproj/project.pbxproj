@@ -36,6 +36,8 @@
 		26E420672C976FD6006968D7 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420662C976FD6006968D7 /* MockNetworkManager.swift */; };
 		26E420692C977034006968D7 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420682C977034006968D7 /* NetworkManagerTests.swift */; };
 		26E4206C2C97926A006968D7 /* UIAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4206B2C97926A006968D7 /* UIAlertExtension.swift */; };
+		26E420732C988D63006968D7 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420712C988D63006968D7 /* FavCell.swift */; };
+		26E420742C988D63006968D7 /* FavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26E420722C988D63006968D7 /* FavCell.xib */; };
 		26FBE3232C8CBE5000263DE3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FBE3212C8CBE5000263DE3 /* ProductCell.swift */; };
 		26FBE3242C8CBE5000263DE3 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26FBE3222C8CBE5000263DE3 /* ProductCell.xib */; };
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
@@ -158,6 +160,8 @@
 		26E420662C976FD6006968D7 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		26E420682C977034006968D7 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		26E4206B2C97926A006968D7 /* UIAlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertExtension.swift; sourceTree = "<group>"; };
+		26E420712C988D63006968D7 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavCell.swift; path = El_DUKKANA/Extensions/FavCell.swift; sourceTree = SOURCE_ROOT; };
+		26E420722C988D63006968D7 /* FavCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FavCell.xib; path = El_DUKKANA/Extensions/FavCell.xib; sourceTree = SOURCE_ROOT; };
 		26FBE3212C8CBE5000263DE3 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = El_DUKKANATests/ProductCell.swift; sourceTree = SOURCE_ROOT; };
 		26FBE3222C8CBE5000263DE3 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = El_DUKKANATests/ProductCell.xib; sourceTree = SOURCE_ROOT; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
@@ -761,6 +765,8 @@
 			children = (
 				26FBE3212C8CBE5000263DE3 /* ProductCell.swift */,
 				26FBE3222C8CBE5000263DE3 /* ProductCell.xib */,
+				26E420712C988D63006968D7 /* FavCell.swift */,
+				26E420722C988D63006968D7 /* FavCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -972,6 +978,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
+				26E420742C988D63006968D7 /* FavCell.xib in Resources */,
 				F80490572C8B0AEC00CE43ED /* AdsCollectionViewCell.xib in Resources */,
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				26BBA7E42C94DD9900554DEA /* AddressesStoryboard.storyboard in Resources */,
@@ -1128,6 +1135,7 @@
 				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
 				81B0349C2C8D209100D4A4C5 /* DrowCollectioView.swift in Sources */,
 				F8E451782C9735FE003093B6 /* AddressDelegation.swift in Sources */,
+				26E420732C988D63006968D7 /* FavCell.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				26BBA7D92C94D90500554DEA /* FavoritesViewController.swift in Sources */,
