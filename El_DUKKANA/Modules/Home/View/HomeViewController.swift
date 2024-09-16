@@ -43,14 +43,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         BrandsCollectionView.backgroundColor = UIColor(named: "Color 1")
         setupUI()
         
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(5)) {
-            CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "249.00" }
-            CurrentCustomer.currentCartDraftOrder.draft_order.line_items.removeAll { $0.price == "249.00" }
-            
-            self.viewModel.updateFavDraftOrder()
-            self.viewModel.updateCartDraftOrder()
-                           
-       }
+        print("\n\nimportant \n\n \(CurrentCustomer.currentCartDraftOrder.draft_order.id) \nand \n\n\(CurrentCustomer.currentFavDraftOrder.draft_order.id)\n\n")
        
 
         print(CurrentCustomer.currentCustomer)

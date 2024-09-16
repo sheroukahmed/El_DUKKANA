@@ -77,15 +77,7 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
       
     }
     
-    @IBAction func SelectAddressbtn(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
-        if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
-            addresses.title = "My Addresses"
-            addresses.delegate = self 
-            self.navigationController?.pushViewController(addresses, animated: true)
-        }
-
-    }
+    
     
     func didSelectAddress(address: CustomerAddress) {
             // Update the UI with the selected address
@@ -112,7 +104,6 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
 
         if NetworkReachabilityManager()?.isReachable ?? false {
             paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
-            initiatePayment()
         }
         UIAlertController.showNoConnectionAlert(self: self)
     

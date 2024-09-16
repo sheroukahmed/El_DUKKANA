@@ -73,6 +73,11 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
         case .success:
             let alert = UIAlertController(title: "Payment Successful", message: "Your payment was processed successfully.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default){ [weak self] _ in
+                let dr = CurrentCustomer.currentCartDraftOrder.draft_order
+                let shippingAddress = self?.paymentVM!.selectedAdress
+                let totalPrice = self?.paymentVM!.totalPrice
+                let newDraft = DraftOrderRequest(draft_order:DraftOrder(id: dr.id, note: dr.note, email: dr.email, currency: dr.currency, created_at: dr.created_at, updated_at: dr.updated_at, completed_at: dr.completed_at, name: dr.name, status: dr.status, line_items: dr.line_items, order_id: dr.order_id, shipping_line: dr.shipping_line, tags: dr.tags, total_price: ("\(totalPrice)"), customer: dr.customer,shipping_address: shippingAddress))
+                CurrentCustomer.currentCartDraftOrder = newDraft
                 self?.checkoutVM.draftOrderCompleted()
             }
             alert.addAction(okAction)
@@ -94,7 +99,7 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
         let dr = CurrentCustomer.currentCartDraftOrder.draft_order
         let shippingAddress = paymentVM!.selectedAdress
         let totalPrice = paymentVM!.totalPrice
-        let newDraft = DraftOrderRequest(draft_order:DraftOrder(id: dr.id, note: dr.note, email: dr.email, currency: dr.currency, created_at: dr.created_at, updated_at: dr.updated_at, completed_at: dr.completed_at, name: dr.name, status: dr.status, line_items: dr.line_items, order_id: dr.order_id, shipping_line: dr.shipping_line, tags: dr.tags, total_price: ("\(totalPrice)"), customer: dr.customer, shipping_address: shippingAddress))
+        let newDraft = DraftOrderRequest(draft_order:DraftOrder(id: dr.id, note: dr.note, email: dr.email, currency: dr.currency, created_at: dr.created_at, updated_at: dr.updated_at, completed_at: dr.completed_at, name: dr.name, status: dr.status, line_items: dr.line_items, order_id: dr.order_id, shipping_line: dr.shipping_line, tags: dr.tags, total_price: ("\(totalPrice)"), customer: dr.customer,shipping_address: shippingAddress))
         CurrentCustomer.currentCartDraftOrder = newDraft
         
         self.checkoutVM.draftOrderCompleted()
