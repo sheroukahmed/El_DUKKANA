@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El Dukkana 1" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-EG-J9K">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="El_Dukkana-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="bgG-EG-J9K">
                                 <rect key="frame" x="80" y="55" width="200" height="50"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="Y1K-mB-Pc1">
@@ -346,7 +346,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="El Dukkana 1" width="1070" height="214"/>
+        <image name="El_Dukkana-removebg-preview" width="1070" height="214"/>
         <image name="Line" width="824" height="40"/>
         <image name="Not Logged In" width="1576" height="1665"/>
         <image name="house" catalog="system" width="128" height="104"/>

@@ -111,10 +111,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
                 self.present(productDetails, animated: true)
             }
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
+            UIAlertController.showNoConnectionAlert(self: self)
         }
     }
     
@@ -158,8 +155,6 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         searchBar.isHidden = isHidden
         filterButton.isHidden = !isHidden
     }
-
-   
     
     @IBAction func filter(_ sender: Any) {
         isFiltered = !isFiltered
@@ -183,9 +178,6 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         func refreshCollectionView() {
             self.BrandProductCollectionView.reloadData()
         }
-
-
-    
 }
 
 extension BrandViewController: UISearchBarDelegate{

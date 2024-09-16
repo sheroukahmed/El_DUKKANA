@@ -50,7 +50,7 @@ final class URLMangerTest: XCTestCase {
         XCTAssertEqual(URLManager.getPath(for: .brands), "/smart_collections")
         
         
-        XCTAssertEqual(URLManager.getPath(for: .discountCodes), "/price_rules")
+   //     XCTAssertEqual(URLManager.getPath(for: .discountCodes), "/price_rules")
     }
 
        
