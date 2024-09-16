@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoFavorites" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-nd-vXR">
+                                <rect key="frame" x="16" y="59" width="361" height="759"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vgk-jv-cCZ">
                                 <rect key="frame" x="16" y="59" width="361" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -25,20 +30,34 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="M0x-Nd-uSS">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LUv-sK-9vt">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Vgk-jv-cCZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="EMC-0g-SNE"/>
+                            <constraint firstItem="G5t-nd-vXR" firstAttribute="bottom" secondItem="Vgk-jv-cCZ" secondAttribute="bottom" id="My4-ox-ht1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Vgk-jv-cCZ" secondAttribute="bottom" id="S7Y-1u-0rt"/>
+                            <constraint firstItem="G5t-nd-vXR" firstAttribute="trailing" secondItem="Vgk-jv-cCZ" secondAttribute="trailing" id="TAl-Hk-mzn"/>
+                            <constraint firstItem="G5t-nd-vXR" firstAttribute="leading" secondItem="Vgk-jv-cCZ" secondAttribute="leading" id="e1x-vo-ctj"/>
                             <constraint firstItem="Vgk-jv-cCZ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="qdq-ES-ahz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vgk-jv-cCZ" secondAttribute="trailing" constant="16" id="sh1-gV-hb6"/>
+                            <constraint firstItem="G5t-nd-vXR" firstAttribute="top" secondItem="Vgk-jv-cCZ" secondAttribute="top" id="xHt-Ae-iqV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="WishlistCollectionView" destination="Vgk-jv-cCZ" id="bdI-f7-RsS"/>
+                        <outlet property="noFavoritesImage" destination="G5t-nd-vXR" id="Z3f-xQ-B99"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -47,6 +66,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NoFavorites" width="1587" height="2245"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

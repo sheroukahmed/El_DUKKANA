@@ -90,7 +90,6 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete this Address from your account?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
-                
                 print(CurrentCustomer.customerAdresses.addresses.count)
                 self.addressesViewModel.deleteAddresses(addressId: CurrentCustomer.customerAdresses.addresses[indexPath.row].id ?? 0)
                 CurrentCustomer.customerAdresses.addresses.remove(at: indexPath.row)
@@ -99,13 +98,7 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
                 tableView.deleteRows(at: [indexPath], with: .left)
                 tableView.endUpdates()
                 print(CurrentCustomer.customerAdresses.addresses.count)
-                
-                
-                
-                
             }
-                
-                
                 let no = UIAlertAction(title: "No", style: .cancel)
                 alert.addAction(yes)
                 alert.addAction(no)

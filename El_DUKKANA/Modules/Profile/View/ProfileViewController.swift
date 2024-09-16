@@ -76,6 +76,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             ProfileViewController.isUser = false
         }
         getView(isLogin: ProfileViewController.isUser )
+        OrdersTableView.reloadData()
+        WishlistCollectionView.reloadData()
     }
     
     func setUpOrderTableView() {
@@ -87,7 +89,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ProfileViewController.isUser ? 2 : 0
+        if ProfileViewController.isUser {
+            if ordersViewModel?.orders?.count ?? 0 > 2 {
+                return 2
+            } else {
+                return ordersViewModel?.orders?.count ?? 0
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,8 +146,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ProfileViewController.isUser ? 4 : 0
+        if ProfileViewController.isUser {
+            if CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count > 4 {
+                return 4
+            } else {
+                return CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
+            }
+        }
+        return 0
     }
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -148,9 +165,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
         if ProfileViewController.isUser  {
-            let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
-            
-            cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+            let lineItems = CurrentCustomer.currentFavDraftOrder.draft_order.line_items
+            if indexPath.row < lineItems.count {
+                let favItem = lineItems[indexPath.row]
+                
+                cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+            }
         }
         cell.layer.cornerRadius = 20
         return cell
@@ -169,14 +189,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 productDetails.modalTransitionStyle = .crossDissolve
                 self.present(productDetails, animated: true)
             }
-        
-            
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
-        }
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
 
     
@@ -224,45 +238,60 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func cartButtonTapped() {
-        print("Cart button tapped")
-        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
-        if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
-            cart.title = "My Cart"
-            self.navigationController?.pushViewController(cart, animated: true)
-        }
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+                if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+                    cart.title = "My Cart"
+                    self.navigationController?.pushViewController(cart, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)        }
     }
-
+    
     @objc func settingsButtonTapped() {
-        print("Settings button tapped")
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
         if let settings = storyboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as? SettingsViewController {
             settings.title = "Settings"
+            if CurrentCustomer.currentCustomer.email != nil {
+                settings.signOutBtn.isHidden = true
+            }
             self.navigationController?.pushViewController(settings, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)    }
     }
     
     @IBAction func seeMoreOrders(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         if let orders = self.storyboard?.instantiateViewController(withIdentifier: "myOrders") as? OrdersViewController {
             orders.title = "My Orders"
             self.navigationController?.pushViewController(orders, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     @IBAction func seeMoreWishlist(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
         if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
             favorites.title = "My Wishlist"
             self.navigationController?.pushViewController(favorites, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     
     @IBAction func goToAddresses(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
         if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
             addresses.title = "My Addresses"
             self.navigationController?.pushViewController(addresses, animated: true)
-        }
+        }} else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     @IBAction func toLogin(_ sender: Any) {
@@ -280,4 +309,5 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         signUpVC.modalTransitionStyle = .crossDissolve
        present(signUpVC, animated: true)
     }
+    
 }
