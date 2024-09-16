@@ -28,6 +28,6 @@ struct Order: Codable {
     let total_discounts: String?
     let total_price: String?
     let customer: Customer?
-    let shipping_address: CustomerAddress
+    let shipping_address: CustomerAddress?
     
 }

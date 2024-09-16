@@ -11,7 +11,6 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var CurrencyList: UIButton!
-
     var SettingVM = SettingsViewModel()
     
     override func viewDidLoad() {

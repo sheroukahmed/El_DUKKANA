@@ -27,11 +27,43 @@ struct DraftOrder: Codable {
     let name: String?
     let status: String?
     var line_items: [LineItem]
-    let order_id: String?
+    let order_id: Int?
     let shipping_line: String?
     let tags: String?
-    let total_price: String?
+    var total_price: String?
     let customer: Customer?
+    var shipping_address: CustomerAddress?
+    
+    
+}
+/*
+ shipping_address": {
+       "first_name": "Bob",
+       "address1": "Chestnut Street 92",
+       "phone": "+1(502)-459-2181",
+       "city": "Louisville",
+       "zip": "40202",
+       "province": "Kentucky",
+       "country": "United States",
+       "last_name": "Norman",
+       "address2": "",
+       "company": null,
+       "latitude": 45.41634,
+       "longitude": -75.6868,
+       "name": "Bob Norman",
+       "country_code": "US",
+       "province_code": "KY"
+     },
+ has context menu
+ */
+struct ShippingAddress: Codable  {
+    
+    var address1: String?
+    var address2: String?
+    var city: String?
+    var province: String?
+    var country: String?
+    var zip: String?
     
 }
 

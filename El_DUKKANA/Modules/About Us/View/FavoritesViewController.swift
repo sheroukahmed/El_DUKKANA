@@ -59,7 +59,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
             
-        cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+        cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
         
   
         cell.layer.cornerRadius = 20

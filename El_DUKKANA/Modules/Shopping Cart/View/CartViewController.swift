@@ -22,7 +22,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var productVm : ProductDetailsViewModel?
     var cartVM: CartViewModel?
-    
+    var favViewModel = FavoritesViewModel()
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -69,6 +69,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.itemprice.text = lineItem.price
         cell.itemQuantity.text = String(lineItem.quantity ?? 1)
         cell.availableQuantity.text = "5"
+        
+
     
         let availableQuantity = Int(cell.availableQuantity.text!) ?? 5
         let currentQuantity = lineItem.quantity ?? 1

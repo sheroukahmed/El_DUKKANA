@@ -15,8 +15,11 @@ class FavoritesViewModel {
         didSet {
             bindToFavorites()
         }
+        
     }
-    
+    var productImg : String?
+    var productSize : String?
+    var productColor : String?
     init() {
         network = NetworkManager()
     }

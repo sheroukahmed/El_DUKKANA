@@ -102,7 +102,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = OrdersTableView.dequeueReusableCell(withIdentifier: String (describing: OrderTableViewCell.self), for: indexPath) as! OrderTableViewCell
         
-        let order = ordersViewModel?.orders? [indexPath.row]
+        let order = ordersViewModel?.orders?[indexPath.row]
         
         cell.configureCell(order: order?.name ?? "", orderNoOfItems: order?.line_items?.count ?? 0, orderPrice: order?.total_price ?? "", currency: "USD", date: order?.created_at ?? "")
         
@@ -169,7 +169,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if indexPath.row < lineItems.count {
                 let favItem = lineItems[indexPath.row]
                 
-                cell.configureCell(image:  dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
+                cell.configureCell(image:  favoritesViewModel?.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", isFavorited: true)
             }
         }
         cell.layer.cornerRadius = 20
@@ -256,9 +256,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
         if let settings = storyboard.instantiateViewController(withIdentifier: "SettingsStoryboard") as? SettingsViewController {
             settings.title = "Settings"
-            if CurrentCustomer.currentCustomer.email != nil {
-                settings.signOutBtn.isHidden = true
-            }
+            
             self.navigationController?.pushViewController(settings, animated: true)
         }} else {
             UIAlertController.showNoConnectionAlert(self: self)    }

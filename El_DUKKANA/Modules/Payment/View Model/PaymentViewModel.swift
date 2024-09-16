@@ -16,7 +16,8 @@ class paymentViewModel {
     var countryCode: String
     var currencyCode: String
     var totalPrice: NSDecimalNumber = 0.0
-    
+    var selectedAdress : CustomerAddress?
+
     var paymentStatusUpdate: ((PKPaymentAuthorizationResult) -> Void)?
     
     

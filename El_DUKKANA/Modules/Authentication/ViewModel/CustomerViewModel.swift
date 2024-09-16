@@ -100,9 +100,9 @@ class CustomerViewModel {
     func prepareDraftOrders() {
         // Setup draft orders for the customer
         
-        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: "13243585", shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
         
-            customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: "13243585", shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+            customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
     }
     
     func addDraftOrders() {
@@ -144,6 +144,7 @@ class CustomerViewModel {
     func getAllDrafts(){
         network?.fetch(url: URLManager.getUrl(for: .draftOrder), type: DraftOrderResponse.self, completionHandler: { result, error in
             guard let result = result else{
+                print("Error in fetching the draft orders : \(error)")
                 return
             }
             print("result of the all draft orders \(result)")
