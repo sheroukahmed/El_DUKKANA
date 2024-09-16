@@ -59,8 +59,20 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
         
-        cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", favItem: favItem)
-        
+        if let priceString = favItem.price, let price = Double(priceString) {
+            let convertedPrice = price * CurrencyManager.shared.currencyRate
+            cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage,
+                               title: favItem.title ?? "",
+                               price: "\(convertedPrice)",
+                               currency: CurrencyManager.shared.selectedCurrency,
+                               favItem: favItem)
+        } else {
+            cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage,
+                               title: favItem.title ?? "",
+                               price: "N/A",
+                               currency: CurrencyManager.shared.selectedCurrency,
+                               favItem: favItem)
+        }
         cell.delegate = self
         cell.layer.cornerRadius = 20
         return cell

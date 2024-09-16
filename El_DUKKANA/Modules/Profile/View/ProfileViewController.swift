@@ -104,7 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let order = ordersViewModel?.orders?[indexPath.row]
         
-        cell.configureCell(order: order?.name ?? "", orderNoOfItems: order?.line_items?.count ?? 0, orderPrice: order?.total_price ?? "", currency: "USD", date: order?.created_at ?? "")
+        cell.configureCell(order: order?.name ?? "", orderNoOfItems: order?.line_items?.count ?? 0, orderPrice: order?.total_price ?? "", currency: order?.currency ?? "", date: order?.created_at ?? "")
         
         cell.layer.cornerRadius = 20
         return cell
@@ -169,7 +169,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if indexPath.row < lineItems.count {
                 let favItem = lineItems[indexPath.row]
                 
-                cell.configureCell(image: favoritesViewModel?.productImg ?? dummyImage, title: favItem.title ?? "", price: favItem.price ?? "", currency: "USD", favItem: favItem)
+                if let priceString = favItem.price, let price = Double(priceString) {
+                    let convertedPrice = price * CurrencyManager.shared.currencyRate
+                    cell.configureCell(image: favoritesViewModel?.productImg ?? dummyImage,
+                                       title: favItem.title ?? "",
+                                       price: "\(convertedPrice)",
+                                       currency: CurrencyManager.shared.selectedCurrency,
+                                       favItem: favItem)
+                } else {
+                    cell.configureCell(image: favoritesViewModel?.productImg ?? dummyImage,
+                                       title: favItem.title ?? "",
+                                       price: "N/A",
+                                       currency: CurrencyManager.shared.selectedCurrency,
+                                       favItem: favItem)
+                }
             }
         }
         cell.delegate = self

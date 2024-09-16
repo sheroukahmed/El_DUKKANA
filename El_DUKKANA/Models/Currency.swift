@@ -15,4 +15,5 @@ struct Currency : Codable {
 struct Rates : Codable {
     var EGP : Double?
     var EUR : Double?
+    var USD : Double?
 }

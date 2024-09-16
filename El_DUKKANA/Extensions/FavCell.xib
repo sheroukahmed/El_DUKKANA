@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="217" height="235"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="fEi-Vf-ksk">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fEi-Vf-ksk">
                         <rect key="frame" x="0.0" y="0.0" width="217" height="235"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oF5-Kf-TKa">
@@ -30,10 +30,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edC-d2-2lL">
-                                <rect key="frame" x="8" y="197" width="90" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edC-d2-2lL">
+                                <rect key="frame" x="8" y="197" width="50" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="k4t-Uq-sXl"/>
+                                    <constraint firstAttribute="width" constant="50" id="k4t-Uq-sXl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -72,9 +72,9 @@
                             <constraint firstItem="gb6-rR-4u3" firstAttribute="top" secondItem="fEi-Vf-ksk" secondAttribute="top" constant="55" id="VPX-G7-xPf"/>
                             <constraint firstItem="6yM-g2-xPq" firstAttribute="top" secondItem="oF5-Kf-TKa" secondAttribute="bottom" id="Zw0-b7-pnc"/>
                             <constraint firstItem="DON-kd-IuD" firstAttribute="centerY" secondItem="edC-d2-2lL" secondAttribute="centerY" id="cfc-Qd-kYe"/>
-                            <constraint firstItem="edC-d2-2lL" firstAttribute="top" secondItem="6yM-g2-xPq" secondAttribute="bottom" id="d02-vr-qZN"/>
                             <constraint firstItem="oF5-Kf-TKa" firstAttribute="centerX" secondItem="fEi-Vf-ksk" secondAttribute="centerX" id="t3k-FI-clE"/>
                             <constraint firstItem="6yM-g2-xPq" firstAttribute="centerX" secondItem="fEi-Vf-ksk" secondAttribute="centerX" id="uED-df-9oR"/>
+                            <constraint firstItem="edC-d2-2lL" firstAttribute="top" secondItem="6yM-g2-xPq" secondAttribute="bottom" id="uxO-8o-dKX"/>
                         </constraints>
                     </view>
                 </subviews>

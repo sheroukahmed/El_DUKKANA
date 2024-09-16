@@ -25,6 +25,7 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var sizeSegmentedController: UISegmentedControl!
     
     @IBOutlet weak var priceLbl: UILabel!
+    @IBOutlet weak var currencyLbl: UILabel!
     @IBOutlet weak var brandLbl: UILabel!
     @IBOutlet weak var productTitleLbl: UILabel!
     @IBOutlet weak var pageController: UIPageControl!
@@ -50,10 +51,10 @@ class ProductDetailsVC: UIViewController {
             self.pageController.numberOfPages = self.viewModel.product?.product.images?.count ?? 1
             self.pageController.currentPage = 0
             if let product = self.viewModel.product?.product{
-            self.descriptionLbl.text = product.body_html ?? ""
-            self.productTitleLbl.text = product.title ?? ""
-        
-            for option in product.options ?? [] {
+                self.descriptionLbl.text = product.body_html ?? ""
+                self.productTitleLbl.text = product.title ?? ""
+                
+                for option in product.options ?? [] {
                     if option.name == "Color" {
                         // Set up color segments
                         self.configureSegmentedControl(self.colorsSegmented, with: option.values)
@@ -62,9 +63,14 @@ class ProductDetailsVC: UIViewController {
                         // Set up size segments
                         self.configureSegmentedControl(self.sizeSegmentedController, with: option.values)
                     }
-                        }
-            self.brandLbl.text = product.vendor ?? ""
-            self.priceLbl.text = "\(product.variants?[0].price ?? "5") USD"
+                }
+                self.brandLbl.text = product.vendor ?? ""
+                
+                if let priceString = product.variants?[0].price, let price = Double(priceString) {
+                    let convertedPrice = price * CurrencyManager.shared.currencyRate
+                    self.priceLbl.text = "\(convertedPrice)"
+                }
+                self.currencyLbl.text = CurrencyManager.shared.selectedCurrency
             }
             if self.viewModel.product?.product.title != nil{
                 for item in CurrentCustomer.currentFavDraftOrder.draft_order.line_items{
@@ -84,9 +90,9 @@ class ProductDetailsVC: UIViewController {
             return DrawCollectioView.drawSection()
         }
         productCollectionView.setCollectionViewLayout(productLayout, animated: true)
-       // addCartBtn.layer.cornerRadius = addCartBtn.frame.width - 10
+        // addCartBtn.layer.cornerRadius = addCartBtn.frame.width - 10
         
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         

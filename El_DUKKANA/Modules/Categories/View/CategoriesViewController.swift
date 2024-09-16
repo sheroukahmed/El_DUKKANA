@@ -31,6 +31,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = UIColor(named: "Color 1")
         ProductsCategoriesCollectionView.backgroundColor = UIColor(named: "Color 1")
         
@@ -82,6 +83,9 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        ProductsCategoriesCollectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return isSearching ? searchViewModel.filterdProducts.count : (categoriesViewModel?.products?.count ?? 0)
@@ -101,8 +105,20 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         } else {
             product = categoriesViewModel?.products?[indexPath.row]
         }
-        cell.configureCell(image: product?.image?.src ?? dummyImage, title: product?.title ?? "", price: product?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
-        
+        if let priceString = product?.variants?.first?.price, let price = Double(priceString) {
+            let convertedPrice = price * CurrencyManager.shared.currencyRate
+            cell.configureCell(image: product?.image?.src ?? dummyImage,
+                               title: product?.title ?? "",
+                               price: "\(convertedPrice)",
+                               currency: CurrencyManager.shared.selectedCurrency,
+                               isFavorited: false)
+        } else {
+            cell.configureCell(image: product?.image?.src ?? dummyImage,
+                               title: product?.title ?? "",
+                               price: "N/A",
+                               currency: CurrencyManager.shared.selectedCurrency,
+                               isFavorited: false)
+        }
         cell.delegate = self
         cell.product = product!
         cell.layer.cornerRadius = 20
