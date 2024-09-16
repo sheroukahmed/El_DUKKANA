@@ -8,9 +8,10 @@
 import Foundation
 
 class CheckoutViewModel {
-
+    
     var checkoutDraft: DraftOrder?
     let network : NetworkProtocol?
+    var selectedAdress : CustomerAddress?
     var bindResultToViewController: (()->()) = {}
     var bindToAddresses: (() -> Void) = {}
     
@@ -37,7 +38,7 @@ class CheckoutViewModel {
         case "SUMMERSALE50OFF":
             return totalPrice * (1 - (discountValue.sale50.rawValue / 100))
         default:
-
+            
             return totalPrice
         }
     }
@@ -45,12 +46,12 @@ class CheckoutViewModel {
     func getAllAddresses() {
         network?.fetch(url: URLManager.getUrl(for: .customerAddresses(customerId: CurrentCustomer.currentCustomer.id ?? 0 )), type: AddressesResponse.self, completionHandler: { result, error in
             guard let result = result else{
-               
+                
                 return
             }
-           
+            
             CurrentCustomer.customerAdresses.addresses = result.addresses
-        
+            
             self.bindToAddresses()
         })
         
@@ -68,6 +69,10 @@ class CheckoutViewModel {
     func draftOrderCompleted(){
         var cartDraftOrderId = CurrentCustomer.currentCartDraftOrder.draft_order.id ?? 0
         network?.Put(url: URLManager.getUrl(for: .drafttorderForOrder(draftorderId: cartDraftOrderId)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
+            guard let result = result else{
+                print("Error in updating : \(error)")
+                return
+            }
             print(result)
         })
         

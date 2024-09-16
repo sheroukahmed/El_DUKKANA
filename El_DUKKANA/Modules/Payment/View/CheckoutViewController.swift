@@ -90,6 +90,8 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
             city.text = address.city
             ZipCode.text = address.zip
             country.text = address.country
+            
+        paymentVM?.selectedAdress = address
         }
     
     @IBAction func ApplyCodebtn(_ sender: Any) {
