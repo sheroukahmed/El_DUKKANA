@@ -100,6 +100,8 @@
 		F8E4516B2C92741E003093B6 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4516A2C92741E003093B6 /* CheckoutViewController.swift */; };
 		F8E4516F2C934AC2003093B6 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */; };
 		F8E451712C934AE4003093B6 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */; };
+		F8E451762C97237D003093B6 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E451752C97237D003093B6 /* PaymentViewController.swift */; };
+		F8E451782C9735FE003093B6 /* AddressDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E451772C9735FE003093B6 /* AddressDelegation.swift */; };
 		F8EC6B7F2C8CE84A00A8D7AF /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */; };
 		F8EC6B842C8CEE2D00A8D7AF /* AboutUS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */; };
 		F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F9BBDB2C891DF3005AE496 /* Network.swift */; };
@@ -227,6 +229,8 @@
 		F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		F8E451722C93C435003093B6 /* El_DUKKANA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = El_DUKKANA.entitlements; sourceTree = "<group>"; };
+		F8E451752C97237D003093B6 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		F8E451772C9735FE003093B6 /* AddressDelegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDelegation.swift; sourceTree = "<group>"; };
 		F8EC6B7E2C8CE84A00A8D7AF /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		F8EC6B832C8CEE2D00A8D7AF /* AboutUS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUS.storyboard; sourceTree = "<group>"; };
 		F8F9BBDB2C891DF3005AE496 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -820,6 +824,7 @@
 			children = (
 				F8E451682C9256AB003093B6 /* CheckoutPaymentStoryboard.storyboard */,
 				F8E4516A2C92741E003093B6 /* CheckoutViewController.swift */,
+				F8E451752C97237D003093B6 /* PaymentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -829,6 +834,7 @@
 			children = (
 				F8E4516E2C934AC2003093B6 /* PaymentViewModel.swift */,
 				F8E451702C934AE4003093B6 /* CheckoutViewModel.swift */,
+				F8E451772C9735FE003093B6 /* AddressDelegation.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1121,6 +1127,7 @@
 				F8E4516F2C934AC2003093B6 /* PaymentViewModel.swift in Sources */,
 				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
 				81B0349C2C8D209100D4A4C5 /* DrowCollectioView.swift in Sources */,
+				F8E451782C9735FE003093B6 /* AddressDelegation.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				26BBA7D92C94D90500554DEA /* FavoritesViewController.swift in Sources */,
@@ -1137,6 +1144,7 @@
 				F8E4516B2C92741E003093B6 /* CheckoutViewController.swift in Sources */,
 				F8528DA22C9081970068858C /* SettingsViewController.swift in Sources */,
 				F8528DB42C913AED0068858C /* ProfileViewModel.swift in Sources */,
+				F8E451762C97237D003093B6 /* PaymentViewController.swift in Sources */,
 				F8F9BBDC2C891DF3005AE496 /* Network.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
 				81B0349F2C8D219F00D4A4C5 /* PageController.swift in Sources */,

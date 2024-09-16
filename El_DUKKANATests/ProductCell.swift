@@ -89,7 +89,7 @@ class ProductCell: UICollectionViewCell {
                         let productToFav = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: product.id, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price, properties: [(ProductProperties(image: product.image?.src ?? "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"))])
                         
                         CurrentCustomer.currentFavDraftOrder.draft_order.line_items.append(productToFav)
-                        CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "70.00" }
+                        CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "249.00" }
                         
                         let alert = UIAlertController(title: "Product Added to Fav", message: "The product has been added to Fav successfully", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .default) { action in

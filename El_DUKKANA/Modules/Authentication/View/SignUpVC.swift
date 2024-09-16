@@ -23,6 +23,9 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var firstNameTF: UITextField!
+    var isVerified = false
+    var verificationTimer: Timer? // Timer for checking verification status
+    
     var viewModel = CustomerViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +57,13 @@ class SignUpVC: UIViewController {
                     self.present(alert, animated: true)
                 } else {
                     // Firebase registration succeeded
-//                    self.viewModel.addCustomer()
-//                    self.showAccountCreatedAlert()
+                    //                    self.viewModel.addCustomer()
+                    //                    self.showAccountCreatedAlert()
                     
                     
                     // Firebase registration succeeded, send email verification
-                        self.sendVerificationEmail()
-                   
+                    self.sendVerificationEmail()
+                    
                 }
             }
         } else {
@@ -69,6 +72,7 @@ class SignUpVC: UIViewController {
     }
     
     @IBAction func signUpWithGoogleBtn(_ sender: Any) {
+        
         // Google sign-up logic here
     }
     
@@ -88,10 +92,10 @@ class SignUpVC: UIViewController {
         
         
         // Validate if the email is a Gmail address
-                if !isValidGmail(email: email) {
-                    showErrorAlertWithMessage(message: "Please use a valid Gmail address")
-                    return false
-                }
+        if !isValidGmail(email: email) {
+            showErrorAlertWithMessage(message: "Please use a valid Gmail address")
+            return false
+        }
         
         // Update ViewModel with input data
         CurrentCustomer.signedUpCustomer.customer.first_name = firstName
@@ -106,18 +110,35 @@ class SignUpVC: UIViewController {
     }
     
     func sendVerificationEmail() {
-            guard let user = Auth.auth().currentUser else { return }
-            user.sendEmailVerification { [weak self] error in
-                if let error = error {
-                    self?.showErrorAlertWithMessage(message: "\(error)")
-                } else {
-                    self?.showVerificationAlert()
-                    // Call the backend `addCustomer` function here
-                    self?.viewModel.addCustomer()
-                }
+        guard let user = Auth.auth().currentUser else { return }
+        user.sendEmailVerification { [weak self] error in
+            if let error = error {
+                self?.showErrorAlertWithMessage(message: "\(error)")
+            } else {
+                self?.showVerificationAlert()
+                // Call the backend `addCustomer` function here
+                //self?.viewModel.addCustomer()
             }
         }
-    
+    }
+//    func checkEmailVerification() {
+//        Auth.auth().currentUser?.reload(completion: { [weak self] error in
+//            guard let user = Auth.auth().currentUser, error == nil else {
+//                // Handle error
+//                return
+//            }
+//            if user.isEmailVerified {
+//                // Call the backend API to add customer
+//                self?.viewModel.addCustomer() // Call backend API here
+//                self?.showAccountCreatedAlert()
+//                self?.isVerified = true
+//            } else {
+//                // Show alert that email is not verified
+//                self?.showErrorAlertWithMessage(message: "Please verify your email before proceeding.")
+//            }
+//        })
+//    }
+//
     // Function to validate if the email is a Gmail address
     
         func isValidGmail(email: String) -> Bool {
@@ -141,14 +162,59 @@ class SignUpVC: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func startVerificationTimer(){
+        verificationTimer?.invalidate() // Invalidate any existing timer
+        verificationTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(checkEmailVerification), userInfo: nil, repeats: true)
+        
+    }
+    // Function to check if email is verified
+    @objc func checkEmailVerification() {
+        Auth.auth().currentUser?.reload(completion: { [weak self] error in
+            guard let user = Auth.auth().currentUser, error == nil else {
+                return
+            }
+     
+            if user.isEmailVerified {
+                // Email is verified, stop timer and add customer to backend
+                self?.verificationTimer?.invalidate()
+                self?.verificationTimer = nil
+                // Add customer to backend
+                self?.viewModel.addCustomer()
+     
+                // Show success alert and navigate to SignInVC
+                self?.showAccountCreatedAlert()
+            } else {
+                // Show an alert to remind the user to verify their email
+                self?.showVerificationReminderAlert()
+            }
+        })
+    }
+    
     func showVerificationAlert() {
             let alert = UIAlertController(title: "Email Verification Sent", message: "Please check your Gmail inbox and verify your email address before logging in.", preferredStyle: .alert)
+     
             let ok = UIAlertAction(title: "OK", style: .default) { [weak self] action in
-                self?.dismiss(animated: true)
+                // Start timer to check email verification every 5 seconds
+                self?.startVerificationTimer()
             }
+     
             alert.addAction(ok)
             self.present(alert, animated: true)
         }
+    
+    func showVerificationReminderAlert() {
+        let alert = UIAlertController(
+            title: "Email Verification Pending",
+            message: "Please verify your email before proceeding.",
+            preferredStyle: .alert
+        )
+        let ok = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            // Continue checking after the alert is dismissed
+            self?.startVerificationTimer()
+        }
+        alert.addAction(ok)
+        self.present(alert, animated: true)
+    }
         
     
     func showErrorAlert() {
