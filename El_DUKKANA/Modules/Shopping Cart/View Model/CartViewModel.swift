@@ -13,9 +13,10 @@ import RxCocoa
 class CartViewModel {
     let network: NetworkProtocol?
     var bindResultToViewController: (() -> ()) = {}
+    var bindResultToViewController2: (() -> ()) = {}
     var productVm : ProductDetailsViewModel?
     
-    
+    var Images : [String] = []
     var disposeBag = DisposeBag()
     var quantityUpdateSubject = PublishSubject<Void>()
 
@@ -45,6 +46,22 @@ class CartViewModel {
             self.bindResultToViewController()
         })
     }
+    //"https://9d0444175dd62fe47c518ad17c3cd512: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@nciost3.myshopify.com./admin/api/2024-07/products.json?ids="632910392,921728736
+    func getproductImage(ids:String){
+        network?.fetch(url:  "https://9d0444175dd62fe47c518ad17c3cd512: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@nciost3.myshopify.com./admin/api/2024-07/products.json?ids=\(ids)", type: ProductResponse.self, completionHandler: { result, error in
+            guard let result = result else{
+                print("Error in fetching images : \(error)")
+                return
+            }
+            print(result)
+            for item in result.products{
+                self.Images.append(item.image?.src ?? "")
+            }
+            self.bindResultToViewController2()
+        })
+        
+    }
+    
     
    
 //    func calculateTotalPrice() -> Double {

@@ -44,8 +44,11 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zrF-OE-RWiuiuytI">
-                                <rect key="frame" x="8" y="8" width="377" height="674"/>
+                                <rect key="frame" x="8" y="103" width="377" height="579"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zrF-OE-RWiuiuytI" secondAttribute="height" multiplier="377:579" id="GSL-ep-ywk"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="Ani-kK-8Soih" customClass="CartItemTableViewCell" customModule="El_DUKKANA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="377" height="104"/>
@@ -117,10 +120,8 @@
                             <constraint firstItem="8F8-8v-FEd" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="BAL-1O-25a"/>
                             <constraint firstItem="L8S-GQ-uyH" firstAttribute="top" secondItem="zrF-OE-RWiuiuytI" secondAttribute="bottom" id="J9e-gI-Vfs"/>
                             <constraint firstItem="8F8-8v-FEd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="S6m-oJ-Rjl"/>
-                            <constraint firstItem="zrF-OE-RWiuiuytI" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="XN8-rH-qdD"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Log-4b-lZm" secondAttribute="trailing" constant="8" id="YLv-7X-v8i"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8F8-8v-FEd" secondAttribute="trailing" constant="8" id="j9d-nh-653"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="zrF-OE-RWiuiuytI" secondAttribute="top" constant="95" id="jd0-B1-Sas"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="top" secondItem="L8S-GQ-uyH" secondAttribute="bottom" constant="8" symbolic="YES" id="m0u-3A-m06"/>
                             <constraint firstItem="Log-4b-lZm" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="oHP-rQ-KlF"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="L8S-GQ-uyH" secondAttribute="trailing" constant="8" id="sol-Tw-8Gs"/>

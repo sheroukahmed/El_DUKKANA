@@ -17,8 +17,12 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var productstableview: UITableView!
     @IBOutlet weak var Checkoutbtn: UIButton!
     @IBOutlet weak var totalprice: UILabel!
+
+    var productIds : [Int] = []
+
     @IBOutlet weak var currency: UILabel!
     
+
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
     var productVm : ProductDetailsViewModel?
@@ -42,6 +46,17 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.checkIfCartIsEmpty()
         }
         checkIfCartIsEmpty()
+        
+        for item in CurrentCustomer.currentCartDraftOrder.draft_order.line_items{
+            productIds.append(item.product_id ?? 0)
+        }
+        let commaSeparatedString = productIds.map { String($0) }.joined(separator: ",")
+        cartVM?.getproductImage(ids: commaSeparatedString)
+        cartVM?.bindResultToViewController2 = {
+            print(self.cartVM?.Images)
+            self.productstableview.reloadData()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,11 +92,30 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.itemCurrency.text = CurrencyManager.shared.selectedCurrency
         cell.itemQuantity.text = String(lineItem.quantity ?? 1)
-        cell.availableQuantity.text = "5"
-        
+        if let images = cartVM?.Images, indexPath.row < images.count {
+            let imageUrl = images[indexPath.row] 
+            print("Image for product at row \(indexPath.row): \(imageUrl)")
+            cell.itemimg.kf.setImage(with: URL(string: imageUrl))
+        } else {
+            
+            cell.itemimg.kf.setImage(with: URL(string: dummyImage))
+            print("Using dummy image for product at row \(indexPath.row)")
+        }
+        let variantDetails = lineItem.variant_title?.split(separator: "/")
+        if variantDetails?.count == 2 {
+            let size = variantDetails?[0].trimmingCharacters(in: .whitespaces)
+            let color = variantDetails?[1].trimmingCharacters(in: .whitespaces)
+                cell.itemSize.text = size
+                cell.itemColor.text = color
+            } else {
+               
+                cell.itemSize.text = "N/A"
+                cell.itemColor.text = "N/A"
+            }
+    
 
     
-        let availableQuantity = Int(cell.availableQuantity.text!) ?? 5
+        let availableQuantity = 5
         let currentQuantity = lineItem.quantity ?? 1
         
         cell.increaseButton.isEnabled = currentQuantity < availableQuantity
