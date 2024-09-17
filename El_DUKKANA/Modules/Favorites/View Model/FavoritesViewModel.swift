@@ -11,7 +11,7 @@ class FavoritesViewModel {
     
     var network: NetworkProtocol?
     var bindToFavorites: (() -> Void) = {}
-    var favorites: [Product]? {
+    var favorites: [LineItem]? {
         didSet {
             bindToFavorites()
         }

@@ -17,6 +17,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var productstableview: UITableView!
     @IBOutlet weak var Checkoutbtn: UIButton!
     @IBOutlet weak var totalprice: UILabel!
+    @IBOutlet weak var currency: UILabel!
     
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
@@ -51,7 +52,11 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func updateTotalPrice() {
-        totalprice.text = CurrentCustomer.currentCartDraftOrder.draft_order.total_price ?? "0.00"
+        if let priceString = CurrentCustomer.currentCartDraftOrder.draft_order.total_price, let price = Double(priceString) {
+            let convertedPrice = price * CurrencyManager.shared.currencyRate
+            totalprice.text = "\(convertedPrice)"
+        }
+        currency.text = CurrencyManager.shared.selectedCurrency
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +71,11 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             let components = title.split(separator: " | ", maxSplits: 1)
             cell.itemname.text = components.count > 1 ? String(components[1]) : String(components[0])
         }
-        cell.itemprice.text = lineItem.price
+        if let priceString = lineItem.price, let price = Double(priceString) {
+            let convertedPrice = price * CurrencyManager.shared.currencyRate
+            cell.itemprice.text = "\(convertedPrice)"
+        }
+        cell.itemCurrency.text = CurrencyManager.shared.selectedCurrency
         cell.itemQuantity.text = String(lineItem.quantity ?? 1)
         cell.availableQuantity.text = "5"
         
@@ -156,13 +165,10 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
    }
     
     @IBAction func GotoCheckoutbtn(_ sender: Any) {
-        if NetworkReachabilityManager()?.isReachable ?? false {
-            let storyboard = UIStoryboard(name: "CheckoutPaymentStoryboard", bundle: nil)
-            let Checkout = storyboard.instantiateViewController(identifier: "Checkout") as CheckoutViewController
-            Checkout.title = "CheckOut"
-            self.navigationController?.pushViewController(Checkout, animated: true)
-        }
-        UIAlertController.showNoConnectionAlert(self: self)
+        let storyboard = UIStoryboard(name: "CheckoutPaymentStoryboard", bundle: nil)
+        let Checkout = storyboard.instantiateViewController(identifier: "Checkout") as CheckoutViewController
+        Checkout.title = "CheckOut"
+        self.navigationController?.pushViewController(Checkout, animated: true)
     }
     
     func checkIfCartIsEmpty() {

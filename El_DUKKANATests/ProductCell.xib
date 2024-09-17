@@ -33,10 +33,10 @@
                                     <action selector="addToFavorites:" destination="gTV-IL-0wX" eventType="touchUpInside" id="35w-kB-poo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMH-Hu-tZE">
-                                <rect key="frame" x="8" y="207" width="90" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMH-Hu-tZE">
+                                <rect key="frame" x="8" y="207" width="50" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="yvc-aw-EKz"/>
+                                    <constraint firstAttribute="width" constant="50" id="yvc-aw-EKz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>

@@ -61,21 +61,57 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         
         if isSearching {
             let product = searchViewModel.filterdProducts[indexPath.row]
-            cell.configureCell(image: product.image?.src ?? dummyImage, title: product.title ?? "", price: product.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
-            
+            if let priceString = product.variants?.first?.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                cell.configureCell(image: product.image?.src ?? dummyImage,
+                                   title: product.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            } else {
+                cell.configureCell(image: product.image?.src ?? dummyImage,
+                                   title: product.title ?? "",
+                                   price: "N/A",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            }
             cell.delegate = self
             cell.product = product
             
         } else if isFiltered {
             let brandProduct = brandViewModel?.filteredProducts?[indexPath.row]
-            cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
-            
+            if let priceString = brandProduct?.variants?.first?.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            } else {
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "N/A",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            }
             cell.delegate = self
             cell.product = brandProduct!
         } else {
             let brandProduct = brandViewModel?.products?[indexPath.row]
-            cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
-            
+            if let priceString = brandProduct?.variants?.first?.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            } else {
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "N/A",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            }
             cell.delegate = self
             cell.product = brandProduct!
         }
