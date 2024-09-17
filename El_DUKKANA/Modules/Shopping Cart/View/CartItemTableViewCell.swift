@@ -16,7 +16,7 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemColor: UILabel!
     @IBOutlet weak var itemprice: UILabel!
     
-    @IBOutlet weak var availableQuantity: UILabel!
+    
     @IBOutlet weak var itemSize: UILabel!
     @IBOutlet weak var itemQuantity: UILabel!
     
@@ -35,27 +35,10 @@ class CartItemTableViewCell: UITableViewCell {
     }
     
     @IBAction func minusQuantity(_ sender: Any) {
-        itemQuantity.text = String((Int(itemQuantity.text!))! - 1)
-        if Int(itemQuantity.text!)! == 1 {
-            decreaseButton.isEnabled = false
-            decreaseButton.alpha = 0.25
-        }
-        if Int(itemQuantity.text!)! < Int(availableQuantity.text!)! {
-            increaseButton.isEnabled = true
-            increaseButton.alpha = 1.0
-        }
-    
+       
         
     }
     @IBAction func plusQuantity(_ sender: Any) {
-        itemQuantity.text = String((Int(itemQuantity.text!))! + 1)
-        if Int(itemQuantity.text!)! > 1 {
-            decreaseButton.isEnabled = true
-            decreaseButton.alpha = 1.0
-        }
-        if Int(itemQuantity.text!)! == Int(availableQuantity.text!)! {
-            increaseButton.isEnabled = false
-            increaseButton.alpha = 0.25
-        }
+        
     }
 }

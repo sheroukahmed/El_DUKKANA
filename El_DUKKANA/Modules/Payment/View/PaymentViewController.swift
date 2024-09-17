@@ -14,6 +14,8 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
     
     var checkoutVM = CheckoutViewModel()
     
+    var customerVM = CustomerViewModel()
+    
     
 
     override func viewDidLoad() {
@@ -95,7 +97,7 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
     
     @IBAction func CashBtn(_ sender: Any) {
         
-       // paymentVM?.selectedAdress
+      
         let dr = CurrentCustomer.currentCartDraftOrder.draft_order
         let shippingAddress = paymentVM!.selectedAdress
         let totalPrice = paymentVM!.totalPrice
@@ -103,6 +105,19 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
         CurrentCustomer.currentCartDraftOrder = newDraft
         
         self.checkoutVM.draftOrderCompleted()
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(3)) {
+            self.checkoutVM.DeleteDraft()
+        }
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(3)) {
+            self.customerVM.prepareCartDraftOrders()
+            self.customerVM.addCarDraft()
+        }
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(3)) {
+            self.customerVM.getAllDrafts()
+        }
+        
         
     }
 }

@@ -77,6 +77,10 @@ class CheckoutViewModel {
         })
         
     }
+    
+    func DeleteDraft(){
+        network?.Delete(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.cartDraftOrderId)))
+    }
 }
 
 enum discountValue :Double {

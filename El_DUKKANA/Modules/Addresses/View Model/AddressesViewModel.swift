@@ -20,7 +20,7 @@ class AddressesViewModel {
     func getAllAddresses() {
         network?.fetch(url: URLManager.getUrl(for: .customerAddresses(customerId: CurrentCustomer.currentCustomer.id ?? 0 )), type: AddressesResponse.self, completionHandler: { result, error in
             guard let result = result else{
-               
+               print(error)
                 return
             }
            

@@ -100,9 +100,16 @@ class CustomerViewModel {
     func prepareDraftOrders() {
         // Setup draft orders for the customer
         
-        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: CustomerViewModel.createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
         
-            customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+        customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: CustomerViewModel.createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+    }
+    
+    func prepareCartDraftOrders(){
+        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: CustomerViewModel.createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+    }
+    func prepareFavDraftOrders(){
+        customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: CustomerViewModel.createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
     }
     
     func addDraftOrders() {
@@ -135,8 +142,46 @@ class CustomerViewModel {
             
         })
     }
+    
+   func addCarDraft (){
+        guard let customerID = CurrentCustomer.signedUpCustomer.customer.id, customerID != 0 else {
+            print("Cannot create draft order. Customer does not exist.")
+            return
+        }
+        network?.Post(url: URLManager.getUrl(for: .draftOrder), type: customerDraftCart, completionHandler: { result, error in
+            guard error == nil else {
+                print("Error adding draft cart: \(String(describing: error))")
+                return
+            }
+            guard let result = result else{return}
+            print("Draft order for cart created: \(result)")
+            CurrentCustomer.cartDraftOrderId = result?.draft_order.id ?? 0
+            
+        })
+        
+    }
+    
+    func addFavDraft(){
+        guard let customerID = CurrentCustomer.signedUpCustomer.customer.id, customerID != 0 else {
+            print("Cannot create draft order. Customer does not exist.")
+            return
+        }
+        
+        // Add draft order for favorites
+        network?.Post(url: URLManager.getUrl(for: .draftOrder), type: customerDraftFav, completionHandler: { result, error in
+            guard error == nil else {
+                print("Error adding draft order for favorites: \(String(describing: error))")
+                return
+            }
+            guard let result = result else{return}
+            print("Draft order for favorites created: \(result)")
+            CurrentCustomer.favDraftOrderId = result?.draft_order.id ?? 0
+
+        })
+        
+    }
                              	      
-    func createLineItems() -> [LineItem] {
+    static func createLineItems() -> [LineItem] {
         // Sample line items
         return [LineItem(id: 8649735831790, variant_id: 45726370201838, product_id: 8649736323310, title: "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH", variant_title: "4 / red", vendor: "DR MARTENS", quantity: 1, name: "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH", custom: true, price: "100000.00",properties: [])]
     }
@@ -157,9 +202,7 @@ class CustomerViewModel {
                 if item.email ?? "".lowercased() == CurrentCustomer.currentCustomer.email && item.note == "Favorite"{
                     CurrentCustomer.favDraftOrderId = item.id ?? 0
                 
-                }
-                
-                
+                }  
             }
             print("Cart DraftOrder Id : \(CurrentCustomer.cartDraftOrderId)")
             print("Fav DraftOrder Id : \(CurrentCustomer.favDraftOrderId)")
