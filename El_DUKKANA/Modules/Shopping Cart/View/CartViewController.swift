@@ -109,7 +109,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.Checkoutbtn.isEnabled = false
                 }
                 self.updateTotalPrice()
-                self.productVm?.updateCartDraftOrder()
+                self.productVm?.updateCartDraftOrder(lineItems: CurrentCustomer.currentCartDraftOrder.draft_order.line_items)
                 
                 self.checkIfCartIsEmpty()
                 
@@ -156,13 +156,13 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
    }
     
     @IBAction func GotoCheckoutbtn(_ sender: Any) {
-        if NetworkReachabilityManager()?.isReachable ?? false {
+        
             let storyboard = UIStoryboard(name: "CheckoutPaymentStoryboard", bundle: nil)
             let Checkout = storyboard.instantiateViewController(identifier: "Checkout") as CheckoutViewController
             Checkout.title = "CheckOut"
             self.navigationController?.pushViewController(Checkout, animated: true)
-        }
-        UIAlertController.showNoConnectionAlert(self: self)
+        
+        
     }
     
     func checkIfCartIsEmpty() {

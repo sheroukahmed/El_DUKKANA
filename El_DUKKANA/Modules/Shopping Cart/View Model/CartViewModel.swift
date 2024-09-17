@@ -26,7 +26,7 @@ class CartViewModel {
         quantityUpdateSubject
            .debounce(.seconds(2), scheduler: MainScheduler.instance)
            .subscribe(onNext: { [weak self] in
-               self?.productVm?.updateCartDraftOrder()
+               self?.productVm?.updateCartDraftOrder(lineItems: CurrentCustomer.currentCartDraftOrder.draft_order.line_items)
                
            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(5)) {
                self?.getCartDraftFromApi()

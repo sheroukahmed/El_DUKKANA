@@ -102,10 +102,8 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
     
     @IBAction func Paymentbtn(_ sender: Any) {
 
-        if NetworkReachabilityManager()?.isReachable ?? false {
             paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
-        }
-        UIAlertController.showNoConnectionAlert(self: self)
+        
     
             
         let payscreen = self.storyboard?.instantiateViewController(withIdentifier: "pay") as! PaymentViewController

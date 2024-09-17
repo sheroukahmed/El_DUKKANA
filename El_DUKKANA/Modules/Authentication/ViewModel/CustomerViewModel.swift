@@ -100,9 +100,9 @@ class CustomerViewModel {
     func prepareDraftOrders() {
         // Setup draft orders for the customer
         
-        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+        customerDraftFav = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Cart", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: CustomerViewModel.createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
         
-            customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
+            customerDraftCart = DraftOrderRequest(draft_order: DraftOrder(id: 342523442,note: "Favorite", email: CurrentCustomer.signedUpCustomer.customer.email, currency: "USD", created_at: "2024-9-4", updated_at: "2024-9-7", completed_at: "2024-9-9", name: "", status: "open", line_items: CustomerViewModel.createLineItems(), order_id: 13243585, shipping_line: nil, tags: "", total_price: "100.00", customer: CurrentCustomer.signedUpCustomer.customer))
     }
     
     func addDraftOrders() {
@@ -136,9 +136,9 @@ class CustomerViewModel {
         })
     }
                              	      
-    func createLineItems() -> [LineItem] {
+    static func createLineItems() -> [LineItem] {
         // Sample line items
-        return [LineItem(id: 8649735831790, variant_id: 45726370201838, product_id: 8649736323310, title: "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH", variant_title: "4 / red", vendor: "DR MARTENS", quantity: 1, name: "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH", custom: true, price: "100000.00",properties: [])]
+        return [LineItem(id: 8649735831790, variant_id: 45726370201838, product_id: 8649736323310, title: "NIKE | SWOOSH PRO FLAT PEAK CAP", variant_title: "OS / white", vendor: "NIKE", quantity: 1, name: "NIKE | SWOOSH PRO FLAT PEAK CAP", custom: true, price: "30.00",properties: [])]
     }
     
     func getAllDrafts(){

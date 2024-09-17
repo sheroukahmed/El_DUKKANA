@@ -95,7 +95,7 @@ class ProductCell: UICollectionViewCell {
                         let ok = UIAlertAction(title: "OK", style: .default) { action in
                             self.isFavorited.toggle()
                             self.setBtnView()
-                            self.viewModel.updateFavDraftOrder()
+                            self.viewModel.updateFavDraftOrder(lineItems: CurrentCustomer.currentFavDraftOrder.draft_order.line_items)
                             self.delegate?.refreshCollectionView()
          
                         }
@@ -109,7 +109,7 @@ class ProductCell: UICollectionViewCell {
                         self.isFavorited.toggle()
                         self.setBtnView()
                         CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.title == self.product.title }
-                        self.viewModel.updateFavDraftOrder()
+                        self.viewModel.updateFavDraftOrder(lineItems: CurrentCustomer.currentFavDraftOrder.draft_order.line_items)
                         self.delegate?.refreshCollectionView()
                     }
                     let cancel = UIAlertAction(title: "Cancel", style: .cancel)

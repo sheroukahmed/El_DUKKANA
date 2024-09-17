@@ -13,8 +13,8 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
     var paymentVM: paymentViewModel?
     
     var checkoutVM = CheckoutViewModel()
-    
-    
+    var customerViewModel = CustomerViewModel()
+    var productDetailsViewModel = ProductDetailsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +79,14 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
                 let newDraft = DraftOrderRequest(draft_order:DraftOrder(id: dr.id, note: dr.note, email: dr.email, currency: dr.currency, created_at: dr.created_at, updated_at: dr.updated_at, completed_at: dr.completed_at, name: dr.name, status: dr.status, line_items: dr.line_items, order_id: dr.order_id, shipping_line: dr.shipping_line, tags: dr.tags, total_price: ("\(totalPrice)"), customer: dr.customer,shipping_address: shippingAddress))
                 CurrentCustomer.currentCartDraftOrder = newDraft
                 self?.checkoutVM.draftOrderCompleted()
+                
+                CurrentCustomer.currentCartDraftOrder.draft_order.line_items = CustomerViewModel.createLineItems()
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(2)) {
+                    self?.productDetailsViewModel.updateCartDraftOrder(lineItems: CurrentCustomer.currentCartDraftOrder.draft_order.line_items)
+                }
+                
+                
+                
             }
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
@@ -103,6 +111,6 @@ class PaymentViewController: UIViewController , PKPaymentAuthorizationViewContro
         CurrentCustomer.currentCartDraftOrder = newDraft
         
         self.checkoutVM.draftOrderCompleted()
-        
+       
     }
 }

@@ -106,7 +106,7 @@ class ProductDetailsVC: UIViewController {
                     let ok = UIAlertAction(title: "OK", style: .default) { action in
                         print("\n\n current cart : \(CurrentCustomer.currentCartDraftOrder.draft_order.line_items)\n")
                         
-                        self.viewModel.updateCartDraftOrder()
+                        self.viewModel.updateCartDraftOrder(lineItems: CurrentCustomer.currentCartDraftOrder.draft_order.line_items)
                         print("\n\n\n\nUpdate Draft Order After Put : \(CurrentCustomer.currentCartDraftOrder)\n\n\n\n")
                     }
                     alert.addAction(ok)
@@ -138,14 +138,14 @@ class ProductDetailsVC: UIViewController {
                 if let product = viewModel.product?.product{
                     print(product.image?.src)
                     // Get the title of the selected size segment
-                    if let selectedSizeTitle = self.sizeSegmentedController.titleForSegment(at: self.sizeSegmentedController.selectedSegmentIndex) {
-                        favViewModel.productSize = selectedSizeTitle
-                    }
-
-                    // Get the title of the selected color segment
-                    if let selectedColorTitle = self.colorsSegmented.titleForSegment(at: self.colorsSegmented.selectedSegmentIndex) {
-                        favViewModel.productColor = selectedColorTitle
-                    }
+//                    if let selectedSizeTitle = self.sizeSegmentedController.titleForSegment(at: self.sizeSegmentedController.selectedSegmentIndex) {
+//                        favViewModel.productSize = selectedSizeTitle
+//                    }
+//
+//                    // Get the title of the selected color segment
+//                    if let selectedColorTitle = self.colorsSegmented.titleForSegment(at: self.colorsSegmented.selectedSegmentIndex) {
+//                        favViewModel.productColor = selectedColorTitle
+//                    }
 
                     let productToFav = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.images?[0].src ?? "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"))])
                     print("\n\nold cart : \(CurrentCustomer.currentFavDraftOrder.draft_order.line_items)\n\n")
@@ -159,7 +159,7 @@ class ProductDetailsVC: UIViewController {
                         self.setBtnView()
                         print("\n\n current cart : \(CurrentCustomer.currentFavDraftOrder.draft_order.line_items)\n")
                         
-                        self.viewModel.updateFavDraftOrder()
+                        self.viewModel.updateFavDraftOrder(lineItems: CurrentCustomer.currentFavDraftOrder.draft_order.line_items)
                         print("\n\n\n\nUpdate Draft Order After Put : \(CurrentCustomer.currentFavDraftOrder)\n\n\n\n")
                     }
                     alert.addAction(ok)
@@ -171,7 +171,7 @@ class ProductDetailsVC: UIViewController {
                     self.isFavorated = !self.isFavorated
                     self.setBtnView()
                     CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.title == self.viewModel.product?.product.title }
-                    self.viewModel.updateFavDraftOrder()
+                    self.viewModel.updateFavDraftOrder(lineItems: CurrentCustomer.currentFavDraftOrder.draft_order.line_items)
                 }
                 
                 let cancle = UIAlertAction(title: "Cancle", style: .cancel)
