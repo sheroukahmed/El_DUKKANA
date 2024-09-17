@@ -15,6 +15,7 @@ class CartItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var itemColor: UILabel!
     @IBOutlet weak var itemprice: UILabel!
+    @IBOutlet weak var itemCurrency: UILabel!
     
     
     @IBOutlet weak var itemSize: UILabel!

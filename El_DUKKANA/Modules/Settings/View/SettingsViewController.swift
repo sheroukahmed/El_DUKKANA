@@ -9,12 +9,17 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    @IBOutlet weak var currencyView: UIView!
+    @IBOutlet weak var darkModeView: UIView!
+    @IBOutlet weak var aboutUsBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var CurrencyList: UIButton!
     var SettingVM = SettingsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupUI()
         
         if CurrentCustomer.currentCustomer.email == nil{
             self.signOutBtn.isHidden = true
@@ -23,20 +28,42 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Color 1")
 
         // MARK: - Currency list
-        let CurrencyItemAction = { (action: UIAction) in
-             print(action.title)
+        
+        let savedCurrency = UserDefaults.standard.string(forKey: "SelectedCurrency") ?? "USD"
+        SettingVM.selectedCurrency = savedCurrency
+        updateCurrencyLabel()
+
+        
+        let CurrencyItemAction = { [weak self] (action: UIAction) in
+            guard let self = self else { return }
+            let selectedCurrency = action.title
+            self.SettingVM.selectedCurrency = selectedCurrency
+            UserDefaults.standard.set(selectedCurrency, forKey: "SelectedCurrency")
+            self.updateCurrencyLabel()
+            print(action.title)
         }
+        
         var menuChildren: [UIMenuElement] = []
         for currency in SettingVM.Currencies {
-            menuChildren.append(UIAction(title: currency, handler: CurrencyItemAction))
+            let action = UIAction(title: currency, state: currency == SettingVM.selectedCurrency ? .on : .off, handler: CurrencyItemAction)
+            menuChildren.append(action)
         }
         CurrencyList.menu = UIMenu(options: .displayInline, children: menuChildren)
         CurrencyList.showsMenuAsPrimaryAction = true
         CurrencyList.changesSelectionAsPrimaryAction = true
-    
+        updateCurrencyLabel()
     }
     
-
+    func setupUI() {
+        currencyView.layer.cornerRadius = 15
+        darkModeView.layer.cornerRadius = 15
+        signOutBtn.layer.cornerRadius = 15
+        aboutUsBtn.layer.cornerRadius = 15
+    }
+    
+    func updateCurrencyLabel() {
+        CurrencyList.setTitle(SettingVM.selectedCurrency, for: .normal)
+    }
    
     @IBAction func DarkSwitch(_ sender: UISwitch) {
         
@@ -70,5 +97,6 @@ class SettingsViewController: UIViewController {
             self.navigationController?.pushViewController(about, animated: true)
         }
     }
+    
 }
 

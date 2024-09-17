@@ -19,8 +19,9 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
     @IBOutlet weak var codetextF: UITextField!
     @IBOutlet weak var TotalPrice: UILabel!
     @IBOutlet weak var priceDiscount: UILabel!
+    @IBOutlet weak var currencyTotal: UILabel!
+    @IBOutlet weak var currencyDiscount: UILabel!
     
-
     var paymentVM : paymentViewModel?
     
     var checkoutVM : CheckoutViewModel?
@@ -41,7 +42,7 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
             countryCode: "EG",
             currencyCode: "EGP"
         )
-
+        
         
         checkoutVM = CheckoutViewModel()
         checkoutVM?.getDraftOrder()
@@ -55,14 +56,23 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
             
         }
         checkoutVM?.bindResultToViewController = { [weak self] in
-
+            
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.TotalPrice.text = self.checkoutVM?.checkoutDraft?.total_price
-                self.priceDiscount.text = self.checkoutVM?.checkoutDraft?.total_price
+                if let priceString = self.checkoutVM?.checkoutDraft?.total_price, let totalPrice = Double(priceString) {
+                    let convertedTotalPrice = totalPrice * CurrencyManager.shared.currencyRate
+                    self.TotalPrice.text = "\(convertedTotalPrice)"
+                }
+                self.currencyTotal.text = CurrencyManager.shared.selectedCurrency
+                
+                if let priceString = self.checkoutVM?.checkoutDraft?.total_price, let priceDiscount = Double(priceString) {
+                    let convertedPriceDiscount = priceDiscount * CurrencyManager.shared.currencyRate
+                    self.priceDiscount.text = "\(convertedPriceDiscount)"
+                }
+                self.currencyDiscount.text = CurrencyManager.shared.selectedCurrency
             }
         }
-
+        
     }
     
     @IBAction func SelectAddressbtn(_ sender: Any) {

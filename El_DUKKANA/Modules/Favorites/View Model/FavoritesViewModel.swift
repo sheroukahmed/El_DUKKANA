@@ -11,8 +11,12 @@ class FavoritesViewModel {
     var Images : [String] = []
     var network: NetworkProtocol?
     var bindToFavorites: (() -> Void) = {}
+
     var bindResultToViewController2: (() -> ()) = {}
-    var favorites: [Product]? {
+    var favorite: [Product]? 
+
+    var favorites: [LineItem]? {
+
         didSet {
             bindToFavorites()
         }

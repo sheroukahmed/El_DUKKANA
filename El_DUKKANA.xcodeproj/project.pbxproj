@@ -10,6 +10,7 @@
 		264E3AE12C8CC384001FC585 /* BrandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E3AE02C8CC384001FC585 /* BrandViewModel.swift */; };
 		264E3AE52C8D3815001FC585 /* BrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E3AE42C8D3815001FC585 /* BrandViewController.swift */; };
 		26616F412C8DD224008BCD9D /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26616F402C8DD224008BCD9D /* BrandsCollectionViewCell.swift */; };
+		26837BF22C98B9600066C514 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26837BF12C98B9600066C514 /* CurrencyManager.swift */; };
 		268C653B2C92265000EF2F88 /* OnBoardingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 268C653A2C92265000EF2F88 /* OnBoardingStoryboard.storyboard */; };
 		268C653D2C92265F00EF2F88 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C653C2C92265F00EF2F88 /* OnBoardingViewController.swift */; };
 		268C65412C93630100EF2F88 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C65402C93630100EF2F88 /* Order.swift */; };
@@ -36,6 +37,8 @@
 		26E420672C976FD6006968D7 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420662C976FD6006968D7 /* MockNetworkManager.swift */; };
 		26E420692C977034006968D7 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420682C977034006968D7 /* NetworkManagerTests.swift */; };
 		26E4206C2C97926A006968D7 /* UIAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4206B2C97926A006968D7 /* UIAlertExtension.swift */; };
+		26E420732C988D63006968D7 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E420712C988D63006968D7 /* FavCell.swift */; };
+		26E420742C988D63006968D7 /* FavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26E420722C988D63006968D7 /* FavCell.xib */; };
 		26FBE3232C8CBE5000263DE3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FBE3212C8CBE5000263DE3 /* ProductCell.swift */; };
 		26FBE3242C8CBE5000263DE3 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26FBE3222C8CBE5000263DE3 /* ProductCell.xib */; };
 		7B1CE7A04CFA4FE135929E92 /* Pods_El_DUKKANAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E18383E0D398AECC12DED520 /* Pods_El_DUKKANAUITests.framework */; };
@@ -132,6 +135,7 @@
 		264E3AE02C8CC384001FC585 /* BrandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewModel.swift; sourceTree = "<group>"; };
 		264E3AE42C8D3815001FC585 /* BrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewController.swift; sourceTree = "<group>"; };
 		26616F402C8DD224008BCD9D /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
+		26837BF12C98B9600066C514 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		268C653A2C92265000EF2F88 /* OnBoardingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnBoardingStoryboard.storyboard; sourceTree = "<group>"; };
 		268C653C2C92265F00EF2F88 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		268C65402C93630100EF2F88 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 		26E420662C976FD6006968D7 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		26E420682C977034006968D7 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		26E4206B2C97926A006968D7 /* UIAlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertExtension.swift; sourceTree = "<group>"; };
+		26E420712C988D63006968D7 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavCell.swift; path = El_DUKKANA/Extensions/FavCell.swift; sourceTree = SOURCE_ROOT; };
+		26E420722C988D63006968D7 /* FavCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FavCell.xib; path = El_DUKKANA/Extensions/FavCell.xib; sourceTree = SOURCE_ROOT; };
 		26FBE3212C8CBE5000263DE3 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = El_DUKKANATests/ProductCell.swift; sourceTree = SOURCE_ROOT; };
 		26FBE3222C8CBE5000263DE3 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProductCell.xib; path = El_DUKKANATests/ProductCell.xib; sourceTree = SOURCE_ROOT; };
 		5CB35D5B135D8F358590AF9F /* Pods-El_DUKKANA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-El_DUKKANA.release.xcconfig"; path = "Target Support Files/Pods-El_DUKKANA/Pods-El_DUKKANA.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +304,14 @@
 				264E3AE02C8CC384001FC585 /* BrandViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		26837BF32C98B97D0066C514 /* CurrencyManager */ = {
+			isa = PBXGroup;
+			children = (
+				26837BF12C98B9600066C514 /* CurrencyManager.swift */,
+			);
+			path = CurrencyManager;
 			sourceTree = "<group>";
 		};
 		268C65382C92262D00EF2F88 /* OnBoarding */ = {
@@ -761,6 +775,8 @@
 			children = (
 				26FBE3212C8CBE5000263DE3 /* ProductCell.swift */,
 				26FBE3222C8CBE5000263DE3 /* ProductCell.xib */,
+				26E420712C988D63006968D7 /* FavCell.swift */,
+				26E420722C988D63006968D7 /* FavCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -779,6 +795,7 @@
 		F8D3C20F2C88E18800C9B255 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				26837BF32C98B97D0066C514 /* CurrencyManager */,
 				8137407A2C8BE805001ECAF4 /* CoreData */,
 			);
 			path = Local;
@@ -972,6 +989,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D3C2082C88E10C00C9B255 /* StartOptionsStoryboard.storyboard in Resources */,
+				26E420742C988D63006968D7 /* FavCell.xib in Resources */,
 				F80490572C8B0AEC00CE43ED /* AdsCollectionViewCell.xib in Resources */,
 				F8D3C1E12C88E06B00C9B255 /* LaunchScreen.storyboard in Resources */,
 				26BBA7E42C94DD9900554DEA /* AddressesStoryboard.storyboard in Resources */,
@@ -1128,6 +1146,7 @@
 				26DB3D1E2C8A080B00E4E697 /* Product.swift in Sources */,
 				81B0349C2C8D209100D4A4C5 /* DrowCollectioView.swift in Sources */,
 				F8E451782C9735FE003093B6 /* AddressDelegation.swift in Sources */,
+				26E420732C988D63006968D7 /* FavCell.swift in Sources */,
 				81D72A9C2C8912C50087371F /* SignInVC.swift in Sources */,
 				81D72A9A2C8912B60087371F /* SignUpVC.swift in Sources */,
 				26BBA7D92C94D90500554DEA /* FavoritesViewController.swift in Sources */,
@@ -1137,6 +1156,7 @@
 				813740702C8BAA18001ECAF4 /* ReviewsViewController.swift in Sources */,
 				F8F9BBDE2C891E21005AE496 /* NetworkProtocol.swift in Sources */,
 				813740642C8B775D001ECAF4 /* ProductDetailsViewModel.swift in Sources */,
+				26837BF22C98B9600066C514 /* CurrencyManager.swift in Sources */,
 				F8EC6B7F2C8CE84A00A8D7AF /* Currency.swift in Sources */,
 				8160D39C2C9392D10026CE11 /* CurrentCustomer.swift in Sources */,
 				F8F9BBE02C891E5A005AE496 /* Customer.swift in Sources */,

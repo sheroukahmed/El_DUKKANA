@@ -45,7 +45,7 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let order = ordersViewModel?.orders? [indexPath.row]
         
-        cell.configureCell(order: order?.name ?? "", orderNoOfItems: order?.line_items?.count ?? 0, orderPrice: order?.total_price ?? "", currency: "USD", date: order?.created_at ?? "")
+        cell.configureCell(order: order?.name ?? "", orderNoOfItems: order?.line_items?.count ?? 0, orderPrice: order?.total_price ?? "", currency: order?.currency ?? "", date: order?.created_at ?? "")
         
         cell.layer.cornerRadius = 20
         return cell

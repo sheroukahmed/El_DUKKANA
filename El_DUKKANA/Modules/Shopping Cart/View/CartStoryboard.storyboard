@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Pv-wC-7gr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Pv-wC-7gr">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -63,22 +64,22 @@
                                 <rect key="frame" x="8" y="682" width="377" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBa-0W-QRU">
-                                        <rect key="frame" x="8" y="5.0000000000000018" width="106.66666666666667" height="28.666666666666671"/>
+                                        <rect key="frame" x="8" y="5" width="106.66666666666667" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 EGP" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wo9-Uq-A8T">
-                                        <rect key="frame" x="187" y="4" width="182" height="31"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wo9-Uq-A8T">
+                                        <rect key="frame" x="299" y="4" width="70" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="182" id="9rP-lM-iKS"/>
+                                            <constraint firstAttribute="width" constant="70" id="gQL-Ns-QVU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note : This price is calculated after adding taxes " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cK-H8-rFm">
-                                        <rect key="frame" x="15" y="45" width="277" height="15"/>
+                                        <rect key="frame" x="15" y="46.333333333333371" width="277" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="Iao-lk-PQ0"/>
                                             <constraint firstAttribute="width" constant="277" id="TWf-wC-SwB"/>
@@ -87,16 +88,26 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100 " textAlignment="right" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-pI-MXn">
+                                        <rect key="frame" x="214.66666666666666" y="4" width="74.333333333333343" height="32"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93327134850000004" green="0.92149078849999999" blue="0.92549055810000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="0cK-H8-rFm" firstAttribute="leading" secondItem="L8S-GQ-uyH" secondAttribute="leading" constant="15" id="0yQ-eL-gI7"/>
+                                    <constraint firstItem="Wo9-Uq-A8T" firstAttribute="leading" secondItem="ab2-pI-MXn" secondAttribute="trailing" constant="10" id="2hi-k3-TVs"/>
                                     <constraint firstItem="jBa-0W-QRU" firstAttribute="leading" secondItem="L8S-GQ-uyH" secondAttribute="leading" constant="8" id="3aw-rt-Guj"/>
                                     <constraint firstItem="Wo9-Uq-A8T" firstAttribute="top" secondItem="L8S-GQ-uyH" secondAttribute="top" constant="4" id="Vkv-JF-mAe"/>
+                                    <constraint firstItem="ab2-pI-MXn" firstAttribute="centerY" secondItem="jBa-0W-QRU" secondAttribute="centerY" id="fNc-XV-QH6"/>
                                     <constraint firstAttribute="trailing" secondItem="Wo9-Uq-A8T" secondAttribute="trailing" constant="8" id="gTz-Rc-cg4"/>
                                     <constraint firstAttribute="height" constant="63" id="kXe-jr-29j"/>
                                     <constraint firstItem="jBa-0W-QRU" firstAttribute="top" secondItem="L8S-GQ-uyH" secondAttribute="top" constant="5" id="t3l-E2-nQs"/>
                                     <constraint firstItem="0cK-H8-rFm" firstAttribute="top" secondItem="jBa-0W-QRU" secondAttribute="bottom" constant="11.333333333333329" id="thz-xp-ess"/>
+                                    <constraint firstItem="ab2-pI-MXn" firstAttribute="leading" secondItem="jBa-0W-QRU" secondAttribute="trailing" constant="100" id="ukQ-QJ-a7d"/>
+                                    <constraint firstItem="Wo9-Uq-A8T" firstAttribute="centerY" secondItem="ab2-pI-MXn" secondAttribute="centerY" id="zVX-WB-9Lh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -121,9 +132,10 @@
                     <navigationItem key="navigationItem" id="PQ7-qj-4EQ"/>
                     <connections>
                         <outlet property="Checkoutbtn" destination="Log-4b-lZm" id="4Re-eq-5lm"/>
+                        <outlet property="currency" destination="Wo9-Uq-A8T" id="akA-Yc-q00"/>
                         <outlet property="emptyimage" destination="8F8-8v-FEd" id="1ys-ZP-lt6"/>
                         <outlet property="productstableview" destination="zrF-OE-RWiuiuytI" id="Mnd-gi-7Ow"/>
-                        <outlet property="totalprice" destination="Wo9-Uq-A8T" id="7et-2K-OTe"/>
+                        <outlet property="totalprice" destination="ab2-pI-MXn" id="4uL-wL-pd8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
