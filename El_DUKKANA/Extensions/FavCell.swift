@@ -7,15 +7,15 @@
 
 import UIKit
 import Kingfisher
-
+ 
 protocol FavCellDelegate: AnyObject {
     func presentAlert(_ alert: UIAlertController)
     func presentSignInVC()
     func refreshCollectionView()
 }
-
+ 
 class FavCell: UICollectionViewCell {
-
+ 
     @IBOutlet weak var favImage: UIImageView!
     @IBOutlet weak var favTitle: UILabel!
     @IBOutlet weak var favPrice: UILabel!
@@ -52,8 +52,8 @@ class FavCell: UICollectionViewCell {
     @IBAction func removeFromFavorites(_ sender: Any) {
         
            let alert = UIAlertController(
-               title: "Removing from the wish list", 
-               message: "Are you sure you want to delete this product from the wish list?", 
+               title: "Removing from the wish list",
+               message: "Are you sure you want to delete this product from the wish list?",
                preferredStyle: .alert
            )
            let ok = UIAlertAction(title: "Yes", style: .destructive) { action in
@@ -65,7 +65,7 @@ class FavCell: UICollectionViewCell {
            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
            alert.addAction(ok)
            alert.addAction(cancel)
-
+ 
            delegate?.presentAlert(alert)
     }
     

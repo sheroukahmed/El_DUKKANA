@@ -5,22 +5,19 @@
 //  Created by  sherouk ahmed  on 11/09/2024.
 //
 
-import Foundation
-
 class FavoritesViewModel {
     var Images : [String] = []
     var network: NetworkProtocol?
     var bindToFavorites: (() -> Void) = {}
-
+ 
     var bindResultToViewController2: (() -> ()) = {}
-    var favorite: [Product]? 
-
+    var favorite: [Product]?
+ 
     var favorites: [LineItem]? {
-
+ 
         didSet {
             bindToFavorites()
         }
-        
     }
     var productImg : String?
     var productSize : String?
@@ -34,7 +31,7 @@ class FavoritesViewModel {
         
         
     }
-
+ 
     func getFavDraftFomApi(){
         network?.fetch(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.favDraftOrderId)), type: DraftOrderRequest.self, completionHandler: { result, error in
             
@@ -61,9 +58,6 @@ class FavoritesViewModel {
         })
         
     }
-    
-    
-    
-    
+
     
 }

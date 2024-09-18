@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var forgotPasswordBtn: UIButton!
@@ -16,23 +16,55 @@ class SignInVC: UIViewController {
         ViewsSet.btnSet(btn: loginBtn)
     }}
     @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var hideShowPassBtn: UIButton!
     @IBOutlet weak var emailTF: UITextField!
     var customerViewModel = CustomerViewModel()
-    
+    var isPasswordVisible = false
+
     
     var isFromSignOut = false
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        passwordTF.delegate = self
         if isFromSignOut {
             backBtn.isHidden = true
         }
+        setButtonPositionFor(passwordTF)
+        passwordTF.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
     
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            if textField == passwordTF {
+                setButtonPositionFor(textField)
+            }
+            return true
+        }
+    func setButtonPositionFor(_ textField: UITextField) {
+            guard let currentLanguage = textField.textInputMode?.primaryLanguage else { return }
+
+            let isRightToLeft = Locale.characterDirection(forLanguage: currentLanguage) == .rightToLeft
+
+            if textField == passwordTF {
+                updateButtonPosition(button: hideShowPassBtn, isRightToLeft: isRightToLeft)
+            
+            }}
+    func updateButtonPosition(button: UIButton, isRightToLeft: Bool) {
+            let buttonFrame = button.frame
+            let textFieldFrame = button.superview?.frame ?? .zero
+            let padding: CGFloat = 10
+
+            if isRightToLeft {
+                // Move button to the left for Arabic
+                button.frame = CGRect(x: padding, y: buttonFrame.origin.y, width: buttonFrame.width, height: buttonFrame.height)
+            } else {
+                // Move button to the right for English
+                button.frame = CGRect(x: textFieldFrame.width  - buttonFrame.width - padding, y: buttonFrame.origin.y, width: buttonFrame.width, height: buttonFrame.height)
+            }
+        }
     @IBAction func loginBtnAction(_ sender: Any) {
         if CurrentCustomer.currentCustomer.email != nil {
             CurrentCustomer.currentCustomer.email = nil
@@ -63,6 +95,21 @@ class SignInVC: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func hideAndShowPassBtn(_ sender: Any) {
+        isPasswordVisible.toggle()
+        passwordTF.isSecureTextEntry = !isPasswordVisible
+        let buttonTitle = isPasswordVisible ? "Hide" : "Show"
+//        hideShowPassBtn.setTitle(buttonTitle, for: .normal)
+        hideShowPassBtn.setImage(UIImage(named: isPasswordVisible ? "eye" : "eye.fill"), for: .normal)
+    }
+    @IBAction func goToSignUpBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        let signUpVC = storyboard.instantiateViewController(identifier: "SignUpVC")
+        signUpVC.modalPresentationStyle = .fullScreen
+        signUpVC.modalTransitionStyle = .crossDissolve
+        present(signUpVC, animated: true)
     }
     @IBAction func forgotPasswordBtnAction(_ sender: Any) {
         guard let email = emailTF.text else {

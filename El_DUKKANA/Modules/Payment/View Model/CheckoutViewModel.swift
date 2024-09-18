@@ -14,7 +14,7 @@ class CheckoutViewModel {
     var selectedAdress : CustomerAddress?
     var bindResultToViewController: (()->()) = {}
     var bindToAddresses: (() -> Void) = {}
-    
+    var orderToPost : OrderRequest?
     
     init() {
         self.network = NetworkManager()
@@ -66,21 +66,31 @@ class CheckoutViewModel {
         })
     }
     
-    func draftOrderCompleted(){
-        var cartDraftOrderId = CurrentCustomer.currentCartDraftOrder.draft_order.id ?? 0
-        network?.Put(url: URLManager.getUrl(for: .drafttorderForOrder(draftorderId: cartDraftOrderId)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
+//    func draftOrderCompleted(){
+//        var cartDraftOrderId = CurrentCustomer.currentCartDraftOrder.draft_order.id ?? 0
+//        network?.Put(url: URLManager.getUrl(for: .drafttorderForOrder(draftorderId: cartDraftOrderId)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
+//            guard let result = result else{
+//                print("Error in updating : \(error)")
+//                return
+//            }
+//            print(result)
+//        })
+//
+//    }
+    
+    func postNewOrder (){
+        network?.Post(url: URLManager.getUrl(for: .orders), type: orderToPost , completionHandler: { result, error in
             guard let result = result else{
                 print("Error in updating : \(error)")
                 return
             }
             print(result)
         })
-        
     }
     
-    func DeleteDraft(){
-        network?.Delete(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.cartDraftOrderId)))
-    }
+//    func DeleteDraft(){
+//        network?.Delete(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.cartDraftOrderId)))
+//    }
 }
 
 enum discountValue :Double {

@@ -5,24 +5,25 @@
 //  Created by  sherouk ahmed  on 10/09/2024.
 //
 
-
 import UIKit
 import RxSwift
 import RxCocoa
 import Alamofire
-
+ 
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var emptyimage: UIView!
     @IBOutlet weak var productstableview: UITableView!
     @IBOutlet weak var Checkoutbtn: UIButton!
     @IBOutlet weak var totalprice: UILabel!
-
+ 
     var productIds : [Int] = []
-
+ 
     @IBOutlet weak var currency: UILabel!
     
-
+    @IBOutlet weak var noteLbl: UILabel!
+    
+    @IBOutlet weak var tpLbl: UILabel!
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
     var productVm : ProductDetailsViewModel?
@@ -30,8 +31,15 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     var favViewModel = FavoritesViewModel()
     var disposeBag = DisposeBag()
     
+    var indicator: UIActivityIndicatorView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        indicator = UIActivityIndicatorView(style: .large)
+        indicator?.center = self.view.center
+        indicator?.startAnimating()
+        self.view.addSubview(indicator!)
         
         productstableview.dataSource = self
         productstableview.delegate = self
@@ -41,6 +49,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         productVm = ProductDetailsViewModel()
         
         cartVM?.bindResultToViewController = {
+            self.indicator?.stopAnimating()
             self.updateTotalPrice()
             self.productstableview.reloadData()
             self.checkIfCartIsEmpty()
@@ -53,7 +62,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let commaSeparatedString = productIds.map { String($0) }.joined(separator: ",")
         cartVM?.getproductImage(ids: commaSeparatedString)
         cartVM?.bindResultToViewController2 = {
-            print(self.cartVM?.Images)
             self.productstableview.reloadData()
         }
         
@@ -93,7 +101,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.itemCurrency.text = CurrencyManager.shared.selectedCurrency
         cell.itemQuantity.text = String(lineItem.quantity ?? 1)
         if let images = cartVM?.Images, indexPath.row < images.count {
-            let imageUrl = images[indexPath.row] 
+            let imageUrl = images[indexPath.row]
             print("Image for product at row \(indexPath.row): \(imageUrl)")
             cell.itemimg.kf.setImage(with: URL(string: imageUrl))
         } else {
@@ -113,7 +121,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.itemColor.text = "N/A"
             }
     
-
+ 
     
         let availableQuantity = 5
         let currentQuantity = lineItem.quantity ?? 1
@@ -124,16 +132,16 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
         cell.increaseButton.tag = indexPath.row
         cell.decreaseButton.tag = indexPath.row
-
+ 
         // Add actions for the buttons
         cell.increaseButton.addTarget(self, action: #selector(increaseAction(_:)), for: .touchUpInside)
         cell.decreaseButton.addTarget(self, action: #selector(decreaseAction(_:)), for: .touchUpInside)
-
+ 
         
         return cell
     }
     
-
+ 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete this product from cart?", preferredStyle: .alert)
@@ -144,7 +152,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .left)
-
+ 
                 tableView.endUpdates()
                 print(CurrentCustomer.currentCartDraftOrder.draft_order.line_items.count)
                 
@@ -167,6 +175,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func increaseAction(_ sender: UIButton) {
+        
+        indicator?.startAnimating()
+ 
        let indexPath = IndexPath(row: sender.tag, section: 0)
        var item = CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row]
        
@@ -180,8 +191,11 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         checkIfCartIsEmpty()
    }
-
+ 
    @objc func decreaseAction(_ sender: UIButton) {
+       
+       indicator?.startAnimating()
+ 
        let indexPath = IndexPath(row: sender.tag, section: 0)
        var item = CurrentCustomer.currentCartDraftOrder.draft_order.line_items[indexPath.row]
        
@@ -199,10 +213,12 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
    }
     
     @IBAction func GotoCheckoutbtn(_ sender: Any) {
+ 
         let storyboard = UIStoryboard(name: "CheckoutPaymentStoryboard", bundle: nil)
         let Checkout = storyboard.instantiateViewController(identifier: "Checkout") as CheckoutViewController
         Checkout.title = "CheckOut"
         self.navigationController?.pushViewController(Checkout, animated: true)
+ 
     }
     
     func checkIfCartIsEmpty() {
@@ -214,4 +230,4 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 }
-
+ 

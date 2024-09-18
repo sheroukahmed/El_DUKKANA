@@ -61,8 +61,8 @@ class AddressesViewController: UIViewController,UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAddress = CurrentCustomer.customerAdresses.addresses[indexPath.row]
-        delegate?.didSelectAddress(address: selectedAddress)
-        navigationController?.popViewController(animated: true)
+            delegate?.didSelectAddress(address: selectedAddress)
+            navigationController?.popViewController(animated: true)
     }
     
     private func toggleNoDataView() {

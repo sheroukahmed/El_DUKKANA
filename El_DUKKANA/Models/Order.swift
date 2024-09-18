@@ -21,11 +21,11 @@ struct Order: Codable {
     let created_at: String?
     let currency: String?
     let name: String?
-    let tags: String?
-    let processed_at: String?
+    //let tags: String?
+    var processed_at: String?
     let line_items: [LineItem]?
-    let subtotal_price: String?
-    let total_discounts: String?
+    //let subtotal_price: String?
+   // let total_discounts: String?
     let total_price: String?
     let customer: Customer?
     let shipping_address: CustomerAddress?

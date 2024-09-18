@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var registerButton: UIButton!
     
     
+    @IBOutlet weak var noFavoritesImage: UIImageView!
     @IBOutlet weak var OrdersTableView: UITableView!
     @IBOutlet weak var WishlistCollectionView: UICollectionView!
     
@@ -30,6 +31,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var userView: UIView!
     
     static var isUser = true
+    var viewModel = ProfileViewModel()
+    var productIds : [Int] = []
     
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
@@ -69,11 +72,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     override func viewWillAppear(_ animated: Bool) {
+        for item in CurrentCustomer.currentFavDraftOrder.draft_order.line_items{
+                    productIds.append(item.product_id ?? 0)
+                }
+                let commaSeparatedString = productIds.map { String($0) }.joined(separator: ",")
+                viewModel.getproductImage(ids: commaSeparatedString)
+                viewModel.bindResultToViewController2 = {
+                    print(self.viewModel.Images)
+                    self.WishlistCollectionView.reloadData()
+                }
         if CurrentCustomer.currentCustomer.email != nil {
             ProfileViewController.isUser = true
+            noFavoritesImage.isHidden = false
         }
         else {
             ProfileViewController.isUser = false
+            noFavoritesImage.isHidden = true
         }
         getView(isLogin: ProfileViewController.isUser )
         OrdersTableView.reloadData()
@@ -149,7 +163,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if ProfileViewController.isUser {
             if CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count > 4 {
                 return 4
-            } else {
+            } else if CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count == 1 && CurrentCustomer.currentFavDraftOrder.draft_order.line_items[0].title == "ADIDAS | CLASSIC BACKPACK" && CurrentCustomer.currentFavDraftOrder.draft_order.line_items[0].price == "70.00" {
+                return 0
+            }
+            
+            else {
                 return CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
             }
         }
@@ -162,34 +180,38 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: FavCell.self), for: indexPath) as! FavCell
-        if ProfileViewController.isUser  {
-            let lineItems = CurrentCustomer.currentFavDraftOrder.draft_order.line_items
-            if indexPath.row < lineItems.count {
-                let favItem = lineItems[indexPath.row]
-                
-                if let priceString = favItem.price, let price = Double(priceString) {
-                    let convertedPrice = price * CurrencyManager.shared.currencyRate
-                    cell.configureCell(image: favoritesViewModel?.productImg ?? dummyImage,
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: FavCell.self), for: indexPath) as! FavCell
+            
+            let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
+            
+            let images = viewModel.Images
+            if let priceString = favItem.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                if indexPath.row < images.count {
+                    cell.configureCell(image: images[indexPath.row],
                                        title: favItem.title ?? "",
                                        price: "\(convertedPrice)",
                                        currency: CurrencyManager.shared.selectedCurrency,
                                        favItem: favItem)
                 } else {
-                    cell.configureCell(image: favoritesViewModel?.productImg ?? dummyImage,
-                                       title: favItem.title ?? "",
-                                       price: "N/A",
-                                       currency: CurrencyManager.shared.selectedCurrency,
-                                       favItem: favItem)
+                    cell.configureCell(image: dummyImage , title: favItem.title ?? "", price: "\(convertedPrice)" , currency: CurrencyManager.shared.selectedCurrency, favItem: favItem)
+                } } else {
+                    if indexPath.row < images.count {
+                        cell.configureCell(image: images[indexPath.row],
+                                           title: favItem.title ?? "",
+                                           price: "N/A",
+                                           currency: CurrencyManager.shared.selectedCurrency,
+                                           favItem: favItem)
+                    } else {
+                        cell.configureCell(image: dummyImage , title: favItem.title ?? "", price: "N/A" , currency: CurrencyManager.shared.selectedCurrency, favItem: favItem)
+                    }
                 }
-            }
+            cell.delegate = self
+            cell.layer.cornerRadius = 20
+            return cell
         }
-        cell.delegate = self
-        cell.layer.cornerRadius = 20
-        return cell
-    }
-    
+ 
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -197,15 +219,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let storyBoard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
             if let productDetails = storyBoard.instantiateViewController(withIdentifier: "ProductDetailsVC") as? ProductDetailsVC {
                 
-                productDetails.viewModel.productId = self.favoritesViewModel?.favorites?[indexPath.row].id ?? 1
+                productDetails.viewModel.productId = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row].product_id ?? 0
                 
                 productDetails.modalPresentationStyle = .fullScreen
                 productDetails.modalTransitionStyle = .crossDissolve
                 self.present(productDetails, animated: true)
             }
         } else {
-            UIAlertController.showNoConnectionAlert(self: self)        }
-    }
+            UIAlertController.showNoConnectionAlert(self: self)
+        }}
     
     
     private func setupUI(){
@@ -337,6 +359,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func refreshCollectionView() {
         self.WishlistCollectionView.reloadData()
+    }
+    func checkIfFavoritesIsEmpty() {
+        if CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count == 1  {
+            
+            WishlistCollectionView.isHidden = true
+            noFavoritesImage.isHidden = false
+        }else{
+            WishlistCollectionView.isHidden = false
+            noFavoritesImage.isHidden = true
+        }
+        
     }
     
     

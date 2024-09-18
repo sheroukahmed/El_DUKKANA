@@ -2,16 +2,18 @@
 //  FavoritesViewController.swift
 //  El_DUKKANA
 //
-//  Created by Sarah on 13/09/2024.
+//  Created by ios on 13/09/2024.
 //
 
 import UIKit
 import Alamofire
-
+ 
 class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FavCellDelegate {
     
     @IBOutlet weak var WishlistCollectionView: UICollectionView!
     @IBOutlet weak var noFavoritesImage: UIImageView!
+    
+    var productIds : [Int] = []
     
     var dummyImage = "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"
     
@@ -22,6 +24,16 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         setUpWishlistCollectionView()
         checkIfFavoritesIsEmpty()
+        
+        for item in CurrentCustomer.currentFavDraftOrder.draft_order.line_items{
+            productIds.append(item.product_id ?? 0)
+        }
+        let commaSeparatedString = productIds.map { String($0) }.joined(separator: ",")
+        favoritesViewModel.getproductImage(ids: commaSeparatedString)
+        favoritesViewModel.bindResultToViewController2 = {
+            print(self.favoritesViewModel.Images)
+            self.WishlistCollectionView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,9 +56,12 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
-        checkIfFavoritesIsEmpty()
-        return count
+        
+        if CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count == 1 && CurrentCustomer.currentFavDraftOrder.draft_order.line_items[0].title == "ADIDAS | CLASSIC BACKPACK" && CurrentCustomer.currentFavDraftOrder.draft_order.line_items[0].price == "70.00" {
+            return 0
+        } else{
+            return CurrentCustomer.currentFavDraftOrder.draft_order.line_items.count
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -59,20 +74,28 @@ class FavoritesViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let favItem = CurrentCustomer.currentFavDraftOrder.draft_order.line_items[indexPath.row]
         
+        let images = favoritesViewModel.Images
         if let priceString = favItem.price, let price = Double(priceString) {
             let convertedPrice = price * CurrencyManager.shared.currencyRate
-            cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage,
-                               title: favItem.title ?? "",
-                               price: "\(convertedPrice)",
-                               currency: CurrencyManager.shared.selectedCurrency,
-                               favItem: favItem)
-        } else {
-            cell.configureCell(image: favoritesViewModel.productImg ?? dummyImage,
-                               title: favItem.title ?? "",
-                               price: "N/A",
-                               currency: CurrencyManager.shared.selectedCurrency,
-                               favItem: favItem)
-        }
+            if indexPath.row < images.count {
+                cell.configureCell(image: images[indexPath.row],
+                                   title: favItem.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   favItem: favItem)
+            } else {
+                cell.configureCell(image: dummyImage , title: favItem.title ?? "", price: "\(convertedPrice)" , currency: CurrencyManager.shared.selectedCurrency, favItem: favItem)
+            } } else {
+                if indexPath.row < images.count {
+                    cell.configureCell(image: images[indexPath.row],
+                                       title: favItem.title ?? "",
+                                       price: "N/A",
+                                       currency: CurrencyManager.shared.selectedCurrency,
+                                       favItem: favItem)
+                } else {
+                    cell.configureCell(image: dummyImage , title: favItem.title ?? "", price: "N/A" , currency: CurrencyManager.shared.selectedCurrency, favItem: favItem)
+                }
+            }
         cell.delegate = self
         cell.layer.cornerRadius = 20
         return cell

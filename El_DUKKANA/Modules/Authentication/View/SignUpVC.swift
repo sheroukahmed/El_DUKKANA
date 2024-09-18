@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var signUpWithGoogoleView: UIView!
@@ -17,6 +17,8 @@ class SignUpVC: UIViewController {
             ViewsSet.btnSet(btn: registerBtn)
         }
     }
+    @IBOutlet weak var showConfirmPassBtn: UIButton!
+    @IBOutlet weak var showPassBtn: UIButton!
     @IBOutlet weak var phoneNumberTF: UITextField!
     @IBOutlet weak var confirmPassTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -25,20 +27,54 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var firstNameTF: UITextField!
     var isVerified = false
     var verificationTimer: Timer? // Timer for checking verification status
-    
+    var isPasswordVisible = false
+    var isConfirmPasswordVisible = false
+        
     var viewModel = CustomerViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        viewModel.customer = Customer(id: 7828790968558, email: "samir7.sherouk@gmail.com", first_name: "sara", last_name: "And sherouk", phone: "+201165015450", verified_email: true, addresses: [CustomerAddress(address1: "sherouk", address2: "Lastnameson", city: "Ottawa", province: "Ontario", country: "Canada", zip: "123 ABC")], password: "123abc", password_confirmation: "123abc")
-        
-        
-        // Do any additional setup after loading the view.
+        passwordTF.delegate = self
+        confirmPassTF.delegate = self
+        passwordTF.isSecureTextEntry = true
+        confirmPassTF.isSecureTextEntry = true
+        setButtonPositionFor(passwordTF)
+        setButtonPositionFor(confirmPassTF)
     }
     
     
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            if textField == passwordTF || textField == confirmPassTF {
+                setButtonPositionFor(textField)
+            }
+            return true
+        }
+    func setButtonPositionFor(_ textField: UITextField) {
+            guard let currentLanguage = textField.textInputMode?.primaryLanguage else { return }
+
+            let isRightToLeft = Locale.characterDirection(forLanguage: currentLanguage) == .rightToLeft
+
+            if textField == passwordTF {
+                updateButtonPosition(button: showPassBtn, isRightToLeft: isRightToLeft)
+            } else if textField == confirmPassTF {
+                updateButtonPosition(button: showConfirmPassBtn, isRightToLeft: isRightToLeft)
+            }
+        }
+    func updateButtonPosition(button: UIButton, isRightToLeft: Bool) {
+            let buttonFrame = button.frame
+            let textFieldFrame = button.superview?.frame ?? .zero
+            let padding: CGFloat = 10
+
+            if isRightToLeft {
+                // Move button to the left for Arabic
+                button.frame = CGRect(x: padding, y: buttonFrame.origin.y, width: buttonFrame.width, height: buttonFrame.height)
+            } else {
+                // Move button to the right for English
+                button.frame = CGRect(x: textFieldFrame.width - 30 - buttonFrame.width - 30 - padding, y: buttonFrame.origin.y, width: buttonFrame.width, height: buttonFrame.height)
+            }
+        }
     @IBAction func registerBtnAction(_ sender: Any) {
         if validateInput() {
             // Proceed with Firebase Authentication
@@ -71,10 +107,18 @@ class SignUpVC: UIViewController {
         }
     }
     
+    @IBAction func goToSignUpBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        let signInVC = storyboard.instantiateViewController(identifier: "SignInVC")
+        signInVC.modalPresentationStyle = .fullScreen
+        signInVC.modalTransitionStyle = .crossDissolve
+       present(signInVC, animated: true)
+    }
     @IBAction func signUpWithGoogleBtn(_ sender: Any) {
         
         // Google sign-up logic here
     }
+    
     
     func validateInput() -> Bool {
         guard let email = emailTF.text, !email.isEmpty,
@@ -109,6 +153,23 @@ class SignUpVC: UIViewController {
         return true
     }
     
+    @IBAction func showPassBtn(_ sender: Any) {
+        isPasswordVisible.toggle()
+        passwordTF.isSecureTextEntry = !isPasswordVisible
+                
+                // Optionally change the button title or image
+        let buttonTitle = isPasswordVisible ? "Hide Password" : "Show Password"
+        showPassBtn.setImage(UIImage(named: isPasswordVisible ? "eye" : "eye.fill"), for: .normal)
+    }
+    @IBAction func showConfirmPassBtn(_ sender: Any) {
+        isConfirmPasswordVisible.toggle()
+        confirmPassTF.isSecureTextEntry = !isConfirmPasswordVisible
+                
+        let buttonTitle = isConfirmPasswordVisible ? "Hide" : "Show"
+        showConfirmPassBtn.setImage(UIImage(named: isPasswordVisible ? "eye" : "eye.fill"), for: .normal)
+    }
+    
+    
     func sendVerificationEmail() {
         guard let user = Auth.auth().currentUser else { return }
         user.sendEmailVerification { [weak self] error in
@@ -121,26 +182,7 @@ class SignUpVC: UIViewController {
             }
         }
     }
-//    func checkEmailVerification() {
-//        Auth.auth().currentUser?.reload(completion: { [weak self] error in
-//            guard let user = Auth.auth().currentUser, error == nil else {
-//                // Handle error
-//                return
-//            }
-//            if user.isEmailVerified {
-//                // Call the backend API to add customer
-//                self?.viewModel.addCustomer() // Call backend API here
-//                self?.showAccountCreatedAlert()
-//                self?.isVerified = true
-//            } else {
-//                // Show alert that email is not verified
-//                self?.showErrorAlertWithMessage(message: "Please verify your email before proceeding.")
-//            }
-//        })
-//    }
-//
-    // Function to validate if the email is a Gmail address
-    
+
         func isValidGmail(email: String) -> Bool {
             let emailRegex = "[A-Z0-9a-z._%+-]+@gmail.com"
             let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
@@ -164,7 +206,7 @@ class SignUpVC: UIViewController {
     
     func startVerificationTimer(){
         verificationTimer?.invalidate() // Invalidate any existing timer
-        verificationTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(checkEmailVerification), userInfo: nil, repeats: true)
+        verificationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkEmailVerification), userInfo: nil, repeats: true)
         
     }
     // Function to check if email is verified

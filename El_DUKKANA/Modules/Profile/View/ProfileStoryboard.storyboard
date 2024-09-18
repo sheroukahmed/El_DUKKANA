@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u7S-l7-xiM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u7S-l7-xiM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -200,18 +199,25 @@
                                             <action selector="toLogin:" destination="oOH-DH-KBW" eventType="touchUpInside" id="ByB-Sd-7fM"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoFavorites" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-oy-IEr">
+                                        <rect key="frame" x="8" y="415" width="359" height="213"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96864992380000003" green="0.96850210430000006" blue="0.97647172209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GhM-oy-IEr" secondAttribute="trailing" constant="26" id="0Nr-mF-hxv"/>
                                     <constraint firstItem="j2U-tF-Dpk" firstAttribute="centerX" secondItem="jaI-WO-lN0" secondAttribute="centerX" id="307-Na-wmu"/>
                                     <constraint firstItem="lzr-e8-9bo" firstAttribute="leading" secondItem="jaI-WO-lN0" secondAttribute="leading" constant="16" id="4yP-SX-dab"/>
                                     <constraint firstItem="IKV-4V-lKW" firstAttribute="centerX" secondItem="jaI-WO-lN0" secondAttribute="centerX" id="6Bj-or-tJu"/>
+                                    <constraint firstItem="GhM-oy-IEr" firstAttribute="top" secondItem="jaI-WO-lN0" secondAttribute="top" constant="415" id="Cxr-K3-1MI"/>
                                     <constraint firstItem="tVe-xc-Enf" firstAttribute="top" secondItem="jaI-WO-lN0" secondAttribute="top" constant="437" id="E8L-73-WUw"/>
+                                    <constraint firstItem="GhM-oy-IEr" firstAttribute="leading" secondItem="jaI-WO-lN0" secondAttribute="leading" constant="8" id="Ecx-jr-Iwd"/>
                                     <constraint firstItem="tVe-xc-Enf" firstAttribute="centerX" secondItem="jaI-WO-lN0" secondAttribute="centerX" id="Egl-to-cUl"/>
                                     <constraint firstItem="lzr-e8-9bo" firstAttribute="height" secondItem="jaI-WO-lN0" secondAttribute="height" multiplier="0.569832" id="I4D-UV-3CV"/>
                                     <constraint firstAttribute="trailing" secondItem="lzr-e8-9bo" secondAttribute="trailing" constant="16" id="Obk-Tf-zZ4"/>
                                     <constraint firstItem="j2U-tF-Dpk" firstAttribute="top" secondItem="jaI-WO-lN0" secondAttribute="top" constant="544" id="b2p-OG-vxt"/>
                                     <constraint firstItem="j2U-tF-Dpk" firstAttribute="top" secondItem="IKV-4V-lKW" secondAttribute="bottom" constant="8" symbolic="YES" id="noY-Lj-vAU"/>
+                                    <constraint firstAttribute="bottom" secondItem="GhM-oy-IEr" secondAttribute="bottom" constant="91" id="td7-hC-PKw"/>
                                     <constraint firstItem="lzr-e8-9bo" firstAttribute="top" secondItem="jaI-WO-lN0" secondAttribute="top" constant="8" id="xNm-Kh-BBy"/>
                                 </constraints>
                             </view>
@@ -264,6 +270,7 @@
                         <outlet property="loginButton" destination="tVe-xc-Enf" id="GlY-Fa-PRh"/>
                         <outlet property="moreOrdersButton" destination="V8A-rl-plR" id="nk4-LA-KTA"/>
                         <outlet property="moreWishlistButton" destination="L2C-Pb-oHn" id="Egg-xu-tzN"/>
+                        <outlet property="noFavoritesImage" destination="GhM-oy-IEr" id="yYP-mz-Icd"/>
                         <outlet property="registerButton" destination="j2U-tF-Dpk" id="v4L-tp-SLk"/>
                         <outlet property="userEmail" destination="6K7-uo-N2d" id="iut-i1-MRe"/>
                         <outlet property="userFirstName" destination="iQr-IE-eWA" id="UhN-cq-bvD"/>
@@ -348,6 +355,7 @@
     <resources>
         <image name="El_Dukkana-removebg-preview" width="1070" height="214"/>
         <image name="Line" width="824" height="40"/>
+        <image name="NoFavorites" width="1587" height="2245"/>
         <image name="Not Logged In" width="1576" height="1665"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>

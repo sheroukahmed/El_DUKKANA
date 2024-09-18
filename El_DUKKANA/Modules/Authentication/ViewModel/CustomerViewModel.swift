@@ -183,7 +183,7 @@ class CustomerViewModel {
                              	      
     static func createLineItems() -> [LineItem] {
         // Sample line items
-        return [LineItem(id: 8649735831790, variant_id: 45726370201838, product_id: 8649736323310, title: "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH", variant_title: "4 / red", vendor: "DR MARTENS", quantity: 1, name: "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH", custom: true, price: "100000.00",properties: [])]
+        return [LineItem(id: 8649735831790, variant_id: 45726370201838, product_id: 8649736323310, title: "ADIDAS | CLASSIC BACKPACK", variant_title: "4 / red", vendor: "DR MARTENS", quantity: 1, name: "ADIDAS | CLASSIC BACKPACK", custom: true, price: "100000.00",properties: [])]
     }
     
     func getAllDrafts(){

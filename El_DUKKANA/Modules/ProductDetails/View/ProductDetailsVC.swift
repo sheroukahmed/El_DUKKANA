@@ -37,10 +37,14 @@ class ProductDetailsVC: UIViewController {
     var timer : Timer?
     var currentCellIndex = 0
     var isFavorated = false
-    
+    var indicator: UIActivityIndicatorView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        indicator = UIActivityIndicatorView(style: .large)
+        indicator?.center = self.view.center
+        indicator?.startAnimating()
+        self.view.addSubview(indicator!)
         print("Finally We Did IT : \(CurrentCustomer.currentCustomer)")
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
         productCollectionView.dataSource = self
@@ -48,6 +52,7 @@ class ProductDetailsVC: UIViewController {
         forFavBtn.setFavouriteButton(btn: addToFavBtn)
         viewModel.getData()
         viewModel.bindResultToViewController = {
+            self.indicator?.stopAnimating()
             self.pageController.numberOfPages = self.viewModel.product?.product.images?.count ?? 1
             self.pageController.currentPage = 0
             if let product = self.viewModel.product?.product{
@@ -105,7 +110,7 @@ class ProductDetailsVC: UIViewController {
                     let productToCart = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.image?.src ?? ""))])
                     print("\n\nold cart : \(CurrentCustomer.currentCartDraftOrder.draft_order.line_items)\n\n")
                     CurrentCustomer.currentCartDraftOrder.draft_order.line_items.append(productToCart)
-                    CurrentCustomer.currentCartDraftOrder.draft_order.line_items.removeAll { $0.price == "249.00" }
+                    CurrentCustomer.currentCartDraftOrder.draft_order.line_items.removeAll { $0.title == "ADIDAS | CLASSIC BACKPACK" }
                     
                     
                     let alert = UIAlertController(title: "Product Added to cart", message: "the product has been added to cart succesfully", preferredStyle: .alert)
@@ -143,20 +148,11 @@ class ProductDetailsVC: UIViewController {
                 
                 if let product = viewModel.product?.product{
                     print(product.image?.src)
-                    // Get the title of the selected size segment
-                    if let selectedSizeTitle = self.sizeSegmentedController.titleForSegment(at: self.sizeSegmentedController.selectedSegmentIndex) {
-                        favViewModel.productSize = selectedSizeTitle
-                    }
-
-                    // Get the title of the selected color segment
-                    if let selectedColorTitle = self.colorsSegmented.titleForSegment(at: self.colorsSegmented.selectedSegmentIndex) {
-                        favViewModel.productColor = selectedColorTitle
-                    }
-
+                    
                     let productToFav = LineItem(id: 7482947, variant_id: product.variants?[0].id, product_id: viewModel.productId, title: product.title, variant_title: product.variants?[0].title, vendor: product.vendor, quantity: 1, name: "", custom: false, price: product.variants?[0].price,properties: [(ProductProperties(image: product.images?[0].src ?? "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square-600x600.webp"))])
                     print("\n\nold cart : \(CurrentCustomer.currentFavDraftOrder.draft_order.line_items)\n\n")
                     CurrentCustomer.currentFavDraftOrder.draft_order.line_items.append(productToFav)
-                    CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.price == "294.00" }
+                    CurrentCustomer.currentFavDraftOrder.draft_order.line_items.removeAll { $0.title == "ADIDAS | CLASSIC BACKPACK" }
                     
                     
                     let alert = UIAlertController(title: "Product Added to Fav", message: "the product has been added to Fav succesfully", preferredStyle: .alert)

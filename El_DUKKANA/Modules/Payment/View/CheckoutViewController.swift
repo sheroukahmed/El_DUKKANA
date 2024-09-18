@@ -19,9 +19,8 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
     @IBOutlet weak var codetextF: UITextField!
     @IBOutlet weak var TotalPrice: UILabel!
     @IBOutlet weak var priceDiscount: UILabel!
-    @IBOutlet weak var currencyTotal: UILabel!
-    @IBOutlet weak var currencyDiscount: UILabel!
     
+
     var paymentVM : paymentViewModel?
     
     var checkoutVM : CheckoutViewModel?
@@ -44,32 +43,45 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
         )
         
         
+        
         checkoutVM = CheckoutViewModel()
         checkoutVM?.getDraftOrder()
         checkoutVM?.getAllAddresses()
         checkoutVM?.bindToAddresses = {[weak self] in
-            self?.Address1.text = CurrentCustomer.customerAdresses.addresses[0].address1
-            self?.Address2.text = CurrentCustomer.customerAdresses.addresses[0].address2
-            self?.city.text = CurrentCustomer.customerAdresses.addresses[0].city
-            self?.ZipCode.text = CurrentCustomer.customerAdresses.addresses[0].zip
-            self?.country.text = CurrentCustomer.customerAdresses.addresses[0].country
+            if !CurrentCustomer.customerAdresses.addresses.isEmpty && self?.paymentVM?.selectedAdress == nil{
+                
+                self?.Address1.text = CurrentCustomer.customerAdresses.addresses[0].address1
+                self?.Address2.text = CurrentCustomer.customerAdresses.addresses[0].address2
+                self?.city.text = CurrentCustomer.customerAdresses.addresses[0].city
+                self?.ZipCode.text = CurrentCustomer.customerAdresses.addresses[0].zip
+                self?.country.text = CurrentCustomer.customerAdresses.addresses[0].country
+            }else if self?.paymentVM?.selectedAdress != nil{
+                self?.Address1.text = self?.paymentVM?.selectedAdress?.address1
+                self?.Address2.text = self?.paymentVM?.selectedAdress?.address2
+                self?.city.text = self?.paymentVM?.selectedAdress?.city
+                self?.ZipCode.text = self?.paymentVM?.selectedAdress?.zip
+                self?.country.text = self?.paymentVM?.selectedAdress?.country
+            }
             
-        }
+            else {
+                let alert = UIAlertController(title: "You have no addresses!", message: "you have to have address first.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "ok", style: .default, handler: { action in
+                    let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
+                    if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
+                        addresses.title = "My Addresses"
+                        self?.navigationController?.pushViewController(addresses, animated: true)
+                    }
+                })
+                alert.addAction(ok)
+                self?.present(alert, animated: true)
+                
+            }}
         checkoutVM?.bindResultToViewController = { [weak self] in
             
             guard let self = self else { return }
             DispatchQueue.main.async {
-                if let priceString = self.checkoutVM?.checkoutDraft?.total_price, let totalPrice = Double(priceString) {
-                    let convertedTotalPrice = totalPrice * CurrencyManager.shared.currencyRate
-                    self.TotalPrice.text = "\(convertedTotalPrice)"
-                }
-                self.currencyTotal.text = CurrencyManager.shared.selectedCurrency
-                
-                if let priceString = self.checkoutVM?.checkoutDraft?.total_price, let priceDiscount = Double(priceString) {
-                    let convertedPriceDiscount = priceDiscount * CurrencyManager.shared.currencyRate
-                    self.priceDiscount.text = "\(convertedPriceDiscount)"
-                }
-                self.currencyDiscount.text = CurrencyManager.shared.selectedCurrency
+                self.TotalPrice.text = self.checkoutVM?.checkoutDraft?.total_price
+                self.priceDiscount.text = self.checkoutVM?.checkoutDraft?.total_price
             }
         }
         
@@ -80,9 +92,12 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
             let storyboard = UIStoryboard(name: "AddressesStoryboard", bundle: nil)
             if let addresses = storyboard.instantiateViewController(withIdentifier: "Addresses") as? AddressesViewController {
                 addresses.title = "My Addresses"
+                addresses.delegate = self  // Set the delegate here
                 self.navigationController?.pushViewController(addresses, animated: true)
-            } }
-        UIAlertController.showNoConnectionAlert(self: self)
+            }
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)
+        }
 
       
     }
@@ -97,7 +112,7 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
             ZipCode.text = address.zip
             country.text = address.country
             
-        paymentVM?.selectedAdress = address
+            paymentVM?.selectedAdress = address
         }
     
     @IBAction func ApplyCodebtn(_ sender: Any) {
@@ -105,8 +120,10 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
         if NetworkReachabilityManager()?.isReachable ?? false {
             let priceafterdisc = checkoutVM?.calculatePriceWithDiscount(enteredcode: codetextF.text ?? "", totalPriceString: checkoutVM?.checkoutDraft?.total_price ?? "")
             priceDiscount.text = "\(priceafterdisc!)"
+        }else{
+            UIAlertController.showNoConnectionAlert(self: self)
         }
-        UIAlertController.showNoConnectionAlert(self: self)
+        
     }
     
     
@@ -114,10 +131,11 @@ class CheckoutViewController: UIViewController, AddressSelectionDelegate {
 
         
         paymentVM?.totalPrice = NSDecimalNumber(string: priceDiscount.text)
-       
-            
+          
         let payscreen = self.storyboard?.instantiateViewController(withIdentifier: "pay") as! PaymentViewController
         payscreen.paymentVM = paymentVM
+        payscreen.modalTransitionStyle = .crossDissolve
+        payscreen.modalPresentationStyle = .fullScreen
         present(payscreen, animated: true)
         
     }

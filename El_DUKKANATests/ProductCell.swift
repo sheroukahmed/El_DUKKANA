@@ -45,12 +45,8 @@ class ProductCell: UICollectionViewCell {
         productTitle.text = title
         productPrice.text = price
         productCurrency.text = currency
-        if isFavorited {
-            favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        }
-        else {
-            favButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        }
+        favButton.isHidden = true
+        favButton.isEnabled = false
         
     }
     

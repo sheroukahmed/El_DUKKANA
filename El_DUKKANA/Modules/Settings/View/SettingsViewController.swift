@@ -9,6 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    @IBOutlet weak var darkSwitch: UISwitch!
     @IBOutlet weak var currencyView: UIView!
     @IBOutlet weak var darkModeView: UIView!
     @IBOutlet weak var aboutUsBtn: UIButton!
@@ -53,6 +54,10 @@ class SettingsViewController: UIViewController {
         CurrencyList.changesSelectionAsPrimaryAction = true
         updateCurrencyLabel()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        let isDarkModeEnabled = UserDefaults.standard.bool(forKey: "DarkModeEnabled")
+            darkSwitch.isOn = isDarkModeEnabled
+    }
     
     func setupUI() {
         currencyView.layer.cornerRadius = 15
@@ -60,13 +65,13 @@ class SettingsViewController: UIViewController {
         signOutBtn.layer.cornerRadius = 15
         aboutUsBtn.layer.cornerRadius = 15
     }
-    
+   
     func updateCurrencyLabel() {
         CurrencyList.setTitle(SettingVM.selectedCurrency, for: .normal)
     }
    
     @IBAction func DarkSwitch(_ sender: UISwitch) {
-        
+        UserDefaults.standard.set(sender.isOn, forKey: "DarkModeEnabled")
         if #available(iOS 16.4, *){
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                         for window in windowScene.windows {

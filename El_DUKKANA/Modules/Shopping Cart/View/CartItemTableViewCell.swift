@@ -2,8 +2,9 @@
 //  CartItemTableViewCell.swift
 //  El_DUKKANA
 //
-//  Created by  sherouk ahmed  on 06/09/2024.
+//  Created by ios on 17/09/2024.
 //
+
 
 import UIKit
 
@@ -17,6 +18,7 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemprice: UILabel!
     @IBOutlet weak var itemCurrency: UILabel!
     
+    @IBOutlet weak var availableQuantity: UILabel!
     
     @IBOutlet weak var itemSize: UILabel!
     @IBOutlet weak var itemQuantity: UILabel!
@@ -43,3 +45,4 @@ class CartItemTableViewCell: UITableViewCell {
         
     }
 }
+

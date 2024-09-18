@@ -35,8 +35,10 @@ class AddAddressViewController: UIViewController {
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .seconds(3)) {
                 self.delegate?.didAddAddress()
             }
+        }else{
+            UIAlertController.showNoConnectionAlert(self: self)
         }
-        UIAlertController.showNoConnectionAlert(self: self)
+        
         
         
     }
