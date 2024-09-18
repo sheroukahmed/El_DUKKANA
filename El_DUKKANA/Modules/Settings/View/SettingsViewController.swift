@@ -9,41 +9,69 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    @IBOutlet weak var darkSwitch: UISwitch!
+    @IBOutlet weak var currencyView: UIView!
+    @IBOutlet weak var darkModeView: UIView!
+    @IBOutlet weak var aboutUsBtn: UIButton!
+    @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var CurrencyList: UIButton!
-
     var SettingVM = SettingsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupUI()
         
-        view.backgroundColor = UIColor(named: "Color")
+        if CurrentCustomer.currentCustomer.email == nil{
+            self.signOutBtn.isHidden = true
+        }
+        print(CurrentCustomer.currentCustomer)
+        view.backgroundColor = UIColor(named: "Color 1")
 
         // MARK: - Currency list
-        let CurrencyItemAction = { (action: UIAction) in
-             print(action.title)
+        
+        let savedCurrency = UserDefaults.standard.string(forKey: "SelectedCurrency") ?? "USD"
+        SettingVM.selectedCurrency = savedCurrency
+        updateCurrencyLabel()
+
+        
+        let CurrencyItemAction = { [weak self] (action: UIAction) in
+            guard let self = self else { return }
+            let selectedCurrency = action.title
+            self.SettingVM.selectedCurrency = selectedCurrency
+            UserDefaults.standard.set(selectedCurrency, forKey: "SelectedCurrency")
+            self.updateCurrencyLabel()
+            print(action.title)
         }
+        
         var menuChildren: [UIMenuElement] = []
         for currency in SettingVM.Currencies {
-            menuChildren.append(UIAction(title: currency, handler: CurrencyItemAction))
+            let action = UIAction(title: currency, state: currency == SettingVM.selectedCurrency ? .on : .off, handler: CurrencyItemAction)
+            menuChildren.append(action)
         }
         CurrencyList.menu = UIMenu(options: .displayInline, children: menuChildren)
         CurrencyList.showsMenuAsPrimaryAction = true
         CurrencyList.changesSelectionAsPrimaryAction = true
-    
+        updateCurrencyLabel()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        let isDarkModeEnabled = UserDefaults.standard.bool(forKey: "DarkModeEnabled")
+            darkSwitch.isOn = isDarkModeEnabled
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupUI() {
+        currencyView.layer.cornerRadius = 15
+        darkModeView.layer.cornerRadius = 15
+        signOutBtn.layer.cornerRadius = 15
+        aboutUsBtn.layer.cornerRadius = 15
     }
-    */
+   
+    func updateCurrencyLabel() {
+        CurrencyList.setTitle(SettingVM.selectedCurrency, for: .normal)
+    }
+   
     @IBAction func DarkSwitch(_ sender: UISwitch) {
-        
+        UserDefaults.standard.set(sender.isOn, forKey: "DarkModeEnabled")
         if #available(iOS 16.4, *){
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                         for window in windowScene.windows {
@@ -55,9 +83,25 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func signOutBtnAction(_ sender: Any) {
+        CurrentCustomer.currentCustomer.email = ""
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        let signInVC = storyboard.instantiateViewController(identifier: "SignInVC") as! SignInVC
+        signInVC.modalPresentationStyle = .fullScreen
+        signInVC.modalTransitionStyle = .crossDissolve
+        signInVC.isFromSignOut = true
+        present(signInVC, animated: true)
+        
+    }
     
   
     @IBAction func AboutUsbtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "AboutUS", bundle: nil)
+        if let about = storyboard.instantiateViewController(withIdentifier: "aboutUs") as? AboutUsViewController {
+            about.title = "About Us"
+            self.navigationController?.pushViewController(about, animated: true)
+        }
     }
+    
 }
 

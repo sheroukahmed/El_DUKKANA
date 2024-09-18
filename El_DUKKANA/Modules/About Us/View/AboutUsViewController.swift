@@ -1,13 +1,13 @@
 //
-//  AddressesViewController.swift
+//  AboutUsViewController.swift
 //  El_DUKKANA
 //
-//  Created by  sherouk ahmed  on 12/09/2024.
+//  Created by Sarah on 13/09/2024.
 //
 
 import UIKit
 
-class AddressesViewController: UIViewController {
+class AboutUsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

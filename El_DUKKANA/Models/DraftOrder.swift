@@ -13,11 +13,12 @@ struct DraftOrderResponse: Codable {
 }
 
 struct DraftOrderRequest: Codable {
-    let draft_order: DraftOrder
+    var draft_order: DraftOrder
 }
 
 struct DraftOrder: Codable {
-    let id: Int?
+    var id: Int?
+    var note: String?
     let email: String?
     let currency: String?
     let created_at: String?
@@ -25,24 +26,62 @@ struct DraftOrder: Codable {
     let completed_at: String?
     let name: String?
     let status: String?
-    let line_items: [LineItem]?
-    let order_id: String?
+    var line_items: [LineItem]
+    let order_id: Int?
     let shipping_line: String?
     let tags: String?
-    let total_price: String?
+    var total_price: String?
     let customer: Customer?
+    var shipping_address: CustomerAddress?
+    
+    
+}
+/*
+ shipping_address": {
+       "first_name": "Bob",
+       "address1": "Chestnut Street 92",
+       "phone": "+1(502)-459-2181",
+       "city": "Louisville",
+       "zip": "40202",
+       "province": "Kentucky",
+       "country": "United States",
+       "last_name": "Norman",
+       "address2": "",
+       "company": null,
+       "latitude": 45.41634,
+       "longitude": -75.6868,
+       "name": "Bob Norman",
+       "country_code": "US",
+       "province_code": "KY"
+     },
+ has context menu
+ */
+struct ShippingAddress: Codable  {
+    
+    var address1: String?
+    var address2: String?
+    var city: String?
+    var province: String?
+    var country: String?
+    var zip: String?
     
 }
 
 struct LineItem: Codable  {
-    let id: Int?
+    var id: Int?
     let variant_id: Int?
     let product_id: Int?
     let title: String?
     let variant_title: String?
     let vendor: String?
-    let quantity: Int?
+    var quantity: Int?
     let name: String?
     let custom: Bool?
     let price: String?
+    let properties : [ProductProperties]?
+}
+
+struct ProductProperties: Codable {
+    let image : String
+    
 }
