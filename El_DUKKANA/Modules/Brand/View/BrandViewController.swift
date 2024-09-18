@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import Alamofire
 
-class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, ProductCellDelegate {
     
     var hidden : Bool = false
     @IBOutlet weak var eldukkanaImg: UIImageView!
@@ -19,7 +19,6 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     @IBOutlet weak var NoProductsAvailableImage: UIImageView!
     
     var isSearching = false
-    //var isfilterdd = false
     var searchViewModel = SearchViewModel()
     
     var brandViewModel: BrandViewModel?
@@ -30,6 +29,9 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(named: "Color 1")
+        BrandProductCollectionView.backgroundColor = UIColor(named: "Color 1")
+        print(CurrentCustomer.currentCustomer)
         setupUI()
         
         brandViewModel = BrandViewModel(brand: brandViewModel?.brand ?? "")
@@ -39,6 +41,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
             guard let self = self else { return }
             self.BrandProductCollectionView.reloadData()
             self.toggleNoDataView()
+            self.searchViewModel.allProducts = self.brandViewModel?.allProducts ?? []
         }
         }
         
@@ -55,16 +58,62 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
-        //brandImages = brandViewModel?.products?[indexPath.row].images?[indexPath.row].src
+        
         if isSearching {
             let product = searchViewModel.filterdProducts[indexPath.row]
-            cell.configureCell(image: product.image?.src ?? dummyImage, title: product.title ?? "", price: product.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
+            if let priceString = product.variants?.first?.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                cell.configureCell(image: product.image?.src ?? dummyImage,
+                                   title: product.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            } else {
+                cell.configureCell(image: product.image?.src ?? dummyImage,
+                                   title: product.title ?? "",
+                                   price: "N/A",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            }
+            cell.delegate = self
+            cell.product = product
+            
         } else if isFiltered {
             let brandProduct = brandViewModel?.filteredProducts?[indexPath.row]
-            cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
+            if let priceString = brandProduct?.variants?.first?.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            } else {
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "N/A",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            }
+            cell.delegate = self
+            cell.product = brandProduct!
         } else {
             let brandProduct = brandViewModel?.products?[indexPath.row]
-            cell.configureCell(image: brandProduct?.image?.src ?? dummyImage, title: brandProduct?.title ?? "", price: brandProduct?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
+            if let priceString = brandProduct?.variants?.first?.price, let price = Double(priceString) {
+                let convertedPrice = price * CurrencyManager.shared.currencyRate
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "\(convertedPrice)",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            } else {
+                cell.configureCell(image: brandProduct?.image?.src ?? dummyImage,
+                                   title: brandProduct?.title ?? "",
+                                   price: "N/A",
+                                   currency: CurrencyManager.shared.selectedCurrency,
+                                   isFavorited: false)
+            }
+            cell.delegate = self
+            cell.product = brandProduct!
         }
         
         cell.layer.cornerRadius = 20
@@ -98,10 +147,7 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
                 self.present(productDetails, animated: true)
             }
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
+            UIAlertController.showNoConnectionAlert(self: self)
         }
     }
     
@@ -133,9 +179,11 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
     }
     
     private func toggleNoDataView() {
-        let noProducts = (brandViewModel?.products?.isEmpty ?? true && searchViewModel.filterdProducts.isEmpty)
-        BrandProductCollectionView.isHidden = noProducts
-        NoProductsAvailableImage.isHidden = !noProducts
+        if !isSearching {
+            let noProducts = brandViewModel?.products?.isEmpty ?? true
+            BrandProductCollectionView.isHidden = noProducts
+            NoProductsAvailableImage.isHidden = !noProducts
+        }
     }
     
     private func updateView(isHidden: Bool) {
@@ -143,8 +191,6 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         searchBar.isHidden = isHidden
         filterButton.isHidden = !isHidden
     }
-
-   
     
     @IBAction func filter(_ sender: Any) {
         isFiltered = !isFiltered
@@ -152,6 +198,22 @@ class BrandViewController: UIViewController,UICollectionViewDelegate,UICollectio
         brandViewModel?.filterProducts()
     }
     
+    func presentAlert(_ alert: UIAlertController) {
+                self.present(alert, animated: true)
+            }
+            
+            func presentSignInVC() {
+                let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+                if let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                    signInVC.modalTransitionStyle = .crossDissolve
+                    signInVC.modalPresentationStyle = .fullScreen
+                    self.present(signInVC, animated: true)
+                }
+            }
+        
+        func refreshCollectionView() {
+            self.BrandProductCollectionView.reloadData()
+        }
 }
 
 extension BrandViewController: UISearchBarDelegate{

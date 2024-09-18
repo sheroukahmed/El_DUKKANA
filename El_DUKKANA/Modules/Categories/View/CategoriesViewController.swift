@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 
-class CategoriesViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
+class CategoriesViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, ProductCellDelegate   {
     @IBOutlet weak var searchBarBackBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -31,7 +31,11 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        view.backgroundColor = UIColor(named: "Color 1")
+        ProductsCategoriesCollectionView.backgroundColor = UIColor(named: "Color 1")
+        
+        print(CurrentCustomer.currentCustomer)
         searchBarBackBtn.isHidden = true
         searchBar.isHidden = true
         setupUI()
@@ -78,14 +82,13 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         .disposed(by: disposeBag)
         
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        ProductsCategoriesCollectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isSearching {
-                    return searchViewModel.filterdProducts.count
-                } else {
-                    return categoriesViewModel?.products?.count ?? 0
-                }
+        return isSearching ? searchViewModel.filterdProducts.count : (categoriesViewModel?.products?.count ?? 0)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -97,30 +100,44 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String (describing: ProductCell.self), for: indexPath) as! ProductCell
         
         var product: Product?
-            if isSearching {
-                    product = searchViewModel.filterdProducts[indexPath.row]
-                } else {
-                    product = categoriesViewModel?.products?[indexPath.row]
-                }
-            cell.configureCell(image: product?.image?.src ?? dummyImage, title: product?.title ?? "", price: product?.variants?.first?.price ?? "", currency: "USD", isFavorited: false)
-  
+        if isSearching {
+            product = searchViewModel.filterdProducts[indexPath.row]
+        } else {
+            product = categoriesViewModel?.products?[indexPath.row]
+        }
+        if let priceString = product?.variants?.first?.price, let price = Double(priceString) {
+            let convertedPrice = price * CurrencyManager.shared.currencyRate
+            cell.configureCell(image: product?.image?.src ?? dummyImage,
+                               title: product?.title ?? "",
+                               price: "\(convertedPrice)",
+                               currency: CurrencyManager.shared.selectedCurrency,
+                               isFavorited: false)
+        } else {
+            cell.configureCell(image: product?.image?.src ?? dummyImage,
+                               title: product?.title ?? "",
+                               price: "N/A",
+                               currency: CurrencyManager.shared.selectedCurrency,
+                               isFavorited: false)
+        }
+        cell.delegate = self
+        cell.product = product!
         cell.layer.cornerRadius = 20
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let padding: CGFloat = 5
-           let collectionViewWidth = collectionView.frame.width
-           let availableWidth = collectionViewWidth - padding * 3
-           let widthPerItem = availableWidth / 2
+        let padding: CGFloat = 5
+        let collectionViewWidth = collectionView.frame.width
+        let availableWidth = collectionViewWidth - padding * 3
+        let widthPerItem = availableWidth / 2
         return CGSize(width: widthPerItem, height: widthPerItem * 1.5)
-       }
-
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-       }
+    }
     
- 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
             let storyBoard = UIStoryboard(name: "ProductDetailsStoryboard", bundle: nil)
@@ -132,14 +149,8 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
                 productDetails.modalTransitionStyle = .crossDissolve
                 self.present(productDetails, animated: true)
             }
-        
-            
         } else {
-            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel)
-            alert.addAction(ok)
-            present(alert, animated: true)
-        }
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
     private func setupUI() {
@@ -147,7 +158,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
         let customColor = UIColor(red: 0.403, green: 0.075, blue: 0.067, alpha: 1.0)
         
         self.navigationController?.navigationBar.tintColor = customColor
-
+        
         // Create search button (left side)
         let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"),
                                            style: .plain,
@@ -161,21 +172,21 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
                                          target: self,
                                          action: #selector(cartButtonTapped))
         cartButton.tintColor = customColor
-
+        
         // Create favorite button (right side)
         let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(favoriteButtonTapped))
         favoriteButton.tintColor = customColor
-
+        
         // Set left bar button (Search)
         navigationItem.leftBarButtonItem = searchButton
         
         // Set right bar buttons (Cart and Favorite)
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-         spacer.width = 1
-         navigationItem.rightBarButtonItems = [favoriteButton, spacer, cartButton]
+        spacer.width = 1
+        navigationItem.rightBarButtonItems = [favoriteButton, spacer, cartButton]
         
         
         indicator = UIActivityIndicatorView(style: .large)
@@ -206,38 +217,83 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
             NoProductsAvailableImage.isHidden = !noProducts
         }
     }
-  
+    
     
     @objc func searchButtonTapped() {
-        print("Search button tapped")
-       
-        if startSearch {
-            self.searchBar.isHidden = false
-            self.searchBarBackBtn.isHidden = false
-            startSearch = startSearch ? false : true
-            
-        }else{
-            self.searchBar.isHidden = true
-            self.searchBarBackBtn.isHidden = true
-            startSearch = startSearch ? false : true
-        }
-    }
-
-    @objc func cartButtonTapped() {
-        print("Cart button tapped")
-    }
-
-    @objc func favoriteButtonTapped() {
-        print("Favorite button tapped")
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if startSearch {
+                self.searchBar.isHidden = false
+                self.searchBarBackBtn.isHidden = false
+                startSearch = startSearch ? false : true
+            } else{
+                self.searchBar.isHidden = true
+                self.searchBarBackBtn.isHidden = true
+                startSearch = startSearch ? false : true
+            }
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)        }
     }
     
-
-    @IBAction func searchBackBtn(_ sender: Any) {
-        self.searchBar.isHidden = true
-        self.searchBarBackBtn.isHidden = true
+    @objc func cartButtonTapped() {
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+                if let cart = storyboard.instantiateViewController(withIdentifier: "CartStoryboard") as? CartViewController {
+                    cart.title = "My Cart"
+                    self.navigationController?.pushViewController(cart, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)
+            }
     }
-
-
+    
+    
+    @objc func favoriteButtonTapped() {
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            if CurrentCustomer.currentCustomer.email != nil {
+                let storyboard = UIStoryboard(name: "FavoritesStoryboard", bundle: nil)
+                if let favorites = storyboard.instantiateViewController(withIdentifier: "Favorites") as? FavoritesViewController {
+                    favorites.title = "My Wishlist"
+                    self.navigationController?.pushViewController(favorites, animated: true)
+                }
+            } else {
+                UIAlertController.showGuestAlert(self: self)
+            }} else {
+                UIAlertController.showNoConnectionAlert(self: self)            }
+    }
+    
+    
+    
+    @IBAction func searchBackBtn(_ sender: Any) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            self.searchBar.isHidden = true
+            self.searchBarBackBtn.isHidden = true
+        } else {
+            UIAlertController.showNoConnectionAlert(self: self)
+        }
+    }
+    
+    
+    func presentAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
+    }
+    
+    func presentSignInVC() {
+        let storyboard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+        if let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+            signInVC.modalTransitionStyle = .crossDissolve
+            signInVC.modalPresentationStyle = .fullScreen
+            self.present(signInVC, animated: true)
+        }
+    }
+    
+    func refreshCollectionView() {
+        self.ProductsCategoriesCollectionView.reloadData()
+    }
+    
+    
 }
 extension CategoriesViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

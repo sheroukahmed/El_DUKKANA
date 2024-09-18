@@ -6,12 +6,31 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        
+//        // Background color for all views
+//        UIView.appearance().backgroundColor = UIColor(named: "Color")
+//
+//        // Label text color
+//        UILabel.appearance().textColor = UIColor(named: "")
+//
+//        // Button tint color
+//        UIButton.appearance().tintColor = UIColor(named: "Color 1")
+//
+//        // Navigation bar tint color
+//        UINavigationBar.appearance().barTintColor = UIColor(named: "Color 2")
+//
+//        UITabBar.appearance().barTintColor = UIColor(named: "Color 2")
+//
+//
+        
         // Override point for customization after application launch.
         return true
     }

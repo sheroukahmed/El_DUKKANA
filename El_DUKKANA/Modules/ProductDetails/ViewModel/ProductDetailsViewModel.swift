@@ -33,5 +33,45 @@ class ProductDetailsViewModel {
             
         })
     }
+    func updateCartDraftOrder(){
+        network?.Put(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.currentCartDraftOrder.draft_order.id ?? 0)), type: CurrentCustomer.currentCartDraftOrder, completionHandler: { result, error in
+            guard error == nil else {
+                print("Error editing draft order: \(String(describing: error))")
+                return
+            }
+            guard let result = result else {
+                print("No result returned when Editing draft order")
+                return
+            }
+            print("\n\n CurrentCustomer.currentDraftOrder for puting : \(CurrentCustomer.currentCartDraftOrder)")
+            
+            print("\n\n the id : \(CurrentCustomer.currentCartDraftOrder.draft_order.id ?? 0)")
+            
+            CurrentCustomer.currentCartDraftOrder.draft_order = result.draft_order
+            print("line items after put 1: \(result.draft_order.line_items)")
+            print("line items after put 2: \(CurrentCustomer.currentCartDraftOrder.draft_order)")
+            
+        })
+    }
+    func updateFavDraftOrder(){
+        network?.Put(url: URLManager.getUrl(for: .specifcDraftorder(specificDraftOrder: CurrentCustomer.currentFavDraftOrder.draft_order.id ?? 0)), type: CurrentCustomer.currentFavDraftOrder, completionHandler: { result, error in
+            guard error == nil else {
+                print("Error editing draft order: \(String(describing: error))")
+                return
+            }
+            guard let result = result else {
+                print("No result returned when Editing draft order")
+                return
+            }
+            print("\n\n CurrentCustomer.currentDraftOrder for puting : \(CurrentCustomer.currentFavDraftOrder)")
+            
+            print("\n\n the id : \(CurrentCustomer.currentFavDraftOrder.draft_order.id ?? 0)")
+            
+            CurrentCustomer.currentFavDraftOrder.draft_order = result.draft_order
+            print("line items after put 1: \(result.draft_order.line_items)")
+            print("line items after put 2: \(CurrentCustomer.currentFavDraftOrder.draft_order)")
+            
+        })
+    }
     
 }

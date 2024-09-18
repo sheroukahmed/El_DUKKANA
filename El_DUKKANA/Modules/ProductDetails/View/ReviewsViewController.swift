@@ -33,7 +33,9 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        print("\n\n\n")
+        print(CurrentCustomer.currentCustomer)
+        print("\n\n\n")
         reviewCollectionView.dataSource = self
         reviewCollectionView.delegate = self
         productCollectionView.dataSource = self
@@ -61,7 +63,7 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
         reviewCollectionView.setCollectionViewLayout(reViewLayout, animated: true)
         productCollectionView.setCollectionViewLayout(productLayout, animated: true)
     }
-
+   
     @objc func moveToNextIndex(){
         pageCont.moveNextIndex(specificCount: viewModel.images.count, specificCollectionView: productCollectionView, pageController: pageController)
     }
@@ -73,13 +75,34 @@ class ReviewsViewController: UIViewController, AddNewReviewProtocol {
         }
     
     @IBAction func addReviewBtn(_ sender: Any) {
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddReviewVC") as? AddReviewVC {
-            vc.delegate = self
-            vc.modalTransitionStyle = .crossDissolve
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+        
+        if CurrentCustomer.currentCustomer.email != nil {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddReviewVC") as? AddReviewVC {
+                vc.delegate = self
+
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+                
+            }
+        }else if CurrentCustomer.currentCustomer.email == nil {
+            let alert = UIAlertController(title: "SignIn First", message: "You can't add Review you have to sign in first", preferredStyle: .alert)
+            let signIn = UIAlertAction(title: "SignIn", style: .default) { action in
+                let storyBoard = UIStoryboard(name: "AuthenticationStoryboard", bundle: nil)
+                if let vc = storyBoard.instantiateViewController(withIdentifier: "SignInVC") as? SignInVC {
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+                let cancle = UIAlertAction(title: "Cancle", style: .cancel)
+            alert.addAction(signIn)
+            alert.addAction(cancle)
+            
+            self.present(alert, animated: true)
             
         }
+        
     }
     
     @IBAction func backBtn(_ sender: Any) {
