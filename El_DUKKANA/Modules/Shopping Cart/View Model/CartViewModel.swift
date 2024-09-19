@@ -15,7 +15,7 @@ class CartViewModel {
     var bindResultToViewController: (() -> ()) = {}
     var bindResultToViewController2: (() -> ()) = {}
     var productVm : ProductDetailsViewModel?
-    
+    var Quantity : [Int] = []
     var Images : [String] = []
     var disposeBag = DisposeBag()
     var quantityUpdateSubject = PublishSubject<Void>()
@@ -59,7 +59,10 @@ class CartViewModel {
             for item in result.products{
                 self.Images.append(item.image?.src ?? "")
             }
-            self.bindResultToViewController2()
+            for item2 in result.products{
+                   self.Quantity.append(item2.variants?.first?.inventory_quantity ?? 0)
+               }
+               self.bindResultToViewController2()
         })
         
     }

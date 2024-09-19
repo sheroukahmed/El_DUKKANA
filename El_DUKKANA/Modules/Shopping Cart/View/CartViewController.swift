@@ -100,6 +100,17 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.itemCurrency.text = CurrencyManager.shared.selectedCurrency
         cell.itemQuantity.text = String(lineItem.quantity ?? 1)
+        
+        if let availableQ = cartVM?.Quantity, indexPath.row < availableQ.count {
+            let quantity = availableQ[indexPath.row]
+            print("Image for product at row \(indexPath.row): \(quantity)")
+            cell.availableQuantity.text = "\(quantity)"
+        } else {
+            
+            cell.availableQuantity.text = "1000"
+            print("Using dummy image for product at row \(indexPath.row)")
+        }
+        
         if let images = cartVM?.Images, indexPath.row < images.count {
             let imageUrl = images[indexPath.row]
             print("Image for product at row \(indexPath.row): \(imageUrl)")
@@ -120,15 +131,20 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.itemSize.text = "N/A"
                 cell.itemColor.text = "N/A"
             }
-    
- 
-    
-        let availableQuantity = 5
-        let currentQuantity = lineItem.quantity ?? 1
         
-        cell.increaseButton.isEnabled = currentQuantity < availableQuantity
+        
+        
+        
+        if let availableQuantity = cartVM?.Quantity, indexPath.row < availableQuantity.count {
+            let quantity = availableQuantity[indexPath.row]
+        
+            let currentQuantity = lineItem.quantity ?? 1
+        
+        cell.increaseButton.isEnabled = currentQuantity < (quantity)/2
         cell.decreaseButton.isEnabled = currentQuantity > 1
-        
+        } else {
+            let quantity = 5
+        }
     
         cell.increaseButton.tag = indexPath.row
         cell.decreaseButton.tag = indexPath.row
